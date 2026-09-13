@@ -844,7 +844,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    async function cargarDatos(mostrarOverlay = false) {
+    async function cargarDatos(mostrarOverlay = false, forzarFresco = false) {
         if (AppState.cargandoDatos) return;
         AppState.cargandoDatos = true;
         if (mostrarOverlay && UI.cargaOverlay) UI.cargaOverlay.style.display = 'flex';
@@ -853,7 +853,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if (UI.badgeTexto) UI.badgeTexto.textContent = 'Sincronizando…';
 
         try {
-            const res = await fetch('/api/encuestas', { cache: 'no-store' });
+            const url = `/api/encuestas?_ts=${Date.now()}${forzarFresco ? '&fresh=1' : ''}`;
+            const res = await fetch(url, {
+                cache: 'no-store',
+                headers: {
+                    'Cache-Control': 'no-cache, no-store, must-revalidate',
+                    'Pragma': 'no-cache'
+                }
+            });
             if (!res.ok) throw new Error(`HTTP error: ${res.status}`);
             
             const data = await res.json();
@@ -862,7 +869,10 @@ document.addEventListener('DOMContentLoaded', () => {
             AppState.encuestas = rawEncuestas.map(normalizarSupervisorEncuesta).filter(e => {
                 const codEnc = String(e.encuestador || e.C_digo_encuestador || campo(e, AppState.config.campoEncuestador) || '').trim();
                 const codSup = String(e.supervisor || e.C_digo_Supervisor || campo(e, AppState.config.campoSupervisor) || '').trim();
-                return codEnc !== '98' && codSup !== '98';
+                const consent = String(e.consentimiento || e.consen || '').trim().toUpperCase();
+                if (codEnc === '98' || codSup === '98') return false;
+                if (consent === 'NO' || consent === '2') return false;
+                return true;
             });
 
             auditarEncuestas();
@@ -4250,16 +4260,19 @@ document.addEventListener('DOMContentLoaded', () => {
             UI.locateBtn.addEventListener('click', localizarSupervisor);
         }
 
-        // 10. Sincronizar con Kobo
+        // 10. Sincronizar con Kobo (Ultra-rápido en vivo con bypass de caché)
         if (UI.botonSync) {
             UI.botonSync.addEventListener('click', async () => {
+                const icono = UI.botonSync.querySelector('svg, i');
+                if (icono) icono.classList.add('anim-girar');
                 mostrarToast('Sincronizando con KoboToolbox…', 'info');
                 try {
-                    await fetch('/api/sync', { method: 'POST' });
-                    await cargarDatos(false);
-                    mostrarToast('Datos sincronizados ✓', 'success');
+                    await cargarDatos(false, true);
+                    mostrarToast('Datos sincronizados en vivo ✓', 'success');
                 } catch (e) {
-                    await cargarDatos(false);
+                    mostrarToast('No se pudo sincronizar en vivo. Usando datos locales.', 'error');
+                } finally {
+                    if (icono) icono.classList.remove('anim-girar');
                 }
             });
         }

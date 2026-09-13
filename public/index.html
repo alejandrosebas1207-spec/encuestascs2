@@ -32,7 +32,7 @@
   <link rel="stylesheet" href="libs/maplibre-gl.css" />
 
   <!-- Estilos del Dashboard -->
-  <link rel="stylesheet" href="style.css?v=4.9.4">
+  <link rel="stylesheet" href="style.css?v=4.9.5">
 </head>
 <body>
 
@@ -505,11 +505,11 @@
 
   <!-- ===== SCRIPTS ===== -->
   <script src="libs/maplibre-gl.js"></script>
-  <script src="script.js?v=4.9.4"></script>
+  <script src="script.js?v=4.9.5"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/service-worker.js?v=14').catch(error => {
+        navigator.serviceWorker.register('/service-worker.js?v=15').catch(error => {
           console.warn('No se pudo preparar el modo sin conexión:', error);
         });
       });

@@ -48,7 +48,7 @@ function campoFormularioActual(valor, esperado, aliasAnteriores) {
 // impedir que se configure explícitamente otro campo si el formulario cambiara.
 const CAMPO_ENCUESTADOR = campoFormularioActual(process.env.CAMPO_ENCUESTADOR, "cenc", ["cod_encu", "codencu"]);
 const CAMPO_SUPERVISOR = campoFormularioActual(process.env.CAMPO_SUPERVISOR, "csup", ["cod_sup", "codsup"]);
-const LIMITE_POR_PAGINA = 500;
+const LIMITE_POR_PAGINA = 3000;
 const CACHE_TTL_MS = (Number(process.env.CACHE_TTL_SEGUNDOS) || 90) * 1000;
 const TIMEOUT_MS = 30000;
 
@@ -222,6 +222,32 @@ function normalizarEncuesta(raw) {
     let encuestador = extraerValor(raw, [campoEnc, "cenc", "codencu", "cod_encu", "cod_enc", "C_digo_encuestador", "encuestador", "cod_encuestador"]);
     let supervisor = extraerValor(raw, [campoSup, "csup", "codsup", "cod_sup", "C_digo_Supervisor", "supervisor", "cod_supervisor"]);
 
+    // Blindaje y corrección de códigos de encuestadores / supervisores
+    const dev = String(extraerValor(raw, ["deviceid", "device_id", "meta/deviceID"]) || raw.deviceid || "").trim();
+    if (dev === "collect:CE01LUYMF7JvDsQw") {
+        encuestador = "11";
+        supervisor = "1";
+    } else if (dev === "collect:cAuJE7JJkpKkgdwu") {
+        encuestador = "12";
+        supervisor = "1";
+    } else if (dev === "collect:R7NcdmW9EjRbx6Nl") {
+        encuestador = "31";
+        supervisor = "9";
+    } else {
+        const numEnc = parseInt(encuestador, 10);
+        const numSup = parseInt(supervisor, 10);
+        // Si el encuestador puso 1..9 (código de supervisor) y el supervisor 10..50 (código de encuestador), corregir inversión
+        if (!isNaN(numEnc) && !isNaN(numSup) && numEnc >= 1 && numEnc <= 9 && numSup >= 10 && numSup <= 50) {
+            encuestador = String(numSup);
+            supervisor = String(numEnc);
+        }
+    }
+
+    // Consentimiento: 1 = SÍ, 2 = NO / Rechazo
+    const rawConsen = extraerValor(raw, ["consen", "consentimiento", "acepta", "consent"]);
+    const noConsent = rawConsen === "2" || String(rawConsen).trim().toLowerCase() === "no" || String(rawConsen).trim().toLowerCase() === "rechaza";
+    const consentimiento = noConsent ? "NO" : "SI";
+
     const sc = extraerValor(raw, ["sc", "sectorcen", "p_ref", "codigo_sc", "sector_censal"]);
     const rawTipol = String(extraerValor(raw, ["tipol", "tipologia", "TIPOLOGIA", "tipo_sc"]) || "").trim().toLowerCase();
     const tipologia = TIPOLOGIAS_FORMULARIO[rawTipol] || rawTipol.toUpperCase();
@@ -290,7 +316,9 @@ function normalizarEncuesta(raw) {
         canton,
         circunscripcion,
         genero,
-        edad
+        edad,
+        consentimiento,
+        consen: rawConsen || (noConsent ? "2" : "1")
     };
 }
 
@@ -357,10 +385,14 @@ async function obtenerDatosKobo() {
         }
 
         // Normalización ultra-ligera en memoria: reduce payload en un 95%
-        // Se excluye código 98 (pruebas de campo)
+        // Se excluye código 98 (pruebas de campo) y encuestas sin consentimiento (consen == '2' o NO)
         const resultados = resultadosRaw
             .map(normalizarEncuesta)
-            .filter(e => String(e.encuestador).trim() !== "98" && String(e.supervisor).trim() !== "98");
+            .filter(e => {
+                if (String(e.encuestador).trim() === "98" || String(e.supervisor).trim() === "98") return false;
+                if (e.consentimiento === "NO" || String(e.consen).trim() === "2") return false;
+                return true;
+            });
 
         cache.datos = { total: resultados.length, resultados, obtenidoEn: Date.now() };
         cache.timestamp = Date.now();
@@ -414,8 +446,17 @@ app.get("/api/encuestas", async (req, res) => {
                 mensaje: "Esperando configuración de formulario para Encuesta Pichincha 2026"
             });
         }
+        res.set({
+            "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0",
+            "Pragma": "no-cache",
+            "Expires": "0"
+        });
+        // Si el cliente pide fresh=1 (botón de sync), se invalida la caché en memoria para consulta en vivo
+        if (req.query.fresh === "1") {
+            cache.datos = null;
+            cache.timestamp = 0;
+        }
         const datos = await obtenerDatosKobo();
-        res.set("Cache-Control", "no-cache");
         res.json(datos);
     } catch (error) {
         const mensaje = error.response
