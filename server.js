@@ -30,9 +30,13 @@ function limpiarVar(val) {
 
 const PORT = Number(process.env.PORT) || 3001;
 
-// El identificador y el token se reciben solo por variables de entorno de Render.
-// Se ignoran ASSET_ID genéricos heredados de otros proyectos para evitar consultas cruzadas.
-const ASSET_ID = limpiarVar(process.env.ASSET_ID_PICHINCHA);
+// El identificador y el token se reciben por variables de entorno de Render.
+const ASSET_ID = limpiarVar(
+    process.env.ASSET_ID_IBARRA ||
+    process.env.ASSET_ID ||
+    process.env.KOBO_ASSET_ID ||
+    process.env.ASSET_ID_PICHINCHA
+);
 const API_TOKEN = limpiarVar(
     process.env.API_TOKEN ||
     process.env.KOBO_API_TOKEN ||
@@ -424,15 +428,15 @@ app.get("/api/health", (req, res) => {
 
 app.get("/api/config", (req, res) => {
     res.set("Cache-Control", "no-cache, no-store, must-revalidate");
-    let nombre = process.env.NOMBRE_PROYECTO || "Encuesta Pichincha 2026";
+    let nombre = process.env.NOMBRE_PROYECTO || "Encuesta Cantonal Ibarra 2026";
     res.json({
         nombreProyecto: nombre,
-        metaEncuestas: Number(process.env.META_ENCUESTAS) || 1600,
+        metaEncuestas: Number(process.env.META_ENCUESTAS) || 400,
         campoEncuestador: CAMPO_ENCUESTADOR,
         campoSupervisor: CAMPO_SUPERVISOR,
-        centroLng: process.env.MAPA_CENTRO_LNG ? Number(process.env.MAPA_CENTRO_LNG) : -78.4678,
-        centroLat: process.env.MAPA_CENTRO_LAT ? Number(process.env.MAPA_CENTRO_LAT) : -0.1807,
-        zoomInicial: process.env.MAPA_ZOOM_INICIAL ? Number(process.env.MAPA_ZOOM_INICIAL) : 11
+        centroLng: process.env.MAPA_CENTRO_LNG ? Number(process.env.MAPA_CENTRO_LNG) : -78.12,
+        centroLat: process.env.MAPA_CENTRO_LAT ? Number(process.env.MAPA_CENTRO_LAT) : 0.35,
+        zoomInicial: process.env.MAPA_ZOOM_INICIAL ? Number(process.env.MAPA_ZOOM_INICIAL) : 12
     });
 });
 
@@ -443,7 +447,7 @@ app.get("/api/encuestas", async (req, res) => {
                 total: 0,
                 resultados: [],
                 obtenidoEn: Date.now(),
-                mensaje: "Esperando configuración de formulario para Encuesta Pichincha 2026"
+                mensaje: "Esperando configuración de formulario Kobo (ASSET_ID y API_TOKEN)"
             });
         }
         res.set({
@@ -473,7 +477,7 @@ app.get("/api/encuestas", async (req, res) => {
 app.post("/api/sync", async (req, res) => {
     try {
         if (!ASSET_ID || !API_TOKEN) {
-            return res.json({ estado: "ok", total: 0, obtenidoEn: Date.now(), mensaje: "Esperando ASSET_ID_PICHINCHA" });
+            return res.json({ estado: "ok", total: 0, obtenidoEn: Date.now(), mensaje: "Esperando ASSET_ID y API_TOKEN" });
         }
         cache.datos = null;
         cache.timestamp = 0;

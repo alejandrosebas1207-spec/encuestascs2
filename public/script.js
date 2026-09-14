@@ -48,8 +48,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // =========================================================================
     const AppState = {
         config: {
-            nombreProyecto: 'Supervisión de Campo',
-            metaEncuestas: 1600,
+            nombreProyecto: 'Encuesta Cantonal Ibarra 2026',
+            metaEncuestas: 400,
             campoEncuestador: 'cenc',
             campoSupervisor: 'csup'
         },
@@ -134,8 +134,14 @@ document.addEventListener('DOMContentLoaded', () => {
         '#15803d'  // 24: Verde Pino
     ];
 
-    // Parroquias oficiales en estudio por cantón (Encuesta Pichincha 2026 - 62 parroquias)
+    // Parroquias oficiales en estudio por cantón
     const PARROQUIAS_POR_CANTON = {
+        'Ibarra': [
+            'LA DOLOROSA DEL PRIORATO', 'AMBUQUI / CHOTA', 'ANGOCHAGUA',
+            'CAROLINA / GUALLUPI', 'LA ESPERANZA', 'LITA', 'SALINAS',
+            'SAN ANTONIO', 'GUAYAQUIL DE ALPACHACA', 'SAGRARIO',
+            'CARANQUI', 'SAN FRANCISCO'
+        ],
         'Quito': [
             'ALANGASI', 'AMAGUAÑA', 'BELISARIO QUEVEDO', 'CALDERON', 'CARCELEN',
             'CENTRO HISTORICO', 'CHECA', 'CHILLOGALLO', 'CHIMBACALLE', 'COCHAPAMBA',
@@ -160,8 +166,17 @@ document.addEventListener('DOMContentLoaded', () => {
         ]
     };
 
-    // Paleta cromática oficial por Cantón (Encuesta Pichincha 2026)
+    // Paleta cromática oficial por Cantón
     const COLORES_CANTON = {
+        'Ibarra': {
+            nombre: 'Ibarra',
+            linea: '#2563eb',       // Azul Cobalto institucional
+            fill: '#3b82f6',        // Azul vibrante
+            fillActive: '#1d4ed8',
+            label: '#1e40af',       // Texto legible oscuro
+            badge: '🔵',
+            hex: '#2563eb'
+        },
         'Quito': {
             nombre: 'Quito (D.M.)',
             linea: '#2563eb',       // Azul Cobalto
@@ -202,36 +217,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Expresiones MapLibre GL por cantón (Pintado vectorial diferenciado)
     const EXPR_CANTON_PARROQUIAS_LINE = [
-        'match', ['get', 'canton'],
-        'Quito', '#2563eb',
-        'Cayambe', '#059669',
-        'Mejía', '#ea580c',
-        'Rumiñahui', '#9333ea',
-        '#7c3aed'
+        'match', ['upcase', ['to-string', ['get', 'canton']]],
+        'IBARRA', '#2563eb',
+        'QUITO', '#2563eb',
+        'CAYAMBE', '#059669',
+        'MEJIA', '#ea580c',
+        'MEJÍA', '#ea580c',
+        'RUMIÑAHUI', '#9333ea',
+        '#2563eb'
     ];
     const EXPR_CANTON_PARROQUIAS_LABEL = [
-        'match', ['get', 'canton'],
-        'Quito', '#1e40af',
-        'Cayambe', '#065f46',
-        'Mejía', '#9a3412',
-        'Rumiñahui', '#581c87',
-        '#581c87'
+        'match', ['upcase', ['to-string', ['get', 'canton']]],
+        'IBARRA', '#1e40af',
+        'QUITO', '#1e40af',
+        'CAYAMBE', '#065f46',
+        'MEJIA', '#9a3412',
+        'MEJÍA', '#9a3412',
+        'RUMIÑAHUI', '#581c87',
+        '#1e40af'
     ];
     const EXPR_CANTON_SECTORES_FILL = [
-        'match', ['get', 'canton'],
-        'Quito', '#3b82f6',
-        'Cayambe', '#10b981',
-        'Mejía', '#f97316',
-        'Rumiñahui', '#a855f7',
-        '#f59e0b'
+        'match', ['upcase', ['to-string', ['get', 'canton']]],
+        'IBARRA', '#3b82f6',
+        'QUITO', '#3b82f6',
+        'CAYAMBE', '#10b981',
+        'MEJIA', '#f97316',
+        'MEJÍA', '#f97316',
+        'RUMIÑAHUI', '#a855f7',
+        '#3b82f6'
     ];
     const EXPR_CANTON_SECTORES_LINE = [
-        'match', ['get', 'canton'],
-        'Quito', '#2563eb',
-        'Cayambe', '#059669',
-        'Mejía', '#ea580c',
-        'Rumiñahui', '#9333ea',
-        '#d97706'
+        'match', ['upcase', ['to-string', ['get', 'canton']]],
+        'IBARRA', '#2563eb',
+        'QUITO', '#2563eb',
+        'CAYAMBE', '#059669',
+        'MEJIA', '#ea580c',
+        'MEJÍA', '#ea580c',
+        'RUMIÑAHUI', '#9333ea',
+        '#2563eb'
     ];
     const EXPR_CANTON_SECTORES_LABEL = [
         'match', ['get', 'canton'],
@@ -367,18 +390,24 @@ document.addEventListener('DOMContentLoaded', () => {
     // =========================================================================
     function normalizarCanton(valor) {
         const texto = normTexto(valor);
-        // Códigos del XLSForm vigente; se conservan 1–4 para registros históricos.
+        if (texto.includes('IBARRA')) return 'Ibarra';
         const codigos = {
             '1': 'Quito', '2': 'Rumiñahui', '3': 'Cayambe', '4': 'Mejía',
             '60': 'Quito', '80': 'Rumiñahui', '90': 'Cayambe', '100': 'Mejía'
         };
         return codigos[texto] || Object.keys(PARROQUIAS_POR_CANTON).find(c => normTexto(c) === texto)
-            || (texto === 'QUITO (D.M.)' ? 'Quito' : '');
+            || (texto === 'QUITO (D.M.)' ? 'Quito' : 'Ibarra');
     }
 
     function parroquiaDeclarada(encuesta) {
-        return String(campo(encuesta, 'parroquia') || campo(encuesta, 'PARROQUIA')
-            || campo(encuesta, 'nom_parroquia') || campo(encuesta, 'nom_par') || '').trim().toUpperCase();
+        return String(
+            campo(encuesta, 'parroquia') ||
+            campo(encuesta, 'PARROQUIA') ||
+            campo(encuesta, 'nom_parroquia') ||
+            campo(encuesta, 'nom_par') ||
+            campo(encuesta, 'parr') ||
+            ''
+        ).trim().toUpperCase();
     }
 
     function cantonDeclarado(encuesta) {
@@ -386,10 +415,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function cantonPorParroquia(parroquia) {
-        if (!parroquia) return '';
+        if (!parroquia) return 'Ibarra';
         const coincidencias = Object.entries(PARROQUIAS_POR_CANTON)
-            .filter(([, nombres]) => nombres.some(n => normTexto(n) === normTexto(parroquia)));
-        return coincidencias.length === 1 ? coincidencias[0][0] : '';
+            .filter(([, nombres]) => nombres.some(n => {
+                const normN = normTexto(n);
+                const normP = normTexto(parroquia);
+                return normN === normP || normN.includes(normP) || normP.includes(normN);
+            }));
+        return coincidencias.length === 1 ? coincidencias[0][0] : 'Ibarra';
     }
 
     function normalizarAliasSector(valor) {
@@ -397,37 +430,91 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function resolverSectorEncuesta(encuesta) {
-        if (!encuesta || !AppState.sectoresCandidatos) return null;
-        const raw = String(encuesta.sc_key || encuesta.sec_anm || campo(encuesta, 'sc') || '').trim();
+        if (!encuesta) return null;
+        const raw = String(
+            encuesta.sc_key ||
+            encuesta.sc ||
+            campo(encuesta, 'sc') ||
+            campo(encuesta, 'sector') ||
+            campo(encuesta, 'punto_muestreo') ||
+            campo(encuesta, 'num_muestra') ||
+            campo(encuesta, 'codigo_muestra') ||
+            campo(encuesta, 'p_ref') ||
+            encuesta.sec_anm ||
+            ''
+        ).trim();
+        if (!raw) return null;
         const alias = normalizarAliasSector(raw);
-        const canton = cantonDeclarado(encuesta) || cantonPorParroquia(parroquiaDeclarada(encuesta));
         const tipRaw = String(campo(encuesta, 'tipologia') || campo(encuesta, 'TIPOLOGIA') || '').trim().toUpperCase();
         const tip = /^[1-8]$/.test(tipRaw) ? String.fromCharCode(64 + Number(tipRaw)) : tipRaw;
-        const candidatos = AppState.sectoresCandidatos.get(alias) || [];
-        const encontrados = candidatos.filter(s => (!canton || s.canton === canton) && (!tip || s.props.tipologia === tip));
-        // Los números 1..30 se repiten: una identidad ambigua queda sin asignar.
-        return encontrados.length === 1 ? encontrados[0] : null;
+
+        if (AppState.sectoresCandidatos) {
+            let candidatos = AppState.sectoresCandidatos.get(alias) || [];
+            if (candidatos.length === 0) {
+                const numSolo = alias.replace(/\D/g, '');
+                if (numSolo) candidatos = AppState.sectoresCandidatos.get(numSolo) || [];
+            }
+            if (candidatos.length === 1) return candidatos[0];
+            if (candidatos.length > 1) {
+                const filtrados = candidatos.filter(s => !tip || s.props.tipologia === tip);
+                if (filtrados.length >= 1) return filtrados[0];
+                return candidatos[0];
+            }
+        }
+        if (AppState.sectoresMap && AppState.sectoresMap.has(raw)) {
+            return AppState.sectoresMap.get(raw);
+        }
+        return null;
     }
 
     function obtenerParroquiaEncuesta(encuesta) {
         const declarada = parroquiaDeclarada(encuesta);
         if (declarada) return declarada;
         const sector = resolverSectorEncuesta(encuesta);
-        return sector ? sector.parroquia : '';
+        return sector ? (sector.parroquia || (sector.props && sector.props.parroquia) || '') : '';
     }
 
     function obtenerCantonEncuesta(encuesta) {
-        const declarado = cantonDeclarado(encuesta);
-        if (declarado) return declarado;
-        const porParroquia = cantonPorParroquia(parroquiaDeclarada(encuesta));
-        if (porParroquia) return porParroquia;
-        const sector = resolverSectorEncuesta(encuesta);
-        return sector ? sector.canton : 'Sin asignar';
+        return 'Ibarra';
     }
 
     function coincideSector(encuesta, clave) {
+        if (!encuesta || !clave || clave === 'Todos') return true;
+        const normClave = normalizarAliasSector(clave);
+        const numClave = String(clave).replace(/\D/g, '');
+
+        // 1. Coincidencia por resolución geográfica
         const sector = resolverSectorEncuesta(encuesta);
-        return Boolean(sector && sector.props.sc_key === clave);
+        if (sector && sector.props) {
+            if (sector.props.sc_key === clave) return true;
+            if (normalizarAliasSector(sector.props.sc_key) === normClave) return true;
+            if (String(sector.props.sc) === String(clave) || String(sector.props.num_muestra) === String(clave)) return true;
+            if (numClave && String(sector.props.sc) === numClave) return true;
+            if (normalizarAliasSector(sector.props.etiquetaSC) === normClave) return true;
+        }
+
+        // 2. Coincidencia directa por campos de la boleta
+        const scEnc = String(
+            campo(encuesta, 'sc') ||
+            campo(encuesta, 'sector') ||
+            campo(encuesta, 'punto_muestreo') ||
+            campo(encuesta, 'num_muestra') ||
+            campo(encuesta, 'codigo_muestra') ||
+            campo(encuesta, 'p_ref') ||
+            encuesta.sc_key ||
+            encuesta.sec_anm ||
+            ''
+        ).trim();
+
+        if (scEnc) {
+            const aliasEnc = normalizarAliasSector(scEnc);
+            const numEnc = scEnc.replace(/\D/g, '');
+            if (scEnc === clave || aliasEnc === normClave) return true;
+            if (numClave && numEnc && numClave === numEnc) return true;
+            if (normClave.includes(aliasEnc) || aliasEnc.includes(normClave)) return true;
+        }
+
+        return false;
     }
 
     function recalcularConteosSectores() {
@@ -1185,10 +1272,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const encCod = String(e.encuestador || e.C_digo_encuestador || campo(e, AppState.config.campoEncuestador) || '');
 
             const matchSup = (selSup === 'Todos' || sup === selSup);
-            const matchSec = (selSec === 'Todos' || etiq === selSec);
-            const matchCan = AppState.cantonSeleccionado === 'Todos' || obtenerCantonEncuesta(e) === AppState.cantonSeleccionado;
-            const matchCirc = AppState.circunscripcionSeleccionada === 'Todas' || normTexto(circunscripcionEncuesta(e)) === normTexto(AppState.circunscripcionSeleccionada);
-            if (!matchCan || !matchCirc) continue;
+            const matchSec = (selSec === 'Todos' || coincideSector(e, selSec));
             let matchFec = true;
             if (selFec !== 'Todas') {
                 if (selFec === 'Hoy') matchFec = (fec === hoyFiltroStr);
@@ -1198,8 +1282,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const matchEnc = (!selEnc || encCod === String(selEnc));
             let matchPar = true;
             if (targetPar) {
-                const uParr = parr.toUpperCase();
-                matchPar = normTexto(uParr) === normTexto(targetPar);
+                const uParr = normTexto(parr);
+                const uTarget = normTexto(targetPar);
+                matchPar = (uParr === uTarget || uParr.includes(uTarget) || uTarget.includes(uParr));
             }
 
             // 1. Supervisores disponibles según los códigos capturados por el XLSForm.
@@ -1452,10 +1537,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     opt.style.color = '#059669';
                     opt.style.fontWeight = '700';
                 } else if (count > 0) {
-                    opt.textContent = `🟡 ${cBadge}${item.detalle} (${count}/10)`;
+                    opt.textContent = `🟡 ${item.detalle} (${count}/10)`;
                     opt.style.color = '#d97706';
                 } else {
-                    opt.textContent = `⚪ ${cBadge}${item.detalle} (0/10)`;
+                    opt.textContent = `⚪ ${item.detalle} (0/10)`;
                     opt.style.color = '#64748b';
                 }
                 frag.appendChild(opt);
@@ -1554,25 +1639,13 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // Filtro por Cantón
-        if (AppState.cantonSeleccionado !== 'Todos') {
-            filtradas = filtradas.filter(e => obtenerCantonEncuesta(e) === AppState.cantonSeleccionado);
-        }
-
-        // Filtro por Circunscripción (Quito y Rumiñahui)
-        if (AppState.circunscripcionSeleccionada && AppState.circunscripcionSeleccionada !== 'Todas') {
-            const targetCirc = normTexto(AppState.circunscripcionSeleccionada);
-            filtradas = filtradas.filter(e => {
-                const circ = normTexto(circunscripcionEncuesta(e));
-                return circ === targetCirc;
-            });
-        }
-
         // Filtro por Parroquia
         if (AppState.parroquiaSeleccionada !== 'Todas') {
-            const target = AppState.parroquiaSeleccionada.toUpperCase();
+            const target = normTexto(AppState.parroquiaSeleccionada);
             filtradas = filtradas.filter(e => {
-                return normTexto(obtenerParroquiaEncuesta(e)) === normTexto(target);
+                const pEnc = normTexto(obtenerParroquiaEncuesta(e));
+                if (!pEnc) return false;
+                return pEnc === target || pEnc.includes(target) || target.includes(pEnc);
             });
         }
 
@@ -2527,6 +2600,26 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Normaliza cualquier representación de BBOX a [ [minLng, minLat], [maxLng, maxLat] ] para MapLibre GL
+    function normalizarBbox(b) {
+        if (!b) return null;
+        if (Array.isArray(b) && b.length === 2 && Array.isArray(b[0]) && Array.isArray(b[1])) {
+            const minLng = Number(b[0][0]), minLat = Number(b[0][1]);
+            const maxLng = Number(b[1][0]), maxLat = Number(b[1][1]);
+            if (Number.isFinite(minLng) && Number.isFinite(minLat) && Number.isFinite(maxLng) && Number.isFinite(maxLat)) {
+                return [[minLng, minLat], [maxLng, maxLat]];
+            }
+        }
+        if (Array.isArray(b) && b.length === 4 && typeof b[0] === 'number') {
+            const minLng = Number(b[0]), minLat = Number(b[1]);
+            const maxLng = Number(b[2]), maxLat = Number(b[3]);
+            if (Number.isFinite(minLng) && Number.isFinite(minLat) && Number.isFinite(maxLng) && Number.isFinite(maxLat)) {
+                return [[minLng, minLat], [maxLng, maxLat]];
+            }
+        }
+        return null;
+    }
+
     // Calcula los límites [ [minLng, minLat], [maxLng, maxLat] ] de una geometría GeoJSON
     function calcularBBOX(geometry) {
         let minLng = Infinity, minLat = Infinity, maxLng = -Infinity, maxLat = -Infinity;
@@ -2562,10 +2655,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 features: (geojsonData.features || []).map(f => {
                     const p = f.properties || {};
                     const nom = (p.nombre || p.PARROQUIA || p.name || '').toUpperCase().trim();
-                    const bbox = f.geometry ? calcularBBOX(f.geometry) : null;
-                    let coords = [-78.48, -0.19];
-                    if (bbox) {
-                        coords = [(bbox[0][0] + bbox[1][0]) / 2, (bbox[0][1] + bbox[1][1]) / 2];
+                    let coords = [-78.12, 0.35];
+                    if (p.bbox && Array.isArray(p.bbox)) {
+                        const nb = normalizarBbox(p.bbox);
+                        if (nb) coords = [(nb[0][0] + nb[1][0]) / 2, (nb[0][1] + nb[1][1]) / 2];
+                    } else if (f.geometry) {
+                        const b = calcularBBOX(f.geometry);
+                        coords = [(b[0][0] + b[1][0]) / 2, (b[0][1] + b[1][1]) / 2];
                     }
                     return {
                         type: 'Feature',
@@ -2593,7 +2689,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
 
                     listaParroquias.push({ nombre, canton, tipo, cod });
-                    const bbox = f.geometry ? calcularBBOX(f.geometry) : null;
+                    const bbox = normalizarBbox(p.bbox) || (f.geometry ? calcularBBOX(f.geometry) : null);
+                    f.properties.bbox = bbox;
                     AppState.parroquiasMap.set(nombre.toUpperCase(), { feature: f, bbox });
                 });
             }
@@ -2618,19 +2715,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function seleccionarParroquia(nombre) {
         AppState.parroquiaSeleccionada = nombre;
         if (UI.parroquiaFilter) UI.parroquiaFilter.value = nombre;
-        
-        // Auto-sincronizar Cantón si está en 'Todos' y la parroquia pertenece a un cantón específico
-        if (nombre !== 'Todas') {
-            const normP = (s) => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toUpperCase().trim();
-            const targetP = normP(nombre);
-            for (const [can, pars] of Object.entries(PARROQUIAS_POR_CANTON)) {
-                if (pars.some(p => normP(p) === targetP || normP(p).includes(targetP) || targetP.includes(normP(p)))) {
-                    AppState.cantonSeleccionado = can;
-                    if (UI.cantonFilter) UI.cantonFilter.value = can;
-                    break;
-                }
-            }
-        }
 
         // Si el punto de muestreo seleccionado no pertenece a esta nueva parroquia, resetear a 'Todos'
         if (AppState.sectorSeleccionado !== 'Todos') {
@@ -2640,7 +2724,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 AppState.sectorSeleccionado = 'Todos';
             }
         }
-        poblarFiltros();
         renderizarVista(true, true);
     }
 
@@ -2652,13 +2735,19 @@ document.addEventListener('DOMContentLoaded', () => {
         // 1. Buscar en AppState.parroquiasMap
         if (AppState.parroquiasMap) {
             const direct = AppState.parroquiasMap.get(nombreParroquia.toUpperCase().trim());
-            if (direct && direct.bbox) return direct.bbox;
+            if (direct && direct.bbox) {
+                const nb = normalizarBbox(direct.bbox);
+                if (nb) return nb;
+            }
 
             for (const [k, v] of AppState.parroquiasMap.entries()) {
                 const nk = norm(k);
                 if (nk === target || nk.includes(target) || target.includes(nk)) {
-                    if (v && v.bbox) return v.bbox;
-                    if (v && v.feature && v.feature.geometry) return calcularBBOX(v.feature.geometry);
+                    if (v && v.bbox) {
+                        const nb = normalizarBbox(v.bbox);
+                        if (nb) return nb;
+                    }
+                    if (v && v.feature && v.feature.geometry) return normalizarBbox(calcularBBOX(v.feature.geometry));
                 }
             }
         }
@@ -2671,8 +2760,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 return n === target || n.includes(target) || target.includes(n);
             });
             if (feat) {
-                if (feat.properties && feat.properties.bbox) return feat.properties.bbox;
-                if (feat.geometry) return calcularBBOX(feat.geometry);
+                if (feat.properties && feat.properties.bbox) {
+                    const nb = normalizarBbox(feat.properties.bbox);
+                    if (nb) return nb;
+                }
+                if (feat.geometry) return normalizarBbox(calcularBBOX(feat.geometry));
             }
         }
 
@@ -2684,17 +2776,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 const p = f.properties || {};
                 const par = norm(p.parroquia || p.PARROQUIA || '');
                 if (par && (par === target || par.includes(target) || target.includes(par))) {
-                    const b = p.bbox || (f.geometry ? calcularBBOX(f.geometry) : null);
+                    const b = normalizarBbox(p.bbox) || (f.geometry ? calcularBBOX(f.geometry) : null);
                     if (b) {
                         encontrados++;
-                        const bMinX = Array.isArray(b[0]) ? b[0][0] : b[0];
-                        const bMinY = Array.isArray(b[0]) ? b[0][1] : b[1];
-                        const bMaxX = Array.isArray(b[1]) ? b[1][0] : b[2];
-                        const bMaxY = Array.isArray(b[1]) ? b[1][1] : b[3];
-                        if (bMinX < minX) minX = bMinX;
-                        if (bMinY < minY) minY = bMinY;
-                        if (bMaxX > maxX) maxX = bMaxX;
-                        if (bMaxY > maxY) maxY = bMaxY;
+                        if (b[0][0] < minX) minX = b[0][0];
+                        if (b[0][1] < minY) minY = b[0][1];
+                        if (b[1][0] > maxX) maxX = b[1][0];
+                        if (b[1][1] > maxY) maxY = b[1][1];
                     }
                 }
             });
@@ -2974,9 +3062,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (AppState.sectorSeleccionado !== 'Todos') {
                 // Nivel 1: Zoom al Sector Censal seleccionado
                 const targetSC = String(AppState.sectorSeleccionado).trim();
-                const targetCanton = AppState.cantonSeleccionado !== 'Todos' ? AppState.cantonSeleccionado : null;
                 const sectorMeta = AppState.sectoresMap.get(targetSC);
-                const bbox = sectorMeta ? (sectorMeta.bbox || (sectorMeta.feature && sectorMeta.feature.properties && sectorMeta.feature.properties.bbox)) : null;
+                const rawBbox = sectorMeta ? (sectorMeta.bbox || (sectorMeta.feature && sectorMeta.feature.properties && sectorMeta.feature.properties.bbox)) : null;
+                const bbox = normalizarBbox(rawBbox);
                 if (bbox) {
                     map.fitBounds(bbox, {
                         padding: { top: 60, bottom: 50, left: 50, right: 50 },
@@ -2986,7 +3074,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             } else if (AppState.parroquiaSeleccionada && AppState.parroquiaSeleccionada !== 'Todas') {
                 // Nivel 2: Zoom a la Parroquia seleccionada
-                const bboxPar = obtenerBboxParroquia(AppState.parroquiaSeleccionada);
+                const bboxPar = normalizarBbox(obtenerBboxParroquia(AppState.parroquiaSeleccionada));
                 if (bboxPar) {
                     map.fitBounds(bboxPar, {
                         padding: { top: 60, bottom: 50, left: 50, right: 50 },
@@ -3003,7 +3091,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     AppState.sectoresGeojson.features.forEach(f => {
                         const cNorm = normTexto(f.properties.circunscripcion || '');
                         if (cNorm.includes(targetCirc) || targetCirc.includes(cNorm)) {
-                            const bbox = f.properties.bbox;
+                            const bbox = normalizarBbox(f.properties.bbox);
                             if (bbox) {
                                 if (bbox[0][0] < minX) minX = bbox[0][0];
                                 if (bbox[0][1] < minY) minY = bbox[0][1];
@@ -3023,7 +3111,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             } else if (AppState.cantonSeleccionado && AppState.cantonSeleccionado !== 'Todos') {
                 // Nivel 3: Zoom al Cantón seleccionado
-                const bboxCan = obtenerBboxCanton(AppState.cantonSeleccionado);
+                const bboxCan = normalizarBbox(obtenerBboxCanton(AppState.cantonSeleccionado));
                 if (bboxCan) {
                     map.fitBounds(bboxCan, {
                         padding: { top: 45, bottom: 45, left: 45, right: 45 },
@@ -3032,11 +3120,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
                 }
             } else {
-                // Nivel 4: Vista global de las 62 parroquias de estudio en Pichincha
-                const globalBbox = AppState.cantonBbox || [[-78.75, -0.65], [-78.10, 0.25]];
+                // Nivel 4: Vista global de Ibarra
+                const globalBbox = normalizarBbox(AppState.cantonBbox) || [[-78.50, 0.20], [-77.90, 0.90]];
                 map.fitBounds(globalBbox, {
                     padding: { top: 40, bottom: 40, left: 40, right: 40 },
-                    maxZoom: 11.5,
+                    maxZoom: 12.0,
                     duration: 850
                 });
             }
@@ -4066,25 +4154,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 if (secVal !== 'Todos') {
                     const opt = e.target.selectedOptions && e.target.selectedOptions[0];
-                    const optCanton = opt ? opt.dataset.canton : null;
                     const optParroquia = opt ? opt.dataset.parroquia : null;
 
-                    if (optCanton && AppState.cantonSeleccionado === 'Todos') {
-                        AppState.cantonSeleccionado = optCanton;
-                        if (UI.cantonFilter) UI.cantonFilter.value = optCanton;
-                    }
                     if (optParroquia && AppState.parroquiaSeleccionada === 'Todas') {
                         AppState.parroquiaSeleccionada = optParroquia.toUpperCase();
                         if (UI.parroquiaFilter) UI.parroquiaFilter.value = optParroquia.toUpperCase();
                     }
 
-                    if (!optCanton || !optParroquia) {
+                    if (!optParroquia) {
                         const secMeta = AppState.sectoresMap.get(secVal);
                         if (secMeta) {
-                            if (secMeta.canton && AppState.cantonSeleccionado === 'Todos') {
-                                AppState.cantonSeleccionado = secMeta.canton;
-                                if (UI.cantonFilter) UI.cantonFilter.value = secMeta.canton;
-                            }
                             const parSector = String(secMeta.parroquia || secMeta.parroquia_especifica || secMeta.nom_par || secMeta.PARROQUIA || '').trim();
                             if (parSector && AppState.parroquiaSeleccionada === 'Todas') {
                                 AppState.parroquiaSeleccionada = parSector.toUpperCase();
@@ -4094,7 +4173,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
                 
-                poblarFiltros();
                 renderizarVista(true, true);
             });
         }
