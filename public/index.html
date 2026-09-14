@@ -185,36 +185,6 @@
             </div>
           </div>
 
-          <!-- Cantón (4 Cantones del Proyecto) -->
-          <div class="cs-ribbon-field">
-            <label for="cantonFilter" class="cs-field-label">
-              <svg class="cs-icon cs-icon--xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              <span>Cantón</span>
-            </label>
-            <div class="cs-select-wrap">
-              <select id="cantonFilter" class="cs-select">
-                <option value="Todos">Todos los cantones (Meta: 1,600)</option>
-                <option value="Quito">Quito · D.M. (Meta: 700)</option>
-                <option value="Cayambe">Cayambe (Meta: 300)</option>
-                <option value="Mejía">Mejía (Meta: 300)</option>
-                <option value="Rumiñahui">Rumiñahui (Meta: 300)</option>
-              </select>
-            </div>
-          </div>
-
-          <!-- Circunscripción (Específico para Quito y Rumiñahui) -->
-          <div class="cs-ribbon-field" id="wrapCircunscripcionFilter">
-            <label for="circunscripcionFilter" class="cs-field-label">
-              <svg class="cs-icon cs-icon--xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
-              <span>Circunscripción</span>
-            </label>
-            <div class="cs-select-wrap">
-              <select id="circunscripcionFilter" class="cs-select">
-                <option value="Todas">Todas las circunscripciones</option>
-              </select>
-            </div>
-          </div>
-
           <!-- Parroquia -->
           <div class="cs-ribbon-field">
             <label for="parroquiaFilter" class="cs-field-label">
@@ -227,8 +197,7 @@
               </select>
             </div>
           </div>
-
-          <!-- Sector Censal (1 al 70) -->
+          <!-- Sector Censal -->
           <div class="cs-ribbon-field">
             <label for="sectorFilter" class="cs-field-label">
               <svg class="cs-icon cs-icon--xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
@@ -297,35 +266,15 @@
           <!-- Contenedor Superior Unificado de Controles del Mapa (Zero-Overlap) -->
           <div class="cs-map-top-overlay" id="mapTopOverlay">
             <div class="cs-map-top-row">
-              <!-- Barra de Leyenda y Filtro Rápido de Cantones (Filtro 1-tap en Mapa) -->
-              <div class="cs-canton-legend-bar" id="cantonLegendBar" aria-label="Cantones del Proyecto">
-                <button type="button" class="cs-canton-pill" data-canton="Quito" title="Filtrar Quito (Meta: 700)">
-                  <span class="cs-canton-pill__dot" style="background:#2563eb;"></span>
-                  <span>Quito (700)</span>
-                </button>
-                <button type="button" class="cs-canton-pill" data-canton="Cayambe" title="Filtrar Cayambe (Meta: 300)">
-                  <span class="cs-canton-pill__dot" style="background:#059669;"></span>
-                  <span>Cayambe (300)</span>
-                </button>
-                <button type="button" class="cs-canton-pill" data-canton="Mejía" title="Filtrar Mejía (Meta: 300)">
-                  <span class="cs-canton-pill__dot" style="background:#ea580c;"></span>
-                  <span>Mejía (300)</span>
-                </button>
-                <button type="button" class="cs-canton-pill" data-canton="Rumiñahui" title="Filtrar Rumiñahui (Meta: 300)">
-                  <span class="cs-canton-pill__dot" style="background:#9333ea;"></span>
-                  <span>Rumiñahui (300)</span>
-                </button>
-              </div>
-
               <!-- Barra Flotante de Control de Capas (Prender y Apagar) -->
               <div class="cs-map-layer-toggles" id="mapLayerToggles" aria-label="Capas del Mapa">
-                <button type="button" class="cs-layer-pill active" id="toggleParroquias" data-layer-group="parroquias" title="Límites Parroquiales de Estudio (62)">
-                  <span class="cs-layer-pill__dot" style="background: linear-gradient(135deg, #2563eb 25%, #059669 25% 50%, #ea580c 50% 75%, #9333ea 75%);"></span>
-                  <span id="lblToggleParroquias">Parroquias (62)</span>
+                <button type="button" class="cs-layer-pill active" id="toggleParroquias" data-layer-group="parroquias" title="Límites Parroquiales">
+                  <span class="cs-layer-pill__dot" style="background: #2563eb;"></span>
+                  <span id="lblToggleParroquias">Parroquias</span>
                 </button>
-                <button type="button" class="cs-layer-pill active" id="toggleSectores" data-layer-group="sectores" title="Sectores Censales Sorteados (160)">
-                  <span class="cs-layer-pill__dot" style="background: linear-gradient(135deg, #2563eb 25%, #059669 25% 50%, #ea580c 50% 75%, #9333ea 75%);"></span>
-                  <span id="lblToggleSectores">Sectores (160)</span>
+                <button type="button" class="cs-layer-pill active" id="toggleSectores" data-layer-group="sectores" title="Sectores Censales Sorteados">
+                  <span class="cs-layer-pill__dot" style="background: #059669;"></span>
+                  <span id="lblToggleSectores">Sectores</span>
                 </button>
                 <button type="button" class="cs-layer-pill cs-layer-pill--pendientes" id="toggleSoloPendientes" title="Filtrar únicamente sectores pendientes de completar (<10 encuestas)">
                   <span class="cs-layer-pill__dot" style="background: #f59e0b;"></span>
@@ -333,9 +282,6 @@
                 </button>
               </div>
             </div>
-
-            <!-- Barra Rápida de Circunscripciones (Aparece al seleccionar Quito o Rumiñahui en flujo vertical) -->
-            <div class="cs-circ-legend-bar" id="circLegendBar" style="display:none;" aria-label="Circunscripciones del Cantón"></div>
           </div>
 
           <div id="map"></div>
@@ -437,10 +383,10 @@
                 <svg class="cs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                 Equipo de Encuestadores
               </h3>
-              <!-- Selector de Agrupación de la Tabla: Cantón / Supervisor -->
+              <!-- Selector de Agrupación de la Tabla: Parroquia / Supervisor -->
               <div class="cs-table-group-switch" id="tableGroupSwitch" role="group" aria-label="Agrupar encuestadores por">
-                <button type="button" class="cs-group-tab-btn is-active" id="btnAgruparCanton" data-modo="canton" title="Agrupar por Cantón">
-                  <span>Por Cantón</span>
+                <button type="button" class="cs-group-tab-btn is-active" id="btnAgruparParroquia" data-modo="parroquia" title="Agrupar por Parroquia">
+                  <span>Por Parroquia</span>
                 </button>
                 <button type="button" class="cs-group-tab-btn" id="btnAgruparSupervisor" data-modo="supervisor" title="Agrupar por Supervisor">
                   <span>Por Supervisor</span>
@@ -449,7 +395,7 @@
             </div>
             <div class="cs-search-bar">
               <svg class="cs-icon cs-icon--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-              <input type="search" id="searchInput" placeholder="Buscar encuestador, cantón o supervisor…" autocomplete="off">
+              <input type="search" id="searchInput" placeholder="Buscar encuestador, parroquia o supervisor…" autocomplete="off">
             </div>
           </div>
 

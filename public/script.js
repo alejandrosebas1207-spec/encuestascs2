@@ -76,9 +76,10 @@ document.addEventListener('DOMContentLoaded', () => {
         totalAlertas: 0,
         filtroTabla: '',
         modoVisualizacion: 'puntos', // 'puntos' | 'cluster'
-        modoAgrupacionTabla: 'canton', // 'canton' | 'supervisor'
+        modoAgrupacionTabla: 'parroquia', // 'parroquia' | 'supervisor'
         ordenTabla: { columna: 'encuestador', asc: true },
         supervisoresExpandidos: new Set(),
+        parroquiasColapsadas: new Set(),
         cantonesColapsados: new Set(),
         ubicacionSupervisor: null,
         markerSupervisor: null,
@@ -307,6 +308,8 @@ document.addEventListener('DOMContentLoaded', () => {
         toggleSoloPendientes: document.getElementById('toggleSoloPendientes'),
         lblToggleSoloPendientes: document.getElementById('lblToggleSoloPendientes'),
         toggleParroquias: document.getElementById('toggleParroquias'),
+        lblToggleParroquias: document.getElementById('lblToggleParroquias'),
+        lblToggleSectores: document.getElementById('lblToggleSectores'),
         toggleCircunscripciones: document.getElementById('toggleCircunscripciones'),
         cantonLegendBar: document.getElementById('cantonLegendBar'),
         circLegendBar: document.getElementById('circLegendBar'),
@@ -317,7 +320,8 @@ document.addEventListener('DOMContentLoaded', () => {
         tablaEncuestadoresBody: document.querySelector('#tablaEncuestadores tbody'),
         emptyState: document.getElementById('emptyState'),
         headersTabla: document.querySelectorAll('#tablaEncuestadores th'),
-        btnAgruparCanton: document.getElementById('btnAgruparCanton'),
+        btnAgruparParroquia: document.getElementById('btnAgruparParroquia'),
+        btnAgruparCanton: document.getElementById('btnAgruparCanton'), // compatibilidad
         btnAgruparSupervisor: document.getElementById('btnAgruparSupervisor'),
         
         // Pirámide Poblacional (Sexo y Edad)
@@ -1367,21 +1371,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     const secAnm = String(p.sec_anm || '').trim();
                     const scKey = p.sc_key || `${canton}_${scNum}`;
 
-                    // Filtrar por Cantón si está activo (Cascada Cantón ➔ Sectores)
-                    if (AppState.cantonSeleccionado !== 'Todos') {
-                        if (canton && normTexto(canton) !== normTexto(AppState.cantonSeleccionado)) {
-                            return;
-                        }
-                    }
-
-                    // Filtrar por Circunscripción si está activa (Cascada Circunscripción ➔ Sectores)
-                    if (circActivaNorm && circunscripcion) {
-                        const cNorm = normTexto(circunscripcion);
-                        if (!cNorm.includes(circActivaNorm) && !circActivaNorm.includes(cNorm)) {
-                            return;
-                        }
-                    }
-
                     if (parActivaNorm && parroquia) {
                         const pNorm = normTexto(parroquia);
                         if (!pNorm.includes(parActivaNorm) && !parActivaNorm.includes(pNorm)) {
@@ -1404,7 +1393,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             listaSectores.sort((a, b) => {
-                if (a.canton !== b.canton) return a.canton.localeCompare(b.canton);
                 return (parseInt(a.sc, 10) || 0) - (parseInt(b.sc, 10) || 0);
             });
 
@@ -1425,12 +1413,12 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const totalSectores = listaParaMostrar.length;
-            let labelTodos = (AppState.cantonSeleccionado !== 'Todos') 
-                ? `Todos los sectores de ${AppState.cantonSeleccionado} (${totalSectores})`
+            let labelTodos = (AppState.parroquiaSeleccionada !== 'Todas') 
+                ? `Todos los sectores de ${AppState.parroquiaSeleccionada} (${totalSectores})`
                 : `Todos los sectores (${totalSectores})`;
             if (AppState.filtroSoloPendientes) {
-                labelTodos = (AppState.cantonSeleccionado !== 'Todos')
-                    ? `Sectores pendientes en ${AppState.cantonSeleccionado} (${totalSectores})`
+                labelTodos = (AppState.parroquiaSeleccionada !== 'Todas')
+                    ? `Sectores pendientes en ${AppState.parroquiaSeleccionada} (${totalSectores})`
                     : `Todos los sectores pendientes (${totalSectores})`;
             }
             UI.sectorFilter.innerHTML = `<option value="Todos">${labelTodos}</option>`;
@@ -1446,12 +1434,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const frag = document.createDocumentFragment();
             const sectoresValidos = new Set();
-            const cantonBadges = {
-                'Quito': '🔵',
-                'Cayambe': '🟢',
-                'Mejía': '🟠',
-                'Rumiñahui': '🟣'
-            };
 
             listaParaMostrar.forEach(item => {
                 const count = sectores.get(item.scKey) || 0;
@@ -1465,10 +1447,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 opt.dataset.scKey = item.scKey;
                 opt.dataset.secAnm = item.sec_anm;
 
-                const cBadge = (AppState.cantonSeleccionado === 'Todos') ? `${cantonBadges[item.canton] || '⚪'} ` : '';
-
                 if (count >= 10) {
-                    opt.textContent = `🟢 ${cBadge}${item.detalle} (${count}/10 COMPLETO)`;
+                    opt.textContent = `🟢 ${item.detalle} (${count}/10 COMPLETO)`;
                     opt.style.color = '#059669';
                     opt.style.fontWeight = '700';
                 } else if (count > 0) {
@@ -1490,48 +1470,27 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // 3. Selector Parroquias (Filtrado en cascada por Cantón y Sector)
+        // 3. Selector Parroquias (Filtrado en cascada por Sector si aplica)
         if (UI.parroquiaFilter) {
             const actualPar = AppState.parroquiaSeleccionada || 'Todas';
             UI.parroquiaFilter.innerHTML = '<option value="Todas">Todas las parroquias</option>';
             const normStr = (s) => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toUpperCase().trim();
             
             let parList = [];
-            const cantActivo = AppState.cantonSeleccionado;
-            const permitidasCanton = (cantActivo !== 'Todos' && PARROQUIAS_POR_CANTON[cantActivo]) ? PARROQUIAS_POR_CANTON[cantActivo].map(normStr) : null;
 
             if (AppState.parroquiasGeojson && AppState.parroquiasGeojson.features && AppState.parroquiasGeojson.features.length > 0) {
                 AppState.parroquiasGeojson.features.forEach(f => {
-                    const p = (f.properties.nombre || f.properties.PARROQUIA || f.properties.name || '').toUpperCase().trim();
-                    const c = (f.properties.canton || f.properties.CANTON || '').trim();
-                    
-                    // Si hay cantón seleccionado, filtrar para que solo queden las correspondientes a ese cantón
-                    if (permitidasCanton) {
-                        const targetCan = normStr(cantActivo);
-                        const normC = normStr(c);
-                        const coincideCanton = normC && (normC === targetCan || normC.includes(targetCan) || targetCan.includes(normC));
-                        const coincideParroquia = permitidasCanton.some(pp => pp === normStr(p) || normStr(p).includes(pp) || pp.includes(normStr(p)));
-                        if (!coincideCanton && !coincideParroquia) return;
-                    }
-
-                    // Si hay circunscripción seleccionada, filtrar por circunscripción
-                    if (AppState.circunscripcionSeleccionada !== 'Todas') {
-                        const targetCirc = normStr(AppState.circunscripcionSeleccionada);
-                        const circP = normStr(f.properties.circunscripcion || '');
-                        if (circP && !circP.includes(targetCirc) && !targetCirc.includes(circP)) return;
-                    }
-
+                    const props = f.properties || {};
+                    const p = (props.nombre || props.PARROQUIA || props.name || props.parroquia || props.DPA_DESPAR || props.DPA_PARROQ || '').toUpperCase().trim();
                     if (p && !parList.includes(p)) parList.push(p);
                 });
             }
 
-            if (parList.length === 0) {
-                if (permitidasCanton) {
-                    permitidasCanton.forEach(p => { if (!parList.includes(p)) parList.push(p); });
-                } else {
-                    Object.values(PARROQUIAS_POR_CANTON).forEach(pars => {
-                        pars.forEach(p => { const up = p.toUpperCase().trim(); if (!parList.includes(up)) parList.push(up); });
-                    });
+            // Agregar también las parroquias provenientes de encuestas recolectadas
+            if (parroquias && parroquias.size > 0) {
+                for (const p of parroquias.keys()) {
+                    const up = String(p).toUpperCase().trim();
+                    if (up && !parList.includes(up)) parList.push(up);
                 }
             }
 
@@ -1757,14 +1716,14 @@ document.addEventListener('DOMContentLoaded', () => {
             };
         }
 
-        // 4. Ámbito General (Toda la provincia de Pichincha)
-        const metaProvincial = AppState.config.metaEncuestas || 1600;
+        // 4. Ámbito General (Encuesta Cantonal)
+        const metaGeneral = AppState.config.metaEncuestas || 400;
         return {
-            meta: metaProvincial,
-            etiquetaMeta: `Meta: ${metaProvincial.toLocaleString()} (Pichincha)`,
+            meta: metaGeneral,
+            etiquetaMeta: `Meta: ${metaGeneral.toLocaleString()}`,
             subPendientes: `Faltan para la meta total`,
             tituloAvance: `Avance General`,
-            subAvance: `Cumplimiento provincial (${metaProvincial.toLocaleString()})`
+            subAvance: `Cumplimiento general (${metaGeneral.toLocaleString()})`
         };
     }
 
@@ -1847,6 +1806,14 @@ document.addEventListener('DOMContentLoaded', () => {
         AppState.cantonesGeojson = { type: 'FeatureCollection', features: [] };
         AppState.parroquiasGeojson = parroquiasData;
         AppState.sectoresGeojson = sectoresData;
+
+        // Actualizar dinámicamente labels de capas con el número real de elementos
+        if (UI.lblToggleParroquias && parroquiasData.features && parroquiasData.features.length > 0) {
+            UI.lblToggleParroquias.textContent = `Parroquias (${parroquiasData.features.length})`;
+        }
+        if (UI.lblToggleSectores && sectoresData.features && sectoresData.features.length > 0) {
+            UI.lblToggleSectores.textContent = `Sectores (${sectoresData.features.length})`;
+        }
         AppState.puntosMuestreoGeojson = { type: 'FeatureCollection', features: [] };
         AppState.cantonesMap = new Map();
         AppState.parroquiasMap = new Map();
@@ -3379,6 +3346,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     duraciones: [],
                     totalMins: 0,
                     supervisor: String(supVal).trim(),
+                    parroquiasConteo: {},
                     cantonesConteo: {},
                     promStr: 'Sin datos',
                     minStr: '-',
@@ -3391,6 +3359,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             g.encuestas.push(enc);
+            const par = obtenerParroquiaEncuesta(enc);
+            if (par && par !== 'Sin asignar') {
+                g.parroquiasConteo[par] = (g.parroquiasConteo[par] || 0) + 1;
+            }
             const canton = obtenerCantonEncuesta(enc);
             if (canton && canton !== 'Sin asignar') {
                 g.cantonesConteo[canton] = (g.cantonesConteo[canton] || 0) + 1;
@@ -3434,6 +3406,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
             g.cantonPrincipal = topCan;
+
+            // Parroquia principal asignada según encuestas recolectadas
+            let topPar = 'Sin Parroquia';
+            let topParCnt = -1;
+            for (const [par, cnt] of Object.entries(g.parroquiasConteo || {})) {
+                if (cnt > topParCnt) {
+                    topParCnt = cnt;
+                    topPar = par;
+                }
+            }
+            g.parroquiaPrincipal = topPar;
             resultado.push(g);
         }
 
@@ -3464,14 +3447,13 @@ document.addEventListener('DOMContentLoaded', () => {
             tr.classList.add('selected');
         }
 
-        const can = grupo.cantonPrincipal || 'Quito';
-        const infoCan = COLORES_CANTON[can] || { badge: '📍', nombre: can };
+        const par = grupo.parroquiaPrincipal || 'Sin Parroquia';
         const supLabel = (grupo.supervisor && grupo.supervisor !== 'Sin asignar' && grupo.supervisor !== 'undefined' && grupo.supervisor !== 'null')
             ? `Sup #${grupo.supervisor}`
             : 'Sin Sup';
 
-        // Badge cantonal distintivo con su color de cantón
-        const badgeCantonHtml = `<span class="cs-canton-badge-tag cs-canton-badge-tag--${can}" title="Cantón: ${can}">${infoCan.badge} ${can}</span>`;
+        // Badge parroquial distintivo
+        const badgeParroquiaHtml = `<span class="cs-badge" style="background:#eff6ff;color:#1d4ed8;font-weight:600;font-size:0.65rem;padding:0.06rem 0.4rem;border:1px solid #bfdbfe;" title="Parroquia: ${par}">🏛️ ${par}</span>`;
         // Badge de supervisor
         const badgeSupHtml = `<span class="cs-badge" style="background:var(--bg-subtle);color:var(--text-muted);font-weight:600;font-size:0.6rem;padding:0.06rem 0.35rem;border:1px solid var(--border-subtle);">${supLabel}</span>`;
 
@@ -3482,9 +3464,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         <svg style="width:12px;height:12px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                     </div>
                     <div class="cs-enc-meta">
-                        <div class="cs-enc-name" title="Encuestador #${grupo.id} (${can} · ${supLabel})">
+                        <div class="cs-enc-name" title="Encuestador #${grupo.id} (${par} · ${supLabel})">
                             <span>Encuestador #${grupo.id}</span>
-                            ${badgeCantonHtml}
+                            ${badgeParroquiaHtml}
                             ${grupo.numAlertas > 0 ? `<span class="cs-alert-badge" title="${grupo.numAlertas} encuestas con inconsistencias">⚠️ ${grupo.numAlertas}</span>` : ''}
                         </div>
                         <div class="cs-enc-sub">
@@ -3513,21 +3495,23 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!UI.tablaEncuestadoresBody) return;
 
         // Sincronizar estado visual de los botones de agrupación
-        if (UI.btnAgruparCanton && UI.btnAgruparSupervisor) {
-            const esCanton = AppState.modoAgrupacionTabla === 'canton';
-            UI.btnAgruparCanton.classList.toggle('is-active', esCanton);
-            UI.btnAgruparSupervisor.classList.toggle('is-active', !esCanton);
+        // Sincronizar estado visual de los botones de agrupación
+        const btnPar = UI.btnAgruparParroquia || UI.btnAgruparCanton;
+        if (btnPar && UI.btnAgruparSupervisor) {
+            const esParroquia = AppState.modoAgrupacionTabla === 'parroquia';
+            btnPar.classList.toggle('is-active', esParroquia);
+            UI.btnAgruparSupervisor.classList.toggle('is-active', !esParroquia);
         }
 
         let datos = agruparPorEncuestador(encuestas);
 
-        // Búsqueda en vivo (por id, supervisor o cantón)
+        // Búsqueda en vivo (por id, supervisor o parroquia)
         if (AppState.filtroTabla) {
             const term = AppState.filtroTabla.toLowerCase();
             datos = datos.filter(g => 
                 g.id.toLowerCase().includes(term) || 
                 (g.supervisor && g.supervisor.toLowerCase().includes(term)) ||
-                (g.cantonPrincipal && g.cantonPrincipal.toLowerCase().includes(term))
+                (g.parroquiaPrincipal && g.parroquiaPrincipal.toLowerCase().includes(term))
             );
         }
 
@@ -3543,52 +3527,47 @@ document.addEventListener('DOMContentLoaded', () => {
         const fragment = document.createDocumentFragment();
 
         // ---------------------------------------------------------------------
-        // MODO A: AGRUPAR POR CANTÓN
+        // MODO A: AGRUPAR POR PARROQUIA
         // ---------------------------------------------------------------------
-        if (AppState.modoAgrupacionTabla === 'canton') {
-            const CANTONES_ORDEN = ['Quito', 'Cayambe', 'Mejía', 'Rumiñahui'];
-            const gruposCanton = new Map();
+        if (AppState.modoAgrupacionTabla === 'parroquia') {
+            const gruposParroquia = new Map();
 
             datos.forEach(encuestador => {
-                const canId = encuestador.cantonPrincipal || 'Quito';
-                if (!gruposCanton.has(canId)) {
-                    gruposCanton.set(canId, {
-                        id: canId,
+                const parId = encuestador.parroquiaPrincipal || 'Sin Parroquia';
+                if (!gruposParroquia.has(parId)) {
+                    gruposParroquia.set(parId, {
+                        id: parId,
                         encuestadores: [],
                         totalEncuestas: 0
                     });
                 }
-                const gCan = gruposCanton.get(canId);
-                gCan.encuestadores.push(encuestador);
-                gCan.totalEncuestas += encuestador.encuestas.length;
+                const gPar = gruposParroquia.get(parId);
+                gPar.encuestadores.push(encuestador);
+                gPar.totalEncuestas += encuestador.encuestas.length;
             });
 
-            // Ordenar cantones según el orden oficial
-            const canKeys = Array.from(gruposCanton.keys()).sort((a, b) => {
-                const idxA = CANTONES_ORDEN.indexOf(a);
-                const idxB = CANTONES_ORDEN.indexOf(b);
-                if (idxA !== -1 && idxB !== -1) return idxA - idxB;
-                if (idxA !== -1) return -1;
-                if (idxB !== -1) return 1;
-                return a.localeCompare(b);
+            // Ordenar parroquias alfabéticamente (Sin Parroquia al final)
+            const parKeys = Array.from(gruposParroquia.keys()).sort((a, b) => {
+                if (a === 'Sin Parroquia') return 1;
+                if (b === 'Sin Parroquia') return -1;
+                return a.localeCompare(b, 'es');
             });
 
-            canKeys.forEach(canId => {
-                const gCan = gruposCanton.get(canId);
-                ordenarEncuestadoresLista(gCan.encuestadores);
+            parKeys.forEach(parId => {
+                const gPar = gruposParroquia.get(parId);
+                ordenarEncuestadoresLista(gPar.encuestadores);
 
-                const infoCanton = COLORES_CANTON[canId] || { hex: '#7c3aed', badge: '📍', nombre: canId };
-                const isExplicitlyCollapsed = AppState.cantonesColapsados && AppState.cantonesColapsados.has(canId);
-                const isFilteredCan = AppState.cantonSeleccionado !== 'Todos' && AppState.cantonSeleccionado === canId;
+                const isExplicitlyCollapsed = AppState.parroquiasColapsadas && AppState.parroquiasColapsadas.has(parId);
+                const isFilteredPar = AppState.parroquiaSeleccionada !== 'Todas' && AppState.parroquiaSeleccionada === parId;
                 const hasSearch = Boolean(AppState.filtroTabla);
-                const isCollapsed = isExplicitlyCollapsed && !hasSearch && !isFilteredCan;
+                const isCollapsed = isExplicitlyCollapsed && !hasSearch && !isFilteredPar;
 
                 const trHeader = document.createElement('tr');
                 trHeader.className = `cs-table-group-header ${isCollapsed ? 'is-collapsed' : ''}`;
-                trHeader.dataset.cantonId = canId;
+                trHeader.dataset.parroquiaId = parId;
 
-                const pluralEnc = gCan.encuestadores.length === 1 ? 'encuestador' : 'encuestadores';
-                const pluralEncuestas = gCan.totalEncuestas === 1 ? 'encuesta' : 'encuestas';
+                const pluralEnc = gPar.encuestadores.length === 1 ? 'encuestador' : 'encuestadores';
+                const pluralEncuestas = gPar.totalEncuestas === 1 ? 'encuesta' : 'encuestas';
 
                 trHeader.innerHTML = `
                     <td colspan="2">
@@ -3596,19 +3575,19 @@ document.addEventListener('DOMContentLoaded', () => {
                             <span class="cs-group-toggle-icon">
                                 <svg class="cs-group-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
                             </span>
-                            <span class="cs-group-color-dot" style="--sup-dot-color: ${infoCanton.hex};"></span>
-                            <span class="cs-group-name">${infoCanton.badge} ${canId}</span>
-                            <span class="cs-group-pill">${gCan.encuestadores.length} ${pluralEnc} · ${gCan.totalEncuestas} ${pluralEncuestas}</span>
+                            <span class="cs-group-color-dot" style="--sup-dot-color: #2563eb;"></span>
+                            <span class="cs-group-name">🏛️ ${parId}</span>
+                            <span class="cs-group-pill">${gPar.encuestadores.length} ${pluralEnc} · ${gPar.totalEncuestas} ${pluralEncuestas}</span>
                         </div>
                     </td>
                 `;
 
                 trHeader.addEventListener('click', () => {
-                    if (!AppState.cantonesColapsados) AppState.cantonesColapsados = new Set();
-                    if (AppState.cantonesColapsados.has(canId)) {
-                        AppState.cantonesColapsados.delete(canId);
+                    if (!AppState.parroquiasColapsadas) AppState.parroquiasColapsadas = new Set();
+                    if (AppState.parroquiasColapsadas.has(parId)) {
+                        AppState.parroquiasColapsadas.delete(parId);
                     } else {
-                        AppState.cantonesColapsados.add(canId);
+                        AppState.parroquiasColapsadas.add(parId);
                     }
                     const encs = obtenerEncuestasFiltradas();
                     actualizarTabla(encs);
@@ -3617,7 +3596,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 fragment.appendChild(trHeader);
 
                 if (!isCollapsed) {
-                    gCan.encuestadores.forEach(grupo => {
+                    gPar.encuestadores.forEach(grupo => {
                         fragment.appendChild(crearFilaEncuestador(grupo));
                     });
                 }
@@ -4202,12 +4181,13 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // 5.5 Selector de Agrupación de Tabla: Cantón vs Supervisor
-        if (UI.btnAgruparCanton) {
-            UI.btnAgruparCanton.addEventListener('click', () => {
-                if (AppState.modoAgrupacionTabla === 'canton') return;
-                AppState.modoAgrupacionTabla = 'canton';
-                UI.btnAgruparCanton.classList.add('is-active');
+        // 5.5 Selector de Agrupación de Tabla: Parroquia vs Supervisor
+        const btnAgruparPar = UI.btnAgruparParroquia || UI.btnAgruparCanton;
+        if (btnAgruparPar) {
+            btnAgruparPar.addEventListener('click', () => {
+                if (AppState.modoAgrupacionTabla === 'parroquia') return;
+                AppState.modoAgrupacionTabla = 'parroquia';
+                btnAgruparPar.classList.add('is-active');
                 if (UI.btnAgruparSupervisor) UI.btnAgruparSupervisor.classList.remove('is-active');
                 const encuestas = obtenerEncuestasFiltradas();
                 actualizarTabla(encuestas);
@@ -4218,7 +4198,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (AppState.modoAgrupacionTabla === 'supervisor') return;
                 AppState.modoAgrupacionTabla = 'supervisor';
                 UI.btnAgruparSupervisor.classList.add('is-active');
-                if (UI.btnAgruparCanton) UI.btnAgruparCanton.classList.remove('is-active');
+                if (btnAgruparPar) btnAgruparPar.classList.remove('is-active');
                 const encuestas = obtenerEncuestasFiltradas();
                 actualizarTabla(encuestas);
             });
