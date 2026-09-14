@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: herramienta-de-campo
+    name: encuestascs2
     env: node
     plan: free
     buildCommand: npm install
@@ -13,7 +13,7 @@ services:
       - key: API_TOKEN
         sync: false
       - key: NOMBRE_PROYECTO
-        value: Encuesta Pichincha 2026
+        value: Supervisión de Campo 2
       - key: CAMPO_ENCUESTADOR
         value: cenc
       - key: CAMPO_SUPERVISOR

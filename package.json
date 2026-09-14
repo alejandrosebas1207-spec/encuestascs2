@@ -1,7 +1,7 @@
 {
-  "name": "supervisor-campo-clima-social",
+  "name": "encuestascs2",
   "version": "1.0.0",
-  "description": "Panel de Supervisión de Campo — Clima Social · Conectado a KoboToolbox",
+  "description": "Panel de Supervisión de Campo 2 — Clima Social · Conectado a KoboToolbox",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
