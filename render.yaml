@@ -13,12 +13,12 @@ services:
       - key: API_TOKEN
         sync: false
       - key: NOMBRE_PROYECTO
-        value: Supervisión de Campo 2
+        value: Encuesta Ibarra 2026
       - key: CAMPO_ENCUESTADOR
         value: cenc
       - key: CAMPO_SUPERVISOR
         value: csup
       - key: META_ENCUESTAS
-        value: 1600
+        value: 500
       - key: CACHE_TTL_SEGUNDOS
         value: 90
