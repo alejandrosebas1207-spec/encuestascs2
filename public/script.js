@@ -215,54 +215,198 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Expresiones MapLibre GL por cantón (Pintado vectorial diferenciado)
-    const EXPR_CANTON_PARROQUIAS_LINE = [
-        'match', ['upcase', ['to-string', ['get', 'canton']]],
-        'IBARRA', '#2563eb',
-        'QUITO', '#2563eb',
-        'CAYAMBE', '#059669',
-        'MEJIA', '#ea580c',
-        'MEJÍA', '#ea580c',
-        'RUMIÑAHUI', '#9333ea',
-        '#2563eb'
+    // =========================================================================
+    // PALETA CROMÁTICA OFICIAL POR PARROQUIA (ENCUESTA CANTONAL IBARRA)
+    // 12 tonalidades armónicas de alto contraste contra cartografía OpenStreetMap
+    // =========================================================================
+    const COLORES_PARROQUIA = {
+        'SAGRARIO': {
+            nombre: 'Sagrario',
+            linea: '#2563eb',       // Azul Cobalto
+            fill: '#3b82f6',
+            label: '#1e40af',
+            badge: '🔵'
+        },
+        'SAN FRANCISCO': {
+            nombre: 'San Francisco',
+            linea: '#059669',       // Verde Esmeralda
+            fill: '#10b981',
+            label: '#065f46',
+            badge: '🟢'
+        },
+        'CARANQUI': {
+            nombre: 'Caranqui',
+            linea: '#7c3aed',       // Violeta Real
+            fill: '#8b5cf6',
+            label: '#5b21b6',
+            badge: '🟣'
+        },
+        'GUAYAQUIL DE ALPACHACA': {
+            nombre: 'Guayaquil de Alpachaca',
+            linea: '#d97706',       // Ámbar Dorado
+            fill: '#f59e0b',
+            label: '#92400e',
+            badge: '🟡'
+        },
+        'LA DOLOROSA DEL PRIORATO': {
+            nombre: 'La Dolorosa del Priorato',
+            linea: '#0891b2',       // Cian Turquesa Laguna
+            fill: '#06b6d4',
+            label: '#0e7490',
+            badge: '🩵'
+        },
+        'SAN ANTONIO': {
+            nombre: 'San Antonio',
+            linea: '#e11d48',       // Carmesí / Rosa artesanal
+            fill: '#f43f5e',
+            label: '#9f1239',
+            badge: '🔴'
+        },
+        'LA ESPERANZA': {
+            nombre: 'La Esperanza',
+            linea: '#0d9488',       // Teal / Verde azulado
+            fill: '#14b8a6',
+            label: '#115e59',
+            badge: '🟩'
+        },
+        'ANGOCHAGUA': {
+            nombre: 'Angochagua',
+            linea: '#ea580c',       // Naranja Fuego Terracota
+            fill: '#f97316',
+            label: '#9a3412',
+            badge: '🟠'
+        },
+        'AMBUQUI / CHOTA': {
+            nombre: 'Ambuquí / Chota',
+            linea: '#c026d3',       // Magenta / Fucsia cálido
+            fill: '#d946ef',
+            label: '#86198f',
+            badge: '🌸'
+        },
+        'SALINAS': {
+            nombre: 'Salinas',
+            linea: '#4338ca',       // Azul Índigo profundo
+            fill: '#6366f1',
+            label: '#312e81',
+            badge: '🔷'
+        },
+        'CAROLINA / GUALLUPI': {
+            nombre: 'Carolina / Guallupi',
+            linea: '#65a30d',       // Verde Lima Bosque
+            fill: '#84cc16',
+            label: '#3f6212',
+            badge: '🌱'
+        },
+        'LITA': {
+            nombre: 'Lita',
+            linea: '#b45309',       // Bronce / Caramelo tostado
+            fill: '#d97706',
+            label: '#78350f',
+            badge: '🟤'
+        }
+    };
+
+    // Expresiones MapLibre GL por Parroquia (Pintado vectorial diferenciado de las 12 parroquias de Ibarra)
+    const EXPR_PARROQUIAS_LINE = [
+        'match', ['upcase', ['coalesce', ['get', 'nombre'], ['get', 'PARROQUIA'], ['get', 'parroquia'], '']],
+        'SAGRARIO', '#2563eb',
+        'SAN FRANCISCO', '#059669',
+        'CARANQUI', '#7c3aed',
+        'GUAYAQUIL DE ALPACHACA', '#d97706',
+        'LA DOLOROSA DEL PRIORATO', '#0891b2',
+        'SAN ANTONIO', '#e11d48',
+        'LA ESPERANZA', '#0d9488',
+        'ANGOCHAGUA', '#ea580c',
+        'AMBUQUI / CHOTA', '#c026d3',
+        'SALINAS', '#4338ca',
+        'CAROLINA / GUALLUPI', '#65a30d',
+        'LITA', '#b45309',
+        '#2563eb' // fallback
     ];
-    const EXPR_CANTON_PARROQUIAS_LABEL = [
-        'match', ['upcase', ['to-string', ['get', 'canton']]],
-        'IBARRA', '#1e40af',
-        'QUITO', '#1e40af',
-        'CAYAMBE', '#065f46',
-        'MEJIA', '#9a3412',
-        'MEJÍA', '#9a3412',
-        'RUMIÑAHUI', '#581c87',
-        '#1e40af'
+
+    const EXPR_PARROQUIAS_FILL = [
+        'match', ['upcase', ['coalesce', ['get', 'nombre'], ['get', 'PARROQUIA'], ['get', 'parroquia'], '']],
+        'SAGRARIO', '#3b82f6',
+        'SAN FRANCISCO', '#10b981',
+        'CARANQUI', '#8b5cf6',
+        'GUAYAQUIL DE ALPACHACA', '#f59e0b',
+        'LA DOLOROSA DEL PRIORATO', '#06b6d4',
+        'SAN ANTONIO', '#f43f5e',
+        'LA ESPERANZA', '#14b8a6',
+        'ANGOCHAGUA', '#f97316',
+        'AMBUQUI / CHOTA', '#d946ef',
+        'SALINAS', '#6366f1',
+        'CAROLINA / GUALLUPI', '#84cc16',
+        'LITA', '#d97706',
+        '#3b82f6' // fallback
     ];
-    const EXPR_CANTON_SECTORES_FILL = [
-        'match', ['upcase', ['to-string', ['get', 'canton']]],
-        'IBARRA', '#3b82f6',
-        'QUITO', '#3b82f6',
-        'CAYAMBE', '#10b981',
-        'MEJIA', '#f97316',
-        'MEJÍA', '#f97316',
-        'RUMIÑAHUI', '#a855f7',
-        '#3b82f6'
+
+    const EXPR_PARROQUIAS_LABEL = [
+        'match', ['upcase', ['coalesce', ['get', 'nombre'], ['get', 'PARROQUIA'], ['get', 'parroquia'], '']],
+        'SAGRARIO', '#1e40af',
+        'SAN FRANCISCO', '#065f46',
+        'CARANQUI', '#5b21b6',
+        'GUAYAQUIL DE ALPACHACA', '#92400e',
+        'LA DOLOROSA DEL PRIORATO', '#0e7490',
+        'SAN ANTONIO', '#9f1239',
+        'LA ESPERANZA', '#115e59',
+        'ANGOCHAGUA', '#9a3412',
+        'AMBUQUI / CHOTA', '#86198f',
+        'SALINAS', '#312e81',
+        'CAROLINA / GUALLUPI', '#3f6212',
+        'LITA', '#78350f',
+        '#1e40af' // fallback
     ];
-    const EXPR_CANTON_SECTORES_LINE = [
-        'match', ['upcase', ['to-string', ['get', 'canton']]],
-        'IBARRA', '#2563eb',
-        'QUITO', '#2563eb',
-        'CAYAMBE', '#059669',
-        'MEJIA', '#ea580c',
-        'MEJÍA', '#ea580c',
-        'RUMIÑAHUI', '#9333ea',
-        '#2563eb'
+
+    const EXPR_SECTORES_FILL = [
+        'match', ['upcase', ['coalesce', ['get', 'parroquia'], ['get', 'PARROQUIA'], '']],
+        'SAGRARIO', '#3b82f6',
+        'SAN FRANCISCO', '#10b981',
+        'CARANQUI', '#8b5cf6',
+        'GUAYAQUIL DE ALPACHACA', '#f59e0b',
+        'LA DOLOROSA DEL PRIORATO', '#06b6d4',
+        'SAN ANTONIO', '#f43f5e',
+        'LA ESPERANZA', '#14b8a6',
+        'ANGOCHAGUA', '#f97316',
+        'AMBUQUI / CHOTA', '#d946ef',
+        'SALINAS', '#6366f1',
+        'CAROLINA / GUALLUPI', '#84cc16',
+        'LITA', '#d97706',
+        '#3b82f6' // fallback
     ];
-    const EXPR_CANTON_SECTORES_LABEL = [
-        'match', ['get', 'canton'],
-        'Quito', '#1d4ed8',
-        'Cayambe', '#047857',
-        'Mejía', '#c2410c',
-        'Rumiñahui', '#6d28d9',
-        '#7c2d12'
+
+    const EXPR_SECTORES_LINE = [
+        'match', ['upcase', ['coalesce', ['get', 'parroquia'], ['get', 'PARROQUIA'], '']],
+        'SAGRARIO', '#2563eb',
+        'SAN FRANCISCO', '#059669',
+        'CARANQUI', '#7c3aed',
+        'GUAYAQUIL DE ALPACHACA', '#d97706',
+        'LA DOLOROSA DEL PRIORATO', '#0891b2',
+        'SAN ANTONIO', '#e11d48',
+        'LA ESPERANZA', '#0d9488',
+        'ANGOCHAGUA', '#ea580c',
+        'AMBUQUI / CHOTA', '#c026d3',
+        'SALINAS', '#4338ca',
+        'CAROLINA / GUALLUPI', '#65a30d',
+        'LITA', '#b45309',
+        '#2563eb' // fallback
+    ];
+
+    const EXPR_SECTORES_LABEL = [
+        'match', ['upcase', ['coalesce', ['get', 'parroquia'], ['get', 'PARROQUIA'], '']],
+        'SAGRARIO', '#1e40af',
+        'SAN FRANCISCO', '#065f46',
+        'CARANQUI', '#5b21b6',
+        'GUAYAQUIL DE ALPACHACA', '#92400e',
+        'LA DOLOROSA DEL PRIORATO', '#0e7490',
+        'SAN ANTONIO', '#9f1239',
+        'LA ESPERANZA', '#115e59',
+        'ANGOCHAGUA', '#9a3412',
+        'AMBUQUI / CHOTA', '#86198f',
+        'SALINAS', '#312e81',
+        'CAROLINA / GUALLUPI', '#3f6212',
+        'LITA', '#78350f',
+        '#1e40af' // fallback
     ];
 
     function obtenerColorEncuestador(enc) {
@@ -1532,15 +1676,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 opt.dataset.scKey = item.scKey;
                 opt.dataset.secAnm = item.sec_anm;
 
+                const pName = String(item.parroquia || '').toUpperCase().trim();
+                const pColor = COLORES_PARROQUIA[pName];
+                const pBadge = pColor ? `${pColor.badge} ` : '';
+
                 if (count >= 10) {
-                    opt.textContent = `🟢 ${item.detalle} (${count}/10 COMPLETO)`;
+                    opt.textContent = `🟢 ${pBadge}${item.detalle} (${count}/10 COMPLETO)`;
                     opt.style.color = '#059669';
                     opt.style.fontWeight = '700';
                 } else if (count > 0) {
-                    opt.textContent = `🟡 ${item.detalle} (${count}/10)`;
+                    opt.textContent = `🟡 ${pBadge}${item.detalle} (${count}/10)`;
                     opt.style.color = '#d97706';
                 } else {
-                    opt.textContent = `⚪ ${item.detalle} (0/10)`;
+                    opt.textContent = `⚪ ${pBadge}${item.detalle} (0/10)`;
                     opt.style.color = '#64748b';
                 }
                 frag.appendChild(opt);
@@ -1558,7 +1706,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // 3. Selector Parroquias (Filtrado en cascada por Sector si aplica)
         if (UI.parroquiaFilter) {
             const actualPar = AppState.parroquiaSeleccionada || 'Todas';
-            UI.parroquiaFilter.innerHTML = '<option value="Todas">Todas las parroquias</option>';
+            UI.parroquiaFilter.innerHTML = '<option value="Todas">Todas las parroquias (12)</option>';
             const normStr = (s) => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toUpperCase().trim();
             
             let parList = [];
@@ -1599,7 +1747,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 const opt = document.createElement('option');
                 opt.value = p;
                 const count = parroquias.get(p) || 0;
-                opt.textContent = count > 0 ? `${p} (${count} enc.)` : p;
+                const colorInfo = COLORES_PARROQUIA[p] || COLORES_PARROQUIA[p.toUpperCase()];
+                const badge = colorInfo ? `${colorInfo.badge} ` : '';
+                opt.textContent = count > 0 ? `${badge}${p} (${count} enc.)` : `${badge}${p}`;
                 frag.appendChild(opt);
             });
             UI.parroquiaFilter.appendChild(frag);
@@ -2111,55 +2261,63 @@ document.addEventListener('DOMContentLoaded', () => {
                         minzoom: 0,
                         maxzoom: 22
                     },
-                    // 1. Límites Parroquiales (62 Parroquias de Estudio en Pichincha)
+                    // 1. Límites y Fondo Parroquial (12 Parroquias con paleta diferenciada)
+                    {
+                        id: 'parroquias-fill',
+                        type: 'fill',
+                        source: 'parroquias-source',
+                        paint: {
+                            'fill-color': EXPR_PARROQUIAS_FILL,
+                            'fill-opacity': 0.08
+                        }
+                    },
                     {
                         id: 'parroquias-line',
                         type: 'line',
                         source: 'parroquias-source',
                         paint: {
-                            'line-color': EXPR_CANTON_PARROQUIAS_LINE,
+                            'line-color': EXPR_PARROQUIAS_LINE,
                             'line-width': [
                                 'interpolate', ['linear'], ['zoom'],
-                                9, 1.2,
-                                12, 1.8,
-                                15, 2.5
+                                9, 1.4,
+                                12, 2.2,
+                                15, 3.2
                             ],
-                            'line-dasharray': [4, 2],
-                            'line-opacity': 0.85
+                            'line-opacity': 0.90
                         }
                     },
                     {
                         id: 'parroquias-label',
                         type: 'symbol',
                         source: 'parroquias-centroides-source',
-                        minzoom: 10.0,
-                        maxzoom: 14.5,
+                        minzoom: 9.5,
+                        maxzoom: 15.0,
                         layout: {
                             'text-field': ['get', 'nombre'],
                             'text-font': ['Open Sans Bold'],
                             'text-size': [
                                 'interpolate', ['linear'], ['zoom'],
-                                10, 10.5,
-                                12, 12,
-                                14, 14
+                                10, 11,
+                                12, 12.5,
+                                14, 14.5
                             ],
                             'text-anchor': 'center',
                             'text-max-width': 8
                         },
                         paint: {
-                            'text-color': EXPR_CANTON_PARROQUIAS_LABEL,
+                            'text-color': EXPR_PARROQUIAS_LABEL,
                             'text-halo-color': '#ffffff',
-                            'text-halo-width': 3.0
+                            'text-halo-width': 3.5
                         }
                     },
-                    // 2. Sectores Censales Sorteados (160 polígonos de Pichincha con color por cantón)
+                    // 2. Sectores Censales Sorteados (50 sectores con color distintivo por parroquia)
                     {
                         id: 'sectores-fill',
                         type: 'fill',
                         source: 'sectores-source',
                         paint: {
-                            'fill-color': EXPR_CANTON_SECTORES_FILL,
-                            'fill-opacity': 0.16
+                            'fill-color': EXPR_SECTORES_FILL,
+                            'fill-opacity': 0.26
                         }
                     },
                     {
@@ -2167,12 +2325,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         type: 'line',
                         source: 'sectores-source',
                         paint: {
-                            'line-color': EXPR_CANTON_SECTORES_LINE,
+                            'line-color': EXPR_SECTORES_LINE,
                             'line-width': [
                                 'interpolate', ['linear'], ['zoom'],
-                                10, 2.0,
-                                13, 3.5,
-                                16, 5.0
+                                10, 2.2,
+                                13, 3.8,
+                                16, 5.2
                             ],
                             'line-opacity': 1.0
                         }
@@ -2188,15 +2346,15 @@ document.addEventListener('DOMContentLoaded', () => {
                             'text-size': [
                                 'interpolate', ['linear'], ['zoom'],
                                 10, 11,
-                                13, 14,
-                                16, 20
+                                13, 13.5,
+                                16, 19
                             ],
                             'text-allow-overlap': true,
                             'text-ignore-placement': true,
                             'visibility': 'visible'
                         },
                         paint: {
-                            'text-color': EXPR_CANTON_SECTORES_LABEL,
+                            'text-color': EXPR_SECTORES_LABEL,
                             'text-halo-color': '#ffffff',
                             'text-halo-width': 3.5
                         }
@@ -2553,7 +2711,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Conectar botones para Prender / Apagar capas en el mapa
         const togglesMap = [
-            { btn: UI.toggleParroquias, key: 'parroquias', layers: ['parroquias-line', 'parroquias-label'] },
+            { btn: UI.toggleParroquias, key: 'parroquias', layers: ['parroquias-fill', 'parroquias-line', 'parroquias-label'] },
             { btn: UI.toggleSectores, key: 'sectores', layers: ['sectores-fill', 'sectores-line', 'sectores-label'] }
         ];
 
@@ -2837,7 +2995,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function actualizarPoligonosMapa(ajustarCamara = false) {
         if (!map) return;
 
-        // 0. Límites y Etiquetas Parroquiales
+        // 0. Límites, Fondo y Etiquetas Parroquiales
         if (map.getLayer('parroquias-line')) {
             // Si hay una parroquia específica seleccionada: AISLAR SOLO ESA PARROQUIA
             if (AppState.parroquiaSeleccionada && AppState.parroquiaSeleccionada !== 'Todas') {
@@ -2848,68 +3006,42 @@ document.addEventListener('DOMContentLoaded', () => {
                     ['==', ['upcase', ['get', 'PARROQUIA']], targetPar]
                 ];
                 map.setFilter('parroquias-line', filterSoloParroquia);
-                if (map.getLayer('parroquias-label')) map.setFilter('parroquias-label', filterSoloParroquia);
-
-                map.setPaintProperty('parroquias-line', 'line-width', 3.5);
-                map.setPaintProperty('parroquias-line', 'line-color', EXPR_CANTON_PARROQUIAS_LINE);
+                map.setPaintProperty('parroquias-line', 'line-width', 3.8);
+                map.setPaintProperty('parroquias-line', 'line-color', EXPR_PARROQUIAS_LINE);
                 map.setPaintProperty('parroquias-line', 'line-opacity', 1.0);
-            } else if (AppState.circunscripcionSeleccionada && AppState.circunscripcionSeleccionada !== 'Todas') {
-                // Si hay circunscripción seleccionada: mostrar solo parroquias de esa circunscripción
-                const targetCirc = AppState.circunscripcionSeleccionada;
-                const filterCirc = [
-                    'any',
-                    ['==', ['get', 'circunscripcion'], targetCirc],
-                    ['==', ['upcase', ['get', 'circunscripcion']], targetCirc.toUpperCase()]
-                ];
-                map.setFilter('parroquias-line', filterCirc);
-                if (map.getLayer('parroquias-label')) map.setFilter('parroquias-label', filterCirc);
 
-                map.setPaintProperty('parroquias-line', 'line-width', [
-                    'interpolate', ['linear'], ['zoom'],
-                    9, 1.4,
-                    12, 2.2,
-                    15, 3.0
-                ]);
-                map.setPaintProperty('parroquias-line', 'line-color', EXPR_CANTON_PARROQUIAS_LINE);
-                map.setPaintProperty('parroquias-line', 'line-opacity', 0.90);
-            } else if (AppState.cantonSeleccionado && AppState.cantonSeleccionado !== 'Todos') {
-                // Si está en 'Todas' las parroquias pero hay cantón seleccionado: mostrar solo las de ese cantón
-                const targetCanton = AppState.cantonSeleccionado;
-                const parsPermitidas = (PARROQUIAS_POR_CANTON[targetCanton] || []).map(p => p.toUpperCase().trim());
-                const filterParCanton = [
-                    'any',
-                    ['==', ['get', 'canton'], targetCanton],
-                    ['==', ['upcase', ['get', 'CANTON']], targetCanton.toUpperCase()],
-                    ['in', ['upcase', ['get', 'nombre']], ['literal', parsPermitidas]],
-                    ['in', ['upcase', ['get', 'PARROQUIA']], ['literal', parsPermitidas]]
-                ];
-                map.setFilter('parroquias-line', filterParCanton);
-                if (map.getLayer('parroquias-label')) map.setFilter('parroquias-label', filterParCanton);
+                if (map.getLayer('parroquias-fill')) {
+                    map.setFilter('parroquias-fill', filterSoloParroquia);
+                    map.setPaintProperty('parroquias-fill', 'fill-color', EXPR_PARROQUIAS_FILL);
+                    map.setPaintProperty('parroquias-fill', 'fill-opacity', 0.20);
+                }
 
-                map.setPaintProperty('parroquias-line', 'line-width', [
-                    'interpolate', ['linear'], ['zoom'],
-                    9, 1.4,
-                    12, 2.2,
-                    15, 3.0
-                ]);
-                map.setPaintProperty('parroquias-line', 'line-color', EXPR_CANTON_PARROQUIAS_LINE);
-                map.setPaintProperty('parroquias-line', 'line-opacity', 0.90);
+                if (map.getLayer('parroquias-label')) {
+                    map.setFilter('parroquias-label', filterSoloParroquia);
+                    map.setPaintProperty('parroquias-label', 'text-color', EXPR_PARROQUIAS_LABEL);
+                }
             } else {
-                // Vista global: todas las parroquias con color por cantón
+                // Vista global: todas las 12 parroquias con su paleta de color diferenciada
                 map.setFilter('parroquias-line', null);
-                if (map.getLayer('parroquias-label')) map.setFilter('parroquias-label', null);
-
                 map.setPaintProperty('parroquias-line', 'line-width', [
                     'interpolate', ['linear'], ['zoom'],
-                    9, 1.2,
-                    12, 1.8,
-                    15, 2.5
+                    9, 1.4,
+                    12, 2.2,
+                    15, 3.2
                 ]);
-                map.setPaintProperty('parroquias-line', 'line-color', EXPR_CANTON_PARROQUIAS_LINE);
-                map.setPaintProperty('parroquias-line', 'line-opacity', 0.85);
-            }
-            if (map.getLayer('parroquias-label')) {
-                map.setPaintProperty('parroquias-label', 'text-color', EXPR_CANTON_PARROQUIAS_LABEL);
+                map.setPaintProperty('parroquias-line', 'line-color', EXPR_PARROQUIAS_LINE);
+                map.setPaintProperty('parroquias-line', 'line-opacity', 0.90);
+
+                if (map.getLayer('parroquias-fill')) {
+                    map.setFilter('parroquias-fill', null);
+                    map.setPaintProperty('parroquias-fill', 'fill-color', EXPR_PARROQUIAS_FILL);
+                    map.setPaintProperty('parroquias-fill', 'fill-opacity', 0.08);
+                }
+
+                if (map.getLayer('parroquias-label')) {
+                    map.setFilter('parroquias-label', null);
+                    map.setPaintProperty('parroquias-label', 'text-color', EXPR_PARROQUIAS_LABEL);
+                }
             }
         }
 
@@ -2922,9 +3054,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (AppState.sectorSeleccionado !== 'Todos') {
                 // Nivel 1: Sector específico activo
                 const targetSC = String(AppState.sectorSeleccionado).trim();
-                const targetCanton = AppState.cantonSeleccionado !== 'Todos' ? AppState.cantonSeleccionado : null;
 
-                const matchSC = [
+                const filterSC = [
                     'any',
                     ['==', ['to-string', ['get', 'sc_key']], targetSC],
                     ['==', ['to-string', ['get', 'sc']], targetSC],
@@ -2933,31 +3064,21 @@ document.addEventListener('DOMContentLoaded', () => {
                     ['==', ['to-string', ['get', 'etiquetaSC']], targetSC]
                 ];
 
-                const filterSC = targetCanton ? [
-                    'all',
-                    matchSC,
-                    ['any',
-                        ['==', ['get', 'canton'], targetCanton],
-                        ['==', ['upcase', ['get', 'CANTON']], targetCanton.toUpperCase()]
-                    ]
-                ] : matchSC;
-
-                // Identificar cantón del sector para asignarle su color de resalte
+                // Identificar parroquia del sector para asignarle su color de resalte
                 const sectorMeta = AppState.sectoresMap.get(targetSC);
-
-                const cSector = (sectorMeta && sectorMeta.canton) || targetCanton;
-                const colSector = (cSector && COLORES_CANTON[cSector]) ? COLORES_CANTON[cSector] : null;
-                const fillActivo = colSector ? colSector.fill : '#ea580c';
-                const lineActivo = colSector ? colSector.linea : '#c2410c';
-                const labelActivo = colSector ? colSector.label : '#7c2d12';
+                const parSector = sectorMeta ? String(sectorMeta.parroquia || (sectorMeta.props && sectorMeta.props.parroquia) || '').trim().toUpperCase() : '';
+                const colParroquia = COLORES_PARROQUIA[parSector] || null;
+                const fillActivo = colParroquia ? colParroquia.fill : '#ea580c';
+                const lineActivo = colParroquia ? colParroquia.linea : '#c2410c';
+                const labelActivo = colParroquia ? colParroquia.label : '#7c2d12';
 
                 map.setFilter('sectores-fill', filterSC);
                 map.setPaintProperty('sectores-fill', 'fill-color', fillActivo);
-                map.setPaintProperty('sectores-fill', 'fill-opacity', 0.38);
+                map.setPaintProperty('sectores-fill', 'fill-opacity', 0.45);
 
                 map.setFilter('sectores-line', filterSC);
                 map.setPaintProperty('sectores-line', 'line-color', lineActivo);
-                map.setPaintProperty('sectores-line', 'line-width', 5.0);
+                map.setPaintProperty('sectores-line', 'line-width', 5.5);
                 map.setPaintProperty('sectores-line', 'line-opacity', 1.0);
 
                 if (map.getLayer('sectores-label')) {
@@ -3014,45 +3135,25 @@ document.addEventListener('DOMContentLoaded', () => {
                         ['==', ['upcase', ['get', 'PARROQUIA']], targetPar]
                     ];
                     aplicarFiltroSectores(filterSectoresParroquia);
-                } else if (AppState.circunscripcionSeleccionada && AppState.circunscripcionSeleccionada !== 'Todas') {
-                    // B1. Si hay Circunscripción específica: filtrar por los sectores de esa circunscripción
-                    const targetCirc = AppState.circunscripcionSeleccionada;
-                    const filterSecCirc = [
-                        'any',
-                        ['==', ['get', 'circunscripcion'], targetCirc],
-                        ['==', ['upcase', ['get', 'circunscripcion']], targetCirc.toUpperCase()]
-                    ];
-                    aplicarFiltroSectores(filterSecCirc);
-                } else if (AppState.cantonSeleccionado && AppState.cantonSeleccionado !== 'Todos') {
-                    // B. Si hay Cantón específico: filtrar por los sectores del cantón
-                    const targetCan = AppState.cantonSeleccionado;
-                    const parsPermitidas = (PARROQUIAS_POR_CANTON[targetCan] || []).map(p => p.toUpperCase().trim());
-                    const filterSecCanton = [
-                        'any',
-                        ['==', ['get', 'canton'], targetCan],
-                        ['==', ['upcase', ['get', 'CANTON']], targetCan.toUpperCase()],
-                        ['in', ['upcase', ['get', 'parroquia']], ['literal', parsPermitidas]]
-                    ];
-                    aplicarFiltroSectores(filterSecCanton);
                 } else {
-                    // C. Vista global: mostrar todos los sectores (o solo pendientes si está activo)
+                    // B. Vista global: mostrar todos los sectores (o solo pendientes si está activo)
                     aplicarFiltroSectores(null);
                 }
 
-                map.setPaintProperty('sectores-fill', 'fill-color', EXPR_CANTON_SECTORES_FILL);
-                map.setPaintProperty('sectores-fill', 'fill-opacity', 0.16);
+                map.setPaintProperty('sectores-fill', 'fill-color', EXPR_SECTORES_FILL);
+                map.setPaintProperty('sectores-fill', 'fill-opacity', 0.26);
 
-                map.setPaintProperty('sectores-line', 'line-color', EXPR_CANTON_SECTORES_LINE);
+                map.setPaintProperty('sectores-line', 'line-color', EXPR_SECTORES_LINE);
                 map.setPaintProperty('sectores-line', 'line-width', [
                     'interpolate', ['linear'], ['zoom'],
-                    10, 2.0,
-                    13, 3.5,
-                    16, 5.0
+                    10, 2.2,
+                    13, 3.8,
+                    16, 5.2
                 ]);
                 map.setPaintProperty('sectores-line', 'line-opacity', 1.0);
 
                 if (map.getLayer('sectores-label')) {
-                    map.setPaintProperty('sectores-label', 'text-color', EXPR_CANTON_SECTORES_LABEL);
+                    map.setPaintProperty('sectores-label', 'text-color', EXPR_SECTORES_LABEL);
                 }
             }
         }
