@@ -32,6 +32,7 @@ const PORT = Number(process.env.PORT) || 3001;
 
 // El identificador y el token se reciben por variables de entorno de Render.
 const ASSET_ID = limpiarVar(
+    process.env.ASSET_ID_EL_CARMEN ||
     process.env.ASSET_ID_IBARRA ||
     process.env.ASSET_ID ||
     process.env.KOBO_ASSET_ID ||
@@ -166,7 +167,11 @@ const PARROQUIAS_FORMULARIO = {
     "215": "OTON", "216": "SAN JOSE DE AYORA", "217": "SANTA ROSA DE CUSUBAMBA",
     // Mejía (310..316)
     "310": "ALOAG", "311": "ALOASI", "312": "CORNEJO ASTORGA /TANDAPI", "313": "CUTUGLAGUA", "314": "MACHACHI",
-    "315": "TAMBILLO", "316": "UYUMBICHO"
+    "315": "TAMBILLO", "316": "UYUMBICHO",
+    // El Carmen
+    "1070": "WILFRIDO LOOR MOREIRA", "1980": "SAN PEDRO DE SUMA",
+    "3632": "SANTA MARÍA", "3635": "EL PARAÍSO / LA 14",
+    "6195": "4 DE DICIEMBRE", "5300": "EL CARMEN"
 };
 
 const CIRCUNSCRIPCIONES_FORMULARIO = {
@@ -176,12 +181,15 @@ const CIRCUNSCRIPCIONES_FORMULARIO = {
     "4q": "C4 (Rural)",
     "1r": "Urbana 1",
     "2r": "Urbana 2",
-    "3r": "Rural"
+    "3r": "Rural",
+    "cu": "CIRCUNSCRIPCIÓN URBANA",
+    "cr": "CIRCUNSCRIPCIÓN RURAL"
 };
 
 const CANTONES_FORMULARIO = {
-    "1": "Quito", "2": "Rumiñahui", "3": "Cayambe", "4": "Mejía",
-    "60": "Quito", "80": "Rumiñahui", "90": "Cayambe", "100": "Mejía"
+    "1": "El Carmen", "2": "Rumiñahui", "3": "Cayambe", "4": "Mejía",
+    "60": "Quito", "80": "Rumiñahui", "90": "Cayambe", "100": "Mejía",
+    "500": "El Carmen", "1304": "El Carmen"
 };
 
 const TIPOLOGIAS_FORMULARIO = {
@@ -428,15 +436,15 @@ app.get("/api/health", (req, res) => {
 
 app.get("/api/config", (req, res) => {
     res.set("Cache-Control", "no-cache, no-store, must-revalidate");
-    let nombre = process.env.NOMBRE_PROYECTO || "Encuesta Cantonal Ibarra 2026";
+    let nombre = process.env.NOMBRE_PROYECTO || "Encuesta El Carmen - Septiembre - 2026";
     res.json({
         nombreProyecto: nombre,
-        metaEncuestas: Number(process.env.META_ENCUESTAS) || 400,
+        metaEncuestas: Number(process.env.META_ENCUESTAS) || 560,
         campoEncuestador: CAMPO_ENCUESTADOR,
         campoSupervisor: CAMPO_SUPERVISOR,
-        centroLng: process.env.MAPA_CENTRO_LNG ? Number(process.env.MAPA_CENTRO_LNG) : -78.12,
-        centroLat: process.env.MAPA_CENTRO_LAT ? Number(process.env.MAPA_CENTRO_LAT) : 0.35,
-        zoomInicial: process.env.MAPA_ZOOM_INICIAL ? Number(process.env.MAPA_ZOOM_INICIAL) : 12
+        centroLng: process.env.MAPA_CENTRO_LNG ? Number(process.env.MAPA_CENTRO_LNG) : -79.5112,
+        centroLat: process.env.MAPA_CENTRO_LAT ? Number(process.env.MAPA_CENTRO_LAT) : -0.4455,
+        zoomInicial: process.env.MAPA_ZOOM_INICIAL ? Number(process.env.MAPA_ZOOM_INICIAL) : 10.5
     });
 });
 

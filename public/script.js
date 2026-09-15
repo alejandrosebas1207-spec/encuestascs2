@@ -136,6 +136,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Parroquias oficiales en estudio por cantón
     const PARROQUIAS_POR_CANTON = {
+        'El Carmen': [
+            'EL CARMEN', '4 DE DICIEMBRE', 'EL PARAÍSO / LA 14',
+            'SAN PEDRO DE SUMA', 'SANTA MARÍA', 'WILFRIDO LOOR MOREIRA'
+        ],
         'Ibarra': [
             'LA DOLOROSA DEL PRIORATO', 'AMBUQUI / CHOTA', 'ANGOCHAGUA',
             'CAROLINA / GUALLUPI', 'LA ESPERANZA', 'LITA', 'SALINAS',
@@ -168,6 +172,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Paleta cromática oficial por Cantón
     const COLORES_CANTON = {
+        'El Carmen': {
+            nombre: 'El Carmen',
+            linea: '#2563eb',       // Azul Cobalto institucional
+            fill: '#3b82f6',        // Azul vibrante
+            fillActive: '#1d4ed8',
+            label: '#1e40af',       // Texto legible oscuro
+            badge: '🔵',
+            hex: '#2563eb'
+        },
         'Ibarra': {
             nombre: 'Ibarra',
             linea: '#2563eb',       // Azul Cobalto institucional
@@ -216,196 +229,118 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // =========================================================================
-    // PALETA CROMÁTICA OFICIAL POR PARROQUIA (ENCUESTA CANTONAL IBARRA)
-    // 12 tonalidades armónicas de alto contraste contra cartografía OpenStreetMap
+    // PALETA CROMÁTICA OFICIAL POR PARROQUIA (ENCUESTA EL CARMEN 2026)
+    // 6 tonalidades armónicas de alto contraste contra cartografía OpenStreetMap
     // =========================================================================
     const COLORES_PARROQUIA = {
-        'SAGRARIO': {
-            nombre: 'Sagrario',
+        'EL CARMEN': {
+            nombre: 'El Carmen',
             linea: '#2563eb',       // Azul Cobalto
             fill: '#3b82f6',
             label: '#1e40af',
             badge: '🔵'
         },
-        'SAN FRANCISCO': {
-            nombre: 'San Francisco',
+        '4 DE DICIEMBRE': {
+            nombre: '4 de Diciembre',
             linea: '#059669',       // Verde Esmeralda
             fill: '#10b981',
             label: '#065f46',
             badge: '🟢'
         },
-        'CARANQUI': {
-            nombre: 'Caranqui',
+        'EL PARAÍSO / LA 14': {
+            nombre: 'El Paraíso / La 14',
             linea: '#7c3aed',       // Violeta Real
             fill: '#8b5cf6',
             label: '#5b21b6',
             badge: '🟣'
         },
-        'GUAYAQUIL DE ALPACHACA': {
-            nombre: 'Guayaquil de Alpachaca',
+        'SAN PEDRO DE SUMA': {
+            nombre: 'San Pedro de Suma',
             linea: '#d97706',       // Ámbar Dorado
             fill: '#f59e0b',
             label: '#92400e',
             badge: '🟡'
         },
-        'LA DOLOROSA DEL PRIORATO': {
-            nombre: 'La Dolorosa del Priorato',
-            linea: '#0891b2',       // Cian Turquesa Laguna
-            fill: '#06b6d4',
-            label: '#0e7490',
-            badge: '🩵'
-        },
-        'SAN ANTONIO': {
-            nombre: 'San Antonio',
+        'SANTA MARÍA': {
+            nombre: 'Santa María',
             linea: '#e11d48',       // Carmesí / Rosa artesanal
             fill: '#f43f5e',
             label: '#9f1239',
             badge: '🔴'
         },
-        'LA ESPERANZA': {
-            nombre: 'La Esperanza',
-            linea: '#0d9488',       // Teal / Verde azulado
-            fill: '#14b8a6',
-            label: '#115e59',
-            badge: '🟩'
-        },
-        'ANGOCHAGUA': {
-            nombre: 'Angochagua',
-            linea: '#ea580c',       // Naranja Fuego Terracota
-            fill: '#f97316',
-            label: '#9a3412',
-            badge: '🟠'
-        },
-        'AMBUQUI / CHOTA': {
-            nombre: 'Ambuquí / Chota',
-            linea: '#c026d3',       // Magenta / Fucsia cálido
-            fill: '#d946ef',
-            label: '#86198f',
-            badge: '🌸'
-        },
-        'SALINAS': {
-            nombre: 'Salinas',
-            linea: '#4338ca',       // Azul Índigo profundo
-            fill: '#6366f1',
-            label: '#312e81',
-            badge: '🔷'
-        },
-        'CAROLINA / GUALLUPI': {
-            nombre: 'Carolina / Guallupi',
-            linea: '#65a30d',       // Verde Lima Bosque
-            fill: '#84cc16',
-            label: '#3f6212',
-            badge: '🌱'
-        },
-        'LITA': {
-            nombre: 'Lita',
-            linea: '#b45309',       // Bronce / Caramelo tostado
-            fill: '#d97706',
-            label: '#78350f',
-            badge: '🟤'
+        'WILFRIDO LOOR MOREIRA': {
+            nombre: 'Wilfrido Loor Moreira',
+            linea: '#0891b2',       // Cian Turquesa
+            fill: '#06b6d4',
+            label: '#0e7490',
+            badge: '🩵'
         }
     };
 
-    // Expresiones MapLibre GL por Parroquia (Pintado vectorial diferenciado de las 12 parroquias de Ibarra)
+    // Expresiones MapLibre GL por Parroquia (Pintado vectorial diferenciado de las 6 parroquias de El Carmen)
     const EXPR_PARROQUIAS_LINE = [
         'match', ['upcase', ['coalesce', ['get', 'nombre'], ['get', 'PARROQUIA'], ['get', 'parroquia'], '']],
-        'SAGRARIO', '#2563eb',
-        'SAN FRANCISCO', '#059669',
-        'CARANQUI', '#7c3aed',
-        'GUAYAQUIL DE ALPACHACA', '#d97706',
-        'LA DOLOROSA DEL PRIORATO', '#0891b2',
-        'SAN ANTONIO', '#e11d48',
-        'LA ESPERANZA', '#0d9488',
-        'ANGOCHAGUA', '#ea580c',
-        'AMBUQUI / CHOTA', '#c026d3',
-        'SALINAS', '#4338ca',
-        'CAROLINA / GUALLUPI', '#65a30d',
-        'LITA', '#b45309',
+        'EL CARMEN', '#2563eb',
+        '4 DE DICIEMBRE', '#059669',
+        'EL PARAÍSO / LA 14', '#7c3aed',
+        'SAN PEDRO DE SUMA', '#d97706',
+        'SANTA MARÍA', '#e11d48',
+        'WILFRIDO LOOR MOREIRA', '#0891b2',
         '#2563eb' // fallback
     ];
 
     const EXPR_PARROQUIAS_FILL = [
         'match', ['upcase', ['coalesce', ['get', 'nombre'], ['get', 'PARROQUIA'], ['get', 'parroquia'], '']],
-        'SAGRARIO', '#3b82f6',
-        'SAN FRANCISCO', '#10b981',
-        'CARANQUI', '#8b5cf6',
-        'GUAYAQUIL DE ALPACHACA', '#f59e0b',
-        'LA DOLOROSA DEL PRIORATO', '#06b6d4',
-        'SAN ANTONIO', '#f43f5e',
-        'LA ESPERANZA', '#14b8a6',
-        'ANGOCHAGUA', '#f97316',
-        'AMBUQUI / CHOTA', '#d946ef',
-        'SALINAS', '#6366f1',
-        'CAROLINA / GUALLUPI', '#84cc16',
-        'LITA', '#d97706',
+        'EL CARMEN', '#3b82f6',
+        '4 DE DICIEMBRE', '#10b981',
+        'EL PARAÍSO / LA 14', '#8b5cf6',
+        'SAN PEDRO DE SUMA', '#f59e0b',
+        'SANTA MARÍA', '#f43f5e',
+        'WILFRIDO LOOR MOREIRA', '#06b6d4',
         '#3b82f6' // fallback
     ];
 
     const EXPR_PARROQUIAS_LABEL = [
         'match', ['upcase', ['coalesce', ['get', 'nombre'], ['get', 'PARROQUIA'], ['get', 'parroquia'], '']],
-        'SAGRARIO', '#1e40af',
-        'SAN FRANCISCO', '#065f46',
-        'CARANQUI', '#5b21b6',
-        'GUAYAQUIL DE ALPACHACA', '#92400e',
-        'LA DOLOROSA DEL PRIORATO', '#0e7490',
-        'SAN ANTONIO', '#9f1239',
-        'LA ESPERANZA', '#115e59',
-        'ANGOCHAGUA', '#9a3412',
-        'AMBUQUI / CHOTA', '#86198f',
-        'SALINAS', '#312e81',
-        'CAROLINA / GUALLUPI', '#3f6212',
-        'LITA', '#78350f',
+        'EL CARMEN', '#1e40af',
+        '4 DE DICIEMBRE', '#065f46',
+        'EL PARAÍSO / LA 14', '#5b21b6',
+        'SAN PEDRO DE SUMA', '#92400e',
+        'SANTA MARÍA', '#9f1239',
+        'WILFRIDO LOOR MOREIRA', '#0e7490',
         '#1e40af' // fallback
     ];
 
     const EXPR_SECTORES_FILL = [
         'match', ['upcase', ['coalesce', ['get', 'parroquia'], ['get', 'PARROQUIA'], '']],
-        'SAGRARIO', '#3b82f6',
-        'SAN FRANCISCO', '#10b981',
-        'CARANQUI', '#8b5cf6',
-        'GUAYAQUIL DE ALPACHACA', '#f59e0b',
-        'LA DOLOROSA DEL PRIORATO', '#06b6d4',
-        'SAN ANTONIO', '#f43f5e',
-        'LA ESPERANZA', '#14b8a6',
-        'ANGOCHAGUA', '#f97316',
-        'AMBUQUI / CHOTA', '#d946ef',
-        'SALINAS', '#6366f1',
-        'CAROLINA / GUALLUPI', '#84cc16',
-        'LITA', '#d97706',
+        'EL CARMEN', '#3b82f6',
+        '4 DE DICIEMBRE', '#10b981',
+        'EL PARAÍSO / LA 14', '#8b5cf6',
+        'SAN PEDRO DE SUMA', '#f59e0b',
+        'SANTA MARÍA', '#f43f5e',
+        'WILFRIDO LOOR MOREIRA', '#06b6d4',
         '#3b82f6' // fallback
     ];
 
     const EXPR_SECTORES_LINE = [
         'match', ['upcase', ['coalesce', ['get', 'parroquia'], ['get', 'PARROQUIA'], '']],
-        'SAGRARIO', '#2563eb',
-        'SAN FRANCISCO', '#059669',
-        'CARANQUI', '#7c3aed',
-        'GUAYAQUIL DE ALPACHACA', '#d97706',
-        'LA DOLOROSA DEL PRIORATO', '#0891b2',
-        'SAN ANTONIO', '#e11d48',
-        'LA ESPERANZA', '#0d9488',
-        'ANGOCHAGUA', '#ea580c',
-        'AMBUQUI / CHOTA', '#c026d3',
-        'SALINAS', '#4338ca',
-        'CAROLINA / GUALLUPI', '#65a30d',
-        'LITA', '#b45309',
+        'EL CARMEN', '#2563eb',
+        '4 DE DICIEMBRE', '#059669',
+        'EL PARAÍSO / LA 14', '#7c3aed',
+        'SAN PEDRO DE SUMA', '#d97706',
+        'SANTA MARÍA', '#e11d48',
+        'WILFRIDO LOOR MOREIRA', '#0891b2',
         '#2563eb' // fallback
     ];
 
     const EXPR_SECTORES_LABEL = [
         'match', ['upcase', ['coalesce', ['get', 'parroquia'], ['get', 'PARROQUIA'], '']],
-        'SAGRARIO', '#1e40af',
-        'SAN FRANCISCO', '#065f46',
-        'CARANQUI', '#5b21b6',
-        'GUAYAQUIL DE ALPACHACA', '#92400e',
-        'LA DOLOROSA DEL PRIORATO', '#0e7490',
-        'SAN ANTONIO', '#9f1239',
-        'LA ESPERANZA', '#115e59',
-        'ANGOCHAGUA', '#9a3412',
-        'AMBUQUI / CHOTA', '#86198f',
-        'SALINAS', '#312e81',
-        'CAROLINA / GUALLUPI', '#3f6212',
-        'LITA', '#78350f',
+        'EL CARMEN', '#1e40af',
+        '4 DE DICIEMBRE', '#065f46',
+        'EL PARAÍSO / LA 14', '#5b21b6',
+        'SAN PEDRO DE SUMA', '#92400e',
+        'SANTA MARÍA', '#9f1239',
+        'WILFRIDO LOOR MOREIRA', '#0e7490',
         '#1e40af' // fallback
     ];
 
@@ -534,13 +469,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // =========================================================================
     function normalizarCanton(valor) {
         const texto = normTexto(valor);
+        if (texto.includes('CARMEN')) return 'El Carmen';
         if (texto.includes('IBARRA')) return 'Ibarra';
         const codigos = {
-            '1': 'Quito', '2': 'Rumiñahui', '3': 'Cayambe', '4': 'Mejía',
+            '1': 'El Carmen', '500': 'El Carmen', '1304': 'El Carmen',
             '60': 'Quito', '80': 'Rumiñahui', '90': 'Cayambe', '100': 'Mejía'
         };
         return codigos[texto] || Object.keys(PARROQUIAS_POR_CANTON).find(c => normTexto(c) === texto)
-            || (texto === 'QUITO (D.M.)' ? 'Quito' : 'Ibarra');
+            || 'El Carmen';
     }
 
     function parroquiaDeclarada(encuesta) {
@@ -559,14 +495,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function cantonPorParroquia(parroquia) {
-        if (!parroquia) return 'Ibarra';
+        if (!parroquia) return 'El Carmen';
         const coincidencias = Object.entries(PARROQUIAS_POR_CANTON)
             .filter(([, nombres]) => nombres.some(n => {
                 const normN = normTexto(n);
                 const normP = normTexto(parroquia);
                 return normN === normP || normN.includes(normP) || normP.includes(normN);
             }));
-        return coincidencias.length === 1 ? coincidencias[0][0] : 'Ibarra';
+        return coincidencias.length === 1 ? coincidencias[0][0] : 'El Carmen';
     }
 
     function normalizarAliasSector(valor) {
@@ -2015,7 +1951,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let sectoresData = { type: 'FeatureCollection', features: [] };
 
         try {
-            const cacheBuster = '?v=4.2.5';
+            const cacheBuster = '?v=5.0.0';
             const [resPar, resSec] = await Promise.all([
                 fetch('assets/parroquias.geojson' + cacheBuster),
                 fetch('assets/sectores_censales.geojson' + cacheBuster)
@@ -2196,7 +2132,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        let mapCenter = [-78.4850, -0.1900]; // Coordenadas centrales de Pichincha
+        let mapCenter = [-79.5112, -0.4455]; // Coordenadas centrales de El Carmen
         let initialBounds = null;
 
         if (globalMinX !== Infinity && globalMaxX !== -Infinity) {
@@ -2695,9 +2631,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 .setHTML(`
                     <div style="font-family:'Inter',sans-serif;padding:4px;min-width:180px;text-align:center;">
                         <div style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:0.95rem;color:#0f172a;margin-bottom:4px;">
-                            Sector Censal <strong>${etiq}</strong>
+                            Punto <strong>${etiq}</strong>
                         </div>
-                        ${parroquia ? `<div style="font-size:0.8rem;color:#475569;margin-bottom:8px;">Parroquia <strong>${parroquia}</strong></div>` : ''}
+                        ${parroquia ? `<div style="font-size:0.8rem;color:#475569;margin-bottom:6px;">Parroquia <strong>${parroquia}</strong></div>` : ''}
+                        ${p.punto_referencial ? `<div style="font-size:0.75rem;color:#1e293b;background:#f1f5f9;padding:6px 8px;border-radius:6px;margin-bottom:8px;text-align:left;line-height:1.3;border:1px solid #e2e8f0;">📍 <strong>Ref:</strong> ${p.punto_referencial}</div>` : ''}
                         <a href="${gmapsUrl}" target="_blank" rel="noopener noreferrer" class="cs-btn-gmaps" style="display:inline-flex;justify-content:center;width:100%;margin-top:2px;">
                             <svg class="cs-icon" style="width:13px;height:13px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
                             Cómo llegar (Google Maps)
