@@ -1951,7 +1951,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let sectoresData = { type: 'FeatureCollection', features: [] };
 
         try {
-            const cacheBuster = '?v=5.0.0';
+            const cacheBuster = '?v=5.1.0';
             const [resPar, resSec] = await Promise.all([
                 fetch('assets/parroquias.geojson' + cacheBuster),
                 fetch('assets/sectores_censales.geojson' + cacheBuster)
@@ -1971,7 +1971,7 @@ document.addEventListener('DOMContentLoaded', () => {
             UI.lblToggleParroquias.textContent = `Parroquias (${parroquiasData.features.length})`;
         }
         if (UI.lblToggleSectores && sectoresData.features && sectoresData.features.length > 0) {
-            UI.lblToggleSectores.textContent = `Sectores (${sectoresData.features.length})`;
+            UI.lblToggleSectores.textContent = `Puntos (${sectoresData.features.length})`;
         }
         AppState.puntosMuestreoGeojson = { type: 'FeatureCollection', features: [] };
         AppState.cantonesMap = new Map();
@@ -2246,29 +2246,22 @@ document.addEventListener('DOMContentLoaded', () => {
                             'text-halo-width': 3.5
                         }
                     },
-                    // 2. Sectores Censales Sorteados (50 sectores con color distintivo por parroquia)
+                    // 2. Puntos de Muestreo (56 puntos con color distintivo por parroquia y borde blanco)
                     {
-                        id: 'sectores-fill',
-                        type: 'fill',
+                        id: 'sectores-point',
+                        type: 'circle',
                         source: 'sectores-source',
                         paint: {
-                            'fill-color': EXPR_SECTORES_FILL,
-                            'fill-opacity': 0.26
-                        }
-                    },
-                    {
-                        id: 'sectores-line',
-                        type: 'line',
-                        source: 'sectores-source',
-                        paint: {
-                            'line-color': EXPR_SECTORES_LINE,
-                            'line-width': [
+                            'circle-color': EXPR_SECTORES_LINE,
+                            'circle-radius': [
                                 'interpolate', ['linear'], ['zoom'],
-                                10, 2.2,
-                                13, 3.8,
-                                16, 5.2
+                                10, 6,
+                                13, 8.5,
+                                16, 12
                             ],
-                            'line-opacity': 1.0
+                            'circle-stroke-width': 2.5,
+                            'circle-stroke-color': '#ffffff',
+                            'circle-opacity': 0.95
                         }
                     },
                     {
@@ -2601,10 +2594,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // Cursores interactivos
         map.on('mouseenter', 'puntos-layer', () => { map.getCanvas().style.cursor = 'pointer'; });
         map.on('mouseleave', 'puntos-layer', () => { map.getCanvas().style.cursor = ''; });
-        map.on('mouseenter', 'sectores-fill', () => { map.getCanvas().style.cursor = 'pointer'; });
-        map.on('mouseleave', 'sectores-fill', () => { map.getCanvas().style.cursor = ''; });
+        map.on('mouseenter', 'sectores-point', () => { map.getCanvas().style.cursor = 'pointer'; });
+        map.on('mouseleave', 'sectores-point', () => { map.getCanvas().style.cursor = ''; });
 
-        // Clic en Sector Censal (Polígono)
+        // Clic en Punto de Muestreo / Sector
         const abrirPopupSector = (e) => {
             if (!e.features || !e.features.length) return;
             const p = e.features[0].properties;
@@ -2644,12 +2637,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 .addTo(map);
         };
 
-        map.on('click', 'sectores-fill', abrirPopupSector);
+        map.on('click', 'sectores-point', abrirPopupSector);
 
         // Conectar botones para Prender / Apagar capas en el mapa
         const togglesMap = [
             { btn: UI.toggleParroquias, key: 'parroquias', layers: ['parroquias-fill', 'parroquias-line', 'parroquias-label'] },
-            { btn: UI.toggleSectores, key: 'sectores', layers: ['sectores-fill', 'sectores-line', 'sectores-label'] }
+            { btn: UI.toggleSectores, key: 'sectores', layers: ['sectores-point', 'sectores-label'] }
         ];
 
         togglesMap.forEach(({ btn, key, layers }) => {
@@ -2982,14 +2975,14 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // 1. Polígonos de Sectores Censales
-        if (map.getLayer('sectores-fill') && map.getLayer('sectores-line')) {
+        // 1. Puntos de Muestreo / Sectores Censales
+        if (map.getLayer('sectores-point')) {
             const barra = document.getElementById('barraSectorActivo');
             const titulo = document.getElementById('sectorActivoTitulo');
             const btnGmaps = document.getElementById('btnRutaGoogleMaps');
 
             if (AppState.sectorSeleccionado !== 'Todos') {
-                // Nivel 1: Sector específico activo
+                // Nivel 1: Sector / Punto específico activo
                 const targetSC = String(AppState.sectorSeleccionado).trim();
 
                 const filterSC = [
@@ -3005,18 +2998,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 const sectorMeta = AppState.sectoresMap.get(targetSC);
                 const parSector = sectorMeta ? String(sectorMeta.parroquia || (sectorMeta.props && sectorMeta.props.parroquia) || '').trim().toUpperCase() : '';
                 const colParroquia = COLORES_PARROQUIA[parSector] || null;
-                const fillActivo = colParroquia ? colParroquia.fill : '#ea580c';
                 const lineActivo = colParroquia ? colParroquia.linea : '#c2410c';
                 const labelActivo = colParroquia ? colParroquia.label : '#7c2d12';
 
-                map.setFilter('sectores-fill', filterSC);
-                map.setPaintProperty('sectores-fill', 'fill-color', fillActivo);
-                map.setPaintProperty('sectores-fill', 'fill-opacity', 0.45);
-
-                map.setFilter('sectores-line', filterSC);
-                map.setPaintProperty('sectores-line', 'line-color', lineActivo);
-                map.setPaintProperty('sectores-line', 'line-width', 5.5);
-                map.setPaintProperty('sectores-line', 'line-opacity', 1.0);
+                map.setFilter('sectores-point', filterSC);
+                map.setPaintProperty('sectores-point', 'circle-color', lineActivo);
+                map.setPaintProperty('sectores-point', 'circle-radius', 13);
+                map.setPaintProperty('sectores-point', 'circle-stroke-width', 3.5);
 
                 if (map.getLayer('sectores-label')) {
                     map.setFilter('sectores-label', filterSC);
@@ -3025,9 +3013,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Configurar Barra Flotante de Navegación
                 if (sectorMeta && barra && titulo && btnGmaps) {
-                    const etiq = sectorMeta.etiquetaSC || `Sector ${targetSC}`;
+                    const etiq = sectorMeta.etiquetaSC || `Punto ${targetSC}`;
                     const parr = sectorMeta.parroquia ? ` (${sectorMeta.parroquia})` : '';
-                    titulo.textContent = `Sector ${etiq}${parr}`;
+                    titulo.textContent = `Punto ${etiq}${parr}`;
                     const centroid = sectorMeta.centroid || (sectorMeta.props && sectorMeta.props.centroid);
                     if (centroid) {
                         btnGmaps.href = `https://www.google.com/maps/dir/?api=1&destination=${centroid[1].toFixed(6)},${centroid[0].toFixed(6)}`;
@@ -3058,12 +3046,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     const f = (baseFilter && filterPendientes) 
                         ? ['all', baseFilter, filterPendientes] 
                         : (baseFilter || filterPendientes);
-                    map.setFilter('sectores-fill', f);
-                    map.setFilter('sectores-line', f);
+                    map.setFilter('sectores-point', f);
                     if (map.getLayer('sectores-label')) map.setFilter('sectores-label', f);
                 };
 
-                // A. Si hay Parroquia específica seleccionada: MOSTRAR EXCLUSIVAMENTE LOS SECTORES DE ESA PARROQUIA
+                // A. Si hay Parroquia específica seleccionada: MOSTRAR EXCLUSIVAMENTE LOS PUNTOS DE ESA PARROQUIA
                 if (AppState.parroquiaSeleccionada && AppState.parroquiaSeleccionada !== 'Todas') {
                     const targetPar = String(AppState.parroquiaSeleccionada).trim().toUpperCase();
                     const filterSectoresParroquia = [
@@ -3073,21 +3060,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     ];
                     aplicarFiltroSectores(filterSectoresParroquia);
                 } else {
-                    // B. Vista global: mostrar todos los sectores (o solo pendientes si está activo)
+                    // B. Vista global: mostrar todos los puntos
                     aplicarFiltroSectores(null);
                 }
 
-                map.setPaintProperty('sectores-fill', 'fill-color', EXPR_SECTORES_FILL);
-                map.setPaintProperty('sectores-fill', 'fill-opacity', 0.26);
-
-                map.setPaintProperty('sectores-line', 'line-color', EXPR_SECTORES_LINE);
-                map.setPaintProperty('sectores-line', 'line-width', [
+                map.setPaintProperty('sectores-point', 'circle-color', EXPR_SECTORES_LINE);
+                map.setPaintProperty('sectores-point', 'circle-radius', [
                     'interpolate', ['linear'], ['zoom'],
-                    10, 2.2,
-                    13, 3.8,
-                    16, 5.2
+                    10, 6,
+                    13, 8.5,
+                    16, 12
                 ]);
-                map.setPaintProperty('sectores-line', 'line-opacity', 1.0);
+                map.setPaintProperty('sectores-point', 'circle-stroke-width', 2.5);
 
                 if (map.getLayer('sectores-label')) {
                     map.setPaintProperty('sectores-label', 'text-color', EXPR_SECTORES_LABEL);
