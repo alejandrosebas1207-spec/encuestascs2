@@ -40,6 +40,21 @@
 })();
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Purga proactiva inmediata de cachés heredadas de otros cantones/proyectos en móviles
+    if ('caches' in window) {
+        const VERSION_PROYECTO = 'el-carmen-2026-v5.3';
+        if (localStorage.getItem('cs_proyecto_version') !== VERSION_PROYECTO) {
+            caches.keys().then(keys => {
+                keys.forEach(k => {
+                    if (!k.includes('el-carmen')) {
+                        caches.delete(k);
+                    }
+                });
+            });
+            localStorage.setItem('cs_proyecto_version', VERSION_PROYECTO);
+        }
+    }
+
     // Normalizador universal de texto (remueve tildes, diacríticos y espacios)
     const normTexto = (s) => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toUpperCase().trim();
 
@@ -48,8 +63,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // =========================================================================
     const AppState = {
         config: {
-            nombreProyecto: 'Encuesta Cantonal Ibarra 2026',
-            metaEncuestas: 400,
+            nombreProyecto: 'Encuesta El Carmen - Septiembre - 2026',
+            metaEncuestas: 560,
             campoEncuestador: 'cenc',
             campoSupervisor: 'csup'
         },
@@ -1951,7 +1966,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let sectoresData = { type: 'FeatureCollection', features: [] };
 
         try {
-            const cacheBuster = '?v=5.2.0';
+            const cacheBuster = '?v=5.3.0';
             const [resPar, resSec] = await Promise.all([
                 fetch('assets/parroquias.geojson' + cacheBuster),
                 fetch('assets/sectores_censales.geojson' + cacheBuster)

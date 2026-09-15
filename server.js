@@ -78,12 +78,19 @@ app.use(express.static(path.join(__dirname, "public"), {
     dotfiles: "deny",
     etag: true,
     setHeaders: (res, filePath) => {
-        if (/\.(?:svg|png|jpg|webp|woff2|woff|ttf|pbf)$/i.test(filePath)) {
+        if (/service-worker\.js$/i.test(filePath)) {
+            // Service Worker: JAMÁS almacenar en caché, siempre validar con el servidor
+            res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, max-age=0");
+            res.setHeader("Pragma", "no-cache");
+            res.setHeader("Expires", "0");
+        } else if (/\.(?:svg|png|jpg|webp|woff2|woff|ttf|pbf)$/i.test(filePath)) {
             // Fuentes e imágenes estáticas
             res.setHeader("Cache-Control", "public, max-age=604800, immutable");
         } else if (/\.geojson$/i.test(filePath)) {
             // GeoJSON: revalidación inmediata (permite actualizar capas sin caché residual)
-            res.setHeader("Cache-Control", "public, max-age=0, must-revalidate");
+            res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, max-age=0");
+            res.setHeader("Pragma", "no-cache");
+            res.setHeader("Expires", "0");
         } else if (/\.html$/i.test(filePath)) {
             // HTML: nunca almacenar en caché bajo ninguna circunstancia (evita cache residual en móviles)
             res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, max-age=0");
@@ -91,7 +98,9 @@ app.use(express.static(path.join(__dirname, "public"), {
             res.setHeader("Expires", "0");
         } else if (/\.(?:css|js)$/i.test(filePath)) {
             // Archivos de código: revalidación rápida con ETag
-            res.setHeader("Cache-Control", "public, max-age=0, must-revalidate");
+            res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, max-age=0");
+            res.setHeader("Pragma", "no-cache");
+            res.setHeader("Expires", "0");
         }
     }
 }));
