@@ -1951,7 +1951,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let sectoresData = { type: 'FeatureCollection', features: [] };
 
         try {
-            const cacheBuster = '?v=5.1.0';
+            const cacheBuster = '?v=5.2.0';
             const [resPar, resSec] = await Promise.all([
                 fetch('assets/parroquias.geojson' + cacheBuster),
                 fetch('assets/sectores_censales.geojson' + cacheBuster)
@@ -2255,11 +2255,11 @@ document.addEventListener('DOMContentLoaded', () => {
                             'circle-color': EXPR_SECTORES_LINE,
                             'circle-radius': [
                                 'interpolate', ['linear'], ['zoom'],
-                                10, 6,
-                                13, 8.5,
-                                16, 12
+                                10, 3.5,
+                                13, 5.0,
+                                16, 7.5
                             ],
-                            'circle-stroke-width': 2.5,
+                            'circle-stroke-width': 1.8,
                             'circle-stroke-color': '#ffffff',
                             'circle-opacity': 0.95
                         }
@@ -2274,10 +2274,12 @@ document.addEventListener('DOMContentLoaded', () => {
                             'text-font': ['Open Sans Bold'],
                             'text-size': [
                                 'interpolate', ['linear'], ['zoom'],
-                                10, 11,
-                                13, 13.5,
-                                16, 19
+                                10, 8.5,
+                                13, 10.5,
+                                16, 13
                             ],
+                            'text-offset': [0, 0.95],
+                            'text-anchor': 'top',
                             'text-allow-overlap': true,
                             'text-ignore-placement': true,
                             'visibility': 'visible'
@@ -2285,7 +2287,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         paint: {
                             'text-color': EXPR_SECTORES_LABEL,
                             'text-halo-color': '#ffffff',
-                            'text-halo-width': 3.5
+                            'text-halo-width': 2.2
                         }
                     }
                 ]
@@ -3003,8 +3005,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 map.setFilter('sectores-point', filterSC);
                 map.setPaintProperty('sectores-point', 'circle-color', lineActivo);
-                map.setPaintProperty('sectores-point', 'circle-radius', 13);
-                map.setPaintProperty('sectores-point', 'circle-stroke-width', 3.5);
+                map.setPaintProperty('sectores-point', 'circle-radius', 8.5);
+                map.setPaintProperty('sectores-point', 'circle-stroke-width', 2.4);
 
                 if (map.getLayer('sectores-label')) {
                     map.setFilter('sectores-label', filterSC);
@@ -3067,11 +3069,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 map.setPaintProperty('sectores-point', 'circle-color', EXPR_SECTORES_LINE);
                 map.setPaintProperty('sectores-point', 'circle-radius', [
                     'interpolate', ['linear'], ['zoom'],
-                    10, 6,
-                    13, 8.5,
-                    16, 12
+                    10, 3.5,
+                    13, 5.0,
+                    16, 7.5
                 ]);
-                map.setPaintProperty('sectores-point', 'circle-stroke-width', 2.5);
+                map.setPaintProperty('sectores-point', 'circle-stroke-width', 1.8);
 
                 if (map.getLayer('sectores-label')) {
                     map.setPaintProperty('sectores-label', 'text-color', EXPR_SECTORES_LABEL);
