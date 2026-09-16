@@ -1657,7 +1657,6 @@ document.addEventListener('DOMContentLoaded', () => {
         // 3. Selector Parroquias (Filtrado en cascada por Sector si aplica)
         if (UI.parroquiaFilter) {
             const actualPar = AppState.parroquiaSeleccionada || 'Todas';
-            UI.parroquiaFilter.innerHTML = '<option value="Todas">Todas las parroquias (12)</option>';
             const normStr = (s) => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toUpperCase().trim();
             
             let parList = [];
@@ -1693,6 +1692,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             parList.sort((a, b) => a.localeCompare(b, 'es'));
+            UI.parroquiaFilter.innerHTML = `<option value="Todas">Todas las parroquias (${parList.length})</option>`;
             const frag = document.createDocumentFragment();
             parList.forEach(p => {
                 const opt = document.createElement('option');
