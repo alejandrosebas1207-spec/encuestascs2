@@ -268,7 +268,7 @@
         "canton": "El Carmen",
         "CANTON": "EL CARMEN",
         "circunscripcion": "CIRCUNSCRIPCIÓN URBANA",
-        "punto_referencial": "Cancha Las Acacias (calles Los Laureles y Las Acacias)",
+        "punto_referencial": "A dos cuadras del Colegio Jesucristo Rey (calles Los Laureles y Las Acacias)",
         "casos": 10,
         "latitud": -0.269642,
         "longitud": -79.468986,
@@ -1646,8 +1646,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -79.41465,
-          -0.261502
+          -79.435107,
+          -0.267973
         ]
       },
       "properties": {
@@ -1662,22 +1662,22 @@
         "canton": "El Carmen",
         "CANTON": "EL CARMEN",
         "circunscripcion": "CIRCUNSCRIPCIÓN URBANA",
-        "punto_referencial": "Iglesia Evangélica Apostólica del Nombre de Jesús (Av. Chone y calle 7)",
+        "punto_referencial": "Salón del Reino de los Testigos de Jehová (calles C-1 y 50, enfrente de Av. Chone)",
         "casos": 10,
-        "latitud": -0.261502,
-        "longitud": -79.41465,
+        "latitud": -0.267973,
+        "longitud": -79.435107,
         "centroid": [
-          -79.41465,
-          -0.261502
+          -79.435107,
+          -0.267973
         ],
         "bbox": [
           [
-            -79.41765,
-            -0.264502
+            -79.438107,
+            -0.270973
           ],
           [
-            -79.41165,
-            -0.258502
+            -79.432107,
+            -0.264973
           ]
         ]
       }
@@ -1687,8 +1687,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -79.411792,
-          -0.258813
+          -79.481984,
+          -0.264202
         ]
       },
       "properties": {
@@ -1703,22 +1703,22 @@
         "canton": "El Carmen",
         "CANTON": "EL CARMEN",
         "circunscripcion": "CIRCUNSCRIPCIÓN URBANA",
-        "punto_referencial": "Calle Chinipe Chilla y Av. Chone (ingreso desde Santo Domingo)",
+        "punto_referencial": "Colegio Padre Jorge Ugalde Paladines (calles Salustio Giler y 13)",
         "casos": 10,
-        "latitud": -0.258813,
-        "longitud": -79.411792,
+        "latitud": -0.264202,
+        "longitud": -79.481984,
         "centroid": [
-          -79.411792,
-          -0.258813
+          -79.481984,
+          -0.264202
         ],
         "bbox": [
           [
-            -79.414792,
-            -0.261813
+            -79.484984,
+            -0.267202
           ],
           [
-            -79.408792,
-            -0.255813
+            -79.478984,
+            -0.261202
           ]
         ]
       }

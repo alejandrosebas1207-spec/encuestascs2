@@ -3,22 +3,24 @@ services:
     name: encuestascs2
     env: node
     plan: free
+    branch: main
+    autoDeploy: true
     buildCommand: npm install
     startCommand: npm start
     envVars:
       - key: NODE_VERSION
         value: 20.11.0
-      - key: ASSET_ID_PICHINCHA
+      - key: ASSET_ID_EL_CARMEN
         sync: false
       - key: API_TOKEN
         sync: false
       - key: NOMBRE_PROYECTO
-        value: Encuesta Ibarra 2026
+        value: "Encuesta El Carmen - Septiembre - 2026"
       - key: CAMPO_ENCUESTADOR
         value: cenc
       - key: CAMPO_SUPERVISOR
         value: csup
       - key: META_ENCUESTAS
-        value: 500
+        value: "560"
       - key: CACHE_TTL_SEGUNDOS
         value: 90
