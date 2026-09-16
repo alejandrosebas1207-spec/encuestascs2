@@ -1646,8 +1646,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -79.435107,
-          -0.267973
+          -79.436158,
+          -0.272384
         ]
       },
       "properties": {
@@ -1662,22 +1662,22 @@
         "canton": "El Carmen",
         "CANTON": "EL CARMEN",
         "circunscripcion": "CIRCUNSCRIPCIÓN URBANA",
-        "punto_referencial": "Salón del Reino de los Testigos de Jehová (calles C-1 y 50, enfrente de Av. Chone)",
+        "punto_referencial": "Calle 13 (frente a Capilla San Óscar Romero y Escuela Fe y Alegría)",
         "casos": 10,
-        "latitud": -0.267973,
-        "longitud": -79.435107,
+        "latitud": -0.272384,
+        "longitud": -79.436158,
         "centroid": [
-          -79.435107,
-          -0.267973
+          -79.436158,
+          -0.272384
         ],
         "bbox": [
           [
-            -79.438107,
-            -0.270973
+            -79.439158,
+            -0.275384
           ],
           [
-            -79.432107,
-            -0.264973
+            -79.433158,
+            -0.269384
           ]
         ]
       }
