@@ -359,6 +359,93 @@ document.addEventListener('DOMContentLoaded', () => {
         '#1e40af' // fallback
     ];
 
+    const EXPR_PIN_ICON = [
+        'match', ['upcase', ['coalesce', ['get', 'parroquia'], ['get', 'PARROQUIA'], '']],
+        'EL CARMEN', 'pin-el-carmen',
+        '4 DE DICIEMBRE', 'pin-4-de-diciembre',
+        'EL PARAÍSO / LA 14', 'pin-el-paraiso-la-14',
+        'SAN PEDRO DE SUMA', 'pin-san-pedro-de-suma',
+        'SANTA MARÍA', 'pin-santa-maria',
+        'WILFRIDO LOOR MOREIRA', 'pin-wilfrido-loor-moreira',
+        'pin-default'
+    ];
+
+    function generarImagenPin(colorPrincipal, colorSecundario, esActivo = false) {
+        const width = 64;
+        const height = 84;
+        const canvas = document.createElement('canvas');
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return null;
+
+        ctx.scale(2, 2);
+
+        // 1. Sombra suave en el suelo (contacto GPS)
+        ctx.beginPath();
+        ctx.ellipse(16, 41, 6.5, 2.0, 0, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(15, 23, 42, 0.32)';
+        ctx.fill();
+
+        // 2. Silueta estilizada del Pin (Marcador tipo gota)
+        ctx.beginPath();
+        ctx.moveTo(16, 41);
+        ctx.bezierCurveTo(13.5, 33, 3.5, 23, 3.5, 14);
+        ctx.arc(16, 14, 12.5, Math.PI, 0, false);
+        ctx.bezierCurveTo(28.5, 23, 18.5, 33, 16, 41);
+        ctx.closePath();
+
+        const grad = ctx.createLinearGradient(16, 1.5, 16, 41);
+        grad.addColorStop(0, colorSecundario || colorPrincipal);
+        grad.addColorStop(1, colorPrincipal);
+        ctx.fillStyle = grad;
+        ctx.fill();
+
+        // Borde blanco nítido de contraste
+        ctx.lineWidth = esActivo ? 2.8 : 2.2;
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineJoin = 'round';
+        ctx.stroke();
+
+        // 3. Diana / Centro del marcador (Diferenciador visual contra las encuestas)
+        ctx.beginPath();
+        ctx.arc(16, 14, 5.2, 0, Math.PI * 2);
+        ctx.fillStyle = '#ffffff';
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.arc(16, 14, 2.6, 0, Math.PI * 2);
+        ctx.fillStyle = esActivo ? '#c2410c' : colorPrincipal;
+        ctx.fill();
+
+        return ctx.getImageData(0, 0, width, height);
+    }
+
+    function registrarIconosPin(m) {
+        const targetMap = m || map;
+        if (!targetMap) return;
+
+        const pines = [
+            { id: 'pin-el-carmen', pri: '#2563eb', sec: '#3b82f6' },
+            { id: 'pin-4-de-diciembre', pri: '#059669', sec: '#10b981' },
+            { id: 'pin-el-paraiso-la-14', pri: '#7c3aed', sec: '#8b5cf6' },
+            { id: 'pin-san-pedro-de-suma', pri: '#d97706', sec: '#f59e0b' },
+            { id: 'pin-santa-maria', pri: '#e11d48', sec: '#f43f5e' },
+            { id: 'pin-wilfrido-loor-moreira', pri: '#0891b2', sec: '#06b6d4' },
+            { id: 'pin-default', pri: '#2563eb', sec: '#3b82f6' },
+            { id: 'pin-activo', pri: '#ea580c', sec: '#f97316', activo: true }
+        ];
+
+        pines.forEach(p => {
+            if (!targetMap.hasImage(p.id)) {
+                const imgData = generarImagenPin(p.pri, p.sec, !!p.activo);
+                if (imgData) {
+                    targetMap.addImage(p.id, imgData, { pixelRatio: 2 });
+                }
+            }
+        });
+    }
+
     function obtenerColorEncuestador(enc) {
         if (enc === undefined || enc === null || enc === '') return '#64748b';
         const str = String(enc).trim();
@@ -2264,22 +2351,23 @@ document.addEventListener('DOMContentLoaded', () => {
                             'text-halo-width': 3.5
                         }
                     },
-                    // 2. Puntos de Muestreo (56 puntos con color distintivo por parroquia y borde blanco)
+                    // 2. Puntos de Muestreo (Marcadores elegantes tipo pin/chincheta diferenciados por parroquia)
                     {
                         id: 'sectores-point',
-                        type: 'circle',
+                        type: 'symbol',
                         source: 'sectores-source',
-                        paint: {
-                            'circle-color': EXPR_SECTORES_LINE,
-                            'circle-radius': [
+                        layout: {
+                            'icon-image': EXPR_PIN_ICON,
+                            'icon-size': [
                                 'interpolate', ['linear'], ['zoom'],
-                                10, 3.5,
-                                13, 5.0,
-                                16, 7.5
+                                10, 0.65,
+                                12, 0.82,
+                                14, 0.98,
+                                17, 1.18
                             ],
-                            'circle-stroke-width': 1.8,
-                            'circle-stroke-color': '#ffffff',
-                            'circle-opacity': 0.95
+                            'icon-anchor': 'bottom',
+                            'icon-allow-overlap': true,
+                            'icon-ignore-placement': true
                         }
                     },
                     {
@@ -2294,10 +2382,10 @@ document.addEventListener('DOMContentLoaded', () => {
                                 'interpolate', ['linear'], ['zoom'],
                                 10, 8.5,
                                 13, 10.5,
-                                16, 13
+                                16, 12.5
                             ],
-                            'text-offset': [0, 0.95],
-                            'text-anchor': 'top',
+                            'text-offset': [0, -3.2],
+                            'text-anchor': 'bottom',
                             'text-allow-overlap': true,
                             'text-ignore-placement': true,
                             'visibility': 'visible'
@@ -2305,7 +2393,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         paint: {
                             'text-color': EXPR_SECTORES_LABEL,
                             'text-halo-color': '#ffffff',
-                            'text-halo-width': 2.2
+                            'text-halo-width': 2.4
                         }
                     }
                 ]
@@ -2432,8 +2520,13 @@ document.addEventListener('DOMContentLoaded', () => {
             console.warn('[MapLibre Error]', e);
         });
 
+        map.on('styleimagemissing', (e) => {
+            registrarIconosPin(map);
+        });
+
         map.on('load', () => {
             AppState.mapLoaded = true;
+            registrarIconosPin(map);
             configurarCapasWebGL();
             renderizarVista(false, false);
             // Asegurar dimensiones óptimas
@@ -2454,6 +2547,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function configurarCapasWebGL() {
         if (!map || !map.isStyleLoaded()) return;
+        registrarIconosPin(map);
 
         if (AppState.parroquiasGeojson && map.getSource('parroquias-source')) {
             map.getSource('parroquias-source').setData(AppState.parroquiasGeojson);
@@ -2621,14 +2715,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const abrirPopupSector = (e) => {
             if (!e.features || !e.features.length) return;
             const p = e.features[0].properties;
-            const coords = e.lngLat;
+            const geomCoords = (e.features[0].geometry && e.features[0].geometry.coordinates) ? e.features[0].geometry.coordinates : null;
+            const coords = geomCoords || e.lngLat;
             const sc = String(p.sc || p.codigo_muestra || p.num_muestra || '').trim();
             const scKey = String(p.sc_key || `${p.canton || p.CANTON || ''}_${sc}`).trim();
             const tip = String(p.tipologia || '').trim().toUpperCase();
             const etiq = p.etiquetaSC || `${sc} | ${tip}`;
             const parroquia = p.parroquia || p.PARROQUIA || '';
             const canton = p.canton || p.CANTON || '';
-            const gmapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${coords.lat.toFixed(6)},${coords.lng.toFixed(6)}`;
+            const latVal = typeof coords.lat === 'number' ? coords.lat : coords[1];
+            const lngVal = typeof coords.lng === 'number' ? coords.lng : coords[0];
+            const gmapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${latVal.toFixed(6)},${lngVal.toFixed(6)}`;
 
             if (scKey && UI.sectorFilter) {
                 AppState.sectorSeleccionado = scKey;
@@ -2639,7 +2736,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 renderizarVista(true, false);
             }
 
-            new maplibregl.Popup({ offset: [0, -10], closeButton: true })
+            new maplibregl.Popup({ offset: [0, -36], closeButton: true })
                 .setLngLat(coords)
                 .setHTML(`
                     <div style="font-family:'Inter',sans-serif;padding:4px;min-width:180px;text-align:center;">
@@ -3022,9 +3119,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const labelActivo = colParroquia ? colParroquia.label : '#7c2d12';
 
                 map.setFilter('sectores-point', filterSC);
-                map.setPaintProperty('sectores-point', 'circle-color', lineActivo);
-                map.setPaintProperty('sectores-point', 'circle-radius', 8.5);
-                map.setPaintProperty('sectores-point', 'circle-stroke-width', 2.4);
+                map.setLayoutProperty('sectores-point', 'icon-image', 'pin-activo');
+                map.setLayoutProperty('sectores-point', 'icon-size', 1.25);
 
                 if (map.getLayer('sectores-label')) {
                     map.setFilter('sectores-label', filterSC);
@@ -3087,14 +3183,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     aplicarFiltroSectores(null);
                 }
 
-                map.setPaintProperty('sectores-point', 'circle-color', EXPR_SECTORES_LINE);
-                map.setPaintProperty('sectores-point', 'circle-radius', [
+                map.setLayoutProperty('sectores-point', 'icon-image', EXPR_PIN_ICON);
+                map.setLayoutProperty('sectores-point', 'icon-size', [
                     'interpolate', ['linear'], ['zoom'],
-                    10, 3.5,
-                    13, 5.0,
-                    16, 7.5
+                    10, 0.65,
+                    12, 0.82,
+                    14, 0.98,
+                    17, 1.18
                 ]);
-                map.setPaintProperty('sectores-point', 'circle-stroke-width', 1.8);
 
                 if (map.getLayer('sectores-label')) {
                     map.setPaintProperty('sectores-label', 'text-color', EXPR_SECTORES_LABEL);

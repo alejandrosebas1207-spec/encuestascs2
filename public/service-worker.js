@@ -1,11 +1,11 @@
 /* Modo de contingencia: conserva solo la aplicación y cartografía pública.
  * No almacena respuestas de Kobo ni coordenadas de encuestas en el teléfono. */
-const CACHE_NAME = 'clima-social-el-carmen-v4';
+const CACHE_NAME = 'clima-social-el-carmen-v5';
 const APP_SHELL = [
   '/',
   '/index.html',
-  '/style.css?v=5.7.0',
-  '/script.js?v=5.7.0',
+  '/style.css?v=5.8.0',
+  '/script.js?v=5.8.0',
   '/libs/maplibre-gl.js',
   '/libs/maplibre-gl.css',
   '/assets/icono.png',
