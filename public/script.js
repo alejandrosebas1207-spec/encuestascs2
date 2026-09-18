@@ -551,12 +551,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (encuesta[nombreCorto] !== undefined) return encuesta[nombreCorto];
         
         // Fast paths directos para rendimiento instantáneo
-        if ((nombreCorto === 'sc' || nombreCorto === 'p_ref') && (encuesta.sc !== undefined || encuesta.p_ref !== undefined)) return encuesta.sc !== undefined ? encuesta.sc : encuesta.p_ref;
+        if ((nombreCorto === 'sc' || nombreCorto === 'p_ref' || nombreCorto === 'pto_ref') && (encuesta.sc !== undefined || encuesta.pto_ref !== undefined || encuesta.p_ref !== undefined)) return encuesta.sc !== undefined ? encuesta.sc : (encuesta.pto_ref !== undefined ? encuesta.pto_ref : encuesta.p_ref);
         if ((nombreCorto === 'tipologia' || nombreCorto === 'TIPOLOGIA') && encuesta.tipologia !== undefined) return encuesta.tipologia;
-        if ((nombreCorto === 'parroquia' || nombreCorto === 'PARROQUIA' || nombreCorto === 'nom_parroquia') && encuesta.parroquia !== undefined) return encuesta.parroquia;
+        if ((nombreCorto === 'parroquia' || nombreCorto === 'PARROQUIA' || nombreCorto === 'nom_parroquia' || nombreCorto === 'parr') && encuesta.parroquia !== undefined) return encuesta.parroquia;
         if ((nombreCorto === 'barrio' || nombreCorto === 'BARRIO_O_SECTOR') && encuesta.barrio !== undefined) return encuesta.barrio;
-        if ((nombreCorto === 'C_digo_encuestador' || nombreCorto === 'codencu') && encuesta.encuestador !== undefined) return encuesta.encuestador;
-        if ((nombreCorto === 'C_digo_Supervisor' || nombreCorto === 'codsup') && encuesta.supervisor !== undefined) return encuesta.supervisor;
+        if ((nombreCorto === 'C_digo_encuestador' || nombreCorto === 'codencu' || nombreCorto === 'cenc') && (encuesta.encuestador !== undefined || encuesta.codencu !== undefined)) return encuesta.encuestador !== undefined ? encuesta.encuestador : encuesta.codencu;
+        if ((nombreCorto === 'C_digo_Supervisor' || nombreCorto === 'codsup' || nombreCorto === 'csup') && (encuesta.supervisor !== undefined || encuesta.codsup !== undefined)) return encuesta.supervisor !== undefined ? encuesta.supervisor : encuesta.codsup;
 
         const keys = Object.keys(encuesta);
         for (let i = 0; i < keys.length; i++) {
@@ -622,6 +622,7 @@ document.addEventListener('DOMContentLoaded', () => {
             campo(encuesta, 'num_muestra') ||
             campo(encuesta, 'codigo_muestra') ||
             campo(encuesta, 'p_ref') ||
+            campo(encuesta, 'pto_ref') ||
             encuesta.sec_anm ||
             ''
         ).trim();
@@ -983,7 +984,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // 2. Verificar el polígono del sector identificado dentro de su cantón.
-            const scDeclarado = String(enc.sc || campo(enc, 'sc') || '').trim();
+            const scDeclarado = String(enc.sc || campo(enc, 'sc') || campo(enc, 'pto_ref') || '').trim();
             if (scDeclarado && AppState.sectoresMap) {
                 const sectorMeta = resolverSectorEncuesta(enc);
                 if (sectorMeta && sectorMeta.centroid) {
