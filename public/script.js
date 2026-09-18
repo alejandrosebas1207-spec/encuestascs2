@@ -1183,9 +1183,7 @@ document.addEventListener('DOMContentLoaded', () => {
             UI.sectorFilter.classList.toggle('is-active', isAct);
             if (isAct) {
                 activeCount++;
-                const secMeta = AppState.sectoresMap.get(AppState.sectorSeleccionado);
-                const isPM = secMeta && secMeta.esPuntoMuestreo;
-                const chipLbl = isPM ? `Punto #${AppState.sectorSeleccionado}` : `Sector: ${AppState.sectorSeleccionado}`;
+                const chipLbl = `Punto de Referencia: ${AppState.sectorSeleccionado}`;
                 chips.push({
                     tipo: 'sector',
                     label: chipLbl,
@@ -1558,6 +1556,11 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     }
 
+                    const refPunto = String(p.punto_referencial || p.PUNTO_REFERENCIAL || p.referencia || '').trim();
+                    const detalle = refPunto 
+                        ? `Punto ${etiqueta} · ${refPunto}` 
+                        : `Punto ${etiqueta}${parroquia ? ` (${parroquia})` : ''}`;
+
                     listaSectores.push({
                         sc: scNum,
                         scKey: scKey,
@@ -1565,7 +1568,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         circunscripcion: circunscripcion,
                         etiqueta: etiqueta,
                         etiquetaKey: `${scNum}${tipologia}`,
-                        detalle: `Sector ${etiqueta}${parroquia ? ` (${parroquia})` : ''}`,
+                        detalle: detalle,
                         parroquia: parroquia,
                         sec_anm: secAnm
                     });
@@ -1594,12 +1597,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const totalSectores = listaParaMostrar.length;
             let labelTodos = (AppState.parroquiaSeleccionada !== 'Todas') 
-                ? `Todos los sectores de ${AppState.parroquiaSeleccionada} (${totalSectores})`
-                : `Todos los sectores (${totalSectores})`;
+                ? `Todos los puntos de referencia de ${AppState.parroquiaSeleccionada} (${totalSectores})`
+                : `Todos los puntos de referencia (${totalSectores})`;
             if (AppState.filtroSoloPendientes) {
                 labelTodos = (AppState.parroquiaSeleccionada !== 'Todas')
-                    ? `Sectores pendientes en ${AppState.parroquiaSeleccionada} (${totalSectores})`
-                    : `Todos los sectores pendientes (${totalSectores})`;
+                    ? `Puntos pendientes en ${AppState.parroquiaSeleccionada} (${totalSectores})`
+                    : `Todos los puntos pendientes (${totalSectores})`;
             }
             UI.sectorFilter.innerHTML = `<option value="Todos">${labelTodos}</option>`;
 
@@ -3032,7 +3035,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (sectorMeta && barra && titulo && btnGmaps) {
                     const etiq = sectorMeta.etiquetaSC || `Punto ${targetSC}`;
                     const parr = sectorMeta.parroquia ? ` (${sectorMeta.parroquia})` : '';
-                    titulo.textContent = `Punto ${etiq}${parr}`;
+                    const refPunto = sectorMeta.props && (sectorMeta.props.punto_referencial || sectorMeta.props.PUNTO_REFERENCIAL || sectorMeta.props.referencia) 
+                        ? ` · ${String(sectorMeta.props.punto_referencial || sectorMeta.props.PUNTO_REFERENCIAL || sectorMeta.props.referencia).trim()}` 
+                        : '';
+                    titulo.textContent = `Punto ${etiq}${parr}${refPunto}`;
                     const centroid = sectorMeta.centroid || (sectorMeta.props && sectorMeta.props.centroid);
                     if (centroid) {
                         btnGmaps.href = `https://www.google.com/maps/dir/?api=1&destination=${centroid[1].toFixed(6)},${centroid[0].toFixed(6)}`;

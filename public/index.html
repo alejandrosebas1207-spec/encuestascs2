@@ -32,7 +32,7 @@
   <link rel="stylesheet" href="libs/maplibre-gl.css" />
 
   <!-- Estilos del Dashboard -->
-  <link rel="stylesheet" href="style.css?v=5.6.0">
+  <link rel="stylesheet" href="style.css?v=5.7.0">
 </head>
 <body>
 
@@ -197,15 +197,15 @@
               </select>
             </div>
           </div>
-          <!-- Sector Censal -->
+          <!-- Punto de Referencia -->
           <div class="cs-ribbon-field">
             <label for="sectorFilter" class="cs-field-label">
               <svg class="cs-icon cs-icon--xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
-              <span>Sector Censal</span>
+              <span>Punto de Referencia</span>
             </label>
             <div class="cs-select-wrap">
               <select id="sectorFilter" class="cs-select">
-                <option value="Todos">Todos los sectores (56)</option>
+                <option value="Todos">Todos los puntos de referencia (56)</option>
               </select>
             </div>
           </div>
@@ -272,11 +272,11 @@
                   <span class="cs-layer-pill__dot" style="background: #2563eb;"></span>
                   <span id="lblToggleParroquias">Parroquias</span>
                 </button>
-                <button type="button" class="cs-layer-pill active" id="toggleSectores" data-layer-group="sectores" title="Sectores Censales Sorteados">
+                <button type="button" class="cs-layer-pill active" id="toggleSectores" data-layer-group="sectores" title="Puntos de Referencia Sorteados">
                   <span class="cs-layer-pill__dot" style="background: #059669;"></span>
-                  <span id="lblToggleSectores">Sectores</span>
+                  <span id="lblToggleSectores">Puntos</span>
                 </button>
-                <button type="button" class="cs-layer-pill cs-layer-pill--pendientes" id="toggleSoloPendientes" title="Filtrar únicamente sectores pendientes de completar (<10 encuestas)">
+                <button type="button" class="cs-layer-pill cs-layer-pill--pendientes" id="toggleSoloPendientes" title="Filtrar únicamente puntos pendientes de completar (<10 encuestas)">
                   <span class="cs-layer-pill__dot" style="background: #f59e0b;"></span>
                   <span id="lblToggleSoloPendientes">Solo Pendientes</span>
                 </button>
@@ -286,11 +286,11 @@
 
           <div id="map"></div>
 
-          <!-- Barra flotante de navegación para Sector Censal activo -->
+          <!-- Barra flotante de navegación para Punto de Referencia activo -->
           <div class="cs-sector-active-bar" id="barraSectorActivo" style="display:none;">
             <div class="cs-sector-active-info">
               <span class="cs-sector-active-icon">🎯</span>
-              <span class="cs-sector-active-title" id="sectorActivoTitulo">Sector Censal</span>
+              <span class="cs-sector-active-title" id="sectorActivoTitulo">Punto de Referencia</span>
             </div>
             <a id="btnRutaGoogleMaps" class="cs-btn-gmaps" href="#" target="_blank" rel="noopener noreferrer">
               <svg class="cs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
@@ -451,11 +451,11 @@
 
   <!-- ===== SCRIPTS ===== -->
   <script src="libs/maplibre-gl.js"></script>
-  <script src="script.js?v=5.6.0"></script>
+  <script src="script.js?v=5.7.0"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/service-worker.js?v=20').then(reg => {
+        navigator.serviceWorker.register('/service-worker.js?v=21').then(reg => {
           if (reg && reg.update) reg.update();
         }).catch(error => {
           console.warn('No se pudo preparar el modo sin conexión:', error);
