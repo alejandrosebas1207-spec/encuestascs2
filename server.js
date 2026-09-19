@@ -454,10 +454,9 @@ app.get("/api/encuestas", async (req, res) => {
             "Pragma": "no-cache",
             "Expires": "0"
         });
-        // Si el cliente pide fresh=1 (botón de sync), se invalida la caché en memoria para consulta en vivo
+        // Si el cliente pide fresh=1 (botón de sync), se fuerza refresco pero preservando fallback
         if (req.query.fresh === "1") {
-            cache.datos = null;
-            cache.timestamp = 0;
+            cache.timestamp = 0; // expira la vigencia pero NO destruye cache.datos por si Kobo falla
         }
         const datos = await obtenerDatosKobo();
         res.json(datos);
@@ -468,6 +467,17 @@ app.get("/api/encuestas", async (req, res) => {
                 ? "Kobo tardó demasiado en responder"
                 : error.message;
         console.error(`[${new Date().toLocaleTimeString("es-EC")}] Error al consultar Kobo: ${mensaje}`);
+
+        // Blindaje Stale-While-Revalidate: si Kobo tiembla pero hay datos en memoria, responder con ellos en vez de 502
+        if (cache.datos && Array.isArray(cache.datos.resultados)) {
+            console.warn(`[${new Date().toLocaleTimeString("es-EC")}] Sirviendo última copia en memoria (stale) ante falla de Kobo.`);
+            return res.json({
+                ...cache.datos,
+                stale: true,
+                advertencia: "Datos servidos desde memoria debido a intermitencia con KoboToolbox"
+            });
+        }
+
         res.status(502).json({ error: "No fue posible acceder a Kobo.", detalle: mensaje });
     }
 });

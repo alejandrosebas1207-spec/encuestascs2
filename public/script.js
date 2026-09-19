@@ -154,34 +154,6 @@ document.addEventListener('DOMContentLoaded', () => {
         'El Carmen': [
             'EL CARMEN', '4 DE DICIEMBRE', 'EL PARAÍSO / LA 14',
             'SAN PEDRO DE SUMA', 'SANTA MARÍA', 'WILFRIDO LOOR MOREIRA'
-        ],
-        'Ibarra': [
-            'LA DOLOROSA DEL PRIORATO', 'AMBUQUI / CHOTA', 'ANGOCHAGUA',
-            'CAROLINA / GUALLUPI', 'LA ESPERANZA', 'LITA', 'SALINAS',
-            'SAN ANTONIO', 'GUAYAQUIL DE ALPACHACA', 'SAGRARIO',
-            'CARANQUI', 'SAN FRANCISCO'
-        ],
-        'Quito': [
-            'ALANGASI', 'AMAGUAÑA', 'BELISARIO QUEVEDO', 'CALDERON', 'CARCELEN',
-            'CENTRO HISTORICO', 'CHECA', 'CHILLOGALLO', 'CHIMBACALLE', 'COCHAPAMBA',
-            'CONOCOTO', 'COTOCOLLAO', 'CUMBAYA', 'EL CONDADO', 'GUAMANI',
-            'GUAYLLABAMBA', 'ITCHIMBIA', 'IÑAQUITO', 'JIPIJAPA', 'KENNEDY',
-            'LA ARGELIA', 'LA ECUATORIANA', 'LA FERROVIARIA', 'LA MAGDALENA',
-            'LA MERCED', 'LLANO CHICO', 'NAYON', 'PIFO', 'PINTAG', 'POMASQUI',
-            'PUEMBO', 'QUINCHE', 'QUITUMBE', 'RUMIPAMBA', 'SAN ANTONIO',
-            'SAN BARTOLO', 'SAN ISIDRO DEL INCA', 'SAN JUAN', 'SOLANDA',
-            'TUMBACO', 'TURUBAMBA', 'YARUQUI'
-        ],
-        'Cayambe': [
-            'ASCAZUBI', 'CANGAHUA', 'CAYAMBE', 'JUAN MONTALVO', 'OLMEDO/PESILLO', 'OTON',
-            'SAN JOSE DE AYORA', 'STA.ROSA DE CUSUBAMBA'
-        ],
-        'Mejía': [
-            'ALOAG', 'ALOASI', 'CORNEJO ASTORGA /TANDAPI', 'CUTUGLAGUA',
-            'MACHACHI', 'TAMBILLO', 'UYUMBICHO'
-        ],
-        'Rumiñahui': [
-            'COTOGCHOA', 'FAJARDO', 'SAN PEDRO DE TABOADA', 'SAN RAFAEL', 'SANGOLQUI'
         ]
     };
 
@@ -195,51 +167,6 @@ document.addEventListener('DOMContentLoaded', () => {
             label: '#1e40af',       // Texto legible oscuro
             badge: '🔵',
             hex: '#2563eb'
-        },
-        'Ibarra': {
-            nombre: 'Ibarra',
-            linea: '#2563eb',       // Azul Cobalto institucional
-            fill: '#3b82f6',        // Azul vibrante
-            fillActive: '#1d4ed8',
-            label: '#1e40af',       // Texto legible oscuro
-            badge: '🔵',
-            hex: '#2563eb'
-        },
-        'Quito': {
-            nombre: 'Quito (D.M.)',
-            linea: '#2563eb',       // Azul Cobalto
-            fill: '#3b82f6',        // Azul vibrante
-            fillActive: '#1d4ed8',
-            label: '#1e40af',       // Texto legible oscuro con halo blanco
-            badge: '🔵',
-            hex: '#2563eb'
-        },
-        'Cayambe': {
-            nombre: 'Cayambe',
-            linea: '#059669',       // Verde Esmeralda
-            fill: '#10b981',        // Verde vivo
-            fillActive: '#047857',
-            label: '#065f46',
-            badge: '🟢',
-            hex: '#059669'
-        },
-        'Mejía': {
-            nombre: 'Mejía',
-            linea: '#ea580c',       // Naranja Fuego
-            fill: '#f97316',        // Naranja vivo
-            fillActive: '#c2410c',
-            label: '#9a3412',
-            badge: '🟠',
-            hex: '#ea580c'
-        },
-        'Rumiñahui': {
-            nombre: 'Rumiñahui',
-            linea: '#9333ea',       // Violeta Real
-            fill: '#a855f7',        // Violeta vivo
-            fillActive: '#6d28d9',
-            label: '#581c87',
-            badge: '🟣',
-            hex: '#9333ea'
         }
     };
 
@@ -567,7 +494,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // =========================================================================
-    // EXTRACCIÓN Y NORMALIZACIÓN DE PARROQUIA (PICHINCHA)
+    // EXTRACCIÓN Y NORMALIZACIÓN DE PARROQUIA (EL CARMEN)
     // =========================================================================
     function normalizarCanton(valor) {
         const texto = normTexto(valor);
@@ -658,7 +585,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function obtenerCantonEncuesta(encuesta) {
-        return 'Ibarra';
+        return 'El Carmen';
     }
 
     function coincideSector(encuesta, clave) {
@@ -1040,12 +967,12 @@ document.addEventListener('DOMContentLoaded', () => {
         configurarNavegacionMovil();
         configurarEventos();
 
-        // 1. Limpieza de caché previa y Boot Instantáneo Pichincha 2026
+        // 1. Limpieza de caché previa y Boot Instantáneo El Carmen 2026
         try {
-            ['cs_encuestas_cache', 'cs_encuestas_machala_v1', 'cs_encuestas_pichincha_v1'].forEach(k => {
+            ['cs_encuestas_cache', 'cs_encuestas_machala_v1', 'cs_encuestas_pichincha_v1', 'cs_encuestas_pichincha_v2'].forEach(k => {
                 if (localStorage.getItem(k)) localStorage.removeItem(k);
             });
-            const cached = localStorage.getItem('cs_encuestas_pichincha_v2');
+            const cached = localStorage.getItem('cs_encuestas_el_carmen_v1');
             if (cached) {
                 const parsed = JSON.parse(cached);
                 if (Array.isArray(parsed) && parsed.length > 0) {
@@ -1072,8 +999,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             await cargarDatos(AppState.encuestas.length === 0);
             
-            // Auto-refresco inteligente (pausa si la pantalla se apaga o se cambia de app)
-            AppState.intervaloPolling = setInterval(() => cargarDatos(false), 180000);
+            // Auto-refresco inteligente a 45 segundos (pausa si la pantalla se apaga o se cambia de app)
+            AppState.intervaloPolling = setInterval(() => cargarDatos(false), 45000);
             
             document.addEventListener('visibilitychange', () => {
                 if (document.hidden) {
@@ -1087,7 +1014,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                     cargarDatos(false);
                     if (!AppState.intervaloPolling) {
-                        AppState.intervaloPolling = setInterval(() => cargarDatos(false), 180000);
+                        AppState.intervaloPolling = setInterval(() => cargarDatos(false), 45000);
                     }
                 }
             });
@@ -1106,7 +1033,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 AppState.config = { ...AppState.config, ...configData };
             }
             if (UI.tituloProyecto) {
-                let nom = AppState.config.nombreProyecto || 'Encuesta Pichincha 2026';
+                let nom = AppState.config.nombreProyecto || 'Encuesta El Carmen 2026';
                 UI.tituloProyecto.textContent = nom;
                 document.title = 'Clima Social · ' + nom;
             }
@@ -1119,22 +1046,28 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     async function cargarDatos(mostrarOverlay = false, forzarFresco = false) {
-        if (AppState.cargandoDatos) return;
+        if (AppState.cargandoDatos) return false;
         AppState.cargandoDatos = true;
         if (mostrarOverlay && UI.cargaOverlay) UI.cargaOverlay.style.display = 'flex';
         ocultarError();
         
         if (UI.badgeTexto) UI.badgeTexto.textContent = 'Sincronizando…';
 
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 segundos máximo para evitar freeze celular
+
         try {
             const url = `/api/encuestas?_ts=${Date.now()}${forzarFresco ? '&fresh=1' : ''}`;
             const res = await fetch(url, {
                 cache: 'no-store',
+                signal: controller.signal,
                 headers: {
                     'Cache-Control': 'no-cache, no-store, must-revalidate',
                     'Pragma': 'no-cache'
                 }
             });
+            clearTimeout(timeoutId);
+
             if (!res.ok) throw new Error(`HTTP error: ${res.status}`);
             
             const data = await res.json();
@@ -1151,9 +1084,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             auditarEncuestas();
 
-            // Guardar último resultado; el mapa base sigue necesitando conexión.
+            // Guardar último resultado para contingencia sin conexión en El Carmen
             try {
-                localStorage.setItem('cs_encuestas_pichincha_v2', JSON.stringify(AppState.encuestas));
+                localStorage.setItem('cs_encuestas_el_carmen_v1', JSON.stringify(AppState.encuestas));
             } catch (e) {
                 console.warn('[Cache] Error al guardar caché:', e);
             }
@@ -1163,28 +1096,31 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if (AppState.encuestas.length === 0) {
                 if (UI.badgeTexto) UI.badgeTexto.textContent = 'En espera';
-                if (UI.ultimaActualizacion) UI.ultimaActualizacion.textContent = data.mensaje || 'Esperando nueva encuesta';
+                if (UI.ultimaActualizacion) UI.ultimaActualizacion.textContent = data.mensaje || 'Esperando primera encuesta de El Carmen';
             } else {
-                if (UI.badgeTexto) UI.badgeTexto.textContent = 'En vivo';
+                if (UI.badgeTexto) UI.badgeTexto.textContent = data.stale ? 'En vivo (memoria)' : 'En vivo';
                 if (UI.ultimaActualizacion) {
                     const ahora = new Date();
-                    UI.ultimaActualizacion.textContent = `Última sincronización: ${ahora.toLocaleTimeString('es-EC', { timeZone: 'America/Guayaquil' })}`;
+                    UI.ultimaActualizacion.textContent = `Última sincronización: ${ahora.toLocaleTimeString('es-EC', { timeZone: 'America/Guayaquil' })}${data.stale ? ' · Kobo en reintento' : ''}`;
                 }
             }
+            return true;
         } catch (error) {
+            clearTimeout(timeoutId);
             console.error('Error cargando encuestas:', error);
             const hayDatosGuardados = Array.isArray(AppState.encuestas) && AppState.encuestas.length > 0;
             if (!hayDatosGuardados) {
                 mostrarError('No se pudieron cargar los datos de KoboToolbox.');
             } else {
-                mostrarToast('Modo sin conexión: datos desde caché local', 'info');
+                mostrarToast('Modo contingencia: visualizando datos locales guardados', 'info');
             }
             if (UI.badgeTexto) UI.badgeTexto.textContent = hayDatosGuardados ? 'Sin conexión · datos guardados' : 'Sin conexión';
             if (UI.ultimaActualizacion) {
                 UI.ultimaActualizacion.textContent = hayDatosGuardados
-                    ? 'Modo sin conexión · cartografía y última sincronización disponibles'
-                    : 'Modo sin conexión · cartografía disponible';
+                    ? 'Modo contingencia · cartografía y encuestas guardadas disponibles'
+                    : 'Modo contingencia · cartografía disponible';
             }
+            return false;
         } finally {
             AppState.cargandoDatos = false;
             if (UI.cargaOverlay) UI.cargaOverlay.style.display = 'none';
@@ -1506,101 +1442,26 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!supervisores.has(actualSup) && actualSup !== 'Todos') AppState.supervisorSeleccionado = 'Todos';
         }
 
-        // 1.1 Selector Cantón (4 Cantones de la Encuesta Pichincha 2026)
+        // 1.1 Selector Cantón (Encuesta Cantonal El Carmen 2026)
         if (UI.cantonFilter) {
             const actualCan = AppState.cantonSeleccionado || 'Todos';
-            const cantonesList = [
-                { id: 'Quito', label: 'Quito (D.M.)', badge: '🔵' },
-                { id: 'Cayambe', label: 'Cayambe', badge: '🟢' },
-                { id: 'Mejía', label: 'Mejía', badge: '🟠' },
-                { id: 'Rumiñahui', label: 'Rumiñahui', badge: '🟣' }
-            ];
-
-            let html = '<option value="Todos">Todos los cantones (4)</option>';
-            cantonesList.forEach(c => {
-                let cnt = 0;
-                if (AppState.encuestas && AppState.encuestas.length > 0) {
-                    cnt = AppState.encuestas.filter(e => obtenerCantonEncuesta(e) === c.id).length;
-                }
-                const extra = cnt > 0 ? ` (${cnt} enc.)` : '';
-                html += `<option value="${c.id}">${c.badge} ${c.label}${extra}</option>`;
-            });
-            UI.cantonFilter.innerHTML = html;
-            UI.cantonFilter.value = actualCan;
+            let cnt = (AppState.encuestas && AppState.encuestas.length > 0) ? AppState.encuestas.length : 0;
+            let extra = cnt > 0 ? ` (${cnt} enc.)` : '';
+            UI.cantonFilter.innerHTML = `<option value="Todos">El Carmen (Cantón)</option><option value="El Carmen">🔵 El Carmen${extra}</option>`;
+            UI.cantonFilter.value = (actualCan === 'El Carmen') ? 'El Carmen' : 'Todos';
         }
 
-        // 1.2 Selector Circunscripción (Especial para Quito y Rumiñahui)
+        // 1.2 Selector Circunscripción (No aplica a El Carmen - auto-oculto)
         if (UI.circunscripcionFilter) {
-            const actualCan = AppState.cantonSeleccionado || 'Todos';
-            const actualCirc = AppState.circunscripcionSeleccionada || 'Todas';
-            let circList = [];
-
-            if (actualCan === 'Quito') {
-                circList = [
-                    { id: 'Urbana 1 (Norte)', label: 'Circunscripción Urbana 1 (Norte)' },
-                    { id: 'Urbana 2 (Centro)', label: 'Circunscripción Urbana 2 (Centro)' },
-                    { id: 'Urbana 3 (Sur)', label: 'Circunscripción Urbana 3 (Sur)' },
-                    { id: 'Rural', label: 'Circunscripción Rural' }
-                ];
-                if (UI.wrapCircunscripcionFilter) UI.wrapCircunscripcionFilter.classList.remove('is-hidden');
-                UI.circunscripcionFilter.disabled = false;
-            } else if (actualCan === 'Rumiñahui') {
-                circList = [
-                    { id: 'Urbana 1', label: 'Circunscripción Urbana 1 (Fajardo / San Pedro / San Rafael)' },
-                    { id: 'Urbana 2', label: 'Circunscripción Urbana 2 (Sangolquí)' },
-                    { id: 'Rural', label: 'Circunscripción Rural (Cotogchoa)' }
-                ];
-                if (UI.wrapCircunscripcionFilter) UI.wrapCircunscripcionFilter.classList.remove('is-hidden');
-                UI.circunscripcionFilter.disabled = false;
-            } else {
-                // Cayambe, Mejía o Todos: Smart Disclosure (auto-ocultar para ahorrar espacio móvil)
-                if (UI.wrapCircunscripcionFilter) UI.wrapCircunscripcionFilter.classList.add('is-hidden');
-                UI.circunscripcionFilter.disabled = true;
-            }
-
-            let circHtml = '<option value="Todas">Todas las circunscripciones</option>';
-            circList.forEach(c => {
-                circHtml += `<option value="${c.id}">${c.label}</option>`;
-            });
-            UI.circunscripcionFilter.innerHTML = circHtml;
-            const validCircValues = ['Todas', ...circList.map(c => c.id)];
-            if (validCircValues.includes(actualCirc)) {
-                UI.circunscripcionFilter.value = actualCirc;
-            } else {
-                AppState.circunscripcionSeleccionada = 'Todas';
-                UI.circunscripcionFilter.value = 'Todas';
-            }
+            if (UI.wrapCircunscripcionFilter) UI.wrapCircunscripcionFilter.classList.add('is-hidden');
+            UI.circunscripcionFilter.disabled = true;
+            AppState.circunscripcionSeleccionada = 'Todas';
+            UI.circunscripcionFilter.value = 'Todas';
         }
 
-        // 1.2.1 Barra Rápida de Píldoras de Circunscripción sobre el Mapa (1-Tap)
         if (UI.circLegendBar) {
-            const actualCan = AppState.cantonSeleccionado || 'Todos';
-            const actualCirc = AppState.circunscripcionSeleccionada || 'Todas';
-
-            if (actualCan === 'Quito' || actualCan === 'Rumiñahui') {
-                UI.circLegendBar.style.display = 'flex';
-                let pillsHtml = `<button type="button" class="cs-circ-pill ${actualCirc === 'Todas' ? 'is-active' : ''}" data-circ="Todas">Todas</button>`;
-                
-                const cList = (actualCan === 'Quito') ? [
-                    { id: 'Urbana 1 (Norte)', short: 'Urb. 1 Norte' },
-                    { id: 'Urbana 2 (Centro)', short: 'Urb. 2 Centro' },
-                    { id: 'Urbana 3 (Sur)', short: 'Urb. 3 Sur' },
-                    { id: 'Rural', short: 'Rural' }
-                ] : [
-                    { id: 'Urbana 1', short: 'Urb. 1' },
-                    { id: 'Urbana 2', short: 'Urb. 2' },
-                    { id: 'Rural', short: 'Rural' }
-                ];
-
-                cList.forEach(c => {
-                    const isAct = (actualCirc === c.id);
-                    pillsHtml += `<button type="button" class="cs-circ-pill ${isAct ? 'is-active' : ''}" data-circ="${c.id}" title="${c.id}">${c.short}</button>`;
-                });
-                UI.circLegendBar.innerHTML = pillsHtml;
-            } else {
-                UI.circLegendBar.style.display = 'none';
-                UI.circLegendBar.innerHTML = '';
-            }
+            UI.circLegendBar.style.display = 'none';
+            UI.circLegendBar.innerHTML = '';
         }
 
         // Sincronizar estado visual de las píldoras de cantón sobre el mapa
@@ -1618,7 +1479,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // 2b. Selector Sectores Censales (160 sectores en Pichincha)
+        // 2b. Selector Puntos de Muestreo / Sectores (56 puntos en El Carmen)
         if (UI.sectorFilter) {
             const actualSec = AppState.sectorSeleccionado || 'Todos';
             const parActivaNorm = (AppState.parroquiaSeleccionada !== 'Todas') ? normTexto(AppState.parroquiaSeleccionada) : null;
@@ -1921,20 +1782,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // =========================================================================
     function obtenerMetaActiva() {
         const METAS_CANTON = {
-            'QUITO': 700,
-            'CAYAMBE': 300,
-            'MEJIA': 300,
-            'RUMINAHUI': 300
+            'EL CARMEN': 560
         };
 
         // 1. Filtro por Sector Censal Sorteado (cuota: 10 encuestas)
         if (AppState.sectorSeleccionado && AppState.sectorSeleccionado !== 'Todos') {
             return {
                 meta: 10,
-                etiquetaMeta: `Meta: 10 (Sector ${AppState.sectorSeleccionado})`,
-                subPendientes: `Para completar Sector ${AppState.sectorSeleccionado}`,
-                tituloAvance: `Avance Sector`,
-                subAvance: `Cuota sectorial (10 encuestas)`
+                etiquetaMeta: `Meta: 10 (Punto ${AppState.sectorSeleccionado})`,
+                subPendientes: `Para completar Punto ${AppState.sectorSeleccionado}`,
+                tituloAvance: `Avance Punto`,
+                subAvance: `Cuota por punto (10 encuestas)`
             };
         }
 
@@ -1955,23 +1813,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 etiquetaMeta: `Meta: ${metaParr.toLocaleString()} (${AppState.parroquiaSeleccionada})`,
                 subPendientes: `Para meta en ${AppState.parroquiaSeleccionada}`,
                 tituloAvance: `Avance Parroquia`,
-                subAvance: `${numSectores || 1} sectores (${metaParr} encuestas)`
+                subAvance: `${numSectores || 1} puntos (${metaParr} encuestas)`
             };
         }
 
-        // 3. Filtro por Cantón (Quito: 700, Cayambe: 300, Mejía: 300, Rumiñahui: 300)
+        // 3. Filtro por Cantón (El Carmen: 560)
         if (AppState.cantonSeleccionado && AppState.cantonSeleccionado !== 'Todos') {
             const cNorm = normTexto(AppState.cantonSeleccionado);
-            let metaCanton = METAS_CANTON[cNorm];
-            if (!metaCanton && AppState.sectoresGeojson && Array.isArray(AppState.sectoresGeojson.features)) {
-                const numSecs = AppState.sectoresGeojson.features.filter(f => {
-                    const props = f.properties || {};
-                    const c = normTexto(props.canton || props.CANTON || props.nom_can || '');
-                    return c === cNorm;
-                }).length;
-                if (numSecs > 0) metaCanton = numSecs * 10;
-            }
-            metaCanton = metaCanton || 300;
+            let metaCanton = METAS_CANTON[cNorm] || 560;
             return {
                 meta: metaCanton,
                 etiquetaMeta: `Meta: ${metaCanton.toLocaleString()} (${AppState.cantonSeleccionado})`,
@@ -1981,14 +1830,14 @@ document.addEventListener('DOMContentLoaded', () => {
             };
         }
 
-        // 4. Ámbito General (Encuesta Cantonal)
-        const metaGeneral = AppState.config.metaEncuestas || 400;
+        // 4. Ámbito General (Encuesta Cantonal El Carmen)
+        const metaGeneral = AppState.config.metaEncuestas || 560;
         return {
             meta: metaGeneral,
             etiquetaMeta: `Meta: ${metaGeneral.toLocaleString()}`,
-            subPendientes: `Faltan para la meta total`,
-            tituloAvance: `Avance General`,
-            subAvance: `Cumplimiento general (${metaGeneral.toLocaleString()})`
+            subPendientes: `Para meta total (${metaGeneral.toLocaleString()})`,
+            tituloAvance: `Avance Cantonal`,
+            subAvance: `Meta cantonal (${metaGeneral.toLocaleString()})`
         };
     }
 
@@ -2086,7 +1935,7 @@ document.addEventListener('DOMContentLoaded', () => {
         AppState.sectoresMap = new Map();
         AppState.sectoresCandidatos = new Map();
 
-        // Indexar Sectores Censales (160 polígonos de Pichincha: Quito, Cayambe, Mejía, Rumiñahui)
+        // Indexar Puntos de Muestreo / Sectores (56 puntos en El Carmen)
         if (sectoresData.features) {
             sectoresData.features.forEach(f => {
                 const p = f.properties || {};
@@ -4467,15 +4316,31 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (icono) icono.classList.add('anim-girar');
                 mostrarToast('Sincronizando con KoboToolbox…', 'info');
                 try {
-                    await cargarDatos(false, true);
-                    mostrarToast('Datos sincronizados en vivo ✓', 'success');
+                    const exito = await cargarDatos(false, true);
+                    if (exito) {
+                        mostrarToast('Datos sincronizados en vivo ✓', 'success');
+                    } else {
+                        mostrarToast('Sin conexión a Kobo. Visualizando datos locales.', 'info');
+                    }
                 } catch (e) {
-                    mostrarToast('No se pudo sincronizar en vivo. Usando datos locales.', 'error');
+                    mostrarToast('No se pudo sincronizar en vivo. Usando datos locales.', 'info');
                 } finally {
                     if (icono) icono.classList.remove('anim-girar');
                 }
             });
         }
+
+        // 10b. Detección automática de reconexión de Internet (Auto-recuperación de Modo Contingencia)
+        window.addEventListener('online', async () => {
+            mostrarToast('Conexión a internet restablecida · Actualizando...', 'success');
+            if (UI.badgeTexto) UI.badgeTexto.textContent = 'Conectando…';
+            await cargarDatos(false, true);
+        });
+
+        window.addEventListener('offline', () => {
+            mostrarToast('Conexión perdida · Modo contingencia local activo', 'info');
+            if (UI.badgeTexto) UI.badgeTexto.textContent = 'Sin conexión';
+        });
 
         // 11. Modo Oscuro
         if (UI.botonModoOscuro) {

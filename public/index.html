@@ -58,7 +58,7 @@
         </a>
         <div class="cs-header__divider"></div>
         <div class="cs-header__title-group">
-          <h1 class="cs-header__title" id="tituloProyecto">Encuesta Pichincha 2026</h1>
+          <h1 class="cs-header__title" id="tituloProyecto">Encuesta El Carmen 2026</h1>
           <span class="cs-header__live-badge" id="badgeConexion">
             <span class="cs-header__live-dot"></span>
             <span id="badgeTexto">En espera</span>
@@ -105,7 +105,7 @@
         </div>
         <div class="cs-kpi-bottom">
           <span class="cs-kpi-badge">Total Recolectadas</span>
-          <span class="cs-kpi-sub" id="kpiMeta">Meta: 1,600 (Pichincha)</span>
+          <span class="cs-kpi-sub" id="kpiMeta">Meta: 560 (El Carmen)</span>
         </div>
         <div class="cs-progress-bar"><div class="cs-progress-bar__fill" id="barraAvance" style="width:0%"></div></div>
       </div>
@@ -451,11 +451,11 @@
 
   <!-- ===== SCRIPTS ===== -->
   <script src="libs/maplibre-gl.js"></script>
-  <script src="script.js?v=5.8.0"></script>
+  <script src="script.js?v=5.9.0"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/service-worker.js?v=22').then(reg => {
+        navigator.serviceWorker.register('/service-worker.js?v=23').then(reg => {
           if (reg && reg.update) reg.update();
         }).catch(error => {
           console.warn('No se pudo preparar el modo sin conexión:', error);
