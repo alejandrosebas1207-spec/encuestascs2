@@ -126,13 +126,13 @@ document.addEventListener('DOMContentLoaded', () => {
         '#e11d48', // 1: Carmesí / Rojo Vivo
         '#2563eb', // 2: Azul Eléctrico
         '#ea580c', // 3: Naranja Fuego
-        '#7c3aed', // 4: Violeta / Púrpura
-        '#f59e0b', // 5: Ámbar Dorado
+        '#0284c7', // 4: Azul Cielo
+        '#c084fc', // 5: Morado Claro / Lavanda Radiante (Exclusivo Encuestadora 5)
         '#16a34a', // 6: Verde Vivo
         '#db2777', // 7: Rosa Intenso / Magenta
         '#4f46e5', // 8: Índigo
         '#84cc16', // 9: Lima Brillante
-        '#9333ea', // 10: Morado
+        '#0891b2', // 10: Cian Profundo
         '#d97706', // 11: Ocre Cálido
         '#0284c7', // 12: Azul Cielo
         '#b91c1c', // 13: Rojo Granate
@@ -377,6 +377,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (enc === undefined || enc === null || enc === '') return '#64748b';
         const str = String(enc).trim();
         const num = parseInt(str, 10);
+        if (str === '5' || str === '05' || num === 5) {
+            return '#c084fc'; // Morado Claro / Lavanda Radiante (Encuestadora 5)
+        }
         if (!isNaN(num) && num > 0) {
             return PALETA_ENCUESTADORES[(num - 1) % PALETA_ENCUESTADORES.length];
         }
@@ -2426,6 +2429,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 cluster: false
             });
 
+            // 0. Capa de Resplandor / Halo de Luz para Encuestadora 5 (Efecto Glow Lila Exclusivo)
+            map.addLayer({
+                id: 'puntos-glow-layer',
+                type: 'circle',
+                source: 'encuestas-puntos-source',
+                filter: ['any', ['==', ['get', 'esEspecial'], 1], ['==', ['to-string', ['get', 'encuestador']], '5']],
+                paint: {
+                    'circle-color': '#c084fc',
+                    'circle-radius': [
+                        'interpolate',
+                        ['linear'],
+                        ['zoom'],
+                        10, 8.0,
+                        13, 12.0,
+                        16, 17.0,
+                        19, 23.0
+                    ],
+                    'circle-opacity': 0.60,
+                    'circle-blur': 0.85
+                }
+            });
+
             // 1. Círculos de Puntos Individuales (Coloreados por Encuestador)
             map.addLayer({
                 id: 'puntos-layer',
@@ -2534,12 +2559,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 `;
             }
 
+            const esEspecial = p.esEspecial === 1 || String(p.encuestador).trim() === '5' || String(p.encuestador).trim() === '05';
+            const cabeceraBg = tieneAlerta
+                ? 'background:#dc2626;'
+                : (esEspecial
+                    ? 'background:linear-gradient(135deg, #9333ea 0%, #c084fc 100%);box-shadow:0 2px 8px rgba(192,132,252,0.35);'
+                    : `background:${colorPunto};`);
+            const tituloEnc = tieneAlerta
+                ? '⚠️ Encuestador #' + p.encuestador
+                : (esEspecial ? 'Encuestadora #' + p.encuestador : 'Encuestador #' + p.encuestador);
+
             new maplibregl.Popup({ offset: [0, -10], closeButton: true })
                 .setLngLat(coords)
                 .setHTML(`
                     <div style="font-family:'Inter',sans-serif;min-width:190px;padding:2px;">
-                        <div style="background:${colorPunto};color:#fff;padding:6px 10px;border-radius:6px 6px 0 0;margin:-14px -14px 8px -14px;font-weight:700;font-size:0.85rem;display:flex;justify-content:space-between;align-items:center;">
-                            <span>${tieneAlerta ? '⚠️ ' : ''}Encuestador #${p.encuestador}</span>
+                        <div style="${cabeceraBg}color:#fff;padding:6px 10px;border-radius:6px 6px 0 0;margin:-14px -14px 8px -14px;font-weight:700;font-size:0.85rem;display:flex;justify-content:space-between;align-items:center;">
+                            <span>${tituloEnc}</span>
                             <span>Sup #${p.supervisor}</span>
                         </div>
                         ${bannerAlerta}
@@ -2554,10 +2589,13 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         map.on('click', 'puntos-layer', abrirPopupEncuesta);
+        map.on('click', 'puntos-glow-layer', abrirPopupEncuesta);
 
         // Cursores interactivos
         map.on('mouseenter', 'puntos-layer', () => { map.getCanvas().style.cursor = 'pointer'; });
         map.on('mouseleave', 'puntos-layer', () => { map.getCanvas().style.cursor = ''; });
+        map.on('mouseenter', 'puntos-glow-layer', () => { map.getCanvas().style.cursor = 'pointer'; });
+        map.on('mouseleave', 'puntos-glow-layer', () => { map.getCanvas().style.cursor = ''; });
         map.on('mouseenter', 'sectores-point', () => { map.getCanvas().style.cursor = 'pointer'; });
         map.on('mouseleave', 'sectores-point', () => { map.getCanvas().style.cursor = ''; });
 
@@ -3166,6 +3204,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const barrio = enc.barrio || campo(enc, 'BARRIO_O_SECTOR') || campo(enc, 'barrio');
             const fecha = formatearFechaHoraEcuador(enc);
 
+            const esEspecial = String(encuestador).trim() === '5' || String(encuestador).trim() === '05' ? 1 : 0;
+
             features.push({
                 type: 'Feature',
                 geometry: {
@@ -3174,6 +3214,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 properties: {
                     encuestador,
+                    esEspecial,
                     supervisor,
                     color: obtenerColorEncuestador(encuestador),
                     sc,
@@ -3199,6 +3240,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const showLabels = AppState.mostrarEtiquetas ? 'visible' : 'none';
 
+        if (map.getLayer('puntos-glow-layer')) {
+            map.setLayoutProperty('puntos-glow-layer', 'visibility', 'visible');
+        }
         if (map.getLayer('puntos-layer')) {
             map.setLayoutProperty('puntos-layer', 'visibility', 'visible');
         }
