@@ -225,25 +225,12 @@ function normalizarEncuesta(raw) {
     let encuestador = extraerValor(raw, [campoEnc, "cenc", "codencu", "cod_encu", "cod_enc", "C_digo_encuestador", "encuestador", "cod_encuestador"]);
     let supervisor = extraerValor(raw, [campoSup, "csup", "codsup", "cod_sup", "C_digo_Supervisor", "supervisor", "cod_supervisor"]);
 
-    // Blindaje y corrección de códigos de encuestadores / supervisores
-    const dev = String(extraerValor(raw, ["deviceid", "device_id", "meta/deviceID"]) || raw.deviceid || "").trim();
-    if (dev === "collect:CE01LUYMF7JvDsQw") {
-        encuestador = "11";
-        supervisor = "1";
-    } else if (dev === "collect:cAuJE7JJkpKkgdwu") {
-        encuestador = "12";
-        supervisor = "1";
-    } else if (dev === "collect:R7NcdmW9EjRbx6Nl") {
-        encuestador = "31";
-        supervisor = "9";
-    } else {
-        const numEnc = parseInt(encuestador, 10);
-        const numSup = parseInt(supervisor, 10);
-        // Si el encuestador puso 1..9 (código de supervisor) y el supervisor 10..50 (código de encuestador), corregir inversión
-        if (!isNaN(numEnc) && !isNaN(numSup) && numEnc >= 1 && numEnc <= 9 && numSup >= 10 && numSup <= 50) {
-            encuestador = String(numSup);
-            supervisor = String(numEnc);
-        }
+    // Inversión eventual de códigos si aplica
+    const numEnc = parseInt(encuestador, 10);
+    const numSup = parseInt(supervisor, 10);
+    if (!isNaN(numEnc) && !isNaN(numSup) && numEnc >= 1 && numEnc <= 9 && numSup >= 10 && numSup <= 50) {
+        encuestador = String(numSup);
+        supervisor = String(numEnc);
     }
 
     // Consentimiento: 1 = SÍ, 2 = NO / Rechazo
