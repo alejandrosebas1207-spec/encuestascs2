@@ -219,6 +219,58 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    // Directorio oficial del Equipo de Campo (El Carmen 2026)
+    const EQUIPO_CAMPO = {
+        '3': { nombre: 'Karina Saltos', etiqueta: 'Encuestadora 3 · Karina Saltos', corta: 'Encuestadora 3' },
+        '4': { nombre: 'Melannie Verduga', etiqueta: 'Encuestadora 4 · Melannie Verduga', corta: 'Encuestadora 4' },
+        '5': { nombre: 'Carmen Zambrano', etiqueta: 'Encuestadora 5 · Carmen Zambrano', corta: 'Encuestadora 5' },
+        '6': { nombre: 'Katherine Chica', etiqueta: 'Encuestadora 6 · Katherine Chica', corta: 'Encuestadora 6' },
+        '7': { nombre: 'Leidy Zambrano', etiqueta: 'Encuestadora 7 · Leidy Zambrano', corta: 'Encuestadora 7' }
+    };
+
+    const SUPERVISORES_CAMPO = {
+        '1': 'David Schwarz',
+        '2': 'Nervo Flores'
+    };
+
+    function obtenerEtiquetaEncuestador(id, formato = 'completo') {
+        const sid = String(id || '').trim();
+        const miembro = EQUIPO_CAMPO[sid];
+        if (miembro) {
+            if (formato === 'corta') return miembro.corta;
+            if (formato === 'nombre') return miembro.nombre;
+            return miembro.etiqueta;
+        }
+        return sid ? `Encuestador ${sid}` : 'Sin Asignar';
+    }
+
+    function obtenerEtiquetaSupervisor(id, formato = 'corto') {
+        const sid = String(id || '').trim();
+        const nombre = SUPERVISORES_CAMPO[sid];
+        if (!sid || sid === 'Sin asignar' || sid === 'undefined' || sid === 'null' || sid === '0') return 'Sin Supervisor';
+        if (nombre) {
+            return formato === 'completo' ? `Supervisor ${sid} · ${nombre}` : `Sup. ${sid}`;
+        }
+        return `Supervisor ${sid}`;
+    }
+
+    function formatearNombreParroquia(nombre) {
+        if (!nombre) return '';
+        const norm = (s) => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim().toUpperCase();
+        const up = norm(nombre);
+        for (const [k, v] of Object.entries(COLORES_PARROQUIA)) {
+            const kn = norm(k);
+            if (up === kn || up.includes(kn) || kn.includes(up)) {
+                return v.nombre;
+            }
+        }
+        return String(nombre).trim()
+            .toLowerCase()
+            .split(' ')
+            .map(w => w.length > 2 && w !== 'del' && w !== 'los' && w !== 'las' && w !== 'de' && w !== 'la' ? w.charAt(0).toUpperCase() + w.slice(1) : w)
+            .join(' ');
+    }
+
     // Expresiones MapLibre GL por Parroquia (Pintado vectorial diferenciado de las 6 parroquias de El Carmen)
     const EXPR_PARROQUIAS_LINE = [
         'match', ['upcase', ['coalesce', ['get', 'nombre'], ['get', 'PARROQUIA'], ['get', 'parroquia'], '']],
@@ -1195,7 +1247,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 activeCount++;
                 chips.push({
                     tipo: 'parroquia',
-                    label: `Parroquia: ${AppState.parroquiaSeleccionada}`,
+                    label: `Parroquia: ${formatearNombreParroquia(AppState.parroquiaSeleccionada)}`,
                     onClear: () => {
                         AppState.parroquiaSeleccionada = 'Todas';
                         if (UI.parroquiaFilter) UI.parroquiaFilter.value = 'Todas';
@@ -1261,7 +1313,7 @@ document.addEventListener('DOMContentLoaded', () => {
             activeCount++;
             chips.push({
                 tipo: 'encuestador',
-                label: `Encuestador #${AppState.encuestadorSeleccionado}`,
+                label: obtenerEtiquetaEncuestador(AppState.encuestadorSeleccionado, 'corta'),
                 onClear: () => {
                     seleccionarEncuestador(AppState.encuestadorSeleccionado);
                 }
@@ -1509,9 +1561,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
 
                     const refPunto = String(p.punto_referencial || p.PUNTO_REFERENCIAL || p.referencia || '').trim();
+                    const parNorm = formatearNombreParroquia(parroquia);
                     const detalle = refPunto 
                         ? `Punto ${etiqueta} · ${refPunto}` 
-                        : `Punto ${etiqueta}${parroquia ? ` (${parroquia})` : ''}`;
+                        : `Punto ${etiqueta}${parNorm ? ` (${parNorm})` : ''}`;
 
                     listaSectores.push({
                         sc: scNum,
@@ -1548,12 +1601,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const totalSectores = listaParaMostrar.length;
+            const parNormFiltro = (AppState.parroquiaSeleccionada !== 'Todas') ? formatearNombreParroquia(AppState.parroquiaSeleccionada) : '';
             let labelTodos = (AppState.parroquiaSeleccionada !== 'Todas') 
-                ? `Todos los puntos de referencia de ${AppState.parroquiaSeleccionada} (${totalSectores})`
+                ? `Todos los puntos de referencia de ${parNormFiltro} (${totalSectores})`
                 : `Todos los puntos de referencia (${totalSectores})`;
             if (AppState.filtroSoloPendientes) {
                 labelTodos = (AppState.parroquiaSeleccionada !== 'Todas')
-                    ? `Puntos pendientes en ${AppState.parroquiaSeleccionada} (${totalSectores})`
+                    ? `Puntos pendientes en ${parNormFiltro} (${totalSectores})`
                     : `Todos los puntos pendientes (${totalSectores})`;
             }
             UI.sectorFilter.innerHTML = `<option value="Todos">${labelTodos}</option>`;
@@ -1582,19 +1636,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 opt.dataset.scKey = item.scKey;
                 opt.dataset.secAnm = item.sec_anm;
 
-                const pName = String(item.parroquia || '').toUpperCase().trim();
-                const pColor = COLORES_PARROQUIA[pName];
-                const pBadge = pColor ? `${pColor.badge} ` : '';
-
                 if (count >= 10) {
-                    opt.textContent = `🟢 ${pBadge}${item.detalle} (${count}/10 COMPLETO)`;
+                    opt.textContent = `🟢 ${item.detalle} (${count}/10 COMPLETO)`;
                     opt.style.color = '#059669';
                     opt.style.fontWeight = '700';
                 } else if (count > 0) {
-                    opt.textContent = `🟡 ${pBadge}${item.detalle} (${count}/10)`;
+                    opt.textContent = `🟡 ${item.detalle} (${count}/10)`;
                     opt.style.color = '#d97706';
                 } else {
-                    opt.textContent = `⚪ ${pBadge}${item.detalle} (0/10)`;
+                    opt.textContent = `⚪ ${item.detalle} (0/10)`;
                     opt.style.color = '#64748b';
                 }
                 frag.appendChild(opt);
@@ -1653,9 +1703,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const opt = document.createElement('option');
                 opt.value = p;
                 const count = parroquias.get(p) || 0;
-                const colorInfo = COLORES_PARROQUIA[p] || COLORES_PARROQUIA[p.toUpperCase()];
-                const badge = colorInfo ? `${colorInfo.badge} ` : '';
-                opt.textContent = count > 0 ? `${badge}${p} (${count} enc.)` : `${badge}${p}`;
+                const nombreFormateado = formatearNombreParroquia(p);
+                opt.textContent = count > 0 ? `${nombreFormateado} (${count} enc.)` : nombreFormateado;
                 frag.appendChild(opt);
             });
             UI.parroquiaFilter.appendChild(frag);
@@ -2566,8 +2615,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     ? 'background:linear-gradient(135deg, #9333ea 0%, #c084fc 100%);box-shadow:0 2px 8px rgba(192,132,252,0.35);'
                     : `background:${colorPunto};`);
             const tituloEnc = tieneAlerta
-                ? '⚠️ Encuestador #' + p.encuestador
-                : (esEspecial ? 'Encuestadora #' + p.encuestador : 'Encuestador #' + p.encuestador);
+                ? '⚠️ ' + obtenerEtiquetaEncuestador(p.encuestador, 'corta')
+                : obtenerEtiquetaEncuestador(p.encuestador, 'completo');
+            const tituloSup = obtenerEtiquetaSupervisor(p.supervisor, 'corto');
+            const parrNormal = formatearNombreParroquia(p.parroquia);
 
             new maplibregl.Popup({ offset: [0, -10], closeButton: true })
                 .setLngLat(coords)
@@ -2575,10 +2626,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div style="font-family:'Inter',sans-serif;min-width:190px;padding:2px;">
                         <div style="${cabeceraBg}color:#fff;padding:6px 10px;border-radius:6px 6px 0 0;margin:-14px -14px 8px -14px;font-weight:700;font-size:0.85rem;display:flex;justify-content:space-between;align-items:center;">
                             <span>${tituloEnc}</span>
-                            <span>Sup #${p.supervisor}</span>
+                            <span>${tituloSup}</span>
                         </div>
                         ${bannerAlerta}
-                        <p style="margin:4px 0;font-size:0.8rem;"><strong>Parroquia:</strong> ${p.parroquia}</p>
+                        <p style="margin:4px 0;font-size:0.8rem;"><strong>Parroquia:</strong> ${parrNormal}</p>
                         ${p.sc ? `<p style="margin:4px 0;font-size:0.8rem;"><strong>Punto de Muestreo:</strong> #${p.sc}${p.tipologia ? ` (Tipología ${p.tipologia})` : ''}</p>` : ''}
                         ${p.barrio ? `<p style="margin:4px 0;font-size:0.8rem;"><strong>Barrio:</strong> ${p.barrio}</p>` : ''}
                         <p style="margin:4px 0;font-size:0.75rem;color:#64748b;">Fecha: ${p.fecha}</p>
@@ -2631,7 +2682,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <div style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:0.95rem;color:#0f172a;margin-bottom:4px;">
                             Punto <strong>${etiq}</strong>
                         </div>
-                        ${parroquia ? `<div style="font-size:0.8rem;color:#475569;margin-bottom:6px;">Parroquia <strong>${parroquia}</strong></div>` : ''}
+                        ${parroquia ? `<div style="font-size:0.8rem;color:#475569;margin-bottom:6px;">Parroquia <strong>${formatearNombreParroquia(parroquia)}</strong></div>` : ''}
                         ${p.punto_referencial ? `<div style="font-size:0.75rem;color:#1e293b;background:#f1f5f9;padding:6px 8px;border-radius:6px;margin-bottom:8px;text-align:left;line-height:1.3;border:1px solid #e2e8f0;">📍 <strong>Ref:</strong> ${p.punto_referencial}</div>` : ''}
                         <a href="${gmapsUrl}" target="_blank" rel="noopener noreferrer" class="cs-btn-gmaps" style="display:inline-flex;justify-content:center;width:100%;margin-top:2px;">
                             <svg class="cs-icon" style="width:13px;height:13px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
@@ -3421,13 +3472,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const frag = document.createDocumentFragment();
         encIds.forEach(encId => {
             const color = obtenerColorEncuestador(encId);
+            const encTitulo = obtenerEtiquetaEncuestador(encId, 'corta');
             const total = conteoEncuestadores.get(encId);
             const item = document.createElement('div');
             item.className = 'cs-map-legend__item';
-            item.title = `Encuestador #${encId}: ${total} encuestas`;
+            item.title = `${encTitulo}: ${total} encuestas`;
             item.innerHTML = `
                 <span class="cs-legend-color-dot" style="background-color:${color};"></span>
-                <span>Enc #${encId}</span>
+                <span>${encTitulo}</span>
                 <span class="cs-legend-count">${total}</span>
             `;
             frag.appendChild(item);
@@ -3570,15 +3622,15 @@ document.addEventListener('DOMContentLoaded', () => {
             tr.classList.add('selected');
         }
 
-        const par = grupo.parroquiaPrincipal || 'Sin Parroquia';
-        const supLabel = (grupo.supervisor && grupo.supervisor !== 'Sin asignar' && grupo.supervisor !== 'undefined' && grupo.supervisor !== 'null')
-            ? `Sup #${grupo.supervisor}`
-            : 'Sin Sup';
+        const par = formatearNombreParroquia(grupo.parroquiaPrincipal || 'Sin Parroquia');
+        const supLabel = obtenerEtiquetaSupervisor(grupo.supervisor, 'corto');
+        const supTitle = obtenerEtiquetaSupervisor(grupo.supervisor, 'completo');
+        const encTituloCompleto = obtenerEtiquetaEncuestador(grupo.id, 'completo');
 
-        // Badge parroquial distintivo
-        const badgeParroquiaHtml = `<span class="cs-badge" style="background:#eff6ff;color:#1d4ed8;font-weight:600;font-size:0.65rem;padding:0.06rem 0.4rem;border:1px solid #bfdbfe;" title="Parroquia: ${par}">🏛️ ${par}</span>`;
-        // Badge de supervisor
-        const badgeSupHtml = `<span class="cs-badge" style="background:var(--bg-subtle);color:var(--text-muted);font-weight:600;font-size:0.6rem;padding:0.06rem 0.35rem;border:1px solid var(--border-subtle);">${supLabel}</span>`;
+        // Badge parroquial distintivo (SIN icono y en escritura normal)
+        const badgeParroquiaHtml = `<span class="cs-badge cs-badge--parroquia" title="Parroquia: ${par}">${par}</span>`;
+        // Badge de supervisor (SIN #)
+        const badgeSupHtml = `<span class="cs-badge cs-badge--supervisor" title="${supTitle}">${supLabel}</span>`;
 
         tr.innerHTML = `
             <td>
@@ -3587,8 +3639,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         <svg style="width:12px;height:12px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                     </div>
                     <div class="cs-enc-meta">
-                        <div class="cs-enc-name" title="Encuestador #${grupo.id} (${par} · ${supLabel})">
-                            <span>Encuestador #${grupo.id}</span>
+                        <div class="cs-enc-name" title="${encTituloCompleto} (${par} · ${supTitle})">
+                            <span class="cs-enc-title">${encTituloCompleto}</span>
                             ${badgeParroquiaHtml}
                             ${grupo.numAlertas > 0 ? `<span class="cs-alert-badge" title="${grupo.numAlertas} encuestas con inconsistencias">⚠️ ${grupo.numAlertas}</span>` : ''}
                         </div>
@@ -3699,7 +3751,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <svg class="cs-group-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
                             </span>
                             <span class="cs-group-color-dot" style="--sup-dot-color: #2563eb;"></span>
-                            <span class="cs-group-name">🏛️ ${parId}</span>
+                            <span class="cs-group-name">${formatearNombreParroquia(parId)}</span>
                             <span class="cs-group-pill">${gPar.encuestadores.length} ${pluralEnc} · ${gPar.totalEncuestas} ${pluralEncuestas}</span>
                         </div>
                     </td>
@@ -4042,7 +4094,7 @@ document.addEventListener('DOMContentLoaded', () => {
             UI.supervisorFilter.value = supId;
         }
 
-        mostrarToast(`Encuestador #${id} (Sup #${supId || 'S/N'}) · ${encuestasDelEnc.length} encuestas`, 'info');
+        mostrarToast(`${obtenerEtiquetaEncuestador(id, 'completo')} (${obtenerEtiquetaSupervisor(supId, 'corto')}) · ${encuestasDelEnc.length} encuestas`, 'info');
         renderizarVista(true, false);
 
         // Enfocar mapa a sus puntos
