@@ -1482,8 +1482,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -79.463964,
-          -0.277328
+          -79.46468,
+          -0.2777
         ]
       },
       "properties": {
@@ -1498,22 +1498,22 @@
         "canton": "El Carmen",
         "CANTON": "EL CARMEN",
         "circunscripcion": "CIRCUNSCRIPCIÓN URBANA",
-        "punto_referencial": "Calle 10 de Agosto y Crnel. Víctor Astudillo",
+        "punto_referencial": "Calle Portoviejo y 10 de Agosto",
         "casos": 10,
-        "latitud": -0.277328,
-        "longitud": -79.463964,
+        "latitud": -0.2777,
+        "longitud": -79.46468,
         "centroid": [
-          -79.463964,
-          -0.277328
+          -79.46468,
+          -0.2777
         ],
         "bbox": [
           [
-            -79.466964,
-            -0.280328
+            -79.46768,
+            -0.2807
           ],
           [
-            -79.460964,
-            -0.274328
+            -79.46168,
+            -0.2747
           ]
         ]
       }
