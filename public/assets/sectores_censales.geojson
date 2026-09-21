@@ -1482,8 +1482,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -79.446657,
-          -0.270678
+          -79.463964,
+          -0.277328
         ]
       },
       "properties": {
@@ -1498,22 +1498,22 @@
         "canton": "El Carmen",
         "CANTON": "EL CARMEN",
         "circunscripcion": "CIRCUNSCRIPCIÓN URBANA",
-        "punto_referencial": "Calle Veintiuno (Calle 21)",
+        "punto_referencial": "Calle 10 de Agosto y Crnel. Víctor Astudillo",
         "casos": 10,
-        "latitud": -0.270678,
-        "longitud": -79.446657,
+        "latitud": -0.277328,
+        "longitud": -79.463964,
         "centroid": [
-          -79.446657,
-          -0.270678
+          -79.463964,
+          -0.277328
         ],
         "bbox": [
           [
-            -79.449657,
-            -0.273678
+            -79.466964,
+            -0.280328
           ],
           [
-            -79.443657,
-            -0.267678
+            -79.460964,
+            -0.274328
           ]
         ]
       }
@@ -1523,8 +1523,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -79.448198,
-          -0.268071
+          -79.448451,
+          -0.27225
         ]
       },
       "properties": {
@@ -1539,22 +1539,22 @@
         "canton": "El Carmen",
         "CANTON": "EL CARMEN",
         "circunscripcion": "CIRCUNSCRIPCIÓN URBANA",
-        "punto_referencial": "Capilla Jesús del Gran Poder (calle Treintaiuno / Calle 31)",
+        "punto_referencial": "Av. Chone y calle Grecia",
         "casos": 10,
-        "latitud": -0.268071,
-        "longitud": -79.448198,
+        "latitud": -0.27225,
+        "longitud": -79.448451,
         "centroid": [
-          -79.448198,
-          -0.268071
+          -79.448451,
+          -0.27225
         ],
         "bbox": [
           [
-            -79.451198,
-            -0.271071
+            -79.451451,
+            -0.27525
           ],
           [
-            -79.445198,
-            -0.265071
+            -79.445451,
+            -0.26925
           ]
         ]
       }
