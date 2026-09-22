@@ -42,7 +42,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Purga proactiva inmediata de cachés heredadas de otros cantones/proyectos en móviles
     if ('caches' in window) {
-        const VERSION_PROYECTO = 'el-carmen-2026-v5.3';
+        const VERSION_PROYECTO = 'quito-pm-2026-v1.0';
         if (localStorage.getItem('cs_proyecto_version') !== VERSION_PROYECTO) {
             caches.keys().then(keys => {
                 keys.forEach(k => {
@@ -63,10 +63,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // =========================================================================
     const AppState = {
         config: {
-            nombreProyecto: 'Encuesta El Carmen - Septiembre - 2026',
-            metaEncuestas: 560,
-            campoEncuestador: 'cenc',
-            campoSupervisor: 'csup'
+            nombreProyecto: 'Encuesta Quito PM - Septiembre - 2026',
+            metaEncuestas: 2000,
+            campoEncuestador: 'codencu',
+            campoSupervisor: 'codsup'
         },
         encuestas: [],
         supervisorSeleccionado: 'Todos',
@@ -151,22 +151,71 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Parroquias oficiales en estudio por cantón
     const PARROQUIAS_POR_CANTON = {
-        'El Carmen': [
-            'EL CARMEN', '4 DE DICIEMBRE', 'EL PARAÍSO / LA 14',
-            'SAN PEDRO DE SUMA', 'SANTA MARÍA', 'WILFRIDO LOOR MOREIRA'
+        'Quito': [
+            'ALANGASI',
+            'AMAGUAÑA',
+            'BELISARIO QUEVEDO',
+            'CALDERON',
+            'CARCELEN',
+            'CENTRO HISTORICO',
+            'CHECA',
+            'CHILIBULO',
+            'CHILLOGALLO',
+            'CHIMBACALLE',
+            'COCHAPAMBA',
+            'COMITE DEL PUEBLO',
+            'CONOCOTO',
+            'COTOCOLLAO',
+            'CUMBAYA',
+            'EL CONDADO',
+            'GUAMANI',
+            'GUAYLLABAMBA',
+            'ITCHIMBIA',
+            'IÑAQUITO',
+            'JIPIJAPA',
+            'KENNEDY',
+            'LA ARGELIA',
+            'LA CONCEPCION',
+            'LA ECUATORIANA',
+            'LA FERROVIARIA',
+            'LA LIBERTAD',
+            'LA MAGDALENA',
+            'LA MENA',
+            'LA MERCED',
+            'LLANO CHICO',
+            'MARISCAL SUCRE',
+            'NAYON',
+            'PIFO',
+            'PINTAG',
+            'POMASQUI',
+            'PONCEANO',
+            'PUEMBO',
+            'PUENGASI',
+            'QUINCHE',
+            'QUITUMBE',
+            'RUMIPAMBA',
+            'SAN ANTONIO',
+            'SAN BARTOLO',
+            'SAN ISIDRO DEL INCA',
+            'SAN JUAN',
+            'SOLANDA',
+            'TUMBACO',
+            'TURUBAMBA',
+            'YARUQUI',
+            'ZAMBIZA'
         ]
     };
 
     // Paleta cromática oficial por Cantón
     const COLORES_CANTON = {
-        'El Carmen': {
-            nombre: 'El Carmen',
-            linea: '#2563eb',       // Azul Cobalto institucional
-            fill: '#3b82f6',        // Azul vibrante
-            fillActive: '#1d4ed8',
-            label: '#1e40af',       // Texto legible oscuro
-            badge: '🔵',
-            hex: '#2563eb'
+        'Quito': {
+            nombre: 'Quito',
+            linea: '#7c3aed',
+            fill: '#8b5cf6',
+            fillActive: '#6d28d9',
+            label: '#5b21b6',
+            badge: '🟣',
+            hex: '#7c3aed'
         }
     };
 
@@ -560,7 +609,7 @@ document.addEventListener('DOMContentLoaded', () => {
             '60': 'Quito', '80': 'Rumiñahui', '90': 'Cayambe', '100': 'Mejía'
         };
         return codigos[texto] || Object.keys(PARROQUIAS_POR_CANTON).find(c => normTexto(c) === texto)
-            || 'El Carmen';
+            || 'Quito';
     }
 
     function parroquiaDeclarada(encuesta) {
@@ -579,14 +628,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function cantonPorParroquia(parroquia) {
-        if (!parroquia) return 'El Carmen';
+        if (!parroquia) return 'Quito';
         const coincidencias = Object.entries(PARROQUIAS_POR_CANTON)
             .filter(([, nombres]) => nombres.some(n => {
                 const normN = normTexto(n);
                 const normP = normTexto(parroquia);
                 return normN === normP || normN.includes(normP) || normP.includes(normN);
             }));
-        return coincidencias.length === 1 ? coincidencias[0][0] : 'El Carmen';
+        return coincidencias.length === 1 ? coincidencias[0][0] : 'Quito';
     }
 
     function normalizarAliasSector(valor) {
@@ -1027,7 +1076,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ['cs_encuestas_cache', 'cs_encuestas_machala_v1', 'cs_encuestas_pichincha_v1', 'cs_encuestas_pichincha_v2'].forEach(k => {
                 if (localStorage.getItem(k)) localStorage.removeItem(k);
             });
-            const cached = localStorage.getItem('cs_encuestas_el_carmen_v1');
+            const cached = localStorage.getItem('cs_encuestas_quito_pm_v1');
             if (cached) {
                 const parsed = JSON.parse(cached);
                 if (Array.isArray(parsed) && parsed.length > 0) {
@@ -1141,7 +1190,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Guardar último resultado para contingencia sin conexión en El Carmen
             try {
-                localStorage.setItem('cs_encuestas_el_carmen_v1', JSON.stringify(AppState.encuestas));
+                localStorage.setItem('cs_encuestas_quito_pm_v1', JSON.stringify(AppState.encuestas));
             } catch (e) {
                 console.warn('[Cache] Error al guardar caché:', e);
             }
@@ -1262,7 +1311,7 @@ document.addEventListener('DOMContentLoaded', () => {
             UI.sectorFilter.classList.toggle('is-active', isAct);
             if (isAct) {
                 activeCount++;
-                const chipLbl = `Punto de Referencia: ${AppState.sectorSeleccionado}`;
+                const chipLbl = `Sector Censal: ${AppState.sectorSeleccionado}`;
                 chips.push({
                     tipo: 'sector',
                     label: chipLbl,
@@ -1563,8 +1612,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     const refPunto = String(p.punto_referencial || p.PUNTO_REFERENCIAL || p.referencia || '').trim();
                     const parNorm = formatearNombreParroquia(parroquia);
                     const detalle = refPunto 
-                        ? `Punto ${etiqueta} · ${refPunto}` 
-                        : `Punto ${etiqueta}${parNorm ? ` (${parNorm})` : ''}`;
+                        ? `Sector #${etiqueta} · ${refPunto}` 
+                        : `Sector #${etiqueta}${parNorm ? ` (${parNorm})` : ''}`;
 
                     listaSectores.push({
                         sc: scNum,
@@ -1603,8 +1652,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const totalSectores = listaParaMostrar.length;
             const parNormFiltro = (AppState.parroquiaSeleccionada !== 'Todas') ? formatearNombreParroquia(AppState.parroquiaSeleccionada) : '';
             let labelTodos = (AppState.parroquiaSeleccionada !== 'Todas') 
-                ? `Todos los puntos de referencia de ${parNormFiltro} (${totalSectores})`
-                : `Todos los puntos de referencia (${totalSectores})`;
+                ? `Todos los sectores censales de ${parNormFiltro} (${totalSectores})`
+                : `Todos los sectores censales (${totalSectores})`;
             if (AppState.filtroSoloPendientes) {
                 labelTodos = (AppState.parroquiaSeleccionada !== 'Todas')
                     ? `Puntos pendientes en ${parNormFiltro} (${totalSectores})`
@@ -2139,7 +2188,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        let mapCenter = [-79.5112, -0.4455]; // Coordenadas centrales de El Carmen
+        let mapCenter = [-78.4850, -0.1850]; // Coordenadas centrales de Quito
         let initialBounds = null;
 
         if (globalMinX !== Infinity && globalMaxX !== -Infinity) {
@@ -2630,7 +2679,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                         ${bannerAlerta}
                         <p style="margin:4px 0;font-size:0.8rem;"><strong>Parroquia:</strong> ${parrNormal}</p>
-                        ${p.sc ? `<p style="margin:4px 0;font-size:0.8rem;"><strong>Punto de Muestreo:</strong> #${p.sc}${p.tipologia ? ` (Tipología ${p.tipologia})` : ''}</p>` : ''}
+                        ${p.sc ? `<p style="margin:4px 0;font-size:0.8rem;"><strong>Sector Censal:</strong> #${p.sc}${p.tipologia ? ` (Tipología ${p.tipologia})` : ''}</p>` : ''}
                         ${p.barrio ? `<p style="margin:4px 0;font-size:0.8rem;"><strong>Barrio:</strong> ${p.barrio}</p>` : ''}
                         <p style="margin:4px 0;font-size:0.75rem;color:#64748b;">Fecha: ${p.fecha}</p>
                         ${distInfo}
@@ -3073,7 +3122,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const refPunto = sectorMeta.props && (sectorMeta.props.punto_referencial || sectorMeta.props.PUNTO_REFERENCIAL || sectorMeta.props.referencia) 
                         ? ` · ${String(sectorMeta.props.punto_referencial || sectorMeta.props.PUNTO_REFERENCIAL || sectorMeta.props.referencia).trim()}` 
                         : '';
-                    titulo.textContent = `Punto ${etiq}${parr}${refPunto}`;
+                    titulo.textContent = `Sector #${etiq}${parr}${refPunto}`;
                     const centroid = sectorMeta.centroid || (sectorMeta.props && sectorMeta.props.centroid);
                     if (centroid) {
                         btnGmaps.href = `https://www.google.com/maps/dir/?api=1&destination=${centroid[1].toFixed(6)},${centroid[0].toFixed(6)}`;
