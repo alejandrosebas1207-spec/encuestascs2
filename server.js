@@ -415,7 +415,7 @@ app.get("/api/health", (req, res) => {
 
 app.get("/api/config", (req, res) => {
     res.set("Cache-Control", "no-cache, no-store, must-revalidate");
-    let nombre = process.env.NOMBRE_PROYECTO || "Encuesta Cantonal Rumiñahui - Septiembre - 2026";
+    let nombre = process.env.NOMBRE_PROYECTO || "Encuesta Rumiñahui - Septiembre - 2026";
     res.json({
         nombreProyecto: nombre,
         metaEncuestas: Number(process.env.META_ENCUESTAS) || 900,

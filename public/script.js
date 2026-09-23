@@ -42,11 +42,11 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Purga proactiva inmediata de cachés heredadas de otros cantones/proyectos en móviles
     if ('caches' in window) {
-        const VERSION_PROYECTO = 'quito-pm-2026-v1.0';
+        const VERSION_PROYECTO = 'ruminahui-2026-v1.1';
         if (localStorage.getItem('cs_proyecto_version') !== VERSION_PROYECTO) {
             caches.keys().then(keys => {
                 keys.forEach(k => {
-                    if (!k.includes('el-carmen')) {
+                    if (!k.includes('ruminahui')) {
                         caches.delete(k);
                     }
                 });
@@ -63,8 +63,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // =========================================================================
     const AppState = {
         config: {
-            nombreProyecto: 'Encuesta Quito PM - Septiembre - 2026',
-            metaEncuestas: 2000,
+            nombreProyecto: 'Encuesta Rumiñahui - Septiembre - 2026',
+            metaEncuestas: 900,
             campoEncuestador: 'codencu',
             campoSupervisor: 'codsup'
         },
@@ -1029,12 +1029,12 @@ document.addEventListener('DOMContentLoaded', () => {
         configurarNavegacionMovil();
         configurarEventos();
 
-        // 1. Limpieza de caché previa y Boot Instantáneo El Carmen 2026
+        // 1. Limpieza de caché previa y Boot Instantáneo Rumiñahui 2026
         try {
-            ['cs_encuestas_cache', 'cs_encuestas_machala_v1', 'cs_encuestas_pichincha_v1', 'cs_encuestas_pichincha_v2'].forEach(k => {
+            ['cs_encuestas_cache', 'cs_encuestas_machala_v1', 'cs_encuestas_pichincha_v1', 'cs_encuestas_pichincha_v2', 'cs_encuestas_quito_pm_v1'].forEach(k => {
                 if (localStorage.getItem(k)) localStorage.removeItem(k);
             });
-            const cached = localStorage.getItem('cs_encuestas_quito_pm_v1');
+            const cached = localStorage.getItem('cs_encuestas_ruminahui_2026_v1');
             if (cached) {
                 const parsed = JSON.parse(cached);
                 if (Array.isArray(parsed) && parsed.length > 0) {
@@ -1095,7 +1095,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 AppState.config = { ...AppState.config, ...configData };
             }
             if (UI.tituloProyecto) {
-                let nom = AppState.config.nombreProyecto || 'Encuesta El Carmen 2026';
+                let nom = AppState.config.nombreProyecto || 'Encuesta Rumiñahui - Septiembre - 2026';
                 UI.tituloProyecto.textContent = nom;
                 document.title = 'Clima Social · ' + nom;
             }
@@ -1146,9 +1146,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             auditarEncuestas();
 
-            // Guardar último resultado para contingencia sin conexión en El Carmen
+            // Guardar último resultado para contingencia sin conexión en Rumiñahui
             try {
-                localStorage.setItem('cs_encuestas_quito_pm_v1', JSON.stringify(AppState.encuestas));
+                localStorage.setItem('cs_encuestas_ruminahui_2026_v1', JSON.stringify(AppState.encuestas));
             } catch (e) {
                 console.warn('[Cache] Error al guardar caché:', e);
             }
@@ -1158,7 +1158,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if (AppState.encuestas.length === 0) {
                 if (UI.badgeTexto) UI.badgeTexto.textContent = 'En espera';
-                if (UI.ultimaActualizacion) UI.ultimaActualizacion.textContent = data.mensaje || 'Esperando primera encuesta de El Carmen';
+                if (UI.ultimaActualizacion) UI.ultimaActualizacion.textContent = data.mensaje || 'Esperando primera encuesta de Rumiñahui';
             } else {
                 if (UI.badgeTexto) UI.badgeTexto.textContent = data.stale ? 'En vivo (memoria)' : 'En vivo';
                 if (UI.ultimaActualizacion) {
