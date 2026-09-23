@@ -57,6 +57,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Normalizador universal de texto (remueve tildes, diacríticos y espacios)
     const normTexto = (s) => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toUpperCase().trim();
+    const normCirc = (s) => {
+        const n = normTexto(s);
+        if (!n || n === 'TODAS') return 'TODAS';
+        if (n.includes('RURAL')) return 'CIRCUNSCRIPCION RURAL';
+        if (n.includes('1')) return 'CIRCUNSCRIPCION URBANA 1';
+        if (n.includes('2')) return 'CIRCUNSCRIPCION URBANA 2';
+        return n;
+    };
 
     // =========================================================================
     // ESTADO GLOBAL DE LA APLICACIÓN
@@ -81,6 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
             cantones: true,
             sectores: true,
             parroquias: true,
+            circunscripciones: true,
             muestreo: true
         },
         filtroGPS: 'Todos', // 'Todos', 'ConGPS', 'SinGPS'
@@ -318,6 +327,37 @@ document.addEventListener('DOMContentLoaded', () => {
         'COTOGCHOA', '#9f1239',
         'RUMIPAMBA', '#0e7490',
         '#1e40af' // fallback
+    ];
+
+    // Expresiones MapLibre GL por Circunscripción (Basadas en el Proyecto Oficial QGIS)
+    const EXPR_CIRCUNSCRIPCIONES_LINE = [
+        'match', ['upcase', ['coalesce', ['get', 'circunscripcion_norm'], ['get', 'circunscripcion'], '']],
+        'CIRCUNSCRIPCION URBANA 1', '#400054', // Morado Clima Social (#400054)
+        'CIRCUNSCRIPCION 1', '#400054',
+        'CIRCUNSCRIPCION URBANA 2', '#528195', // Azul Pizarra (#528195)
+        'CIRCUNSCRIPCION 2', '#528195',
+        'CIRCUNSCRIPCION RURAL', '#8B4513', // Marrón Siena (#8B4513)
+        '#400054' // fallback
+    ];
+
+    const EXPR_CIRCUNSCRIPCIONES_FILL = [
+        'match', ['upcase', ['coalesce', ['get', 'circunscripcion_norm'], ['get', 'circunscripcion'], '']],
+        'CIRCUNSCRIPCION URBANA 1', 'rgba(64, 0, 84, 0.12)',
+        'CIRCUNSCRIPCION 1', 'rgba(64, 0, 84, 0.12)',
+        'CIRCUNSCRIPCION URBANA 2', 'rgba(82, 129, 149, 0.12)',
+        'CIRCUNSCRIPCION 2', 'rgba(82, 129, 149, 0.12)',
+        'CIRCUNSCRIPCION RURAL', 'rgba(139, 69, 19, 0.12)',
+        'rgba(64, 0, 84, 0.10)'
+    ];
+
+    const EXPR_CIRCUNSCRIPCIONES_LABEL = [
+        'match', ['upcase', ['coalesce', ['get', 'circunscripcion_norm'], ['get', 'circunscripcion'], '']],
+        'CIRCUNSCRIPCION URBANA 1', '#400054',
+        'CIRCUNSCRIPCION 1', '#400054',
+        'CIRCUNSCRIPCION URBANA 2', '#2c5364',
+        'CIRCUNSCRIPCION 2', '#2c5364',
+        'CIRCUNSCRIPCION RURAL', '#78350f',
+        '#1e293b'
     ];
 
     const EXPR_SECTORES_FILL = [
@@ -1520,16 +1560,31 @@ document.addEventListener('DOMContentLoaded', () => {
             const actualCirc = AppState.circunscripcionSeleccionada || 'Todas';
             UI.circunscripcionFilter.innerHTML = `
                 <option value="Todas">Todas las circunscripciones (3)</option>
-                <option value="Circunscripcion 1">Circunscripción 1 (Urbana)</option>
-                <option value="Circunscripcion 2">Circunscripción 2 (Urbana)</option>
-                <option value="Circunscripcion Rural">Circunscripción Rural</option>
+                <option value="Circunscripcion 1">Circunscripción 1 (Urbana) · 230 enc.</option>
+                <option value="Circunscripcion 2">Circunscripción 2 (Urbana) · 600 enc.</option>
+                <option value="Circunscripcion Rural">Circunscripción Rural · 70 enc.</option>
             `;
             UI.circunscripcionFilter.value = actualCirc;
         }
 
         if (UI.circLegendBar) {
-            UI.circLegendBar.style.display = 'none';
-            UI.circLegendBar.innerHTML = '';
+            const actualCircNorm = normCirc(AppState.circunscripcionSeleccionada || 'Todas');
+            UI.circLegendBar.style.display = 'flex';
+            let pillsHtml = `<button type="button" class="cs-circ-pill ${actualCircNorm === 'TODAS' || actualCircNorm === '' ? 'is-active' : ''}" data-circ="Todas">Todas (3)</button>`;
+            
+            const cList = [
+                { id: 'Circunscripcion 1', norm: 'CIRCUNSCRIPCION URBANA 1', label: 'Circ. 1 (230)', dot: '#400054' },
+                { id: 'Circunscripcion 2', norm: 'CIRCUNSCRIPCION URBANA 2', label: 'Circ. 2 (600)', dot: '#528195' },
+                { id: 'Circunscripcion Rural', norm: 'CIRCUNSCRIPCION RURAL', label: 'Rural (70)', dot: '#8B4513' }
+            ];
+
+            cList.forEach(c => {
+                const isAct = (actualCircNorm === c.norm);
+                pillsHtml += `<button type="button" class="cs-circ-pill ${isAct ? 'is-active' : ''}" data-circ="${c.id}" title="${c.label}">
+                    <span class="cs-layer-pill__dot" style="background:${c.dot};width:8px;height:8px;display:inline-block;border-radius:50%;margin-right:4px;"></span>${c.label}
+                </button>`;
+            });
+            UI.circLegendBar.innerHTML = pillsHtml;
         }
 
         // Sincronizar estado visual de las píldoras de cantón sobre el mapa
@@ -1551,7 +1606,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (UI.sectorFilter) {
             const actualSec = AppState.sectorSeleccionado || 'Todos';
             const parActivaNorm = (AppState.parroquiaSeleccionada !== 'Todas') ? normTexto(AppState.parroquiaSeleccionada) : null;
-            const circActivaNorm = (AppState.circunscripcionSeleccionada !== 'Todas') ? normTexto(AppState.circunscripcionSeleccionada) : null;
+            const circActivaNorm = (AppState.circunscripcionSeleccionada !== 'Todas') ? normCirc(AppState.circunscripcionSeleccionada) : null;
             const listaSectores = [];
 
             if (AppState.sectoresGeojson && AppState.sectoresGeojson.features) {
@@ -1565,6 +1620,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     const circunscripcion = String(p.circunscripcion || '').trim();
                     const secAnm = String(p.sec_anm || '').trim();
                     const scKey = p.sc_key || `${canton}_${scNum}`;
+
+                    if (circActivaNorm) {
+                        const cNorm = normCirc(circunscripcion);
+                        if (cNorm !== circActivaNorm) {
+                            return;
+                        }
+                    }
 
                     if (parActivaNorm && parroquia) {
                         const pNorm = normTexto(parroquia);
@@ -1692,6 +1754,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 for (const p of parroquias.keys()) {
                     const up = String(p).toUpperCase().trim();
                     if (up && !parList.includes(up)) parList.push(up);
+                }
+            }
+
+            // Filtrar por circunscripción seleccionada si está activa
+            if (AppState.circunscripcionSeleccionada !== 'Todas' && AppState.circunscripcionesGeojson && AppState.circunscripcionesGeojson.features) {
+                const targetCirc = normCirc(AppState.circunscripcionSeleccionada);
+                const circFeat = AppState.circunscripcionesGeojson.features.find(f => {
+                    const cProps = f.properties || {};
+                    return normCirc(cProps.circunscripcion_norm || cProps.circunscripcion) === targetCirc;
+                });
+                if (circFeat && circFeat.properties && circFeat.properties.parroquias) {
+                    const parsPermitidas = circFeat.properties.parroquias.split(',').map(p => normStr(p).replace(/\s+\d+$/, ''));
+                    parList = parList.filter(p => {
+                        const pNorm = normStr(p);
+                        return parsPermitidas.some(perm => pNorm.includes(perm) || perm.includes(pNorm));
+                    });
                 }
             }
 
@@ -1970,9 +2048,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // Pre-cargar datos cartográficos (Ultra-optimizado para móviles Galaxy A01 Core)
         let parroquiasData = { type: 'FeatureCollection', features: [] };
         let sectoresData = { type: 'FeatureCollection', features: [] };
+        let circunscripcionesData = { type: 'FeatureCollection', features: [] };
 
         try {
-            const cacheBuster = '?v=ruminahui-1.0.3';
+            const cacheBuster = '?v=ruminahui-1.0.4';
             const [resPar, resSec, resCirc] = await Promise.all([
                 fetch('assets/parroquias.geojson' + cacheBuster),
                 fetch('assets/sectores_censales.geojson' + cacheBuster),
@@ -1980,7 +2059,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ]);
             if (resPar.ok) parroquiasData = await resPar.json();
             if (resSec.ok) sectoresData = await resSec.json();
-            if (resCirc && resCirc.ok) AppState.circunscripcionesGeojson = await resCirc.json();
+            if (resCirc && resCirc.ok) circunscripcionesData = await resCirc.json();
         } catch (e) {
             console.warn('[Mapa] Error pre-cargando GeoJSONs:', e);
         }
@@ -1988,8 +2067,12 @@ document.addEventListener('DOMContentLoaded', () => {
         AppState.cantonesGeojson = { type: 'FeatureCollection', features: [] };
         AppState.parroquiasGeojson = parroquiasData;
         AppState.sectoresGeojson = sectoresData;
+        AppState.circunscripcionesGeojson = circunscripcionesData;
 
         // Actualizar dinámicamente labels de capas con el número real de elementos
+        if (UI.lblToggleCircunscripciones && circunscripcionesData.features && circunscripcionesData.features.length > 0) {
+            UI.lblToggleCircunscripciones.textContent = `Circunscripciones (${circunscripcionesData.features.length})`;
+        }
         if (UI.lblToggleParroquias && parroquiasData.features && parroquiasData.features.length > 0) {
             UI.lblToggleParroquias.textContent = `Parroquias (${parroquiasData.features.length})`;
         }
@@ -2147,6 +2230,21 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         AppState.parroquiasCentroidesGeojson = parroquiasCentroidesData;
 
+        // Crear colección de centroides puntuales para etiquetas únicas de circunscripciones (Regla 8: Prohibición de etiquetas en polígonos)
+        const circunscripcionesCentroidesData = {
+            type: 'FeatureCollection',
+            features: (circunscripcionesData.features || []).map(f => {
+                const p = f.properties || {};
+                const coords = (p.center && Array.isArray(p.center)) ? p.center : [-78.44, -0.36];
+                return {
+                    type: 'Feature',
+                    geometry: { type: 'Point', coordinates: coords },
+                    properties: { ...p }
+                };
+            })
+        };
+        AppState.circunscripcionesLabelsGeojson = circunscripcionesCentroidesData;
+
         // Auto-calcular Bounding Box global desde las 62 parroquias a encuestar
         let globalMinX = Infinity, globalMinY = Infinity, globalMaxX = -Infinity, globalMaxY = -Infinity;
         if (parroquiasData.features && parroquiasData.features.length > 0) {
@@ -2213,6 +2311,14 @@ document.addEventListener('DOMContentLoaded', () => {
                         type: 'geojson',
                         data: parroquiasCentroidesData
                     },
+                    'circunscripciones-source': {
+                        type: 'geojson',
+                        data: circunscripcionesData
+                    },
+                    'circunscripciones-labels-source': {
+                        type: 'geojson',
+                        data: circunscripcionesCentroidesData
+                    },
                     'sectores-source': {
                         type: 'geojson',
                         data: sectoresData
@@ -2229,6 +2335,56 @@ document.addEventListener('DOMContentLoaded', () => {
                         source: 'base-map-tiles',
                         minzoom: 0,
                         maxzoom: 22
+                    },
+                    // 0. Límites y Fondo de Circunscripciones (Oficial QGIS)
+                    {
+                        id: 'circunscripciones-fill',
+                        type: 'fill',
+                        source: 'circunscripciones-source',
+                        paint: {
+                            'fill-color': EXPR_CIRCUNSCRIPCIONES_FILL,
+                            'fill-opacity': 0.10
+                        }
+                    },
+                    {
+                        id: 'circunscripciones-line',
+                        type: 'line',
+                        source: 'circunscripciones-source',
+                        paint: {
+                            'line-color': EXPR_CIRCUNSCRIPCIONES_LINE,
+                            'line-width': [
+                                'interpolate', ['linear'], ['zoom'],
+                                9, 2.0,
+                                12, 3.0,
+                                15, 4.0
+                            ],
+                            'line-opacity': 0.85
+                        }
+                    },
+                    {
+                        id: 'circunscripciones-label',
+                        type: 'symbol',
+                        source: 'circunscripciones-labels-source',
+                        minzoom: 8.5,
+                        maxzoom: 14.5,
+                        layout: {
+                            'text-field': ['get', 'label'],
+                            'text-font': ['Open Sans Bold'],
+                            'text-size': [
+                                'interpolate', ['linear'], ['zoom'],
+                                9, 11,
+                                12, 13,
+                                15, 15
+                            ],
+                            'text-anchor': 'center',
+                            'text-max-width': 12,
+                            'text-allow-overlap': false
+                        },
+                        paint: {
+                            'text-color': EXPR_CIRCUNSCRIPCIONES_LABEL,
+                            'text-halo-color': '#ffffff',
+                            'text-halo-width': 2.8
+                        }
                     },
                     // 1. Límites y Fondo Parroquial (12 Parroquias con paleta diferenciada)
                     {
@@ -2765,8 +2921,53 @@ document.addEventListener('DOMContentLoaded', () => {
         map.on('click', 'sectores-point', abrirPopupSector);
         map.on('click', 'sectores-fill', abrirPopupSector);
 
+        // Click en Circunscripción
+        map.on('mouseenter', 'circunscripciones-fill', () => { map.getCanvas().style.cursor = 'pointer'; });
+        map.on('mouseleave', 'circunscripciones-fill', () => { map.getCanvas().style.cursor = ''; });
+
+        map.on('click', 'circunscripciones-fill', (e) => {
+            const bboxPoint = [[e.point.x - 5, e.point.y - 5], [e.point.x + 5, e.point.y + 5]];
+            const featuresUnder = map.queryRenderedFeatures(bboxPoint, { layers: ['sectores-point', 'sectores-fill'] });
+            if (featuresUnder && featuresUnder.length > 0) return;
+
+            const f = e.features && e.features[0];
+            if (!f) return;
+            const p = f.properties || {};
+            const nom = p.label || p.circunscripcion || 'Circunscripción';
+            const parrs = p.parroquias || '';
+            const pob = Number(p.poblacion_censal || 0).toLocaleString();
+            const viv = Number(p.viviendas_censales || 0).toLocaleString();
+            const cuota = p.cuota_casos || 0;
+            const muestras = p.muestras || 0;
+            const col = p.color || '#400054';
+
+            new maplibregl.Popup({ offset: [0, -10], closeButton: true })
+                .setLngLat(e.lngLat)
+                .setHTML(`
+                    <div style="font-family:'Plus Jakarta Sans',sans-serif;min-width:200px;padding:4px 2px;">
+                        <div style="font-size:0.75rem;font-weight:700;color:${col};text-transform:uppercase;letter-spacing:0.5px;margin-bottom:2px;">
+                            🏛️ CIRCUNSCRIPCIÓN ELECTORAL
+                        </div>
+                        <div style="font-size:0.95rem;font-weight:800;color:#0f172a;margin-bottom:4px;">
+                            ${nom}
+                        </div>
+                        <div style="font-size:0.75rem;color:#475569;margin-bottom:6px;line-height:1.3;">
+                            <strong>Parroquias:</strong> ${parrs}
+                        </div>
+                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;background:#f8fafc;padding:6px;border-radius:6px;font-size:0.75rem;border:1px solid #e2e8f0;">
+                            <div><span style="color:#64748b;">Muestra:</span> <strong>${muestras} ptos.</strong></div>
+                            <div><span style="color:#64748b;">Meta:</span> <strong>${cuota} enc.</strong></div>
+                            <div><span style="color:#64748b;">Población:</span> <strong>${pob}</strong></div>
+                            <div><span style="color:#64748b;">Viviendas:</span> <strong>${viv}</strong></div>
+                        </div>
+                    </div>
+                `)
+                .addTo(map);
+        });
+
         // Conectar botones para Prender / Apagar capas en el mapa
         const togglesMap = [
+            { btn: UI.toggleCircunscripciones, key: 'circunscripciones', layers: ['circunscripciones-fill', 'circunscripciones-line', 'circunscripciones-label'] },
             { btn: UI.toggleParroquias, key: 'parroquias', layers: ['parroquias-fill', 'parroquias-line', 'parroquias-label'] },
             { btn: UI.toggleSectores, key: 'sectores', layers: ['sectores-fill', 'sectores-line', 'sectores-point', 'sectores-label'] }
         ];
@@ -3051,6 +3252,49 @@ document.addEventListener('DOMContentLoaded', () => {
     function actualizarPoligonosMapa(ajustarCamara = false) {
         if (!map) return;
 
+        // -1. Límites, Fondo y Etiquetas de Circunscripciones (Oficial QGIS Rumiñahui)
+        if (map.getLayer('circunscripciones-line')) {
+            if (AppState.circunscripcionSeleccionada && AppState.circunscripcionSeleccionada !== 'Todas') {
+                const targetCirc = normCirc(AppState.circunscripcionSeleccionada);
+                const filterCirc = [
+                    'any',
+                    ['==', ['upcase', ['coalesce', ['get', 'circunscripcion_norm'], ['get', 'circunscripcion'], '']], targetCirc],
+                    ['in', targetCirc, ['upcase', ['coalesce', ['get', 'circunscripcion_norm'], ['get', 'circunscripcion'], '']]]
+                ];
+                map.setFilter('circunscripciones-line', filterCirc);
+                map.setPaintProperty('circunscripciones-line', 'line-width', 4.2);
+                map.setPaintProperty('circunscripciones-line', 'line-opacity', 1.0);
+
+                if (map.getLayer('circunscripciones-fill')) {
+                    map.setFilter('circunscripciones-fill', filterCirc);
+                    map.setPaintProperty('circunscripciones-fill', 'fill-opacity', 0.25);
+                }
+                if (map.getLayer('circunscripciones-label')) {
+                    map.setFilter('circunscripciones-label', filterCirc);
+                }
+            } else {
+                map.setFilter('circunscripciones-line', null);
+                map.setPaintProperty('circunscripciones-line', 'line-width', [
+                    'interpolate', ['linear'], ['zoom'],
+                    9, 2.0,
+                    12, 3.0,
+                    15, 4.0
+                ]);
+                map.setPaintProperty('circunscripciones-line', 'line-color', EXPR_CIRCUNSCRIPCIONES_LINE);
+                map.setPaintProperty('circunscripciones-line', 'line-opacity', 0.85);
+
+                if (map.getLayer('circunscripciones-fill')) {
+                    map.setFilter('circunscripciones-fill', null);
+                    map.setPaintProperty('circunscripciones-fill', 'fill-color', EXPR_CIRCUNSCRIPCIONES_FILL);
+                    map.setPaintProperty('circunscripciones-fill', 'fill-opacity', 0.10);
+                }
+                if (map.getLayer('circunscripciones-label')) {
+                    map.setFilter('circunscripciones-label', null);
+                    map.setPaintProperty('circunscripciones-label', 'text-color', EXPR_CIRCUNSCRIPCIONES_LABEL);
+                }
+            }
+        }
+
         // 0. Límites, Fondo y Etiquetas Parroquiales
         if (map.getLayer('parroquias-line')) {
             // Si hay una parroquia específica seleccionada: AISLAR SOLO ESA PARROQUIA
@@ -3180,14 +3424,29 @@ document.addEventListener('DOMContentLoaded', () => {
                     filterPendientes = ['in', ['to-string', ['get', 'sc_key']], ['literal', keysPendientes]];
                 }
 
-                let baseFilter = null;
+                const filtrosBase = [];
+                if (AppState.circunscripcionSeleccionada && AppState.circunscripcionSeleccionada !== 'Todas') {
+                    const targetCirc = normCirc(AppState.circunscripcionSeleccionada);
+                    filtrosBase.push([
+                        'any',
+                        ['==', ['upcase', ['coalesce', ['get', 'circunscripcion'], ['get', 'CIRCUNSCRIPCION'], '']], targetCirc],
+                        ['in', targetCirc, ['upcase', ['coalesce', ['get', 'circunscripcion'], ['get', 'CIRCUNSCRIPCION'], '']]]
+                    ]);
+                }
                 if (AppState.parroquiaSeleccionada && AppState.parroquiaSeleccionada !== 'Todas') {
                     const targetPar = String(AppState.parroquiaSeleccionada).trim().toUpperCase();
-                    baseFilter = [
+                    filtrosBase.push([
                         'any',
                         ['==', ['upcase', ['get', 'parroquia']], targetPar],
                         ['==', ['upcase', ['get', 'PARROQUIA']], targetPar]
-                    ];
+                    ]);
+                }
+
+                let baseFilter = null;
+                if (filtrosBase.length === 1) {
+                    baseFilter = filtrosBase[0];
+                } else if (filtrosBase.length > 1) {
+                    baseFilter = ['all', ...filtrosBase];
                 }
 
                 const f = (baseFilter && filterPendientes) 
@@ -3254,29 +3513,22 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
                 }
             } else if (AppState.circunscripcionSeleccionada && AppState.circunscripcionSeleccionada !== 'Todas') {
-                // Nivel 2.5: Zoom a la Circunscripción seleccionada
-                const targetCirc = normTexto(AppState.circunscripcionSeleccionada);
-                let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
-                let found = 0;
-                if (AppState.sectoresGeojson && AppState.sectoresGeojson.features) {
-                    AppState.sectoresGeojson.features.forEach(f => {
-                        const cNorm = normTexto(f.properties.circunscripcion || '');
-                        if (cNorm.includes(targetCirc) || targetCirc.includes(cNorm)) {
-                            const bbox = normalizarBbox(f.properties.bbox);
-                            if (bbox) {
-                                if (bbox[0][0] < minX) minX = bbox[0][0];
-                                if (bbox[0][1] < minY) minY = bbox[0][1];
-                                if (bbox[1][0] > maxX) maxX = bbox[1][0];
-                                if (bbox[1][1] > maxY) maxY = bbox[1][1];
-                                found++;
-                            }
-                        }
+                // Nivel 2.5: Zoom a la Circunscripción seleccionada (Bbox oficial GPKG)
+                const targetCirc = normCirc(AppState.circunscripcionSeleccionada);
+                let bboxCirc = null;
+                if (AppState.circunscripcionesGeojson && AppState.circunscripcionesGeojson.features) {
+                    const feat = AppState.circunscripcionesGeojson.features.find(f => {
+                        const p = f.properties || {};
+                        return normCirc(p.circunscripcion_norm || p.circunscripcion) === targetCirc;
                     });
+                    if (feat && feat.properties && feat.properties.bbox) {
+                        bboxCirc = normalizarBbox(feat.properties.bbox);
+                    }
                 }
-                if (found > 0 && minX !== Infinity) {
-                    map.fitBounds([[minX, minY], [maxX, maxY]], {
-                        padding: { top: 50, bottom: 50, left: 50, right: 50 },
-                        maxZoom: 14.0,
+                if (bboxCirc) {
+                    map.fitBounds(bboxCirc, {
+                        padding: { top: 55, bottom: 55, left: 55, right: 55 },
+                        maxZoom: 14.5,
                         duration: 850
                     });
                 }

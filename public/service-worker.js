@@ -1,15 +1,16 @@
 /* Modo de contingencia: conserva solo la aplicación y cartografía pública.
  * No almacena respuestas de Kobo ni coordenadas de encuestas en el teléfono. */
-const CACHE_NAME = 'clima-social-ruminahui-v1.0.3';
+const CACHE_NAME = 'clima-social-ruminahui-v1.0.4';
 const APP_SHELL = [
   '/',
   '/index.html',
-  '/style.css?v=5.9.5',
-  '/script.js?v=5.9.5',
+  '/style.css?v=5.9.6',
+  '/script.js?v=5.9.6',
   '/libs/maplibre-gl.js',
   '/libs/maplibre-gl.css',
   '/assets/icono.png',
-  '/assets/01_ClimaSocial_Horizontal_Transparente.png'
+  '/assets/01_ClimaSocial_Horizontal_Transparente.png',
+  '/assets/circunscripciones.geojson?v=ruminahui-1.0.4'
 ];
 
 self.addEventListener('install', event => {

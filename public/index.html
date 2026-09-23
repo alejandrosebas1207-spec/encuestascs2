@@ -27,12 +27,13 @@
   <!-- Preload Cartografía Clave (Caché optimizada para móviles) -->
   <link rel="preload" href="assets/parroquias.geojson?v=ruminahui-1.0.0" as="fetch" crossorigin>
   <link rel="preload" href="assets/sectores_censales.geojson?v=ruminahui-1.0.3" as="fetch" crossorigin>
+  <link rel="preload" href="assets/circunscripciones.geojson?v=ruminahui-1.0.4" as="fetch" crossorigin>
 
   <!-- MapLibre GL CSS (Aceleración WebGL Nativa en GPU) -->
   <link rel="stylesheet" href="libs/maplibre-gl.css" />
 
   <!-- Estilos del Dashboard -->
-  <link rel="stylesheet" href="style.css?v=5.9.5">
+  <link rel="stylesheet" href="style.css?v=5.9.6">
 </head>
 <body>
 
@@ -268,9 +269,13 @@
             <div class="cs-map-top-row">
               <!-- Barra Flotante de Control de Capas (Prender y Apagar) -->
               <div class="cs-map-layer-toggles" id="mapLayerToggles" aria-label="Capas del Mapa">
-                <button type="button" class="cs-layer-pill active" id="toggleParroquias" data-layer-group="parroquias" title="Límites Parroquiales">
+                <button type="button" class="cs-layer-pill active" id="toggleCircunscripciones" data-layer-group="circunscripciones" title="Límites de Circunscripciones (3)">
+                  <span class="cs-layer-pill__dot" style="background: #400054;"></span>
+                  <span id="lblToggleCircunscripciones">Circunscripciones (3)</span>
+                </button>
+                <button type="button" class="cs-layer-pill active" id="toggleParroquias" data-layer-group="parroquias" title="Límites Parroquiales (6)">
                   <span class="cs-layer-pill__dot" style="background: #2563eb;"></span>
-                  <span id="lblToggleParroquias">Parroquias</span>
+                  <span id="lblToggleParroquias">Parroquias (6)</span>
                 </button>
                 <button type="button" class="cs-layer-pill active" id="toggleSectores" data-layer-group="sectores" title="Puntos y Sectores Sorteados">
                   <span class="cs-layer-pill__dot" style="background: #059669;"></span>
@@ -282,6 +287,9 @@
                 </button>
               </div>
             </div>
+
+            <!-- Barra Rápida de Circunscripciones (1-Tap sobre el mapa) -->
+            <div class="cs-circ-legend-bar" id="circLegendBar" aria-label="Circunscripciones de Rumiñahui"></div>
           </div>
 
           <div id="map"></div>
@@ -451,11 +459,11 @@
 
   <!-- ===== SCRIPTS ===== -->
   <script src="libs/maplibre-gl.js"></script>
-  <script src="script.js?v=5.9.5"></script>
+  <script src="script.js?v=5.9.6"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/service-worker.js?v=28').then(reg => {
+        navigator.serviceWorker.register('/service-worker.js?v=29').then(reg => {
           if (reg && reg.update) reg.update();
         }).catch(error => {
           console.warn('No se pudo preparar el modo sin conexión:', error);
