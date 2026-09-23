@@ -151,116 +151,79 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Parroquias oficiales en estudio por cantón
     const PARROQUIAS_POR_CANTON = {
-        'Quito': [
-            'ALANGASI',
-            'AMAGUAÑA',
-            'BELISARIO QUEVEDO',
-            'CALDERON',
-            'CARCELEN',
-            'CENTRO HISTORICO',
-            'CHECA',
-            'CHILIBULO',
-            'CHILLOGALLO',
-            'CHIMBACALLE',
-            'COCHAPAMBA',
-            'COMITE DEL PUEBLO',
-            'CONOCOTO',
-            'COTOCOLLAO',
-            'CUMBAYA',
-            'EL CONDADO',
-            'GUAMANI',
-            'GUAYLLABAMBA',
-            'ITCHIMBIA',
-            'IÑAQUITO',
-            'JIPIJAPA',
-            'KENNEDY',
-            'LA ARGELIA',
-            'LA CONCEPCION',
-            'LA ECUATORIANA',
-            'LA FERROVIARIA',
-            'LA LIBERTAD',
-            'LA MAGDALENA',
-            'LA MENA',
-            'LA MERCED',
-            'LLANO CHICO',
-            'MARISCAL SUCRE',
-            'NAYON',
-            'PIFO',
-            'PINTAG',
-            'POMASQUI',
-            'PONCEANO',
-            'PUEMBO',
-            'PUENGASI',
-            'QUINCHE',
-            'QUITUMBE',
+        'Rumiñahui': [
+            'COTOGCHOA',
+            'FAJARDO',
             'RUMIPAMBA',
-            'SAN ANTONIO',
-            'SAN BARTOLO',
-            'SAN ISIDRO DEL INCA',
-            'SAN JUAN',
-            'SOLANDA',
-            'TUMBACO',
-            'TURUBAMBA',
-            'YARUQUI',
-            'ZAMBIZA'
+            'SAN PEDRO DE TABOADA',
+            'SAN RAFAEL',
+            'SANGOLQUÍ',
+            'SANGOLQUI'
         ]
     };
 
     // Paleta cromática oficial por Cantón
     const COLORES_CANTON = {
-        'Quito': {
-            nombre: 'Quito',
-            linea: '#7c3aed',
-            fill: '#8b5cf6',
-            fillActive: '#6d28d9',
-            label: '#5b21b6',
-            badge: '🟣',
-            hex: '#7c3aed'
+        'Rumiñahui': {
+            nombre: 'Rumiñahui',
+            linea: '#2563eb',
+            fill: '#3b82f6',
+            fillActive: '#1d4ed8',
+            label: '#1e40af',
+            badge: '🔵',
+            hex: '#2563eb'
         }
     };
 
     // =========================================================================
-    // PALETA CROMÁTICA OFICIAL POR PARROQUIA (ENCUESTA EL CARMEN 2026)
+    // PALETA CROMÁTICA OFICIAL POR PARROQUIA (ENCUESTA RUMIÑAHUI 2026)
     // 6 tonalidades armónicas de alto contraste contra cartografía OpenStreetMap
     // =========================================================================
     const COLORES_PARROQUIA = {
-        'EL CARMEN': {
-            nombre: 'El Carmen',
+        'SANGOLQUÍ': {
+            nombre: 'Sangolquí',
             linea: '#2563eb',       // Azul Cobalto
             fill: '#3b82f6',
             label: '#1e40af',
             badge: '🔵'
         },
-        '4 DE DICIEMBRE': {
-            nombre: '4 de Diciembre',
+        'SANGOLQUI': {
+            nombre: 'Sangolquí',
+            linea: '#2563eb',
+            fill: '#3b82f6',
+            label: '#1e40af',
+            badge: '🔵'
+        },
+        'SAN PEDRO DE TABOADA': {
+            nombre: 'San Pedro de Taboada',
             linea: '#059669',       // Verde Esmeralda
             fill: '#10b981',
             label: '#065f46',
             badge: '🟢'
         },
-        'EL PARAÍSO / LA 14': {
-            nombre: 'El Paraíso / La 14',
+        'SAN RAFAEL': {
+            nombre: 'San Rafael',
             linea: '#7c3aed',       // Violeta Real
             fill: '#8b5cf6',
             label: '#5b21b6',
             badge: '🟣'
         },
-        'SAN PEDRO DE SUMA': {
-            nombre: 'San Pedro de Suma',
+        'FAJARDO': {
+            nombre: 'Fajardo',
             linea: '#d97706',       // Ámbar Dorado
             fill: '#f59e0b',
             label: '#92400e',
             badge: '🟡'
         },
-        'SANTA MARÍA': {
-            nombre: 'Santa María',
-            linea: '#e11d48',       // Carmesí / Rosa artesanal
+        'COTOGCHOA': {
+            nombre: 'Cotogchoa',
+            linea: '#e11d48',       // Carmesí
             fill: '#f43f5e',
             label: '#9f1239',
             badge: '🔴'
         },
-        'WILFRIDO LOOR MOREIRA': {
-            nombre: 'Wilfrido Loor Moreira',
+        'RUMIPAMBA': {
+            nombre: 'Rumipamba',
             linea: '#0891b2',       // Cian Turquesa
             fill: '#06b6d4',
             label: '#0e7490',
@@ -320,81 +283,88 @@ document.addEventListener('DOMContentLoaded', () => {
             .join(' ');
     }
 
-    // Expresiones MapLibre GL por Parroquia (Pintado vectorial diferenciado de las 6 parroquias de El Carmen)
+    // Expresiones MapLibre GL por Parroquia (Pintado vectorial diferenciado de las 6 parroquias de Rumiñahui)
     const EXPR_PARROQUIAS_LINE = [
         'match', ['upcase', ['coalesce', ['get', 'nombre'], ['get', 'PARROQUIA'], ['get', 'parroquia'], '']],
-        'EL CARMEN', '#2563eb',
-        '4 DE DICIEMBRE', '#059669',
-        'EL PARAÍSO / LA 14', '#7c3aed',
-        'SAN PEDRO DE SUMA', '#d97706',
-        'SANTA MARÍA', '#e11d48',
-        'WILFRIDO LOOR MOREIRA', '#0891b2',
+        'SANGOLQUÍ', '#2563eb',
+        'SANGOLQUI', '#2563eb',
+        'SAN PEDRO DE TABOADA', '#059669',
+        'SAN RAFAEL', '#7c3aed',
+        'FAJARDO', '#d97706',
+        'COTOGCHOA', '#e11d48',
+        'RUMIPAMBA', '#0891b2',
         '#2563eb' // fallback
     ];
 
     const EXPR_PARROQUIAS_FILL = [
         'match', ['upcase', ['coalesce', ['get', 'nombre'], ['get', 'PARROQUIA'], ['get', 'parroquia'], '']],
-        'EL CARMEN', '#3b82f6',
-        '4 DE DICIEMBRE', '#10b981',
-        'EL PARAÍSO / LA 14', '#8b5cf6',
-        'SAN PEDRO DE SUMA', '#f59e0b',
-        'SANTA MARÍA', '#f43f5e',
-        'WILFRIDO LOOR MOREIRA', '#06b6d4',
+        'SANGOLQUÍ', '#3b82f6',
+        'SANGOLQUI', '#3b82f6',
+        'SAN PEDRO DE TABOADA', '#10b981',
+        'SAN RAFAEL', '#8b5cf6',
+        'FAJARDO', '#f59e0b',
+        'COTOGCHOA', '#f43f5e',
+        'RUMIPAMBA', '#06b6d4',
         '#3b82f6' // fallback
     ];
 
     const EXPR_PARROQUIAS_LABEL = [
         'match', ['upcase', ['coalesce', ['get', 'nombre'], ['get', 'PARROQUIA'], ['get', 'parroquia'], '']],
-        'EL CARMEN', '#1e40af',
-        '4 DE DICIEMBRE', '#065f46',
-        'EL PARAÍSO / LA 14', '#5b21b6',
-        'SAN PEDRO DE SUMA', '#92400e',
-        'SANTA MARÍA', '#9f1239',
-        'WILFRIDO LOOR MOREIRA', '#0e7490',
+        'SANGOLQUÍ', '#1e40af',
+        'SANGOLQUI', '#1e40af',
+        'SAN PEDRO DE TABOADA', '#065f46',
+        'SAN RAFAEL', '#5b21b6',
+        'FAJARDO', '#92400e',
+        'COTOGCHOA', '#9f1239',
+        'RUMIPAMBA', '#0e7490',
         '#1e40af' // fallback
     ];
 
     const EXPR_SECTORES_FILL = [
         'match', ['upcase', ['coalesce', ['get', 'parroquia'], ['get', 'PARROQUIA'], '']],
-        'EL CARMEN', '#3b82f6',
-        '4 DE DICIEMBRE', '#10b981',
-        'EL PARAÍSO / LA 14', '#8b5cf6',
-        'SAN PEDRO DE SUMA', '#f59e0b',
-        'SANTA MARÍA', '#f43f5e',
-        'WILFRIDO LOOR MOREIRA', '#06b6d4',
+        'SANGOLQUÍ', '#3b82f6',
+        'SANGOLQUI', '#3b82f6',
+        'SAN PEDRO DE TABOADA', '#10b981',
+        'SAN RAFAEL', '#8b5cf6',
+        'FAJARDO', '#f59e0b',
+        'COTOGCHOA', '#f43f5e',
+        'RUMIPAMBA', '#06b6d4',
         '#3b82f6' // fallback
     ];
 
     const EXPR_SECTORES_LINE = [
         'match', ['upcase', ['coalesce', ['get', 'parroquia'], ['get', 'PARROQUIA'], '']],
-        'EL CARMEN', '#2563eb',
-        '4 DE DICIEMBRE', '#059669',
-        'EL PARAÍSO / LA 14', '#7c3aed',
-        'SAN PEDRO DE SUMA', '#d97706',
-        'SANTA MARÍA', '#e11d48',
-        'WILFRIDO LOOR MOREIRA', '#0891b2',
+        'SANGOLQUÍ', '#2563eb',
+        'SANGOLQUI', '#2563eb',
+        'SAN PEDRO DE TABOADA', '#059669',
+        'SAN RAFAEL', '#7c3aed',
+        'FAJARDO', '#d97706',
+        'COTOGCHOA', '#e11d48',
+        'RUMIPAMBA', '#0891b2',
         '#2563eb' // fallback
     ];
 
     const EXPR_SECTORES_LABEL = [
         'match', ['upcase', ['coalesce', ['get', 'parroquia'], ['get', 'PARROQUIA'], '']],
-        'EL CARMEN', '#1e40af',
-        '4 DE DICIEMBRE', '#065f46',
-        'EL PARAÍSO / LA 14', '#5b21b6',
-        'SAN PEDRO DE SUMA', '#92400e',
-        'SANTA MARÍA', '#9f1239',
-        'WILFRIDO LOOR MOREIRA', '#0e7490',
+        'SANGOLQUÍ', '#1e40af',
+        'SANGOLQUI', '#1e40af',
+        'SAN PEDRO DE TABOADA', '#065f46',
+        'SAN RAFAEL', '#5b21b6',
+        'FAJARDO', '#92400e',
+        'COTOGCHOA', '#9f1239',
+        'RUMIPAMBA', '#0e7490',
         '#1e40af' // fallback
     ];
 
     const EXPR_PIN_ICON = [
         'match', ['upcase', ['coalesce', ['get', 'parroquia'], ['get', 'PARROQUIA'], '']],
-        'EL CARMEN', 'pin-el-carmen',
-        '4 DE DICIEMBRE', 'pin-4-de-diciembre',
-        'EL PARAÍSO / LA 14', 'pin-el-paraiso-la-14',
-        'SAN PEDRO DE SUMA', 'pin-san-pedro-de-suma',
-        'SANTA MARÍA', 'pin-santa-maria',
-        'WILFRIDO LOOR MOREIRA', 'pin-wilfrido-loor-moreira',
+        'SANGOLQUÍ', 'pin-sangolqui',
+        'SANGOLQUI', 'pin-sangolqui',
+        'SAN PEDRO DE TABOADA', 'pin-san-pedro-de-taboada',
+        'SAN RAFAEL', 'pin-san-rafael',
+        'FAJARDO', 'pin-fajardo',
+        'COTOGCHOA', 'pin-cotogchoa',
+        'RUMIPAMBA', 'pin-rumipamba',
         'pin-default'
     ];
 
@@ -454,12 +424,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!targetMap) return;
 
         const pines = [
-            { id: 'pin-el-carmen', pri: '#2563eb', sec: '#3b82f6' },
-            { id: 'pin-4-de-diciembre', pri: '#059669', sec: '#10b981' },
-            { id: 'pin-el-paraiso-la-14', pri: '#7c3aed', sec: '#8b5cf6' },
-            { id: 'pin-san-pedro-de-suma', pri: '#d97706', sec: '#f59e0b' },
-            { id: 'pin-santa-maria', pri: '#e11d48', sec: '#f43f5e' },
-            { id: 'pin-wilfrido-loor-moreira', pri: '#0891b2', sec: '#06b6d4' },
+            { id: 'pin-sangolqui', pri: '#2563eb', sec: '#3b82f6' },
+            { id: 'pin-san-pedro-de-taboada', pri: '#059669', sec: '#10b981' },
+            { id: 'pin-san-rafael', pri: '#7c3aed', sec: '#8b5cf6' },
+            { id: 'pin-fajardo', pri: '#d97706', sec: '#f59e0b' },
+            { id: 'pin-cotogchoa', pri: '#e11d48', sec: '#f43f5e' },
+            { id: 'pin-rumipamba', pri: '#0891b2', sec: '#06b6d4' },
             { id: 'pin-default', pri: '#2563eb', sec: '#3b82f6' },
             { id: 'pin-activo', pri: '#ea580c', sec: '#f97316', activo: true }
         ];
@@ -598,18 +568,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // =========================================================================
-    // EXTRACCIÓN Y NORMALIZACIÓN DE PARROQUIA (EL CARMEN)
+    // EXTRACCIÓN Y NORMALIZACIÓN DE PARROQUIA (RUMIÑAHUI)
     // =========================================================================
     function normalizarCanton(valor) {
         const texto = normTexto(valor);
+        if (texto.includes('RUMI') || texto.includes('80')) return 'Rumiñahui';
         if (texto.includes('CARMEN')) return 'El Carmen';
-        if (texto.includes('IBARRA')) return 'Ibarra';
-        const codigos = {
-            '1': 'El Carmen', '500': 'El Carmen', '1304': 'El Carmen',
-            '60': 'Quito', '80': 'Rumiñahui', '90': 'Cayambe', '100': 'Mejía'
-        };
-        return codigos[texto] || Object.keys(PARROQUIAS_POR_CANTON).find(c => normTexto(c) === texto)
-            || 'Quito';
+        return 'Rumiñahui';
     }
 
     function parroquiaDeclarada(encuesta) {
@@ -628,14 +593,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function cantonPorParroquia(parroquia) {
-        if (!parroquia) return 'Quito';
-        const coincidencias = Object.entries(PARROQUIAS_POR_CANTON)
-            .filter(([, nombres]) => nombres.some(n => {
-                const normN = normTexto(n);
-                const normP = normTexto(parroquia);
-                return normN === normP || normN.includes(normP) || normP.includes(normN);
-            }));
-        return coincidencias.length === 1 ? coincidencias[0][0] : 'Quito';
+        return 'Rumiñahui';
     }
 
     function normalizarAliasSector(valor) {
@@ -689,7 +647,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function obtenerCantonEncuesta(encuesta) {
-        return 'El Carmen';
+        return 'Rumiñahui';
     }
 
     function coincideSector(encuesta, clave) {
@@ -1546,21 +1504,27 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!supervisores.has(actualSup) && actualSup !== 'Todos') AppState.supervisorSeleccionado = 'Todos';
         }
 
-        // 1.1 Selector Cantón (Encuesta Cantonal El Carmen 2026)
+        // 1.1 Selector Cantón (Encuesta Cantonal Rumiñahui 2026)
         if (UI.cantonFilter) {
             const actualCan = AppState.cantonSeleccionado || 'Todos';
             let cnt = (AppState.encuestas && AppState.encuestas.length > 0) ? AppState.encuestas.length : 0;
             let extra = cnt > 0 ? ` (${cnt} enc.)` : '';
-            UI.cantonFilter.innerHTML = `<option value="Todos">El Carmen (Cantón)</option><option value="El Carmen">🔵 El Carmen${extra}</option>`;
-            UI.cantonFilter.value = (actualCan === 'El Carmen') ? 'El Carmen' : 'Todos';
+            UI.cantonFilter.innerHTML = `<option value="Todos">Rumiñahui (Cantón)</option><option value="Rumiñahui">🔵 Rumiñahui${extra}</option>`;
+            UI.cantonFilter.value = (actualCan === 'Rumiñahui') ? 'Rumiñahui' : 'Todos';
         }
 
-        // 1.2 Selector Circunscripción (No aplica a El Carmen - auto-oculto)
+        // 1.2 Selector Circunscripción
         if (UI.circunscripcionFilter) {
-            if (UI.wrapCircunscripcionFilter) UI.wrapCircunscripcionFilter.classList.add('is-hidden');
-            UI.circunscripcionFilter.disabled = true;
-            AppState.circunscripcionSeleccionada = 'Todas';
-            UI.circunscripcionFilter.value = 'Todas';
+            if (UI.wrapCircunscripcionFilter) UI.wrapCircunscripcionFilter.classList.remove('is-hidden');
+            UI.circunscripcionFilter.disabled = false;
+            const actualCirc = AppState.circunscripcionSeleccionada || 'Todas';
+            UI.circunscripcionFilter.innerHTML = `
+                <option value="Todas">Todas las circunscripciones (3)</option>
+                <option value="Circunscripcion 1">Circunscripción 1 (Urbana)</option>
+                <option value="Circunscripcion 2">Circunscripción 2 (Urbana)</option>
+                <option value="Circunscripcion Rural">Circunscripción Rural</option>
+            `;
+            UI.circunscripcionFilter.value = actualCirc;
         }
 
         if (UI.circLegendBar) {
@@ -1583,7 +1547,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // 2b. Selector Puntos de Muestreo / Sectores (56 puntos en El Carmen)
+        // 2b. Selector Puntos de Muestreo / Sectores (90 puntos en Rumiñahui)
         if (UI.sectorFilter) {
             const actualSec = AppState.sectorSeleccionado || 'Todos';
             const parActivaNorm = (AppState.parroquiaSeleccionada !== 'Todas') ? normTexto(AppState.parroquiaSeleccionada) : null;
@@ -1883,7 +1847,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // =========================================================================
     function obtenerMetaActiva() {
         const METAS_CANTON = {
-            'EL CARMEN': 560
+            'RUMIÑAHUI': 900,
+            'RUMINAHUI': 900
         };
 
         // 1. Filtro por Sector Censal Sorteado (cuota: 10 encuestas)
@@ -1918,10 +1883,10 @@ document.addEventListener('DOMContentLoaded', () => {
             };
         }
 
-        // 3. Filtro por Cantón (El Carmen: 560)
+        // 3. Filtro por Cantón (Rumiñahui: 900)
         if (AppState.cantonSeleccionado && AppState.cantonSeleccionado !== 'Todos') {
             const cNorm = normTexto(AppState.cantonSeleccionado);
-            let metaCanton = METAS_CANTON[cNorm] || 560;
+            let metaCanton = METAS_CANTON[cNorm] || 900;
             return {
                 meta: metaCanton,
                 etiquetaMeta: `Meta: ${metaCanton.toLocaleString()} (${AppState.cantonSeleccionado})`,
@@ -1931,8 +1896,8 @@ document.addEventListener('DOMContentLoaded', () => {
             };
         }
 
-        // 4. Ámbito General (Encuesta Cantonal El Carmen)
-        const metaGeneral = AppState.config.metaEncuestas || 560;
+        // 4. Ámbito General (Encuesta Cantonal Rumiñahui)
+        const metaGeneral = AppState.config.metaEncuestas || 900;
         return {
             meta: metaGeneral,
             etiquetaMeta: `Meta: ${metaGeneral.toLocaleString()}`,
@@ -2007,13 +1972,15 @@ document.addEventListener('DOMContentLoaded', () => {
         let sectoresData = { type: 'FeatureCollection', features: [] };
 
         try {
-            const cacheBuster = '?v=5.5.2';
-            const [resPar, resSec] = await Promise.all([
+            const cacheBuster = '?v=ruminahui-1.0.0';
+            const [resPar, resSec, resCirc] = await Promise.all([
                 fetch('assets/parroquias.geojson' + cacheBuster),
-                fetch('assets/sectores_censales.geojson' + cacheBuster)
+                fetch('assets/sectores_censales.geojson' + cacheBuster),
+                fetch('assets/circunscripciones.geojson' + cacheBuster)
             ]);
             if (resPar.ok) parroquiasData = await resPar.json();
             if (resSec.ok) sectoresData = await resSec.json();
+            if (resCirc && resCirc.ok) AppState.circunscripcionesGeojson = await resCirc.json();
         } catch (e) {
             console.warn('[Mapa] Error pre-cargando GeoJSONs:', e);
         }
@@ -2027,7 +1994,7 @@ document.addEventListener('DOMContentLoaded', () => {
             UI.lblToggleParroquias.textContent = `Parroquias (${parroquiasData.features.length})`;
         }
         if (UI.lblToggleSectores && sectoresData.features && sectoresData.features.length > 0) {
-            UI.lblToggleSectores.textContent = `Puntos (${sectoresData.features.length})`;
+            UI.lblToggleSectores.textContent = `Muestra (${sectoresData.features.length})`;
         }
         AppState.puntosMuestreoGeojson = { type: 'FeatureCollection', features: [] };
         AppState.cantonesMap = new Map();
@@ -2036,13 +2003,13 @@ document.addEventListener('DOMContentLoaded', () => {
         AppState.sectoresMap = new Map();
         AppState.sectoresCandidatos = new Map();
 
-        // Indexar Puntos de Muestreo / Sectores (56 puntos en El Carmen)
+        // Indexar Puntos de Muestreo y Sectores Censales (90 unidades en Rumiñahui)
         if (sectoresData.features) {
             sectoresData.features.forEach(f => {
                 const p = f.properties || {};
                 const cod = String(p.sc || p.codigo_muestra || p.num_muestra || '').trim();
                 const tip = String(p.tipologia || '').trim().toUpperCase();
-                const can = String(p.canton || p.CANTON || '').trim();
+                const can = String(p.canton || p.CANTON || 'RUMIÑAHUI').trim();
                 const par = String(p.parroquia || p.PARROQUIA || '').trim().toUpperCase();
                 const secAnm = String(p.sec_anm || '').trim();
                 const etiq = p.etiquetaSC || (cod && tip ? `${cod} | ${tip}` : (cod || tip));
@@ -2050,20 +2017,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 p.tipologia = tip;
                 p.canton = can;
                 p.parroquia = par;
-                p.sc_key = p.sc_key || (can && cod ? `${can}_${cod}` : '');
+                p.sc_key = p.sc_key || (can && cod ? `${can}_${cod}` : (cod ? `RUMIÑAHUI_${cod}` : ''));
                 p.etiquetaSC = etiq;
 
                 let bbox = null;
                 let centroid = null;
-                if (p.bbox && Array.isArray(p.bbox)) {
+                if (f.geometry && f.geometry.type === 'Point' && Array.isArray(f.geometry.coordinates)) {
+                    centroid = f.geometry.coordinates;
+                    bbox = [
+                        [centroid[0] - 0.001, centroid[1] - 0.001],
+                        [centroid[0] + 0.001, centroid[1] + 0.001]
+                    ];
+                } else if (p.bbox && Array.isArray(p.bbox)) {
                     bbox = p.bbox;
                 } else if (f.geometry) {
                     bbox = calcularBBOX(f.geometry);
                 }
-                if (p.centroid && Array.isArray(p.centroid)) {
-                    centroid = p.centroid;
-                } else if (bbox) {
-                    centroid = [(bbox[0][0] + bbox[1][0]) / 2, (bbox[0][1] + bbox[1][1]) / 2];
+                if (!centroid) {
+                    if (p.centroid && Array.isArray(p.centroid)) {
+                        centroid = p.centroid;
+                    } else if (bbox) {
+                        centroid = [(bbox[0][0] + bbox[1][0]) / 2, (bbox[0][1] + bbox[1][1]) / 2];
+                    }
                 }
                 p.bbox = bbox;
                 p.centroid = centroid;
@@ -2110,7 +2085,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 const etiq = p.etiquetaSC || (scNum && tip ? `${scNum} | ${tip}` : (scNum || tip));
                 let coords = p.centroid;
                 if (!coords || !Array.isArray(coords)) {
-                    if (p.bbox && Array.isArray(p.bbox)) {
+                    if (f.geometry && f.geometry.type === 'Point' && Array.isArray(f.geometry.coordinates)) {
+                        coords = f.geometry.coordinates;
+                    } else if (p.bbox && Array.isArray(p.bbox)) {
                         const minX = Array.isArray(p.bbox[0]) ? p.bbox[0][0] : p.bbox[0];
                         const minY = Array.isArray(p.bbox[0]) ? p.bbox[0][1] : p.bbox[1];
                         const maxX = Array.isArray(p.bbox[1]) ? p.bbox[1][0] : p.bbox[2];
@@ -2120,7 +2097,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         const b = calcularBBOX(f.geometry);
                         coords = [(b[0][0] + b[1][0]) / 2, (b[0][1] + b[1][1]) / 2];
                     } else {
-                        coords = [-78.48, -0.19];
+                        coords = [-78.445, -0.332];
                     }
                 }
                 return {
@@ -2302,11 +2279,39 @@ document.addEventListener('DOMContentLoaded', () => {
                             'text-halo-width': 3.5
                         }
                     },
-                    // 2. Puntos de Muestreo (Marcadores elegantes tipo pin/chincheta diferenciados por parroquia)
+                    // 2. Sectores Censales Poligonales (71 sectores amanzanados)
+                    {
+                        id: 'sectores-fill',
+                        type: 'fill',
+                        source: 'sectores-source',
+                        filter: ['any', ['==', '$type', 'Polygon']],
+                        paint: {
+                            'fill-color': EXPR_SECTORES_FILL,
+                            'fill-opacity': 0.22
+                        }
+                    },
+                    {
+                        id: 'sectores-line',
+                        type: 'line',
+                        source: 'sectores-source',
+                        filter: ['any', ['==', '$type', 'Polygon']],
+                        paint: {
+                            'line-color': EXPR_SECTORES_LINE,
+                            'line-width': [
+                                'interpolate', ['linear'], ['zoom'],
+                                10, 1.8,
+                                13, 2.8,
+                                16, 3.8
+                            ],
+                            'line-opacity': 0.95
+                        }
+                    },
+                    // 3. Puntos de Muestreo / Referenciales (19 puntos radiales)
                     {
                         id: 'sectores-point',
                         type: 'symbol',
                         source: 'sectores-source',
+                        filter: ['==', '$type', 'Point'],
                         layout: {
                             'icon-image': EXPR_PIN_ICON,
                             'icon-size': [
@@ -2321,6 +2326,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             'icon-ignore-placement': true
                         }
                     },
+                    // 4. Etiquetas de Sectores / Puntos (Centroides independientes - Regla 8)
                     {
                         id: 'sectores-label',
                         type: 'symbol',
@@ -2335,7 +2341,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 13, 10.5,
                                 16, 12.5
                             ],
-                            'text-offset': [0, -3.2],
+                            'text-offset': [0, -1.2],
                             'text-anchor': 'bottom',
                             'text-allow-overlap': true,
                             'text-ignore-placement': true,
@@ -2698,13 +2704,15 @@ document.addEventListener('DOMContentLoaded', () => {
         map.on('mouseleave', 'puntos-glow-layer', () => { map.getCanvas().style.cursor = ''; });
         map.on('mouseenter', 'sectores-point', () => { map.getCanvas().style.cursor = 'pointer'; });
         map.on('mouseleave', 'sectores-point', () => { map.getCanvas().style.cursor = ''; });
+        map.on('mouseenter', 'sectores-fill', () => { map.getCanvas().style.cursor = 'pointer'; });
+        map.on('mouseleave', 'sectores-fill', () => { map.getCanvas().style.cursor = ''; });
 
         // Clic en Punto de Muestreo / Sector
         const abrirPopupSector = (e) => {
             if (!e.features || !e.features.length) return;
             const p = e.features[0].properties;
             const geomCoords = (e.features[0].geometry && e.features[0].geometry.coordinates) ? e.features[0].geometry.coordinates : null;
-            const coords = geomCoords || e.lngLat;
+            const coords = (geomCoords && !Array.isArray(geomCoords[0])) ? geomCoords : e.lngLat;
             const sc = String(p.sc || p.codigo_muestra || p.num_muestra || '').trim();
             const scKey = String(p.sc_key || `${p.canton || p.CANTON || ''}_${sc}`).trim();
             const tip = String(p.tipologia || '').trim().toUpperCase();
@@ -2724,15 +2732,27 @@ document.addEventListener('DOMContentLoaded', () => {
                 renderizarVista(true, false);
             }
 
-            new maplibregl.Popup({ offset: [0, -36], closeButton: true })
+            const esPuntoRef = (p.tipo_muestreo === 'PUNTO_REFERENCIAL' || !!p.punto_referencial || !!p.comunidad);
+            const tituloTipo = esPuntoRef ? 'Punto Referencial' : 'Sector Censal';
+            let infoExtra = '';
+            if (esPuntoRef) {
+                if (p.comunidad) infoExtra += `<div style="font-size:0.75rem;color:#1e293b;margin-bottom:3px;">🏡 <strong>Comunidad/Barrio:</strong> ${p.comunidad}</div>`;
+                if (p.calle_1) infoExtra += `<div style="font-size:0.75rem;color:#1e293b;margin-bottom:3px;">🛣️ <strong>Vía:</strong> ${p.calle_1}</div>`;
+                if (p.punto_referencial) infoExtra += `<div style="font-size:0.75rem;color:#1e293b;background:#f1f5f9;padding:6px 8px;border-radius:6px;margin-bottom:8px;text-align:left;line-height:1.3;border:1px solid #e2e8f0;">📍 <strong>Ref:</strong> ${p.punto_referencial}</div>`;
+            } else {
+                if (p.sec_anm) infoExtra += `<div style="font-size:0.75rem;color:#1e293b;margin-bottom:3px;">📊 <strong>Código Censal:</strong> ${p.sec_anm}</div>`;
+                if (p.pob_t || p.v_pres) infoExtra += `<div style="font-size:0.75rem;color:#475569;margin-bottom:8px;">Población: ${p.pob_t || '-'} hab. · Viviendas: ${p.v_pres || '-'}</div>`;
+            }
+
+            new maplibregl.Popup({ offset: [0, -25], closeButton: true })
                 .setLngLat(coords)
                 .setHTML(`
-                    <div style="font-family:'Inter',sans-serif;padding:4px;min-width:180px;text-align:center;">
+                    <div style="font-family:'Inter',sans-serif;padding:4px;min-width:190px;text-align:center;">
                         <div style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:0.95rem;color:#0f172a;margin-bottom:4px;">
-                            Punto <strong>${etiq}</strong>
+                            ${tituloTipo} <strong>${etiq}</strong>
                         </div>
                         ${parroquia ? `<div style="font-size:0.8rem;color:#475569;margin-bottom:6px;">Parroquia <strong>${formatearNombreParroquia(parroquia)}</strong></div>` : ''}
-                        ${p.punto_referencial ? `<div style="font-size:0.75rem;color:#1e293b;background:#f1f5f9;padding:6px 8px;border-radius:6px;margin-bottom:8px;text-align:left;line-height:1.3;border:1px solid #e2e8f0;">📍 <strong>Ref:</strong> ${p.punto_referencial}</div>` : ''}
+                        ${infoExtra}
                         <a href="${gmapsUrl}" target="_blank" rel="noopener noreferrer" class="cs-btn-gmaps" style="display:inline-flex;justify-content:center;width:100%;margin-top:2px;">
                             <svg class="cs-icon" style="width:13px;height:13px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
                             Cómo llegar (Google Maps)
@@ -2743,11 +2763,12 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         map.on('click', 'sectores-point', abrirPopupSector);
+        map.on('click', 'sectores-fill', abrirPopupSector);
 
         // Conectar botones para Prender / Apagar capas en el mapa
         const togglesMap = [
             { btn: UI.toggleParroquias, key: 'parroquias', layers: ['parroquias-fill', 'parroquias-line', 'parroquias-label'] },
-            { btn: UI.toggleSectores, key: 'sectores', layers: ['sectores-point', 'sectores-label'] }
+            { btn: UI.toggleSectores, key: 'sectores', layers: ['sectores-fill', 'sectores-line', 'sectores-point', 'sectores-label'] }
         ];
 
         togglesMap.forEach(({ btn, key, layers }) => {
@@ -3081,7 +3102,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // 1. Puntos de Muestreo / Sectores Censales
-        if (map.getLayer('sectores-point')) {
+        if (map.getLayer('sectores-point') || map.getLayer('sectores-fill')) {
             const barra = document.getElementById('barraSectorActivo');
             const titulo = document.getElementById('sectorActivoTitulo');
             const btnGmaps = document.getElementById('btnRutaGoogleMaps');
@@ -3106,10 +3127,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 const lineActivo = colParroquia ? colParroquia.linea : '#c2410c';
                 const labelActivo = colParroquia ? colParroquia.label : '#7c2d12';
 
-                map.setFilter('sectores-point', filterSC);
-                map.setLayoutProperty('sectores-point', 'icon-image', 'pin-activo');
-                map.setLayoutProperty('sectores-point', 'icon-size', 1.25);
-
+                if (map.getLayer('sectores-fill')) {
+                    map.setFilter('sectores-fill', ['all', ['any', ['==', '$type', 'Polygon']], filterSC]);
+                    map.setPaintProperty('sectores-fill', 'fill-opacity', 0.40);
+                }
+                if (map.getLayer('sectores-line')) {
+                    map.setFilter('sectores-line', ['all', ['any', ['==', '$type', 'Polygon']], filterSC]);
+                    map.setPaintProperty('sectores-line', 'line-width', 4.0);
+                    map.setPaintProperty('sectores-line', 'line-color', lineActivo);
+                }
+                if (map.getLayer('sectores-point')) {
+                    map.setFilter('sectores-point', ['all', ['==', '$type', 'Point'], filterSC]);
+                    map.setLayoutProperty('sectores-point', 'icon-image', 'pin-activo');
+                    map.setLayoutProperty('sectores-point', 'icon-size', 1.25);
+                }
                 if (map.getLayer('sectores-label')) {
                     map.setFilter('sectores-label', filterSC);
                     map.setPaintProperty('sectores-label', 'text-color', labelActivo);
@@ -3149,38 +3180,51 @@ document.addEventListener('DOMContentLoaded', () => {
                     filterPendientes = ['in', ['to-string', ['get', 'sc_key']], ['literal', keysPendientes]];
                 }
 
-                const aplicarFiltroSectores = (baseFilter) => {
-                    const f = (baseFilter && filterPendientes) 
-                        ? ['all', baseFilter, filterPendientes] 
-                        : (baseFilter || filterPendientes);
-                    map.setFilter('sectores-point', f);
-                    if (map.getLayer('sectores-label')) map.setFilter('sectores-label', f);
-                };
-
-                // A. Si hay Parroquia específica seleccionada: MOSTRAR EXCLUSIVAMENTE LOS PUNTOS DE ESA PARROQUIA
+                let baseFilter = null;
                 if (AppState.parroquiaSeleccionada && AppState.parroquiaSeleccionada !== 'Todas') {
                     const targetPar = String(AppState.parroquiaSeleccionada).trim().toUpperCase();
-                    const filterSectoresParroquia = [
+                    baseFilter = [
                         'any',
                         ['==', ['upcase', ['get', 'parroquia']], targetPar],
                         ['==', ['upcase', ['get', 'PARROQUIA']], targetPar]
                     ];
-                    aplicarFiltroSectores(filterSectoresParroquia);
-                } else {
-                    // B. Vista global: mostrar todos los puntos
-                    aplicarFiltroSectores(null);
                 }
 
-                map.setLayoutProperty('sectores-point', 'icon-image', EXPR_PIN_ICON);
-                map.setLayoutProperty('sectores-point', 'icon-size', [
-                    'interpolate', ['linear'], ['zoom'],
-                    10, 0.65,
-                    12, 0.82,
-                    14, 0.98,
-                    17, 1.18
-                ]);
+                const f = (baseFilter && filterPendientes) 
+                    ? ['all', baseFilter, filterPendientes] 
+                    : (baseFilter || filterPendientes);
 
+                if (map.getLayer('sectores-fill')) {
+                    const fillFilter = f ? ['all', ['any', ['==', '$type', 'Polygon']], f] : ['any', ['==', '$type', 'Polygon']];
+                    map.setFilter('sectores-fill', fillFilter);
+                    map.setPaintProperty('sectores-fill', 'fill-color', EXPR_SECTORES_FILL);
+                    map.setPaintProperty('sectores-fill', 'fill-opacity', 0.22);
+                }
+                if (map.getLayer('sectores-line')) {
+                    const lineFilter = f ? ['all', ['any', ['==', '$type', 'Polygon']], f] : ['any', ['==', '$type', 'Polygon']];
+                    map.setFilter('sectores-line', lineFilter);
+                    map.setPaintProperty('sectores-line', 'line-color', EXPR_SECTORES_LINE);
+                    map.setPaintProperty('sectores-line', 'line-width', [
+                        'interpolate', ['linear'], ['zoom'],
+                        10, 1.8,
+                        13, 2.8,
+                        16, 3.8
+                    ]);
+                }
+                if (map.getLayer('sectores-point')) {
+                    const pointFilter = f ? ['all', ['==', '$type', 'Point'], f] : ['==', '$type', 'Point'];
+                    map.setFilter('sectores-point', pointFilter);
+                    map.setLayoutProperty('sectores-point', 'icon-image', EXPR_PIN_ICON);
+                    map.setLayoutProperty('sectores-point', 'icon-size', [
+                        'interpolate', ['linear'], ['zoom'],
+                        10, 0.65,
+                        12, 0.82,
+                        14, 0.98,
+                        17, 1.18
+                    ]);
+                }
                 if (map.getLayer('sectores-label')) {
+                    map.setFilter('sectores-label', f || null);
                     map.setPaintProperty('sectores-label', 'text-color', EXPR_SECTORES_LABEL);
                 }
             }

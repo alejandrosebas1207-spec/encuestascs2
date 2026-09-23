@@ -32,6 +32,7 @@ const PORT = Number(process.env.PORT) || 3001;
 
 // El identificador y el token se reciben por variables de entorno de Render.
 const ASSET_ID = limpiarVar(
+    process.env.ASSET_ID_RUMINAHUI ||
     process.env.ASSET_ID_EL_CARMEN ||
     process.env.ASSET_ID_IBARRA ||
     process.env.ASSET_ID ||
@@ -414,15 +415,15 @@ app.get("/api/health", (req, res) => {
 
 app.get("/api/config", (req, res) => {
     res.set("Cache-Control", "no-cache, no-store, must-revalidate");
-    let nombre = process.env.NOMBRE_PROYECTO || "Encuesta El Carmen - Septiembre - 2026";
+    let nombre = process.env.NOMBRE_PROYECTO || "Encuesta Cantonal Rumiñahui - Septiembre - 2026";
     res.json({
         nombreProyecto: nombre,
-        metaEncuestas: Number(process.env.META_ENCUESTAS) || 560,
+        metaEncuestas: Number(process.env.META_ENCUESTAS) || 900,
         campoEncuestador: CAMPO_ENCUESTADOR,
         campoSupervisor: CAMPO_SUPERVISOR,
-        centroLng: process.env.MAPA_CENTRO_LNG ? Number(process.env.MAPA_CENTRO_LNG) : -79.5112,
-        centroLat: process.env.MAPA_CENTRO_LAT ? Number(process.env.MAPA_CENTRO_LAT) : -0.4455,
-        zoomInicial: process.env.MAPA_ZOOM_INICIAL ? Number(process.env.MAPA_ZOOM_INICIAL) : 10.5
+        centroLng: process.env.MAPA_CENTRO_LNG ? Number(process.env.MAPA_CENTRO_LNG) : -78.4450,
+        centroLat: process.env.MAPA_CENTRO_LAT ? Number(process.env.MAPA_CENTRO_LAT) : -0.3320,
+        zoomInicial: process.env.MAPA_ZOOM_INICIAL ? Number(process.env.MAPA_ZOOM_INICIAL) : 12.5
     });
 });
 
