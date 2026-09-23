@@ -26,13 +26,13 @@
 
   <!-- Preload Cartografía Clave (Caché optimizada para móviles) -->
   <link rel="preload" href="assets/parroquias.geojson?v=ruminahui-1.0.0" as="fetch" crossorigin>
-  <link rel="preload" href="assets/sectores_censales.geojson?v=ruminahui-1.0.1" as="fetch" crossorigin>
+  <link rel="preload" href="assets/sectores_censales.geojson?v=ruminahui-1.0.2" as="fetch" crossorigin>
 
   <!-- MapLibre GL CSS (Aceleración WebGL Nativa en GPU) -->
   <link rel="stylesheet" href="libs/maplibre-gl.css" />
 
   <!-- Estilos del Dashboard -->
-  <link rel="stylesheet" href="style.css?v=5.9.3">
+  <link rel="stylesheet" href="style.css?v=5.9.4">
 </head>
 <body>
 
@@ -451,11 +451,11 @@
 
   <!-- ===== SCRIPTS ===== -->
   <script src="libs/maplibre-gl.js"></script>
-  <script src="script.js?v=5.9.3"></script>
+  <script src="script.js?v=5.9.4"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/service-worker.js?v=26').then(reg => {
+        navigator.serviceWorker.register('/service-worker.js?v=27').then(reg => {
           if (reg && reg.update) reg.update();
         }).catch(error => {
           console.warn('No se pudo preparar el modo sin conexión:', error);

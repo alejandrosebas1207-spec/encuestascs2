@@ -1972,7 +1972,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let sectoresData = { type: 'FeatureCollection', features: [] };
 
         try {
-            const cacheBuster = '?v=ruminahui-1.0.1';
+            const cacheBuster = '?v=ruminahui-1.0.2';
             const [resPar, resSec, resCirc] = await Promise.all([
                 fetch('assets/parroquias.geojson' + cacheBuster),
                 fetch('assets/sectores_censales.geojson' + cacheBuster),
@@ -2284,7 +2284,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         id: 'sectores-fill',
                         type: 'fill',
                         source: 'sectores-source',
-                        filter: ['any', ['==', '$type', 'Polygon']],
+                        filter: ['==', '$type', 'Polygon'],
                         paint: {
                             'fill-color': EXPR_SECTORES_FILL,
                             'fill-opacity': 0.22
@@ -2294,7 +2294,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         id: 'sectores-line',
                         type: 'line',
                         source: 'sectores-source',
-                        filter: ['any', ['==', '$type', 'Polygon']],
+                        filter: ['==', '$type', 'Polygon'],
                         paint: {
                             'line-color': EXPR_SECTORES_LINE,
                             'line-width': [
@@ -3128,11 +3128,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 const labelActivo = colParroquia ? colParroquia.label : '#7c2d12';
 
                 if (map.getLayer('sectores-fill')) {
-                    map.setFilter('sectores-fill', ['all', ['any', ['==', '$type', 'Polygon']], filterSC]);
+                    map.setFilter('sectores-fill', filterSC);
                     map.setPaintProperty('sectores-fill', 'fill-opacity', 0.40);
                 }
                 if (map.getLayer('sectores-line')) {
-                    map.setFilter('sectores-line', ['all', ['any', ['==', '$type', 'Polygon']], filterSC]);
+                    map.setFilter('sectores-line', filterSC);
                     map.setPaintProperty('sectores-line', 'line-width', 4.0);
                     map.setPaintProperty('sectores-line', 'line-color', lineActivo);
                 }
@@ -3195,14 +3195,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     : (baseFilter || filterPendientes);
 
                 if (map.getLayer('sectores-fill')) {
-                    const fillFilter = f ? ['all', ['any', ['==', '$type', 'Polygon']], f] : ['any', ['==', '$type', 'Polygon']];
-                    map.setFilter('sectores-fill', fillFilter);
+                    map.setFilter('sectores-fill', f || null);
                     map.setPaintProperty('sectores-fill', 'fill-color', EXPR_SECTORES_FILL);
                     map.setPaintProperty('sectores-fill', 'fill-opacity', 0.22);
                 }
                 if (map.getLayer('sectores-line')) {
-                    const lineFilter = f ? ['all', ['any', ['==', '$type', 'Polygon']], f] : ['any', ['==', '$type', 'Polygon']];
-                    map.setFilter('sectores-line', lineFilter);
+                    map.setFilter('sectores-line', f || null);
                     map.setPaintProperty('sectores-line', 'line-color', EXPR_SECTORES_LINE);
                     map.setPaintProperty('sectores-line', 'line-width', [
                         'interpolate', ['linear'], ['zoom'],
