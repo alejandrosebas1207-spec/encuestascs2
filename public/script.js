@@ -2941,6 +2941,21 @@ document.addEventListener('DOMContentLoaded', () => {
             const muestras = p.muestras || 0;
             const col = p.color || '#400054';
 
+            // Activar la circunscripción seleccionada al hacer clic sobre su polígono
+            const circId = p.circunscripcion || '';
+            if (circId) {
+                if (AppState.circunscripcionSeleccionada === circId) {
+                    AppState.circunscripcionSeleccionada = 'Todas';
+                } else {
+                    AppState.circunscripcionSeleccionada = circId;
+                }
+                AppState.parroquiaSeleccionada = 'Todas';
+                AppState.sectorSeleccionado = 'Todos';
+                if (UI.circunscripcionFilter) UI.circunscripcionFilter.value = AppState.circunscripcionSeleccionada;
+                poblarFiltros();
+                renderizarVista(true, true);
+            }
+
             new maplibregl.Popup({ offset: [0, -10], closeButton: true })
                 .setLngLat(e.lngLat)
                 .setHTML(`
@@ -3256,18 +3271,29 @@ document.addEventListener('DOMContentLoaded', () => {
         if (map.getLayer('circunscripciones-line')) {
             if (AppState.circunscripcionSeleccionada && AppState.circunscripcionSeleccionada !== 'Todas') {
                 const targetCirc = normCirc(AppState.circunscripcionSeleccionada);
+                let allowedCircs = [];
+                if (targetCirc === 'CIRCUNSCRIPCION URBANA 1') {
+                    allowedCircs = ['CIRCUNSCRIPCION URBANA 1', 'Circunscripcion 1', 'CIRCUNSCRIPCION 1'];
+                } else if (targetCirc === 'CIRCUNSCRIPCION URBANA 2') {
+                    allowedCircs = ['CIRCUNSCRIPCION URBANA 2', 'Circunscripcion 2', 'CIRCUNSCRIPCION 2'];
+                } else if (targetCirc === 'CIRCUNSCRIPCION RURAL') {
+                    allowedCircs = ['CIRCUNSCRIPCION RURAL', 'Circunscripcion Rural'];
+                }
+
+                // Filtrar para mostrar EXCLUSIVAMENTE la circunscripción activa (desaparecen las demás)
                 const filterCirc = [
                     'any',
-                    ['==', ['upcase', ['coalesce', ['get', 'circunscripcion_norm'], ['get', 'circunscripcion'], '']], targetCirc],
-                    ['in', targetCirc, ['upcase', ['coalesce', ['get', 'circunscripcion_norm'], ['get', 'circunscripcion'], '']]]
+                    ['in', ['get', 'circunscripcion_norm'], ['literal', allowedCircs]],
+                    ['in', ['get', 'circunscripcion'], ['literal', allowedCircs]],
+                    ['in', ['upcase', ['coalesce', ['get', 'circunscripcion'], '']], ['literal', allowedCircs]]
                 ];
                 map.setFilter('circunscripciones-line', filterCirc);
-                map.setPaintProperty('circunscripciones-line', 'line-width', 4.2);
+                map.setPaintProperty('circunscripciones-line', 'line-width', 4.5);
                 map.setPaintProperty('circunscripciones-line', 'line-opacity', 1.0);
 
                 if (map.getLayer('circunscripciones-fill')) {
                     map.setFilter('circunscripciones-fill', filterCirc);
-                    map.setPaintProperty('circunscripciones-fill', 'fill-opacity', 0.25);
+                    map.setPaintProperty('circunscripciones-fill', 'fill-opacity', 0.28);
                 }
                 if (map.getLayer('circunscripciones-label')) {
                     map.setFilter('circunscripciones-label', filterCirc);
@@ -3318,6 +3344,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (map.getLayer('parroquias-label')) {
                     map.setFilter('parroquias-label', filterSoloParroquia);
+                    map.setPaintProperty('parroquias-label', 'text-color', EXPR_PARROQUIAS_LABEL);
+                }
+            } else if (AppState.circunscripcionSeleccionada && AppState.circunscripcionSeleccionada !== 'Todas') {
+                // Si hay circunscripción seleccionada: AISLAR SOLO LAS PARROQUIAS DE ESA CIRCUNSCRIPCIÓN (desaparecen las demás)
+                const targetCirc = normCirc(AppState.circunscripcionSeleccionada);
+                let parsCirc = [];
+                if (targetCirc === 'CIRCUNSCRIPCION RURAL') {
+                    parsCirc = ['COTOGCHOA', 'RUMIPAMBA'];
+                } else if (targetCirc === 'CIRCUNSCRIPCION URBANA 1') {
+                    parsCirc = ['FAJARDO', 'SAN PEDRO DE TABOADA', 'SAN RAFAEL', 'SANGOLQUI', 'SANGOLQUÍ'];
+                } else if (targetCirc === 'CIRCUNSCRIPCION URBANA 2') {
+                    parsCirc = ['SANGOLQUI', 'SANGOLQUÍ'];
+                }
+
+                const filterParroquiaCirc = [
+                    'any',
+                    ['in', ['upcase', ['coalesce', ['get', 'nombre'], ['get', 'PARROQUIA'], '']], ['literal', parsCirc]]
+                ];
+
+                map.setFilter('parroquias-line', filterParroquiaCirc);
+                map.setPaintProperty('parroquias-line', 'line-width', 3.2);
+                map.setPaintProperty('parroquias-line', 'line-color', EXPR_PARROQUIAS_LINE);
+                map.setPaintProperty('parroquias-line', 'line-opacity', 0.95);
+
+                if (map.getLayer('parroquias-fill')) {
+                    map.setFilter('parroquias-fill', filterParroquiaCirc);
+                    map.setPaintProperty('parroquias-fill', 'fill-color', EXPR_PARROQUIAS_FILL);
+                    map.setPaintProperty('parroquias-fill', 'fill-opacity', 0.14);
+                }
+
+                if (map.getLayer('parroquias-label')) {
+                    map.setFilter('parroquias-label', filterParroquiaCirc);
                     map.setPaintProperty('parroquias-label', 'text-color', EXPR_PARROQUIAS_LABEL);
                 }
             } else {
@@ -3427,10 +3485,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 const filtrosBase = [];
                 if (AppState.circunscripcionSeleccionada && AppState.circunscripcionSeleccionada !== 'Todas') {
                     const targetCirc = normCirc(AppState.circunscripcionSeleccionada);
+                    let allowedCircs = [];
+                    if (targetCirc === 'CIRCUNSCRIPCION URBANA 1') {
+                        allowedCircs = ['CIRCUNSCRIPCION URBANA 1', 'CIRCUNSCRIPCION 1', 'Circunscripcion 1'];
+                    } else if (targetCirc === 'CIRCUNSCRIPCION URBANA 2') {
+                        allowedCircs = ['CIRCUNSCRIPCION URBANA 2', 'CIRCUNSCRIPCION 2', 'Circunscripcion 2'];
+                    } else if (targetCirc === 'CIRCUNSCRIPCION RURAL') {
+                        allowedCircs = ['CIRCUNSCRIPCION RURAL', 'Circunscripcion Rural'];
+                    }
                     filtrosBase.push([
                         'any',
-                        ['==', ['upcase', ['coalesce', ['get', 'circunscripcion'], ['get', 'CIRCUNSCRIPCION'], '']], targetCirc],
-                        ['in', targetCirc, ['upcase', ['coalesce', ['get', 'circunscripcion'], ['get', 'CIRCUNSCRIPCION'], '']]]
+                        ['in', ['upcase', ['coalesce', ['get', 'circunscripcion'], ['get', 'CIRCUNSCRIPCION'], '']], ['literal', allowedCircs]]
                     ]);
                 }
                 if (AppState.parroquiaSeleccionada && AppState.parroquiaSeleccionada !== 'Todas') {
