@@ -1,11 +1,11 @@
 /* Modo de contingencia: conserva solo la aplicación y cartografía pública.
  * No almacena respuestas de Kobo ni coordenadas de encuestas en el teléfono. */
-const CACHE_NAME = 'clima-social-ruminahui-v1.0.6';
+const CACHE_NAME = 'clima-social-ruminahui-v1.0.7';
 const APP_SHELL = [
   '/',
   '/index.html',
   '/style.css?v=5.9.6',
-  '/script.js?v=5.9.8',
+  '/script.js?v=5.9.9',
   '/libs/maplibre-gl.js',
   '/libs/maplibre-gl.css',
   '/assets/icono.png',

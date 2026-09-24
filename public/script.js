@@ -2503,7 +2503,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         id: 'sectores-fill',
                         type: 'fill',
                         source: 'sectores-source',
-                        filter: ['==', '$type', 'Polygon'],
+                        filter: ['==', ['geometry-type'], 'Polygon'],
                         paint: {
                             'fill-color': EXPR_SECTORES_FILL,
                             'fill-opacity': 0.22
@@ -2513,7 +2513,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         id: 'sectores-line',
                         type: 'line',
                         source: 'sectores-source',
-                        filter: ['==', '$type', 'Polygon'],
+                        filter: ['==', ['geometry-type'], 'Polygon'],
                         paint: {
                             'line-color': EXPR_SECTORES_LINE,
                             'line-width': [
@@ -2530,7 +2530,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         id: 'sectores-point',
                         type: 'symbol',
                         source: 'sectores-source',
-                        filter: ['==', '$type', 'Point'],
+                        filter: ['==', ['geometry-type'], 'Point'],
                         layout: {
                             'icon-image': EXPR_PIN_ICON,
                             'icon-size': [
@@ -3387,15 +3387,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 map.setFilter('parroquias-line', filterSoloParroquia);
                 map.setPaintProperty('parroquias-line', 'line-width', 3.8);
                 map.setPaintProperty('parroquias-line', 'line-color', EXPR_PARROQUIAS_LINE);
-                map.setPaintProperty('parroquias-line', 'line-opacity', 1.0);
+                if (map.getLayer('parroquias-line')) {
+                    map.setLayoutProperty('parroquias-line', 'visibility', 'visible');
+                    map.setFilter('parroquias-line', filterSoloParroquia);
+                    map.setPaintProperty('parroquias-line', 'line-width', 3.8);
+                    map.setPaintProperty('parroquias-line', 'line-color', EXPR_PARROQUIAS_LINE);
+                    map.setPaintProperty('parroquias-line', 'line-opacity', 1.0);
+                }
 
                 if (map.getLayer('parroquias-fill')) {
+                    map.setLayoutProperty('parroquias-fill', 'visibility', 'visible');
                     map.setFilter('parroquias-fill', filterSoloParroquia);
                     map.setPaintProperty('parroquias-fill', 'fill-color', EXPR_PARROQUIAS_FILL);
                     map.setPaintProperty('parroquias-fill', 'fill-opacity', 0.20);
                 }
 
                 if (map.getLayer('parroquias-label')) {
+                    map.setLayoutProperty('parroquias-label', 'visibility', 'visible');
                     map.setFilter('parroquias-label', filterSoloParroquia);
                     map.setPaintProperty('parroquias-label', 'text-color', EXPR_PARROQUIAS_LABEL);
                 }
@@ -3403,7 +3411,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Al filtrar por circunscripción con parroquia en "Todas":
                 // 1) Ocultar completamente el relleno de parroquias para que Sangolquí no invada la otra circunscripción
                 if (map.getLayer('parroquias-fill')) {
-                    map.setFilter('parroquias-fill', ['==', '$type', 'None']);
+                    map.setLayoutProperty('parroquias-fill', 'visibility', 'none');
                 }
 
                 // 2) Ajustar líneas y etiquetas parroquiales de forma estrictamente confinada a la circunscripción activa
@@ -3416,20 +3424,26 @@ document.addEventListener('DOMContentLoaded', () => {
                         ['==', ['upcase', ['coalesce', ['get', 'nombre'], ['get', 'PARROQUIA'], '']], 'SAN PEDRO DE TABOADA'],
                         ['==', ['upcase', ['coalesce', ['get', 'nombre'], ['get', 'PARROQUIA'], '']], 'SAN RAFAEL']
                     ];
-                    map.setFilter('parroquias-line', filterParroquiaCirc);
-                    map.setPaintProperty('parroquias-line', 'line-width', 2.0);
-                    map.setPaintProperty('parroquias-line', 'line-color', EXPR_PARROQUIAS_LINE);
-                    map.setPaintProperty('parroquias-line', 'line-opacity', 0.70);
+                    if (map.getLayer('parroquias-line')) {
+                        map.setLayoutProperty('parroquias-line', 'visibility', 'visible');
+                        map.setFilter('parroquias-line', filterParroquiaCirc);
+                        map.setPaintProperty('parroquias-line', 'line-width', 2.0);
+                        map.setPaintProperty('parroquias-line', 'line-color', EXPR_PARROQUIAS_LINE);
+                        map.setPaintProperty('parroquias-line', 'line-opacity', 0.70);
+                    }
 
                     if (map.getLayer('parroquias-label')) {
+                        map.setLayoutProperty('parroquias-label', 'visibility', 'visible');
                         map.setFilter('parroquias-label', filterParroquiaCirc);
                         map.setPaintProperty('parroquias-label', 'text-color', EXPR_PARROQUIAS_LABEL);
                     }
                 } else if (targetCirc === 'CIRCUNSCRIPCION URBANA 2') {
                     // Sangolquí es la circunscripción completa; su límite oficial ya lo traza circunscripciones-line
-                    map.setFilter('parroquias-line', ['==', '$type', 'None']);
+                    if (map.getLayer('parroquias-line')) {
+                        map.setLayoutProperty('parroquias-line', 'visibility', 'none');
+                    }
                     if (map.getLayer('parroquias-label')) {
-                        map.setFilter('parroquias-label', ['==', '$type', 'None']);
+                        map.setLayoutProperty('parroquias-label', 'visibility', 'none');
                     }
                 } else if (targetCirc === 'CIRCUNSCRIPCION RURAL') {
                     const filterParroquiaCirc = [
@@ -3437,35 +3451,44 @@ document.addEventListener('DOMContentLoaded', () => {
                         ['==', ['upcase', ['coalesce', ['get', 'nombre'], ['get', 'PARROQUIA'], '']], 'COTOGCHOA'],
                         ['==', ['upcase', ['coalesce', ['get', 'nombre'], ['get', 'PARROQUIA'], '']], 'RUMIPAMBA']
                     ];
-                    map.setFilter('parroquias-line', filterParroquiaCirc);
-                    map.setPaintProperty('parroquias-line', 'line-width', 2.0);
-                    map.setPaintProperty('parroquias-line', 'line-color', EXPR_PARROQUIAS_LINE);
-                    map.setPaintProperty('parroquias-line', 'line-opacity', 0.70);
+                    if (map.getLayer('parroquias-line')) {
+                        map.setLayoutProperty('parroquias-line', 'visibility', 'visible');
+                        map.setFilter('parroquias-line', filterParroquiaCirc);
+                        map.setPaintProperty('parroquias-line', 'line-width', 2.0);
+                        map.setPaintProperty('parroquias-line', 'line-color', EXPR_PARROQUIAS_LINE);
+                        map.setPaintProperty('parroquias-line', 'line-opacity', 0.70);
+                    }
 
                     if (map.getLayer('parroquias-label')) {
+                        map.setLayoutProperty('parroquias-label', 'visibility', 'visible');
                         map.setFilter('parroquias-label', filterParroquiaCirc);
                         map.setPaintProperty('parroquias-label', 'text-color', EXPR_PARROQUIAS_LABEL);
                     }
                 }
             } else {
                 // Vista global: todas las 12 parroquias con su paleta de color diferenciada
-                map.setFilter('parroquias-line', null);
-                map.setPaintProperty('parroquias-line', 'line-width', [
-                    'interpolate', ['linear'], ['zoom'],
-                    9, 1.4,
-                    12, 2.2,
-                    15, 3.2
-                ]);
-                map.setPaintProperty('parroquias-line', 'line-color', EXPR_PARROQUIAS_LINE);
-                map.setPaintProperty('parroquias-line', 'line-opacity', 0.90);
+                if (map.getLayer('parroquias-line')) {
+                    map.setLayoutProperty('parroquias-line', 'visibility', 'visible');
+                    map.setFilter('parroquias-line', null);
+                    map.setPaintProperty('parroquias-line', 'line-width', [
+                        'interpolate', ['linear'], ['zoom'],
+                        9, 1.4,
+                        12, 2.2,
+                        15, 3.2
+                    ]);
+                    map.setPaintProperty('parroquias-line', 'line-color', EXPR_PARROQUIAS_LINE);
+                    map.setPaintProperty('parroquias-line', 'line-opacity', 0.90);
+                }
 
                 if (map.getLayer('parroquias-fill')) {
+                    map.setLayoutProperty('parroquias-fill', 'visibility', 'visible');
                     map.setFilter('parroquias-fill', null);
                     map.setPaintProperty('parroquias-fill', 'fill-color', EXPR_PARROQUIAS_FILL);
                     map.setPaintProperty('parroquias-fill', 'fill-opacity', 0.08);
                 }
 
                 if (map.getLayer('parroquias-label')) {
+                    map.setLayoutProperty('parroquias-label', 'visibility', 'visible');
                     map.setFilter('parroquias-label', null);
                     map.setPaintProperty('parroquias-label', 'text-color', EXPR_PARROQUIAS_LABEL);
                 }
@@ -3508,7 +3531,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     map.setPaintProperty('sectores-line', 'line-color', lineActivo);
                 }
                 if (map.getLayer('sectores-point')) {
-                    map.setFilter('sectores-point', ['all', ['==', '$type', 'Point'], filterSC]);
+                    map.setFilter('sectores-point', ['all', ['==', ['geometry-type'], 'Point'], filterSC]);
                     map.setLayoutProperty('sectores-point', 'icon-image', 'pin-activo');
                     map.setLayoutProperty('sectores-point', 'icon-size', 1.25);
                 }
@@ -3581,13 +3604,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     ? ['all', baseFilter, filterPendientes] 
                     : (baseFilter || filterPendientes);
 
+                const polyFilter = f ? ['all', ['==', ['geometry-type'], 'Polygon'], f] : ['==', ['geometry-type'], 'Polygon'];
+                const pointFilter = f ? ['all', ['==', ['geometry-type'], 'Point'], f] : ['==', ['geometry-type'], 'Point'];
+
                 if (map.getLayer('sectores-fill')) {
-                    map.setFilter('sectores-fill', f || null);
+                    map.setFilter('sectores-fill', polyFilter);
                     map.setPaintProperty('sectores-fill', 'fill-color', EXPR_SECTORES_FILL);
                     map.setPaintProperty('sectores-fill', 'fill-opacity', 0.22);
                 }
                 if (map.getLayer('sectores-line')) {
-                    map.setFilter('sectores-line', f || null);
+                    map.setFilter('sectores-line', polyFilter);
                     map.setPaintProperty('sectores-line', 'line-color', EXPR_SECTORES_LINE);
                     map.setPaintProperty('sectores-line', 'line-width', [
                         'interpolate', ['linear'], ['zoom'],
@@ -3597,7 +3623,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     ]);
                 }
                 if (map.getLayer('sectores-point')) {
-                    const pointFilter = f ? ['all', ['==', '$type', 'Point'], f] : ['==', '$type', 'Point'];
                     map.setFilter('sectores-point', pointFilter);
                     map.setLayoutProperty('sectores-point', 'icon-image', EXPR_PIN_ICON);
                     map.setLayoutProperty('sectores-point', 'icon-size', [
