@@ -686,6 +686,27 @@ document.addEventListener('DOMContentLoaded', () => {
         return sector ? (sector.parroquia || (sector.props && sector.props.parroquia) || '') : '';
     }
 
+    function obtenerCircunscripcionEncuesta(encuesta) {
+        if (!encuesta) return '';
+        const sector = resolverSectorEncuesta(encuesta);
+        if (sector && sector.props && sector.props.circunscripcion) {
+            return normCirc(sector.props.circunscripcion);
+        }
+        const scRaw = String(encuesta.sc || campo(encuesta, 'sc') || campo(encuesta, 'num_muestra') || '').trim();
+        if (scRaw === '30') return 'CIRCUNSCRIPCION URBANA 1';
+        const scNum = parseInt(scRaw, 10);
+        if (!isNaN(scNum)) {
+            if (scNum >= 1 && scNum <= 7) return 'CIRCUNSCRIPCION RURAL';
+            if (scNum >= 8 && scNum <= 30) return 'CIRCUNSCRIPCION URBANA 1';
+            if (scNum >= 31 && scNum <= 90) return 'CIRCUNSCRIPCION URBANA 2';
+        }
+        const parr = normTexto(obtenerParroquiaEncuesta(encuesta));
+        if (parr.includes('COTOGCHOA') || parr.includes('RUMIPAMBA')) return 'CIRCUNSCRIPCION RURAL';
+        if (parr.includes('FAJARDO') || parr.includes('TABOADA') || parr.includes('RAFAEL')) return 'CIRCUNSCRIPCION URBANA 1';
+        if (parr.includes('SANGOLQUI')) return 'CIRCUNSCRIPCION URBANA 2';
+        return '';
+    }
+
     function obtenerCantonEncuesta(encuesta) {
         return 'Rumiñahui';
     }
@@ -1835,6 +1856,15 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
+        // Filtro por Circunscripción (Rural, Circunscripción 1, Circunscripción 2)
+        if (AppState.circunscripcionSeleccionada && AppState.circunscripcionSeleccionada !== 'Todas') {
+            const targetCirc = normCirc(AppState.circunscripcionSeleccionada);
+            filtradas = filtradas.filter(e => {
+                const circEnc = obtenerCircunscripcionEncuesta(e);
+                return circEnc === targetCirc;
+            });
+        }
+
         // Filtro por Parroquia
         if (AppState.parroquiaSeleccionada !== 'Todas') {
             const target = normTexto(AppState.parroquiaSeleccionada);
@@ -1958,6 +1988,39 @@ document.addEventListener('DOMContentLoaded', () => {
                 subPendientes: `Para meta en ${AppState.parroquiaSeleccionada}`,
                 tituloAvance: `Avance Parroquia`,
                 subAvance: `${numSectores || 1} puntos (${metaParr} encuestas)`
+            };
+        }
+
+        // 2.5. Filtro por Circunscripción (Rural: 70, Circ 1: 230, Circ 2: 600)
+        if (AppState.circunscripcionSeleccionada && AppState.circunscripcionSeleccionada !== 'Todas') {
+            const targetCirc = normCirc(AppState.circunscripcionSeleccionada);
+            let metaCirc = 900;
+            let labelCirc = AppState.circunscripcionSeleccionada;
+            let numSectoresCirc = 0;
+            if (AppState.sectoresGeojson && Array.isArray(AppState.sectoresGeojson.features)) {
+                numSectoresCirc = AppState.sectoresGeojson.features.filter(f => {
+                    const props = f.properties || {};
+                    return normCirc(props.circunscripcion || '') === targetCirc;
+                }).length;
+            }
+            if (targetCirc === 'CIRCUNSCRIPCION RURAL') {
+                metaCirc = 70;
+                labelCirc = 'Circunscripción Rural';
+            } else if (targetCirc === 'CIRCUNSCRIPCION URBANA 1') {
+                metaCirc = 230;
+                labelCirc = 'Circunscripción 1';
+            } else if (targetCirc === 'CIRCUNSCRIPCION URBANA 2') {
+                metaCirc = 600;
+                labelCirc = 'Circunscripción 2';
+            } else {
+                metaCirc = Math.max(10, (numSectoresCirc || 1) * 10);
+            }
+            return {
+                meta: metaCirc,
+                etiquetaMeta: `Meta: ${metaCirc.toLocaleString()} (${labelCirc})`,
+                subPendientes: `Para meta en ${labelCirc}`,
+                tituloAvance: `Avance ${labelCirc}`,
+                subAvance: `${numSectoresCirc || Math.round(metaCirc / 10)} sectores (${metaCirc} encuestas)`
             };
         }
 
@@ -3271,21 +3334,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (map.getLayer('circunscripciones-line')) {
             if (AppState.circunscripcionSeleccionada && AppState.circunscripcionSeleccionada !== 'Todas') {
                 const targetCirc = normCirc(AppState.circunscripcionSeleccionada);
-                let allowedCircs = [];
-                if (targetCirc === 'CIRCUNSCRIPCION URBANA 1') {
-                    allowedCircs = ['CIRCUNSCRIPCION URBANA 1', 'Circunscripcion 1', 'CIRCUNSCRIPCION 1'];
-                } else if (targetCirc === 'CIRCUNSCRIPCION URBANA 2') {
-                    allowedCircs = ['CIRCUNSCRIPCION URBANA 2', 'Circunscripcion 2', 'CIRCUNSCRIPCION 2'];
-                } else if (targetCirc === 'CIRCUNSCRIPCION RURAL') {
-                    allowedCircs = ['CIRCUNSCRIPCION RURAL', 'Circunscripcion Rural'];
-                }
-
-                // Filtrar para mostrar EXCLUSIVAMENTE la circunscripción activa (desaparecen las demás)
                 const filterCirc = [
                     'any',
-                    ['in', ['get', 'circunscripcion_norm'], ['literal', allowedCircs]],
-                    ['in', ['get', 'circunscripcion'], ['literal', allowedCircs]],
-                    ['in', ['upcase', ['coalesce', ['get', 'circunscripcion'], '']], ['literal', allowedCircs]]
+                    ['==', ['get', 'circunscripcion_norm'], targetCirc],
+                    ['==', ['upcase', ['coalesce', ['get', 'circunscripcion'], '']], targetCirc],
+                    ['==', ['get', 'circunscripcion'], targetCirc === 'CIRCUNSCRIPCION URBANA 1' ? 'Circunscripcion 1' : (targetCirc === 'CIRCUNSCRIPCION URBANA 2' ? 'Circunscripcion 2' : 'Circunscripcion Rural')]
                 ];
                 map.setFilter('circunscripciones-line', filterCirc);
                 map.setPaintProperty('circunscripciones-line', 'line-width', 4.5);
@@ -3347,36 +3400,52 @@ document.addEventListener('DOMContentLoaded', () => {
                     map.setPaintProperty('parroquias-label', 'text-color', EXPR_PARROQUIAS_LABEL);
                 }
             } else if (AppState.circunscripcionSeleccionada && AppState.circunscripcionSeleccionada !== 'Todas') {
-                // Si hay circunscripción seleccionada: AISLAR SOLO LAS PARROQUIAS DE ESA CIRCUNSCRIPCIÓN (desaparecen las demás)
-                const targetCirc = normCirc(AppState.circunscripcionSeleccionada);
-                let parsCirc = [];
-                if (targetCirc === 'CIRCUNSCRIPCION RURAL') {
-                    parsCirc = ['COTOGCHOA', 'RUMIPAMBA'];
-                } else if (targetCirc === 'CIRCUNSCRIPCION URBANA 1') {
-                    parsCirc = ['FAJARDO', 'SAN PEDRO DE TABOADA', 'SAN RAFAEL', 'SANGOLQUI', 'SANGOLQUÍ'];
-                } else if (targetCirc === 'CIRCUNSCRIPCION URBANA 2') {
-                    parsCirc = ['SANGOLQUI', 'SANGOLQUÍ'];
-                }
-
-                const filterParroquiaCirc = [
-                    'any',
-                    ['in', ['upcase', ['coalesce', ['get', 'nombre'], ['get', 'PARROQUIA'], '']], ['literal', parsCirc]]
-                ];
-
-                map.setFilter('parroquias-line', filterParroquiaCirc);
-                map.setPaintProperty('parroquias-line', 'line-width', 3.2);
-                map.setPaintProperty('parroquias-line', 'line-color', EXPR_PARROQUIAS_LINE);
-                map.setPaintProperty('parroquias-line', 'line-opacity', 0.95);
-
+                // Al filtrar por circunscripción con parroquia en "Todas":
+                // 1) Ocultar completamente el relleno de parroquias para que Sangolquí no invada la otra circunscripción
                 if (map.getLayer('parroquias-fill')) {
-                    map.setFilter('parroquias-fill', filterParroquiaCirc);
-                    map.setPaintProperty('parroquias-fill', 'fill-color', EXPR_PARROQUIAS_FILL);
-                    map.setPaintProperty('parroquias-fill', 'fill-opacity', 0.14);
+                    map.setFilter('parroquias-fill', ['==', '$type', 'None']);
                 }
 
-                if (map.getLayer('parroquias-label')) {
-                    map.setFilter('parroquias-label', filterParroquiaCirc);
-                    map.setPaintProperty('parroquias-label', 'text-color', EXPR_PARROQUIAS_LABEL);
+                // 2) Ajustar líneas y etiquetas parroquiales de forma estrictamente confinada a la circunscripción activa
+                const targetCirc = normCirc(AppState.circunscripcionSeleccionada);
+                if (targetCirc === 'CIRCUNSCRIPCION URBANA 1') {
+                    // Solo trazar linderos internos de Fajardo, San Pedro de Taboada y San Rafael (excluir Sangolquí)
+                    const filterParroquiaCirc = [
+                        'any',
+                        ['==', ['upcase', ['coalesce', ['get', 'nombre'], ['get', 'PARROQUIA'], '']], 'FAJARDO'],
+                        ['==', ['upcase', ['coalesce', ['get', 'nombre'], ['get', 'PARROQUIA'], '']], 'SAN PEDRO DE TABOADA'],
+                        ['==', ['upcase', ['coalesce', ['get', 'nombre'], ['get', 'PARROQUIA'], '']], 'SAN RAFAEL']
+                    ];
+                    map.setFilter('parroquias-line', filterParroquiaCirc);
+                    map.setPaintProperty('parroquias-line', 'line-width', 2.0);
+                    map.setPaintProperty('parroquias-line', 'line-color', EXPR_PARROQUIAS_LINE);
+                    map.setPaintProperty('parroquias-line', 'line-opacity', 0.70);
+
+                    if (map.getLayer('parroquias-label')) {
+                        map.setFilter('parroquias-label', filterParroquiaCirc);
+                        map.setPaintProperty('parroquias-label', 'text-color', EXPR_PARROQUIAS_LABEL);
+                    }
+                } else if (targetCirc === 'CIRCUNSCRIPCION URBANA 2') {
+                    // Sangolquí es la circunscripción completa; su límite oficial ya lo traza circunscripciones-line
+                    map.setFilter('parroquias-line', ['==', '$type', 'None']);
+                    if (map.getLayer('parroquias-label')) {
+                        map.setFilter('parroquias-label', ['==', '$type', 'None']);
+                    }
+                } else if (targetCirc === 'CIRCUNSCRIPCION RURAL') {
+                    const filterParroquiaCirc = [
+                        'any',
+                        ['==', ['upcase', ['coalesce', ['get', 'nombre'], ['get', 'PARROQUIA'], '']], 'COTOGCHOA'],
+                        ['==', ['upcase', ['coalesce', ['get', 'nombre'], ['get', 'PARROQUIA'], '']], 'RUMIPAMBA']
+                    ];
+                    map.setFilter('parroquias-line', filterParroquiaCirc);
+                    map.setPaintProperty('parroquias-line', 'line-width', 2.0);
+                    map.setPaintProperty('parroquias-line', 'line-color', EXPR_PARROQUIAS_LINE);
+                    map.setPaintProperty('parroquias-line', 'line-opacity', 0.70);
+
+                    if (map.getLayer('parroquias-label')) {
+                        map.setFilter('parroquias-label', filterParroquiaCirc);
+                        map.setPaintProperty('parroquias-label', 'text-color', EXPR_PARROQUIAS_LABEL);
+                    }
                 }
             } else {
                 // Vista global: todas las 12 parroquias con su paleta de color diferenciada
@@ -3485,17 +3554,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 const filtrosBase = [];
                 if (AppState.circunscripcionSeleccionada && AppState.circunscripcionSeleccionada !== 'Todas') {
                     const targetCirc = normCirc(AppState.circunscripcionSeleccionada);
-                    let allowedCircs = [];
-                    if (targetCirc === 'CIRCUNSCRIPCION URBANA 1') {
-                        allowedCircs = ['CIRCUNSCRIPCION URBANA 1', 'CIRCUNSCRIPCION 1', 'Circunscripcion 1'];
-                    } else if (targetCirc === 'CIRCUNSCRIPCION URBANA 2') {
-                        allowedCircs = ['CIRCUNSCRIPCION URBANA 2', 'CIRCUNSCRIPCION 2', 'Circunscripcion 2'];
-                    } else if (targetCirc === 'CIRCUNSCRIPCION RURAL') {
-                        allowedCircs = ['CIRCUNSCRIPCION RURAL', 'Circunscripcion Rural'];
-                    }
                     filtrosBase.push([
                         'any',
-                        ['in', ['upcase', ['coalesce', ['get', 'circunscripcion'], ['get', 'CIRCUNSCRIPCION'], '']], ['literal', allowedCircs]]
+                        ['==', ['upcase', ['coalesce', ['get', 'circunscripcion'], ['get', 'CIRCUNSCRIPCION'], '']], targetCirc],
+                        ['==', ['get', 'circunscripcion_norm'], targetCirc],
+                        ['==', ['upcase', ['get', 'circunscripcion']], targetCirc]
                     ]);
                 }
                 if (AppState.parroquiaSeleccionada && AppState.parroquiaSeleccionada !== 'Todas') {
