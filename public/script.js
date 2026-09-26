@@ -120,14 +120,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Paleta oficial Clima Social de Alto Contraste para Mapa (Supervisores)
     const PALETA_SUPERVISORES = {
-        '1': '#028090', // Teal Intenso Oficial
-        '2': '#e11d48', // Coral / Carmesí Vivo
-        '3': '#d97706', // Ámbar Dorado Brillante
-        '4': '#7c3aed', // Violeta Real Intenso
-        '5': '#059669', // Verde Esmeralda Vivo
-        '6': '#2563eb', // Azul Cobalto Eléctrico
-        '7': '#ea580c', // Naranja Intenso
-        'default': '#f26419'
+        '1': '#028090', // Karina Guadalupe - Teal Intenso Oficial
+        '2': '#e11d48', // Diana Pila - Coral / Carmesí Vivo
+        '3': '#d97706', // Pedro Pérez - Ámbar Dorado Brillante
+        'default': '#400054'
     };
 
     // Paleta cromática distintiva de alto contraste para Encuestadores (excluye Teal #0d9488 de Muestreo)
@@ -163,7 +159,6 @@ document.addEventListener('DOMContentLoaded', () => {
         'Rumiñahui': [
             'COTOGCHOA',
             'FAJARDO',
-            'RUMIPAMBA',
             'SAN PEDRO DE TABOADA',
             'SAN RAFAEL',
             'SANGOLQUÍ',
@@ -186,7 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // =========================================================================
     // PALETA CROMÁTICA OFICIAL POR PARROQUIA (ENCUESTA RUMIÑAHUI 2026)
-    // 6 tonalidades armónicas de alto contraste contra cartografía OpenStreetMap
+    // 5 parroquias oficiales de alto contraste contra cartografía OpenStreetMap
     // =========================================================================
     const COLORES_PARROQUIA = {
         'SANGOLQUÍ': {
@@ -230,28 +225,38 @@ document.addEventListener('DOMContentLoaded', () => {
             fill: '#f43f5e',
             label: '#9f1239',
             badge: '🔴'
-        },
-        'RUMIPAMBA': {
-            nombre: 'Rumipamba',
-            linea: '#0891b2',       // Cian Turquesa
-            fill: '#06b6d4',
-            label: '#0e7490',
-            badge: '🩵'
         }
     };
 
-    // Directorio oficial del Equipo de Campo (El Carmen 2026)
-    const EQUIPO_CAMPO = {
-        '3': { nombre: 'Karina Saltos', etiqueta: 'Encuestadora 3 · Karina Saltos', corta: 'Encuestadora 3' },
-        '4': { nombre: 'Melannie Verduga', etiqueta: 'Encuestadora 4 · Melannie Verduga', corta: 'Encuestadora 4' },
-        '5': { nombre: 'Carmen Zambrano', etiqueta: 'Encuestadora 5 · Carmen Zambrano', corta: 'Encuestadora 5' },
-        '6': { nombre: 'Katherine Chica', etiqueta: 'Encuestadora 6 · Katherine Chica', corta: 'Encuestadora 6' },
-        '7': { nombre: 'Leidy Zambrano', etiqueta: 'Encuestadora 7 · Leidy Zambrano', corta: 'Encuestadora 7' }
+    // Directorio oficial del Equipo de Campo (Rumiñahui - Septiembre 2026)
+    const SUPERVISORES_CAMPO = {
+        '1': 'Karina Guadalupe',
+        '2': 'Diana Pila',
+        '3': 'Pedro Pérez'
     };
 
-    const SUPERVISORES_CAMPO = {
-        '1': 'David Schwarz',
-        '2': 'Nervo Flores'
+    const EQUIPO_CAMPO = {
+        '4': { nombre: 'Evelyn Tobar', supervisor: '1', etiqueta: 'Encuestadora 4 · Evelyn Tobar', corta: 'Enc. 4 · Evelyn' },
+        '5': { nombre: 'Duncan Espinosa', supervisor: '1', etiqueta: 'Encuestador 5 · Duncan Espinosa', corta: 'Enc. 5 · Duncan' },
+        '6': { nombre: 'Verónica Montesdeoca', supervisor: '1', etiqueta: 'Encuestadora 6 · Verónica Montesdeoca', corta: 'Enc. 6 · Verónica' },
+        '7': { nombre: 'Dilan Hernández', supervisor: '2', etiqueta: 'Encuestador 7 · Dilan Hernández', corta: 'Enc. 7 · Dilan' },
+        '8': { nombre: 'Aida Campos', supervisor: '2', etiqueta: 'Encuestadora 8 · Aida Campos', corta: 'Enc. 8 · Aida' },
+        '9': { nombre: 'Jessica Escalante', supervisor: '2', etiqueta: 'Encuestadora 9 · Jessica Escalante', corta: 'Enc. 9 · Jessica' },
+        '10': { nombre: 'Alberto Punguil', supervisor: '3', etiqueta: 'Encuestador 10 · Alberto Punguil', corta: 'Enc. 10 · Alberto' },
+        '11': { nombre: 'Elsa Ulrich', supervisor: '3', etiqueta: 'Encuestadora 11 · Elsa Ulrich', corta: 'Enc. 11 · Elsa' },
+        '12': { nombre: 'Odeth Jibaja', supervisor: '3', etiqueta: 'Encuestadora 12 · Odeth Jibaja', corta: 'Enc. 12 · Odeth' }
+    };
+
+    const SUPERVISOR_ENCUESTADORES = {
+        '1': ['4', '5', '6'],
+        '2': ['7', '8', '9'],
+        '3': ['10', '11', '12']
+    };
+
+    const ENCUESTADOR_A_SUPERVISOR = {
+        '4': '1', '5': '1', '6': '1',
+        '7': '2', '8': '2', '9': '2',
+        '10': '3', '11': '3', '12': '3'
     };
 
     function obtenerEtiquetaEncuestador(id, formato = 'completo') {
@@ -292,7 +297,7 @@ document.addEventListener('DOMContentLoaded', () => {
             .join(' ');
     }
 
-    // Expresiones MapLibre GL por Parroquia (Pintado vectorial diferenciado de las 6 parroquias de Rumiñahui)
+    // Expresiones MapLibre GL por Parroquia (Pintado vectorial diferenciado de las 5 parroquias de Rumiñahui)
     const EXPR_PARROQUIAS_LINE = [
         'match', ['upcase', ['coalesce', ['get', 'nombre'], ['get', 'PARROQUIA'], ['get', 'parroquia'], '']],
         'SANGOLQUÍ', '#2563eb',
@@ -301,7 +306,6 @@ document.addEventListener('DOMContentLoaded', () => {
         'SAN RAFAEL', '#7c3aed',
         'FAJARDO', '#d97706',
         'COTOGCHOA', '#e11d48',
-        'RUMIPAMBA', '#0891b2',
         '#2563eb' // fallback
     ];
 
@@ -313,7 +317,6 @@ document.addEventListener('DOMContentLoaded', () => {
         'SAN RAFAEL', '#8b5cf6',
         'FAJARDO', '#f59e0b',
         'COTOGCHOA', '#f43f5e',
-        'RUMIPAMBA', '#06b6d4',
         '#3b82f6' // fallback
     ];
 
@@ -325,7 +328,6 @@ document.addEventListener('DOMContentLoaded', () => {
         'SAN RAFAEL', '#5b21b6',
         'FAJARDO', '#92400e',
         'COTOGCHOA', '#9f1239',
-        'RUMIPAMBA', '#0e7490',
         '#1e40af' // fallback
     ];
 
@@ -368,7 +370,6 @@ document.addEventListener('DOMContentLoaded', () => {
         'SAN RAFAEL', '#8b5cf6',
         'FAJARDO', '#f59e0b',
         'COTOGCHOA', '#f43f5e',
-        'RUMIPAMBA', '#06b6d4',
         '#3b82f6' // fallback
     ];
 
@@ -380,7 +381,6 @@ document.addEventListener('DOMContentLoaded', () => {
         'SAN RAFAEL', '#7c3aed',
         'FAJARDO', '#d97706',
         'COTOGCHOA', '#e11d48',
-        'RUMIPAMBA', '#0891b2',
         '#2563eb' // fallback
     ];
 
@@ -392,7 +392,6 @@ document.addEventListener('DOMContentLoaded', () => {
         'SAN RAFAEL', '#5b21b6',
         'FAJARDO', '#92400e',
         'COTOGCHOA', '#9f1239',
-        'RUMIPAMBA', '#0e7490',
         '#1e40af' // fallback
     ];
 
@@ -404,7 +403,6 @@ document.addEventListener('DOMContentLoaded', () => {
         'SAN RAFAEL', 'pin-san-rafael',
         'FAJARDO', 'pin-fajardo',
         'COTOGCHOA', 'pin-cotogchoa',
-        'RUMIPAMBA', 'pin-rumipamba',
         'pin-default'
     ];
 
@@ -469,7 +467,6 @@ document.addEventListener('DOMContentLoaded', () => {
             { id: 'pin-san-rafael', pri: '#7c3aed', sec: '#8b5cf6' },
             { id: 'pin-fajardo', pri: '#d97706', sec: '#f59e0b' },
             { id: 'pin-cotogchoa', pri: '#e11d48', sec: '#f43f5e' },
-            { id: 'pin-rumipamba', pri: '#0891b2', sec: '#06b6d4' },
             { id: 'pin-default', pri: '#2563eb', sec: '#3b82f6' },
             { id: 'pin-activo', pri: '#ea580c', sec: '#f97316', activo: true }
         ];
@@ -701,7 +698,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (scNum >= 31 && scNum <= 90) return 'CIRCUNSCRIPCION URBANA 2';
         }
         const parr = normTexto(obtenerParroquiaEncuesta(encuesta));
-        if (parr.includes('COTOGCHOA') || parr.includes('RUMIPAMBA')) return 'CIRCUNSCRIPCION RURAL';
+        if (parr.includes('COTOGCHOA')) return 'CIRCUNSCRIPCION RURAL';
         if (parr.includes('FAJARDO') || parr.includes('TABOADA') || parr.includes('RAFAEL')) return 'CIRCUNSCRIPCION URBANA 1';
         if (parr.includes('SANGOLQUI')) return 'CIRCUNSCRIPCION URBANA 2';
         return '';
@@ -3447,9 +3444,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 } else if (targetCirc === 'CIRCUNSCRIPCION RURAL') {
                     const filterParroquiaCirc = [
-                        'any',
-                        ['==', ['upcase', ['coalesce', ['get', 'nombre'], ['get', 'PARROQUIA'], '']], 'COTOGCHOA'],
-                        ['==', ['upcase', ['coalesce', ['get', 'nombre'], ['get', 'PARROQUIA'], '']], 'RUMIPAMBA']
+                        '==', ['upcase', ['coalesce', ['get', 'nombre'], ['get', 'PARROQUIA'], '']], 'COTOGCHOA'
                     ];
                     if (map.getLayer('parroquias-line')) {
                         map.setLayoutProperty('parroquias-line', 'visibility', 'visible');
@@ -4320,7 +4315,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 trHeader.className = `cs-table-group-header ${isCollapsed ? 'is-collapsed' : ''}`;
                 trHeader.dataset.supId = supId;
 
-                const supLabel = supId === 'Sin asignar' ? 'Sin Supervisor' : `Supervisor #${supId}`;
+                const supLabel = supId === 'Sin asignar' ? 'Sin Supervisor' : (SUPERVISORES_CAMPO[supId] ? `Supervisor ${supId} · ${SUPERVISORES_CAMPO[supId]}` : `Supervisor #${supId}`);
                 const pluralEnc = gSup.encuestadores.length === 1 ? 'encuestador' : 'encuestadores';
                 const pluralEncuestas = gSup.totalEncuestas === 1 ? 'encuesta' : 'encuestas';
 

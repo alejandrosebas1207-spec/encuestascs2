@@ -151,19 +151,15 @@ function normalizarCoordenadas(valores, validarEcuador = false) {
     return [lat, lng];
 }
 
-// Diccionarios oficiales de decodificación de choices de Kobo (El Carmen 2026)
+// Diccionarios oficiales de decodificación de choices de Kobo (Rumiñahui 2026)
 const PARROQUIAS_FORMULARIO = {
-    // El Carmen (1..6 oficial Kobo vc1dw67)
-    "1": "4 DE DICIEMBRE",
-    "2": "EL CARMEN",
-    "3": "EL PARAÍSO / LA 14",
-    "4": "SAN PEDRO DE SUMA",
-    "5": "SANTA MARÍA",
-    "6": "WILFRIDO LOOR MOREIRA",
-    // Códigos alternos / históricos
-    "1070": "WILFRIDO LOOR MOREIRA", "1980": "SAN PEDRO DE SUMA",
-    "3632": "SANTA MARÍA", "3635": "EL PARAÍSO / LA 14",
-    "6195": "4 DE DICIEMBRE", "5300": "EL CARMEN"
+    // Rumiñahui
+    "COTOGCHOA": "COTOGCHOA",
+    "FAJARDO": "FAJARDO",
+    "SAN PEDRO DE TABOADA": "SAN PEDRO DE TABOADA",
+    "SAN RAFAEL": "SAN RAFAEL",
+    "SANGOLQUÍ": "SANGOLQUÍ",
+    "SANGOLQUI": "SANGOLQUI"
 };
 
 const CIRCUNSCRIPCIONES_FORMULARIO = {
@@ -171,17 +167,20 @@ const CIRCUNSCRIPCIONES_FORMULARIO = {
     "2q": "C2 (Urbana Centro)",
     "3q": "C3 (Urbana Sur)",
     "4q": "C4 (Rural)",
-    "1r": "Urbana 1",
-    "2r": "Urbana 2",
-    "3r": "Rural",
-    "cu": "CIRCUNSCRIPCIÓN URBANA",
-    "cr": "CIRCUNSCRIPCIÓN RURAL"
+    "1r": "CIRCUNSCRIPCION URBANA 1",
+    "2r": "CIRCUNSCRIPCION URBANA 2",
+    "3r": "CIRCUNSCRIPCION RURAL",
+    "cu1": "CIRCUNSCRIPCION URBANA 1",
+    "cu2": "CIRCUNSCRIPCION URBANA 2",
+    "cr": "CIRCUNSCRIPCION RURAL",
+    "circunscripcion 1": "CIRCUNSCRIPCION URBANA 1",
+    "circunscripcion 2": "CIRCUNSCRIPCION URBANA 2",
+    "circunscripcion rural": "CIRCUNSCRIPCION RURAL"
 };
 
 const CANTONES_FORMULARIO = {
-    "1": "El Carmen", "2": "Rumiñahui", "3": "Cayambe", "4": "Mejía",
-    "60": "Quito", "80": "Rumiñahui", "90": "Cayambe", "100": "Mejía",
-    "500": "El Carmen", "1304": "El Carmen"
+    "1": "Rumiñahui", "2": "Rumiñahui",
+    "80": "Rumiñahui", "1705": "Rumiñahui"
 };
 
 const TIPOLOGIAS_FORMULARIO = {
@@ -226,10 +225,10 @@ function normalizarEncuesta(raw) {
     let encuestador = extraerValor(raw, [campoEnc, "cenc", "codencu", "cod_encu", "cod_enc", "C_digo_encuestador", "encuestador", "cod_encuestador"]);
     let supervisor = extraerValor(raw, [campoSup, "csup", "codsup", "cod_sup", "C_digo_Supervisor", "supervisor", "cod_supervisor"]);
 
-    // Inversión eventual de códigos si aplica
+    // Inversión eventual de códigos si el encuestador ingresó su código en el campo de supervisor o viceversa
     const numEnc = parseInt(encuestador, 10);
     const numSup = parseInt(supervisor, 10);
-    if (!isNaN(numEnc) && !isNaN(numSup) && numEnc >= 1 && numEnc <= 9 && numSup >= 10 && numSup <= 50) {
+    if (!isNaN(numEnc) && !isNaN(numSup) && numEnc >= 1 && numEnc <= 3 && numSup >= 4 && numSup <= 12) {
         encuestador = String(numSup);
         supervisor = String(numEnc);
     }
@@ -248,18 +247,20 @@ function normalizarEncuesta(raw) {
     const rawParroquia = extraerValor(raw, ["parr", "parroquia", "PARROQUIA", "nom_parroquia", "parroquiasI", "parroquiasII"]) || "";
     const parroquia = PARROQUIAS_FORMULARIO[rawParroquia] || String(rawParroquia).trim().toUpperCase();
 
-    // Cantón: por defecto El Carmen
+    // Cantón: por defecto Rumiñahui
     const rawCanton = extraerValor(raw, ["canton", "CANTON", "cant", "nom_canton", "cod_canton", "can"]) || "";
-    let canton = CANTONES_FORMULARIO[rawCanton] || String(rawCanton).trim() || "El Carmen";
+    let canton = CANTONES_FORMULARIO[rawCanton] || String(rawCanton).trim() || "Rumiñahui";
 
     // Circunscripción
     const rawCircuns = extraerValor(raw, ["circuns", "circunscripcion", "CIRCUNSCRIPCION"]) || "";
     let circunscripcion = CIRCUNSCRIPCIONES_FORMULARIO[rawCircuns] || String(rawCircuns).trim();
     if (!circunscripcion && parroquia) {
-        if (parroquia === "EL CARMEN" || parroquia === "4 DE DICIEMBRE") {
-            circunscripcion = "CIRCUNSCRIPCIÓN URBANA";
+        if (parroquia.includes("COTOGCHOA")) {
+            circunscripcion = "CIRCUNSCRIPCION RURAL";
+        } else if (parroquia.includes("SANGOLQUI")) {
+            circunscripcion = "CIRCUNSCRIPCION URBANA 2";
         } else {
-            circunscripcion = "CIRCUNSCRIPCIÓN RURAL";
+            circunscripcion = "CIRCUNSCRIPCION URBANA 1";
         }
     }
 
