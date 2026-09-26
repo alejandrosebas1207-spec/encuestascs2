@@ -152,7 +152,7 @@
         </div>
         <div class="cs-kpi-bottom">
           <span class="cs-kpi-badge" id="kpiTituloAvance">Avance General</span>
-          <span class="cs-kpi-sub" id="kpiSubAvance">Cumplimiento provincial (1,600)</span>
+          <span class="cs-kpi-sub" id="kpiSubAvance">Cumplimiento cantonal (900)</span>
         </div>
       </div>
 
@@ -194,7 +194,7 @@
             </label>
             <div class="cs-select-wrap">
               <select id="parroquiaFilter" class="cs-select">
-                <option value="Todas">Todas las parroquias (6)</option>
+                <option value="Todas">Todas las parroquias (5)</option>
               </select>
             </div>
           </div>
@@ -459,11 +459,11 @@
 
   <!-- ===== SCRIPTS ===== -->
   <script src="libs/maplibre-gl.js"></script>
-  <script src="script.js?v=5.9.10"></script>
+  <script src="script.js?v=5.9.11"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/service-worker.js?v=30').then(reg => {
+        navigator.serviceWorker.register('/service-worker.js?v=31').then(reg => {
           if (reg && reg.update) reg.update();
         }).catch(error => {
           console.warn('No se pudo preparar el modo sin conexión:', error);

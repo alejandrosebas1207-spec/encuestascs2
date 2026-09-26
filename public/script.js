@@ -608,14 +608,22 @@ document.addEventListener('DOMContentLoaded', () => {
     // EXTRACCIÓN Y NORMALIZACIÓN DE PARROQUIA (RUMIÑAHUI)
     // =========================================================================
     function normalizarCanton(valor) {
-        const texto = normTexto(valor);
-        if (texto.includes('RUMI') || texto.includes('80')) return 'Rumiñahui';
-        if (texto.includes('CARMEN')) return 'El Carmen';
         return 'Rumiñahui';
     }
 
+    function normalizarParroquiaRuminahui(nombre) {
+        if (!nombre) return '';
+        const n = String(nombre).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toUpperCase().trim();
+        if (n.includes('COTOG')) return 'COTOGCHOA';
+        if (n.includes('FAJARD')) return 'FAJARDO';
+        if (n.includes('TABOADA') || n.includes('SAN PEDRO')) return 'SAN PEDRO DE TABOADA';
+        if (n.includes('RAFAEL')) return 'SAN RAFAEL';
+        if (n.includes('SANGOLQ')) return 'SANGOLQUI';
+        return '';
+    }
+
     function parroquiaDeclarada(encuesta) {
-        return String(
+        const raw = String(
             campo(encuesta, 'parroquia') ||
             campo(encuesta, 'PARROQUIA') ||
             campo(encuesta, 'nom_parroquia') ||
@@ -623,10 +631,11 @@ document.addEventListener('DOMContentLoaded', () => {
             campo(encuesta, 'parr') ||
             ''
         ).trim().toUpperCase();
+        return normalizarParroquiaRuminahui(raw) || '';
     }
 
     function cantonDeclarado(encuesta) {
-        return normalizarCanton(campo(encuesta, 'canton') || campo(encuesta, 'cant') || campo(encuesta, 'CANTON'));
+        return 'Rumiñahui';
     }
 
     function cantonPorParroquia(parroquia) {
@@ -680,7 +689,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const declarada = parroquiaDeclarada(encuesta);
         if (declarada) return declarada;
         const sector = resolverSectorEncuesta(encuesta);
-        return sector ? (sector.parroquia || (sector.props && sector.props.parroquia) || '') : '';
+        if (sector) {
+            const parSec = sector.parroquia || (sector.props && (sector.props.parroquia || sector.props.PARROQUIA)) || '';
+            const normSec = normalizarParroquiaRuminahui(parSec);
+            if (normSec) return normSec;
+        }
+        return '';
     }
 
     function obtenerCircunscripcionEncuesta(encuesta) {
@@ -1757,22 +1771,27 @@ document.addEventListener('DOMContentLoaded', () => {
             const actualPar = AppState.parroquiaSeleccionada || 'Todas';
             const normStr = (s) => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toUpperCase().trim();
             
+            const permitidasRuminahui = [
+                'COTOGCHOA',
+                'FAJARDO',
+                'SAN PEDRO DE TABOADA',
+                'SAN RAFAEL',
+                'SANGOLQUI'
+            ];
+
             let parList = [];
 
             if (AppState.parroquiasGeojson && AppState.parroquiasGeojson.features && AppState.parroquiasGeojson.features.length > 0) {
                 AppState.parroquiasGeojson.features.forEach(f => {
                     const props = f.properties || {};
                     const p = (props.nombre || props.PARROQUIA || props.name || props.parroquia || props.DPA_DESPAR || props.DPA_PARROQ || '').toUpperCase().trim();
-                    if (p && !parList.includes(p)) parList.push(p);
+                    const pNorm = normalizarParroquiaRuminahui(p);
+                    if (pNorm && !parList.includes(pNorm)) parList.push(pNorm);
                 });
             }
 
-            // Agregar también las parroquias provenientes de encuestas recolectadas
-            if (parroquias && parroquias.size > 0) {
-                for (const p of parroquias.keys()) {
-                    const up = String(p).toUpperCase().trim();
-                    if (up && !parList.includes(up)) parList.push(up);
-                }
+            if (parList.length === 0) {
+                parList = [...permitidasRuminahui];
             }
 
             // Filtrar por circunscripción seleccionada si está activa
@@ -1783,9 +1802,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     return normCirc(cProps.circunscripcion_norm || cProps.circunscripcion) === targetCirc;
                 });
                 if (circFeat && circFeat.properties && circFeat.properties.parroquias) {
-                    const parsPermitidas = circFeat.properties.parroquias.split(',').map(p => normStr(p).replace(/\s+\d+$/, ''));
+                    const parsPermitidas = circFeat.properties.parroquias.split(',').map(p => normalizarParroquiaRuminahui(p) || normStr(p).replace(/\s+\d+$/, ''));
                     parList = parList.filter(p => {
-                        const pNorm = normStr(p);
+                        const pNorm = normalizarParroquiaRuminahui(p);
                         return parsPermitidas.some(perm => pNorm.includes(perm) || perm.includes(pNorm));
                     });
                 }
@@ -1797,8 +1816,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const secMeta = AppState.sectoresMap.get(targetSC);
                 const parSector = secMeta ? String(secMeta.parroquia || secMeta.parroquia_especifica || secMeta.nom_par || secMeta.PARROQUIA || '').trim() : '';
                 if (parSector) {
-                    const normParSec = normStr(parSector);
-                    const parEncontrada = parList.find(p => normStr(p).includes(normParSec) || normParSec.includes(normStr(p)));
+                    const normParSec = normalizarParroquiaRuminahui(parSector);
+                    const parEncontrada = parList.find(p => normalizarParroquiaRuminahui(p) === normParSec);
                     if (parEncontrada) {
                         parList = [parEncontrada];
                     }
