@@ -60,7 +60,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const normCirc = (s) => {
         const n = normTexto(s);
         if (!n || n === 'TODAS') return 'TODAS';
-        if (n.includes('RURAL')) return 'CIRCUNSCRIPCION RURAL';
+        if (n === 'A' || n.includes('URBANA 1') || n.includes('CIRCUNSCRIPCION 1') || n.includes('CIRC. 1')) return 'CIRCUNSCRIPCION URBANA 1';
+        if (n === 'B' || n.includes('URBANA 2') || n.includes('CIRCUNSCRIPCION 2') || n.includes('CIRC. 2')) return 'CIRCUNSCRIPCION URBANA 2';
+        if (n === 'C' || n.includes('RURAL')) return 'CIRCUNSCRIPCION RURAL';
         if (n.includes('1')) return 'CIRCUNSCRIPCION URBANA 1';
         if (n.includes('2')) return 'CIRCUNSCRIPCION URBANA 2';
         return n;
@@ -73,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
         config: {
             nombreProyecto: 'Encuesta Rumiñahui - Septiembre - 2026',
             metaEncuestas: 900,
-            campoEncuestador: 'codencu',
+            campoEncuestador: 'codenc',
             campoSupervisor: 'codsup'
         },
         encuestas: [],
@@ -589,12 +591,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (encuesta[nombreCorto] !== undefined) return encuesta[nombreCorto];
         
         // Fast paths directos para rendimiento instantáneo
-        if ((nombreCorto === 'sc' || nombreCorto === 'p_ref' || nombreCorto === 'pto_ref') && (encuesta.sc !== undefined || encuesta.pto_ref !== undefined || encuesta.p_ref !== undefined)) return encuesta.sc !== undefined ? encuesta.sc : (encuesta.pto_ref !== undefined ? encuesta.pto_ref : encuesta.p_ref);
+        if ((nombreCorto === 'sc' || nombreCorto === 'seccensal' || nombreCorto === 'sec_censal' || nombreCorto === 'p_ref' || nombreCorto === 'pto_ref') && (encuesta.seccensal !== undefined || encuesta.sec_censal !== undefined || encuesta.sc !== undefined || encuesta.pto_ref !== undefined || encuesta.p_ref !== undefined)) return encuesta.seccensal !== undefined ? encuesta.seccensal : (encuesta.sec_censal !== undefined ? encuesta.sec_censal : (encuesta.sc !== undefined ? encuesta.sc : (encuesta.pto_ref !== undefined ? encuesta.pto_ref : encuesta.p_ref)));
         if ((nombreCorto === 'tipologia' || nombreCorto === 'TIPOLOGIA') && encuesta.tipologia !== undefined) return encuesta.tipologia;
         if ((nombreCorto === 'parroquia' || nombreCorto === 'PARROQUIA' || nombreCorto === 'nom_parroquia' || nombreCorto === 'parr') && encuesta.parroquia !== undefined) return encuesta.parroquia;
         if ((nombreCorto === 'barrio' || nombreCorto === 'BARRIO_O_SECTOR') && encuesta.barrio !== undefined) return encuesta.barrio;
-        if ((nombreCorto === 'C_digo_encuestador' || nombreCorto === 'codencu' || nombreCorto === 'cenc') && (encuesta.encuestador !== undefined || encuesta.codencu !== undefined)) return encuesta.encuestador !== undefined ? encuesta.encuestador : encuesta.codencu;
-        if ((nombreCorto === 'C_digo_Supervisor' || nombreCorto === 'codsup' || nombreCorto === 'csup') && (encuesta.supervisor !== undefined || encuesta.codsup !== undefined)) return encuesta.supervisor !== undefined ? encuesta.supervisor : encuesta.codsup;
+        if ((nombreCorto === 'C_digo_encuestador' || nombreCorto === 'codenc' || nombreCorto === 'codencu' || nombreCorto === 'cenc') && (encuesta.codenc !== undefined || encuesta.encuestador !== undefined || encuesta.codencu !== undefined)) return encuesta.codenc !== undefined ? encuesta.codenc : (encuesta.encuestador !== undefined ? encuesta.encuestador : encuesta.codencu);
+        if ((nombreCorto === 'C_digo_Supervisor' || nombreCorto === 'codsup' || nombreCorto === 'csup') && (encuesta.codsup !== undefined || encuesta.supervisor !== undefined)) return encuesta.codsup !== undefined ? encuesta.codsup : encuesta.supervisor;
+        if ((nombreCorto === 'consent' || nombreCorto === 'consentimiento' || nombreCorto === 'consen') && (encuesta.consent !== undefined || encuesta.consentimiento !== undefined || encuesta.consen !== undefined)) return encuesta.consent !== undefined ? encuesta.consent : (encuesta.consentimiento !== undefined ? encuesta.consentimiento : encuesta.consen);
 
         const keys = Object.keys(encuesta);
         for (let i = 0; i < keys.length; i++) {
@@ -614,11 +617,11 @@ document.addEventListener('DOMContentLoaded', () => {
     function normalizarParroquiaRuminahui(nombre) {
         if (!nombre) return '';
         const n = String(nombre).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toUpperCase().trim();
-        if (n.includes('COTOG')) return 'COTOGCHOA';
-        if (n.includes('FAJARD')) return 'FAJARDO';
-        if (n.includes('TABOADA') || n.includes('SAN PEDRO')) return 'SAN PEDRO DE TABOADA';
-        if (n.includes('RAFAEL')) return 'SAN RAFAEL';
-        if (n.includes('SANGOLQ')) return 'SANGOLQUI';
+        if (n === '1' || n.includes('COTOG')) return 'COTOGCHOA';
+        if (n === '3' || n.includes('FAJARD')) return 'FAJARDO';
+        if (n === '4' || n.includes('TABOADA') || n.includes('SAN PEDRO')) return 'SAN PEDRO DE TABOADA';
+        if (n === '5' || n.includes('RAFAEL')) return 'SAN RAFAEL';
+        if (n === '6' || n === '7' || n.includes('SANGOLQ')) return 'SANGOLQUI';
         return '';
     }
 
@@ -651,6 +654,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const raw = String(
             encuesta.sc_key ||
             encuesta.sc ||
+            encuesta.seccensal ||
+            campo(encuesta, 'seccensal') ||
+            campo(encuesta, 'sec_censal') ||
             campo(encuesta, 'sc') ||
             campo(encuesta, 'sector') ||
             campo(encuesta, 'punto_muestreo') ||
@@ -788,6 +794,7 @@ document.addEventListener('DOMContentLoaded', () => {
         e.supervisor = sup || 'Sin Asignar';
         e.encuestador = enc || 'Sin Asignar';
         if (e.codsup !== undefined) e.codsup = e.supervisor;
+        if (e.codenc !== undefined) e.codenc = e.encuestador;
         if (e.codencu !== undefined) e.codencu = e.encuestador;
         if (e.C_digo_Supervisor !== undefined) e.C_digo_Supervisor = e.supervisor;
         if (e.C_digo_encuestador !== undefined) e.C_digo_encuestador = e.encuestador;
@@ -1210,9 +1217,9 @@ document.addEventListener('DOMContentLoaded', () => {
             AppState.encuestas = rawEncuestas.map(normalizarSupervisorEncuesta).filter(e => {
                 const codEnc = String(e.encuestador || e.C_digo_encuestador || campo(e, AppState.config.campoEncuestador) || '').trim();
                 const codSup = String(e.supervisor || e.C_digo_Supervisor || campo(e, AppState.config.campoSupervisor) || '').trim();
-                const consent = String(e.consentimiento || e.consen || '').trim().toUpperCase();
+                const consent = String(campo(e, 'consent') || e.consentimiento || e.consen || '').trim().toUpperCase();
                 if (codEnc === '98' || codSup === '98') return false;
-                if (consent === 'NO' || consent === '2') return false;
+                if (consent === 'NO' || consent === '2' || consent.startsWith('NO')) return false;
                 return true;
             });
 

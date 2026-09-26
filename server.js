@@ -33,11 +33,12 @@ const PORT = Number(process.env.PORT) || 3001;
 // El identificador y el token se reciben por variables de entorno de Render.
 const ASSET_ID = limpiarVar(
     process.env.ASSET_ID_RUMINAHUI ||
-    process.env.ASSET_ID_EL_CARMEN ||
-    process.env.ASSET_ID_IBARRA ||
     process.env.ASSET_ID ||
     process.env.KOBO_ASSET_ID ||
-    process.env.ASSET_ID_PICHINCHA
+    process.env.ASSET_ID_EL_CARMEN ||
+    process.env.ASSET_ID_IBARRA ||
+    process.env.ASSET_ID_PICHINCHA ||
+    "adduN7SJV4V77jvqpEw7HP"
 );
 const API_TOKEN = limpiarVar(
     process.env.API_TOKEN ||
@@ -45,7 +46,7 @@ const API_TOKEN = limpiarVar(
     process.env.KOBO_TOKEN
 );
 
-const CAMPO_ENCUESTADOR = limpiarVar(process.env.CAMPO_ENCUESTADOR) || "codencu";
+const CAMPO_ENCUESTADOR = limpiarVar(process.env.CAMPO_ENCUESTADOR) || "codenc";
 const CAMPO_SUPERVISOR = limpiarVar(process.env.CAMPO_SUPERVISOR) || "codsup";
 const LIMITE_POR_PAGINA = 3000;
 const CACHE_TTL_MS = (Number(process.env.CACHE_TTL_SEGUNDOS) || 90) * 1000;
@@ -153,7 +154,14 @@ function normalizarCoordenadas(valores, validarEcuador = false) {
 
 // Diccionarios oficiales de decodificación de choices de Kobo (Rumiñahui 2026)
 const PARROQUIAS_FORMULARIO = {
-    // Rumiñahui
+    // Códigos numéricos de choices ej6po73
+    "1": "COTOGCHOA",
+    "3": "FAJARDO",
+    "4": "SAN PEDRO DE TABOADA",
+    "5": "SAN RAFAEL",
+    "6": "SANGOLQUI",
+    "7": "SANGOLQUI",
+    // Rumiñahui texto
     "COTOGCHOA": "COTOGCHOA",
     "FAJARDO": "FAJARDO",
     "SAN PEDRO DE TABOADA": "SAN PEDRO DE TABOADA",
@@ -163,10 +171,9 @@ const PARROQUIAS_FORMULARIO = {
 };
 
 const CIRCUNSCRIPCIONES_FORMULARIO = {
-    "1q": "C1 (Urbana Norte)",
-    "2q": "C2 (Urbana Centro)",
-    "3q": "C3 (Urbana Sur)",
-    "4q": "C4 (Rural)",
+    "a": "CIRCUNSCRIPCION URBANA 1",
+    "b": "CIRCUNSCRIPCION URBANA 2",
+    "c": "CIRCUNSCRIPCION RURAL",
     "1r": "CIRCUNSCRIPCION URBANA 1",
     "2r": "CIRCUNSCRIPCION URBANA 2",
     "3r": "CIRCUNSCRIPCION RURAL",
@@ -175,7 +182,9 @@ const CIRCUNSCRIPCIONES_FORMULARIO = {
     "cr": "CIRCUNSCRIPCION RURAL",
     "circunscripcion 1": "CIRCUNSCRIPCION URBANA 1",
     "circunscripcion 2": "CIRCUNSCRIPCION URBANA 2",
-    "circunscripcion rural": "CIRCUNSCRIPCION RURAL"
+    "circunscripcion rural": "CIRCUNSCRIPCION RURAL",
+    "circunscripcion urbana 1": "CIRCUNSCRIPCION URBANA 1",
+    "circunscripcion urbana 2": "CIRCUNSCRIPCION URBANA 2"
 };
 
 const CANTONES_FORMULARIO = {
@@ -222,8 +231,8 @@ function normalizarEncuesta(raw) {
     const campoEnc = CAMPO_ENCUESTADOR;
     const campoSup = CAMPO_SUPERVISOR;
 
-    let encuestador = extraerValor(raw, [campoEnc, "cenc", "codencu", "cod_encu", "cod_enc", "C_digo_encuestador", "encuestador", "cod_encuestador"]);
-    let supervisor = extraerValor(raw, [campoSup, "csup", "codsup", "cod_sup", "C_digo_Supervisor", "supervisor", "cod_supervisor"]);
+    let encuestador = extraerValor(raw, [campoEnc, "codenc", "cenc", "codencu", "cod_encu", "cod_enc", "C_digo_encuestador", "encuestador", "cod_encuestador"]);
+    let supervisor = extraerValor(raw, [campoSup, "codsup", "csup", "cod_sup", "C_digo_Supervisor", "supervisor", "cod_supervisor"]);
 
     // Inversión eventual de códigos si el encuestador ingresó su código en el campo de supervisor o viceversa
     const numEnc = parseInt(encuestador, 10);
@@ -234,12 +243,12 @@ function normalizarEncuesta(raw) {
     }
 
     // Consentimiento: 1 = SÍ, 2 = NO / Rechazo
-    const rawConsen = extraerValor(raw, ["consen", "consentimiento", "acepta", "consent"]);
-    const noConsent = rawConsen === "2" || String(rawConsen).trim().toLowerCase() === "no" || String(rawConsen).trim().toLowerCase() === "rechaza";
+    const rawConsen = extraerValor(raw, ["consent", "consen", "consentimiento", "acepta"]);
+    const noConsent = rawConsen === "2" || String(rawConsen).trim().toLowerCase() === "no" || String(rawConsen).trim().toLowerCase().startsWith("no") || String(rawConsen).trim().toLowerCase() === "rechaza";
     const consentimiento = noConsent ? "NO" : "SI";
 
-    const sc = extraerValor(raw, ["pto_ref", "p_ref", "sc", "sectorcen", "codigo_sc", "sector_censal", "punto_muestreo"]);
-    const rawTipol = String(extraerValor(raw, ["tipol", "tipologia", "TIPOLOGIA", "tipo_sc"]) || "").trim().toLowerCase();
+    const sc = extraerValor(raw, ["seccensal", "sec_censal", "pto_ref", "p_ref", "sc", "sectorcen", "codigo_sc", "sector_censal", "punto_muestreo"]);
+    const rawTipol = String(extraerValor(raw, ["tipologia", "tipol", "TIPOLOGIA", "tipo_sc"]) || "").trim().toLowerCase();
     const tipologia = TIPOLOGIAS_FORMULARIO[rawTipol] || rawTipol.toUpperCase();
     const barrio = extraerValor(raw, ["barrio", "barr", "BARRIO_O_SECTOR", "sector", "barrio_sector"]);
     
