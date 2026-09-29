@@ -9,8 +9,8 @@
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="format-detection" content="telephone=no">
-  <meta name="description" content="Panel de Supervisión de Campo en tiempo real — Clima Social · Encuesta Rumiñahui - Septiembre - 2026">
-  <title>Clima Social · Encuesta Rumiñahui - Septiembre - 2026</title>
+  <meta name="description" content="Panel de Supervisión de Campo en tiempo real — Clima Social · Encuesta Portoviejo - Septiembre - 2026">
+  <title>Clima Social · Encuesta Portoviejo - Septiembre - 2026</title>
   <link rel="icon" type="image/png" href="assets/icono.png">
   <link rel="manifest" href="manifest.webmanifest">
 
@@ -25,15 +25,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;600&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
 
   <!-- Preload Cartografía Clave (Caché optimizada para móviles) -->
-  <link rel="preload" href="assets/parroquias.geojson?v=ruminahui-1.0.1" as="fetch" crossorigin>
-  <link rel="preload" href="assets/sectores_censales.geojson?v=ruminahui-1.0.4" as="fetch" crossorigin>
-  <link rel="preload" href="assets/circunscripciones.geojson?v=ruminahui-1.0.5" as="fetch" crossorigin>
+  <link rel="preload" href="assets/parroquias.geojson?v=portoviejo-1.0.0" as="fetch" crossorigin>
+  <link rel="preload" href="assets/sectores_censales.geojson?v=portoviejo-1.0.0" as="fetch" crossorigin>
+  <link rel="preload" href="assets/circunscripciones.geojson?v=portoviejo-1.0.0" as="fetch" crossorigin>
+  <link rel="preload" href="assets/puntos_muestreo.geojson?v=portoviejo-1.0.0" as="fetch" crossorigin>
 
   <!-- MapLibre GL CSS (Aceleración WebGL Nativa en GPU) -->
   <link rel="stylesheet" href="libs/maplibre-gl.css" />
 
   <!-- Estilos del Dashboard -->
-  <link rel="stylesheet" href="style.css?v=5.9.6">
+  <link rel="stylesheet" href="style.css?v=6.0.0">
 </head>
 <body>
 
@@ -59,7 +60,7 @@
         </a>
         <div class="cs-header__divider"></div>
         <div class="cs-header__title-group">
-          <h1 class="cs-header__title" id="tituloProyecto">Encuesta Rumiñahui - Septiembre - 2026</h1>
+          <h1 class="cs-header__title" id="tituloProyecto">Encuesta Portoviejo - Septiembre - 2026</h1>
           <span class="cs-header__live-badge" id="badgeConexion">
             <span class="cs-header__live-dot"></span>
             <span id="badgeTexto">En espera</span>
@@ -186,6 +187,19 @@
             </div>
           </div>
 
+          <!-- Circunscripción -->
+          <div class="cs-ribbon-field" id="wrapCircunscripcionFilter">
+            <label for="circunscripcionFilter" class="cs-field-label">
+              <svg class="cs-icon cs-icon--xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>Circunscripción</span>
+            </label>
+            <div class="cs-select-wrap">
+              <select id="circunscripcionFilter" class="cs-select">
+                <option value="Todas">Todas las circunscripciones (3)</option>
+              </select>
+            </div>
+          </div>
+
           <!-- Parroquia -->
           <div class="cs-ribbon-field">
             <label for="parroquiaFilter" class="cs-field-label">
@@ -194,7 +208,7 @@
             </label>
             <div class="cs-select-wrap">
               <select id="parroquiaFilter" class="cs-select">
-                <option value="Todas">Todas las parroquias (5)</option>
+                <option value="Todas">Todas las parroquias (14)</option>
               </select>
             </div>
           </div>
@@ -206,7 +220,7 @@
             </label>
             <div class="cs-select-wrap">
               <select id="sectorFilter" class="cs-select">
-                <option value="Todos">Todos los puntos y sectores (90)</option>
+                <option value="Todos">Todos los puntos y sectores (40)</option>
               </select>
             </div>
           </div>
@@ -273,13 +287,13 @@
                   <span class="cs-layer-pill__dot" style="background: #400054;"></span>
                   <span id="lblToggleCircunscripciones">Circunscripciones (3)</span>
                 </button>
-                <button type="button" class="cs-layer-pill active" id="toggleParroquias" data-layer-group="parroquias" title="Límites Parroquiales (6)">
+                <button type="button" class="cs-layer-pill active" id="toggleParroquias" data-layer-group="parroquias" title="Límites Parroquiales (14)">
                   <span class="cs-layer-pill__dot" style="background: #2563eb;"></span>
-                  <span id="lblToggleParroquias">Parroquias (6)</span>
+                  <span id="lblToggleParroquias">Parroquias (14)</span>
                 </button>
                 <button type="button" class="cs-layer-pill active" id="toggleSectores" data-layer-group="sectores" title="Puntos y Sectores Sorteados">
                   <span class="cs-layer-pill__dot" style="background: #059669;"></span>
-                  <span id="lblToggleSectores">Muestra (90)</span>
+                  <span id="lblToggleSectores">Muestra (40)</span>
                 </button>
                 <button type="button" class="cs-layer-pill cs-layer-pill--pendientes" id="toggleSoloPendientes" title="Filtrar únicamente puntos pendientes de completar (<10 encuestas)">
                   <span class="cs-layer-pill__dot" style="background: #f59e0b;"></span>
@@ -289,7 +303,7 @@
             </div>
 
             <!-- Barra Rápida de Circunscripciones (1-Tap sobre el mapa) -->
-            <div class="cs-circ-legend-bar" id="circLegendBar" aria-label="Circunscripciones de Rumiñahui"></div>
+            <div class="cs-circ-legend-bar" id="circLegendBar" aria-label="Circunscripciones de Portoviejo"></div>
           </div>
 
           <div id="map"></div>

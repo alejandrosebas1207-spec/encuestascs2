@@ -42,11 +42,11 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Purga proactiva inmediata de cachés heredadas de otros cantones/proyectos en móviles
     if ('caches' in window) {
-        const VERSION_PROYECTO = 'ruminahui-2026-v1.1';
+        const VERSION_PROYECTO = 'portoviejo-2026-v1.0';
         if (localStorage.getItem('cs_proyecto_version') !== VERSION_PROYECTO) {
             caches.keys().then(keys => {
                 keys.forEach(k => {
-                    if (!k.includes('ruminahui')) {
+                    if (!k.includes('portoviejo')) {
                         caches.delete(k);
                     }
                 });
@@ -73,8 +73,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // =========================================================================
     const AppState = {
         config: {
-            nombreProyecto: 'Encuesta Rumiñahui - Septiembre - 2026',
-            metaEncuestas: 900,
+            nombreProyecto: 'Encuesta Portoviejo - Septiembre - 2026',
+            metaEncuestas: 400,
             campoEncuestador: 'codenc',
             campoSupervisor: 'codsup'
         },
@@ -158,76 +158,56 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Parroquias oficiales en estudio por cantón
     const PARROQUIAS_POR_CANTON = {
-        'Rumiñahui': [
-            'COTOGCHOA',
-            'FAJARDO',
-            'SAN PEDRO DE TABOADA',
-            'SAN RAFAEL',
-            'SANGOLQUÍ',
-            'SANGOLQUI'
+        'Portoviejo': [
+            '12 DE MARZO',
+            '18 DE OCTUBRE',
+            'ABDON CALDERON',
+            'ALHAJUELA / BAJO GRANDE',
+            'ANDRES DE VERA',
+            'COLON',
+            'CRUCITA',
+            'FRANCISCO PACHECO',
+            'PICOAZA',
+            'PORTOVIEJO',
+            'RIO CHICO',
+            'SAN PABLO',
+            'SAN PLACIDO',
+            'SIMON BOLIVAR'
         ]
     };
 
     // Paleta cromática oficial por Cantón
     const COLORES_CANTON = {
-        'Rumiñahui': {
-            nombre: 'Rumiñahui',
-            linea: '#2563eb',
-            fill: '#3b82f6',
-            fillActive: '#1d4ed8',
-            label: '#1e40af',
+        'Portoviejo': {
+            nombre: 'Portoviejo',
+            linea: '#0284c7',
+            fill: '#38bdf8',
+            fillActive: '#0369a1',
+            label: '#075985',
             badge: '🔵',
-            hex: '#2563eb'
+            hex: '#0284c7'
         }
     };
 
     // =========================================================================
-    // PALETA CROMÁTICA OFICIAL POR PARROQUIA (ENCUESTA RUMIÑAHUI 2026)
-    // 5 parroquias oficiales de alto contraste contra cartografía OpenStreetMap
+    // PALETA CROMÁTICA OFICIAL POR PARROQUIA (ENCUESTA PORTOVIEJO 2026)
+    // 14 parroquias oficiales de alto contraste contra cartografía OpenStreetMap
     // =========================================================================
     const COLORES_PARROQUIA = {
-        'SANGOLQUÍ': {
-            nombre: 'Sangolquí',
-            linea: '#2563eb',       // Azul Cobalto
-            fill: '#3b82f6',
-            label: '#1e40af',
-            badge: '🔵'
-        },
-        'SANGOLQUI': {
-            nombre: 'Sangolquí',
-            linea: '#2563eb',
-            fill: '#3b82f6',
-            label: '#1e40af',
-            badge: '🔵'
-        },
-        'SAN PEDRO DE TABOADA': {
-            nombre: 'San Pedro de Taboada',
-            linea: '#059669',       // Verde Esmeralda
-            fill: '#10b981',
-            label: '#065f46',
-            badge: '🟢'
-        },
-        'SAN RAFAEL': {
-            nombre: 'San Rafael',
-            linea: '#7c3aed',       // Violeta Real
-            fill: '#8b5cf6',
-            label: '#5b21b6',
-            badge: '🟣'
-        },
-        'FAJARDO': {
-            nombre: 'Fajardo',
-            linea: '#d97706',       // Ámbar Dorado
-            fill: '#f59e0b',
-            label: '#92400e',
-            badge: '🟡'
-        },
-        'COTOGCHOA': {
-            nombre: 'Cotogchoa',
-            linea: '#e11d48',       // Carmesí
-            fill: '#f43f5e',
-            label: '#9f1239',
-            badge: '🔴'
-        }
+        '12 DE MARZO': { nombre: '12 de Marzo', linea: '#2563eb', fill: '#3b82f6', label: '#1e40af', badge: '🔵' },
+        '18 DE OCTUBRE': { nombre: '18 de Octubre', linea: '#7c3aed', fill: '#8b5cf6', label: '#5b21b6', badge: '🟣' },
+        'ABDON CALDERON': { nombre: 'Abdón Calderón', linea: '#059669', fill: '#10b981', label: '#065f46', badge: '🟢' },
+        'ALHAJUELA / BAJO GRANDE': { nombre: 'Alhajuela / Bajo Grande', linea: '#d97706', fill: '#f59e0b', label: '#92400e', badge: '🟡' },
+        'ANDRES DE VERA': { nombre: 'Andrés de Vera', linea: '#dc2626', fill: '#ef4444', label: '#991b1b', badge: '🔴' },
+        'COLON': { nombre: 'Colón', linea: '#0891b2', fill: '#06b6d4', label: '#155e75', badge: '🔵' },
+        'CRUCITA': { nombre: 'Crucita', linea: '#0284c7', fill: '#38bdf8', label: '#075985', badge: '🌊' },
+        'FRANCISCO PACHECO': { nombre: 'Francisco Pacheco', linea: '#ea580c', fill: '#f97316', label: '#9a3412', badge: '🟠' },
+        'PICOAZA': { nombre: 'Picoazá', linea: '#4f46e5', fill: '#6366f1', label: '#3730a3', badge: '🟣' },
+        'PORTOVIEJO': { nombre: 'Portoviejo', linea: '#400054', fill: '#7c3aed', label: '#400054', badge: '👑' },
+        'RIO CHICO': { nombre: 'Río Chico', linea: '#16a34a', fill: '#22c55e', label: '#166534', badge: '🌿' },
+        'SAN PABLO': { nombre: 'San Pablo', linea: '#ca8a04', fill: '#eab308', label: '#854d0e', badge: '🟡' },
+        'SAN PLACIDO': { nombre: 'San Plácido', linea: '#9333ea', fill: '#a855f7', label: '#6b21a8', badge: '🟣' },
+        'SIMON BOLIVAR': { nombre: 'Simón Bolívar', linea: '#0d9488', fill: '#14b8a6', label: '#115e59', badge: '🟢' }
     };
 
     // Directorio oficial del Equipo de Campo (Rumiñahui - Septiembre 2026)
@@ -299,48 +279,72 @@ document.addEventListener('DOMContentLoaded', () => {
             .join(' ');
     }
 
-    // Expresiones MapLibre GL por Parroquia (Pintado vectorial diferenciado de las 5 parroquias de Rumiñahui)
+    // Expresiones MapLibre GL por Parroquia (14 parroquias de Portoviejo)
     const EXPR_PARROQUIAS_LINE = [
         'match', ['upcase', ['coalesce', ['get', 'nombre'], ['get', 'PARROQUIA'], ['get', 'parroquia'], '']],
-        'SANGOLQUÍ', '#2563eb',
-        'SANGOLQUI', '#2563eb',
-        'SAN PEDRO DE TABOADA', '#059669',
-        'SAN RAFAEL', '#7c3aed',
-        'FAJARDO', '#d97706',
-        'COTOGCHOA', '#e11d48',
-        '#2563eb' // fallback
+        '12 DE MARZO', '#2563eb',
+        '18 DE OCTUBRE', '#7c3aed',
+        'ABDON CALDERON', '#059669',
+        'ALHAJUELA / BAJO GRANDE', '#d97706',
+        'ANDRES DE VERA', '#dc2626',
+        'COLON', '#0891b2',
+        'CRUCITA', '#0284c7',
+        'FRANCISCO PACHECO', '#ea580c',
+        'PICOAZA', '#4f46e5',
+        'PORTOVIEJO', '#400054',
+        'RIO CHICO', '#16a34a',
+        'SAN PABLO', '#ca8a04',
+        'SAN PLACIDO', '#9333ea',
+        'SIMON BOLIVAR', '#0d9488',
+        '#0284c7' // fallback
     ];
 
     const EXPR_PARROQUIAS_FILL = [
         'match', ['upcase', ['coalesce', ['get', 'nombre'], ['get', 'PARROQUIA'], ['get', 'parroquia'], '']],
-        'SANGOLQUÍ', '#3b82f6',
-        'SANGOLQUI', '#3b82f6',
-        'SAN PEDRO DE TABOADA', '#10b981',
-        'SAN RAFAEL', '#8b5cf6',
-        'FAJARDO', '#f59e0b',
-        'COTOGCHOA', '#f43f5e',
-        '#3b82f6' // fallback
+        '12 DE MARZO', '#3b82f6',
+        '18 DE OCTUBRE', '#8b5cf6',
+        'ABDON CALDERON', '#10b981',
+        'ALHAJUELA / BAJO GRANDE', '#f59e0b',
+        'ANDRES DE VERA', '#ef4444',
+        'COLON', '#06b6d4',
+        'CRUCITA', '#38bdf8',
+        'FRANCISCO PACHECO', '#f97316',
+        'PICOAZA', '#6366f1',
+        'PORTOVIEJO', '#7c3aed',
+        'RIO CHICO', '#22c55e',
+        'SAN PABLO', '#eab308',
+        'SAN PLACIDO', '#a855f7',
+        'SIMON BOLIVAR', '#14b8a6',
+        '#38bdf8' // fallback
     ];
 
     const EXPR_PARROQUIAS_LABEL = [
         'match', ['upcase', ['coalesce', ['get', 'nombre'], ['get', 'PARROQUIA'], ['get', 'parroquia'], '']],
-        'SANGOLQUÍ', '#1e40af',
-        'SANGOLQUI', '#1e40af',
-        'SAN PEDRO DE TABOADA', '#065f46',
-        'SAN RAFAEL', '#5b21b6',
-        'FAJARDO', '#92400e',
-        'COTOGCHOA', '#9f1239',
-        '#1e40af' // fallback
+        '12 DE MARZO', '#1e40af',
+        '18 DE OCTUBRE', '#5b21b6',
+        'ABDON CALDERON', '#065f46',
+        'ALHAJUELA / BAJO GRANDE', '#92400e',
+        'ANDRES DE VERA', '#991b1b',
+        'COLON', '#155e75',
+        'CRUCITA', '#075985',
+        'FRANCISCO PACHECO', '#9a3412',
+        'PICOAZA', '#3730a3',
+        'PORTOVIEJO', '#400054',
+        'RIO CHICO', '#166534',
+        'SAN PABLO', '#854d0e',
+        'SAN PLACIDO', '#6b21a8',
+        'SIMON BOLIVAR', '#115e59',
+        '#075985' // fallback
     ];
 
-    // Expresiones MapLibre GL por Circunscripción (Basadas en el Proyecto Oficial QGIS)
+    // Expresiones MapLibre GL por Circunscripción
     const EXPR_CIRCUNSCRIPCIONES_LINE = [
         'match', ['upcase', ['coalesce', ['get', 'circunscripcion_norm'], ['get', 'circunscripcion'], '']],
         'CIRCUNSCRIPCION URBANA 1', '#400054', // Morado Clima Social (#400054)
         'CIRCUNSCRIPCION 1', '#400054',
-        'CIRCUNSCRIPCION URBANA 2', '#528195', // Azul Pizarra (#528195)
-        'CIRCUNSCRIPCION 2', '#528195',
-        'CIRCUNSCRIPCION RURAL', '#8B4513', // Marrón Siena (#8B4513)
+        'CIRCUNSCRIPCION URBANA 2', '#0284c7', // Azul Turquesa (#0284c7)
+        'CIRCUNSCRIPCION 2', '#0284c7',
+        'CIRCUNSCRIPCION RURAL', '#d97706',    // Ámbar (#d97706)
         '#400054' // fallback
     ];
 
@@ -348,9 +352,9 @@ document.addEventListener('DOMContentLoaded', () => {
         'match', ['upcase', ['coalesce', ['get', 'circunscripcion_norm'], ['get', 'circunscripcion'], '']],
         'CIRCUNSCRIPCION URBANA 1', 'rgba(64, 0, 84, 0.12)',
         'CIRCUNSCRIPCION 1', 'rgba(64, 0, 84, 0.12)',
-        'CIRCUNSCRIPCION URBANA 2', 'rgba(82, 129, 149, 0.12)',
-        'CIRCUNSCRIPCION 2', 'rgba(82, 129, 149, 0.12)',
-        'CIRCUNSCRIPCION RURAL', 'rgba(139, 69, 19, 0.12)',
+        'CIRCUNSCRIPCION URBANA 2', 'rgba(2, 132, 199, 0.12)',
+        'CIRCUNSCRIPCION 2', 'rgba(2, 132, 199, 0.12)',
+        'CIRCUNSCRIPCION RURAL', 'rgba(217, 119, 6, 0.12)',
         'rgba(64, 0, 84, 0.10)'
     ];
 
@@ -358,53 +362,85 @@ document.addEventListener('DOMContentLoaded', () => {
         'match', ['upcase', ['coalesce', ['get', 'circunscripcion_norm'], ['get', 'circunscripcion'], '']],
         'CIRCUNSCRIPCION URBANA 1', '#400054',
         'CIRCUNSCRIPCION 1', '#400054',
-        'CIRCUNSCRIPCION URBANA 2', '#2c5364',
-        'CIRCUNSCRIPCION 2', '#2c5364',
-        'CIRCUNSCRIPCION RURAL', '#78350f',
+        'CIRCUNSCRIPCION URBANA 2', '#0369a1',
+        'CIRCUNSCRIPCION 2', '#0369a1',
+        'CIRCUNSCRIPCION RURAL', '#92400e',
         '#1e293b'
     ];
 
     const EXPR_SECTORES_FILL = [
         'match', ['upcase', ['coalesce', ['get', 'parroquia'], ['get', 'PARROQUIA'], '']],
-        'SANGOLQUÍ', '#3b82f6',
-        'SANGOLQUI', '#3b82f6',
-        'SAN PEDRO DE TABOADA', '#10b981',
-        'SAN RAFAEL', '#8b5cf6',
-        'FAJARDO', '#f59e0b',
-        'COTOGCHOA', '#f43f5e',
-        '#3b82f6' // fallback
+        '12 DE MARZO', '#3b82f6',
+        '18 DE OCTUBRE', '#8b5cf6',
+        'ABDON CALDERON', '#10b981',
+        'ALHAJUELA / BAJO GRANDE', '#f59e0b',
+        'ANDRES DE VERA', '#ef4444',
+        'COLON', '#06b6d4',
+        'CRUCITA', '#38bdf8',
+        'FRANCISCO PACHECO', '#f97316',
+        'PICOAZA', '#6366f1',
+        'PORTOVIEJO', '#7c3aed',
+        'RIO CHICO', '#22c55e',
+        'SAN PABLO', '#eab308',
+        'SAN PLACIDO', '#a855f7',
+        'SIMON BOLIVAR', '#14b8a6',
+        '#38bdf8' // fallback
     ];
 
     const EXPR_SECTORES_LINE = [
         'match', ['upcase', ['coalesce', ['get', 'parroquia'], ['get', 'PARROQUIA'], '']],
-        'SANGOLQUÍ', '#2563eb',
-        'SANGOLQUI', '#2563eb',
-        'SAN PEDRO DE TABOADA', '#059669',
-        'SAN RAFAEL', '#7c3aed',
-        'FAJARDO', '#d97706',
-        'COTOGCHOA', '#e11d48',
-        '#2563eb' // fallback
+        '12 DE MARZO', '#2563eb',
+        '18 DE OCTUBRE', '#7c3aed',
+        'ABDON CALDERON', '#059669',
+        'ALHAJUELA / BAJO GRANDE', '#d97706',
+        'ANDRES DE VERA', '#dc2626',
+        'COLON', '#0891b2',
+        'CRUCITA', '#0284c7',
+        'FRANCISCO PACHECO', '#ea580c',
+        'PICOAZA', '#4f46e5',
+        'PORTOVIEJO', '#400054',
+        'RIO CHICO', '#16a34a',
+        'SAN PABLO', '#ca8a04',
+        'SAN PLACIDO', '#9333ea',
+        'SIMON BOLIVAR', '#0d9488',
+        '#0284c7' // fallback
     ];
 
     const EXPR_SECTORES_LABEL = [
         'match', ['upcase', ['coalesce', ['get', 'parroquia'], ['get', 'PARROQUIA'], '']],
-        'SANGOLQUÍ', '#1e40af',
-        'SANGOLQUI', '#1e40af',
-        'SAN PEDRO DE TABOADA', '#065f46',
-        'SAN RAFAEL', '#5b21b6',
-        'FAJARDO', '#92400e',
-        'COTOGCHOA', '#9f1239',
-        '#1e40af' // fallback
+        '12 DE MARZO', '#1e40af',
+        '18 DE OCTUBRE', '#5b21b6',
+        'ABDON CALDERON', '#065f46',
+        'ALHAJUELA / BAJO GRANDE', '#92400e',
+        'ANDRES DE VERA', '#991b1b',
+        'COLON', '#155e75',
+        'CRUCITA', '#075985',
+        'FRANCISCO PACHECO', '#9a3412',
+        'PICOAZA', '#3730a3',
+        'PORTOVIEJO', '#400054',
+        'RIO CHICO', '#166534',
+        'SAN PABLO', '#854d0e',
+        'SAN PLACIDO', '#6b21a8',
+        'SIMON BOLIVAR', '#115e59',
+        '#075985' // fallback
     ];
 
     const EXPR_PIN_ICON = [
         'match', ['upcase', ['coalesce', ['get', 'parroquia'], ['get', 'PARROQUIA'], '']],
-        'SANGOLQUÍ', 'pin-sangolqui',
-        'SANGOLQUI', 'pin-sangolqui',
-        'SAN PEDRO DE TABOADA', 'pin-san-pedro-de-taboada',
-        'SAN RAFAEL', 'pin-san-rafael',
-        'FAJARDO', 'pin-fajardo',
-        'COTOGCHOA', 'pin-cotogchoa',
+        '12 DE MARZO', 'pin-12-de-marzo',
+        '18 DE OCTUBRE', 'pin-18-de-octubre',
+        'ABDON CALDERON', 'pin-abdon-calderon',
+        'ALHAJUELA / BAJO GRANDE', 'pin-alhajuela',
+        'ANDRES DE VERA', 'pin-andres-de-vera',
+        'COLON', 'pin-colon',
+        'CRUCITA', 'pin-crucita',
+        'FRANCISCO PACHECO', 'pin-francisco-pacheco',
+        'PICOAZA', 'pin-picoaza',
+        'PORTOVIEJO', 'pin-portoviejo',
+        'RIO CHICO', 'pin-rio-chico',
+        'SAN PABLO', 'pin-san-pablo',
+        'SAN PLACIDO', 'pin-san-placido',
+        'SIMON BOLIVAR', 'pin-simon-bolivar',
         'pin-default'
     ];
 
@@ -608,20 +644,29 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // =========================================================================
-    // EXTRACCIÓN Y NORMALIZACIÓN DE PARROQUIA (RUMIÑAHUI)
+    // EXTRACCIÓN Y NORMALIZACIÓN DE PARROQUIA (PORTOVIEJO)
     // =========================================================================
     function normalizarCanton(valor) {
-        return 'Rumiñahui';
+        return 'Portoviejo';
     }
 
-    function normalizarParroquiaRuminahui(nombre) {
+    function normalizarParroquiaPortoviejo(nombre) {
         if (!nombre) return '';
         const n = String(nombre).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toUpperCase().trim();
-        if (n === '1' || n.includes('COTOG')) return 'COTOGCHOA';
-        if (n === '3' || n.includes('FAJARD')) return 'FAJARDO';
-        if (n === '4' || n.includes('TABOADA') || n.includes('SAN PEDRO')) return 'SAN PEDRO DE TABOADA';
-        if (n === '5' || n.includes('RAFAEL')) return 'SAN RAFAEL';
-        if (n === '6' || n === '7' || n.includes('SANGOLQ')) return 'SANGOLQUI';
+        if (n.includes('12') || n.includes('DOCE') || n.includes('MARZO')) return '12 DE MARZO';
+        if (n.includes('18') || n.includes('DIECIOCHO') || n.includes('OCTUBRE')) return '18 DE OCTUBRE';
+        if (n.includes('CALDERON') || n.includes('ABDON')) return 'ABDON CALDERON';
+        if (n.includes('ALHAJUELA') || n.includes('BAJO GRANDE')) return 'ALHAJUELA / BAJO GRANDE';
+        if (n.includes('VERA') || n.includes('ANDRES')) return 'ANDRES DE VERA';
+        if (n.includes('COLON')) return 'COLON';
+        if (n.includes('CRUCITA')) return 'CRUCITA';
+        if (n.includes('PACHECO') || n.includes('FRANCISCO')) return 'FRANCISCO PACHECO';
+        if (n.includes('PICOAZA') || n.includes('PICOA')) return 'PICOAZA';
+        if (n.includes('PORTOVIEJO')) return 'PORTOVIEJO';
+        if (n.includes('RIO CHICO') || n.includes('RIOCHICO')) return 'RIO CHICO';
+        if (n.includes('SAN PABLO') || n.includes('PABLO')) return 'SAN PABLO';
+        if (n.includes('SAN PLACIDO') || n.includes('PLACIDO')) return 'SAN PLACIDO';
+        if (n.includes('SIMON') || n.includes('BOLIVAR')) return 'SIMON BOLIVAR';
         return '';
     }
 
@@ -634,15 +679,15 @@ document.addEventListener('DOMContentLoaded', () => {
             campo(encuesta, 'parr') ||
             ''
         ).trim().toUpperCase();
-        return normalizarParroquiaRuminahui(raw) || '';
+        return normalizarParroquiaPortoviejo(raw) || '';
     }
 
     function cantonDeclarado(encuesta) {
-        return 'Rumiñahui';
+        return 'Portoviejo';
     }
 
     function cantonPorParroquia(parroquia) {
-        return 'Rumiñahui';
+        return 'Portoviejo';
     }
 
     function normalizarAliasSector(valor) {
@@ -697,7 +742,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const sector = resolverSectorEncuesta(encuesta);
         if (sector) {
             const parSec = sector.parroquia || (sector.props && (sector.props.parroquia || sector.props.PARROQUIA)) || '';
-            const normSec = normalizarParroquiaRuminahui(parSec);
+            const normSec = normalizarParroquiaPortoviejo(parSec);
             if (normSec) return normSec;
         }
         return '';
@@ -710,22 +755,27 @@ document.addEventListener('DOMContentLoaded', () => {
             return normCirc(sector.props.circunscripcion);
         }
         const scRaw = String(encuesta.sc || campo(encuesta, 'sc') || campo(encuesta, 'num_muestra') || '').trim();
-        if (scRaw === '30') return 'CIRCUNSCRIPCION URBANA 1';
         const scNum = parseInt(scRaw, 10);
         if (!isNaN(scNum)) {
-            if (scNum >= 1 && scNum <= 7) return 'CIRCUNSCRIPCION RURAL';
-            if (scNum >= 8 && scNum <= 30) return 'CIRCUNSCRIPCION URBANA 1';
-            if (scNum >= 31 && scNum <= 90) return 'CIRCUNSCRIPCION URBANA 2';
+            if (scNum >= 1 && scNum <= 17) return 'CIRCUNSCRIPCION URBANA 1';
+            if (scNum >= 18 && scNum <= 34) return 'CIRCUNSCRIPCION URBANA 2';
+            if (scNum >= 35 && scNum <= 40) return 'CIRCUNSCRIPCION RURAL';
         }
         const parr = normTexto(obtenerParroquiaEncuesta(encuesta));
-        if (parr.includes('COTOGCHOA')) return 'CIRCUNSCRIPCION RURAL';
-        if (parr.includes('FAJARDO') || parr.includes('TABOADA') || parr.includes('RAFAEL')) return 'CIRCUNSCRIPCION URBANA 1';
-        if (parr.includes('SANGOLQUI')) return 'CIRCUNSCRIPCION URBANA 2';
+        if (parr.includes('12 DE MARZO') || parr.includes('18 DE OCTUBRE') || parr.includes('PACHECO') || parr.includes('PICOAZA') || parr.includes('PABLO')) {
+            return 'CIRCUNSCRIPCION URBANA 1';
+        }
+        if (parr.includes('VERA') || parr.includes('COLON') || parr.includes('PORTOVIEJO') || parr.includes('BOLIVAR')) {
+            return 'CIRCUNSCRIPCION URBANA 2';
+        }
+        if (parr.includes('CALDERON') || parr.includes('ALHAJUELA') || parr.includes('CRUCITA') || parr.includes('RIO CHICO') || parr.includes('PLACIDO')) {
+            return 'CIRCUNSCRIPCION RURAL';
+        }
         return '';
     }
 
     function obtenerCantonEncuesta(encuesta) {
-        return 'Rumiñahui';
+        return 'Portoviejo';
     }
 
     function coincideSector(encuesta, clave) {
@@ -1108,12 +1158,12 @@ document.addEventListener('DOMContentLoaded', () => {
         configurarNavegacionMovil();
         configurarEventos();
 
-        // 1. Limpieza de caché previa y Boot Instantáneo Rumiñahui 2026
+        // 1. Limpieza de caché previa y Boot Instantáneo Portoviejo 2026
         try {
-            ['cs_encuestas_cache', 'cs_encuestas_machala_v1', 'cs_encuestas_pichincha_v1', 'cs_encuestas_pichincha_v2', 'cs_encuestas_quito_pm_v1'].forEach(k => {
+            ['cs_encuestas_cache', 'cs_encuestas_machala_v1', 'cs_encuestas_pichincha_v1', 'cs_encuestas_pichincha_v2', 'cs_encuestas_quito_pm_v1', 'cs_encuestas_ruminahui_2026_v1'].forEach(k => {
                 if (localStorage.getItem(k)) localStorage.removeItem(k);
             });
-            const cached = localStorage.getItem('cs_encuestas_ruminahui_2026_v1');
+            const cached = localStorage.getItem('cs_encuestas_portoviejo_2026_v1');
             if (cached) {
                 const parsed = JSON.parse(cached);
                 if (Array.isArray(parsed) && parsed.length > 0) {
@@ -1225,9 +1275,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             auditarEncuestas();
 
-            // Guardar último resultado para contingencia sin conexión en Rumiñahui
+            // Guardar último resultado para contingencia sin conexión en Portoviejo
             try {
-                localStorage.setItem('cs_encuestas_ruminahui_2026_v1', JSON.stringify(AppState.encuestas));
+                localStorage.setItem('cs_encuestas_portoviejo_2026_v1', JSON.stringify(AppState.encuestas));
             } catch (e) {
                 console.warn('[Cache] Error al guardar caché:', e);
             }
@@ -1237,7 +1287,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if (AppState.encuestas.length === 0) {
                 if (UI.badgeTexto) UI.badgeTexto.textContent = 'En espera';
-                if (UI.ultimaActualizacion) UI.ultimaActualizacion.textContent = data.mensaje || 'Esperando primera encuesta de Rumiñahui';
+                if (UI.ultimaActualizacion) UI.ultimaActualizacion.textContent = data.mensaje || 'Esperando primera encuesta de Portoviejo';
             } else {
                 if (UI.badgeTexto) UI.badgeTexto.textContent = data.stale ? 'En vivo (memoria)' : 'En vivo';
                 if (UI.ultimaActualizacion) {
@@ -1583,13 +1633,13 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!supervisores.has(actualSup) && actualSup !== 'Todos') AppState.supervisorSeleccionado = 'Todos';
         }
 
-        // 1.1 Selector Cantón (Encuesta Cantonal Rumiñahui 2026)
+        // 1.1 Selector Cantón (Encuesta Cantonal Portoviejo 2026)
         if (UI.cantonFilter) {
             const actualCan = AppState.cantonSeleccionado || 'Todos';
             let cnt = (AppState.encuestas && AppState.encuestas.length > 0) ? AppState.encuestas.length : 0;
             let extra = cnt > 0 ? ` (${cnt} enc.)` : '';
-            UI.cantonFilter.innerHTML = `<option value="Todos">Rumiñahui (Cantón)</option><option value="Rumiñahui">🔵 Rumiñahui${extra}</option>`;
-            UI.cantonFilter.value = (actualCan === 'Rumiñahui') ? 'Rumiñahui' : 'Todos';
+            UI.cantonFilter.innerHTML = `<option value="Todos">Portoviejo (Cantón)</option><option value="Portoviejo">🟣 Portoviejo${extra}</option>`;
+            UI.cantonFilter.value = (actualCan === 'Portoviejo') ? 'Portoviejo' : 'Todos';
         }
 
         // 1.2 Selector Circunscripción
@@ -1599,9 +1649,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const actualCirc = AppState.circunscripcionSeleccionada || 'Todas';
             UI.circunscripcionFilter.innerHTML = `
                 <option value="Todas">Todas las circunscripciones (3)</option>
-                <option value="Circunscripcion 1">Circunscripción 1 (Urbana) · 230 enc.</option>
-                <option value="Circunscripcion 2">Circunscripción 2 (Urbana) · 600 enc.</option>
-                <option value="Circunscripcion Rural">Circunscripción Rural · 70 enc.</option>
+                <option value="Circunscripcion 1">Circunscripción 1 (Urbana) · 170 enc.</option>
+                <option value="Circunscripcion 2">Circunscripción 2 (Urbana) · 170 enc.</option>
+                <option value="Circunscripcion Rural">Circunscripción Rural · 60 enc.</option>
             `;
             UI.circunscripcionFilter.value = actualCirc;
         }
@@ -1612,9 +1662,9 @@ document.addEventListener('DOMContentLoaded', () => {
             let pillsHtml = `<button type="button" class="cs-circ-pill ${actualCircNorm === 'TODAS' || actualCircNorm === '' ? 'is-active' : ''}" data-circ="Todas">Todas (3)</button>`;
             
             const cList = [
-                { id: 'Circunscripcion 1', norm: 'CIRCUNSCRIPCION URBANA 1', label: 'Circ. 1 (230)', dot: '#400054' },
-                { id: 'Circunscripcion 2', norm: 'CIRCUNSCRIPCION URBANA 2', label: 'Circ. 2 (600)', dot: '#528195' },
-                { id: 'Circunscripcion Rural', norm: 'CIRCUNSCRIPCION RURAL', label: 'Rural (70)', dot: '#8B4513' }
+                { id: 'Circunscripcion 1', norm: 'CIRCUNSCRIPCION URBANA 1', label: 'Circ. 1 (170)', dot: '#400054' },
+                { id: 'Circunscripcion 2', norm: 'CIRCUNSCRIPCION URBANA 2', label: 'Circ. 2 (170)', dot: '#0284c7' },
+                { id: 'Circunscripcion Rural', norm: 'CIRCUNSCRIPCION RURAL', label: 'Rural (60)', dot: '#d97706' }
             ];
 
             cList.forEach(c => {
@@ -1778,12 +1828,21 @@ document.addEventListener('DOMContentLoaded', () => {
             const actualPar = AppState.parroquiaSeleccionada || 'Todas';
             const normStr = (s) => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toUpperCase().trim();
             
-            const permitidasRuminahui = [
-                'COTOGCHOA',
-                'FAJARDO',
-                'SAN PEDRO DE TABOADA',
-                'SAN RAFAEL',
-                'SANGOLQUI'
+            const permitidasPortoviejo = [
+                '12 DE MARZO',
+                '18 DE OCTUBRE',
+                'ABDON CALDERON',
+                'ALHAJUELA / BAJO GRANDE',
+                'ANDRES DE VERA',
+                'COLON',
+                'CRUCITA',
+                'FRANCISCO PACHECO',
+                'PICOAZA',
+                'PORTOVIEJO',
+                'RIO CHICO',
+                'SAN PABLO',
+                'SAN PLACIDO',
+                'SIMON BOLIVAR'
             ];
 
             let parList = [];
@@ -1792,13 +1851,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 AppState.parroquiasGeojson.features.forEach(f => {
                     const props = f.properties || {};
                     const p = (props.nombre || props.PARROQUIA || props.name || props.parroquia || props.DPA_DESPAR || props.DPA_PARROQ || '').toUpperCase().trim();
-                    const pNorm = normalizarParroquiaRuminahui(p);
+                    const pNorm = normalizarParroquiaPortoviejo(p);
                     if (pNorm && !parList.includes(pNorm)) parList.push(pNorm);
                 });
             }
 
             if (parList.length === 0) {
-                parList = [...permitidasRuminahui];
+                parList = [...permitidasPortoviejo];
             }
 
             // Filtrar por circunscripción seleccionada si está activa
@@ -1809,9 +1868,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     return normCirc(cProps.circunscripcion_norm || cProps.circunscripcion) === targetCirc;
                 });
                 if (circFeat && circFeat.properties && circFeat.properties.parroquias) {
-                    const parsPermitidas = circFeat.properties.parroquias.split(',').map(p => normalizarParroquiaRuminahui(p) || normStr(p).replace(/\s+\d+$/, ''));
+                    const parsPermitidas = circFeat.properties.parroquias.split(',').map(p => normalizarParroquiaPortoviejo(p) || normStr(p).replace(/\s+\d+$/, ''));
                     parList = parList.filter(p => {
-                        const pNorm = normalizarParroquiaRuminahui(p);
+                        const pNorm = normalizarParroquiaPortoviejo(p);
                         return parsPermitidas.some(perm => pNorm.includes(perm) || perm.includes(pNorm));
                     });
                 }
@@ -1823,8 +1882,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const secMeta = AppState.sectoresMap.get(targetSC);
                 const parSector = secMeta ? String(secMeta.parroquia || secMeta.parroquia_especifica || secMeta.nom_par || secMeta.PARROQUIA || '').trim() : '';
                 if (parSector) {
-                    const normParSec = normalizarParroquiaRuminahui(parSector);
-                    const parEncontrada = parList.find(p => normalizarParroquiaRuminahui(p) === normParSec);
+                    const normParSec = normalizarParroquiaPortoviejo(parSector);
+                    const parEncontrada = parList.find(p => normalizarParroquiaPortoviejo(p) === normParSec);
                     if (parEncontrada) {
                         parList = [parEncontrada];
                     }
@@ -1978,8 +2037,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // =========================================================================
     function obtenerMetaActiva() {
         const METAS_CANTON = {
-            'RUMIÑAHUI': 900,
-            'RUMINAHUI': 900
+            'PORTOVIEJO': 400
         };
 
         // 1. Filtro por Sector Censal Sorteado (cuota: 10 encuestas)
@@ -2014,10 +2072,10 @@ document.addEventListener('DOMContentLoaded', () => {
             };
         }
 
-        // 2.5. Filtro por Circunscripción (Rural: 70, Circ 1: 230, Circ 2: 600)
+        // 2.5. Filtro por Circunscripción (Rural: 60, Circ 1: 170, Circ 2: 170)
         if (AppState.circunscripcionSeleccionada && AppState.circunscripcionSeleccionada !== 'Todas') {
             const targetCirc = normCirc(AppState.circunscripcionSeleccionada);
-            let metaCirc = 900;
+            let metaCirc = 400;
             let labelCirc = AppState.circunscripcionSeleccionada;
             let numSectoresCirc = 0;
             if (AppState.sectoresGeojson && Array.isArray(AppState.sectoresGeojson.features)) {
@@ -2027,13 +2085,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 }).length;
             }
             if (targetCirc === 'CIRCUNSCRIPCION RURAL') {
-                metaCirc = 70;
+                metaCirc = 60;
                 labelCirc = 'Circunscripción Rural';
             } else if (targetCirc === 'CIRCUNSCRIPCION URBANA 1') {
-                metaCirc = 230;
+                metaCirc = 170;
                 labelCirc = 'Circunscripción 1';
             } else if (targetCirc === 'CIRCUNSCRIPCION URBANA 2') {
-                metaCirc = 600;
+                metaCirc = 170;
                 labelCirc = 'Circunscripción 2';
             } else {
                 metaCirc = Math.max(10, (numSectoresCirc || 1) * 10);
@@ -2043,14 +2101,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 etiquetaMeta: `Meta: ${metaCirc.toLocaleString()} (${labelCirc})`,
                 subPendientes: `Para meta en ${labelCirc}`,
                 tituloAvance: `Avance ${labelCirc}`,
-                subAvance: `${numSectoresCirc || Math.round(metaCirc / 10)} sectores (${metaCirc} encuestas)`
+                subAvance: `${numSectoresCirc || Math.round(metaCirc / 10)} puntos (${metaCirc} encuestas)`
             };
         }
 
-        // 3. Filtro por Cantón (Rumiñahui: 900)
+        // 3. Filtro por Cantón (Portoviejo: 400)
         if (AppState.cantonSeleccionado && AppState.cantonSeleccionado !== 'Todos') {
             const cNorm = normTexto(AppState.cantonSeleccionado);
-            let metaCanton = METAS_CANTON[cNorm] || 900;
+            let metaCanton = METAS_CANTON[cNorm] || 400;
             return {
                 meta: metaCanton,
                 etiquetaMeta: `Meta: ${metaCanton.toLocaleString()} (${AppState.cantonSeleccionado})`,
@@ -2060,8 +2118,8 @@ document.addEventListener('DOMContentLoaded', () => {
             };
         }
 
-        // 4. Ámbito General (Encuesta Cantonal Rumiñahui)
-        const metaGeneral = AppState.config.metaEncuestas || 900;
+        // 4. Ámbito General (Encuesta Cantonal Portoviejo)
+        const metaGeneral = AppState.config.metaEncuestas || 400;
         return {
             meta: metaGeneral,
             etiquetaMeta: `Meta: ${metaGeneral.toLocaleString()}`,
@@ -2137,7 +2195,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let circunscripcionesData = { type: 'FeatureCollection', features: [] };
 
         try {
-            const cacheBuster = '?v=ruminahui-1.0.4';
+            const cacheBuster = '?v=portoviejo-1.0.0';
             const [resPar, resSec, resCirc] = await Promise.all([
                 fetch('assets/parroquias.geojson' + cacheBuster),
                 fetch('assets/sectores_censales.geojson' + cacheBuster),
@@ -2172,13 +2230,13 @@ document.addEventListener('DOMContentLoaded', () => {
         AppState.sectoresMap = new Map();
         AppState.sectoresCandidatos = new Map();
 
-        // Indexar Puntos de Muestreo y Sectores Censales (90 unidades en Rumiñahui)
+        // Indexar Puntos de Muestreo y Sectores Censales (40 unidades en Portoviejo)
         if (sectoresData.features) {
             sectoresData.features.forEach(f => {
                 const p = f.properties || {};
                 const cod = String(p.sc || p.codigo_muestra || p.num_muestra || '').trim();
                 const tip = String(p.tipologia || '').trim().toUpperCase();
-                const can = String(p.canton || p.CANTON || 'RUMIÑAHUI').trim();
+                const can = String(p.canton || p.CANTON || 'PORTOVIEJO').trim();
                 const par = String(p.parroquia || p.PARROQUIA || '').trim().toUpperCase();
                 const secAnm = String(p.sec_anm || '').trim();
                 const etiq = p.etiquetaSC || (cod && tip ? `${cod} | ${tip}` : (cod || tip));
@@ -2186,7 +2244,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 p.tipologia = tip;
                 p.canton = can;
                 p.parroquia = par;
-                p.sc_key = p.sc_key || (can && cod ? `${can}_${cod}` : (cod ? `RUMIÑAHUI_${cod}` : ''));
+                p.sc_key = p.sc_key || (can && cod ? `${can}_${cod}` : (cod ? `PORTOVIEJO_${cod}` : ''));
                 p.etiquetaSC = etiq;
 
                 let bbox = null;
@@ -2266,7 +2324,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         const b = calcularBBOX(f.geometry);
                         coords = [(b[0][0] + b[1][0]) / 2, (b[0][1] + b[1][1]) / 2];
                     } else {
-                        coords = [-78.445, -0.332];
+                        coords = [-80.455, -1.054];
                     }
                 }
                 return {
@@ -2278,7 +2336,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         AppState.sectoresCentroidesGeojson = sectoresCentroidesData;
 
-        // Indexar Parroquias (62 parroquias en estudio)
+        // Indexar Parroquias (14 parroquias en estudio)
         if (parroquiasData.features) {
             parroquiasData.features.forEach(f => {
                 const p = f.properties || {};
@@ -2296,7 +2354,7 @@ document.addEventListener('DOMContentLoaded', () => {
             features: (parroquiasData.features || []).map(f => {
                 const p = f.properties || {};
                 const nom = (p.nombre || p.PARROQUIA || p.name || '').toUpperCase().trim();
-                let coords = [-78.48, -0.19];
+                let coords = [-80.455, -1.054];
                 if (p.bbox && Array.isArray(p.bbox)) {
                     const minX = Array.isArray(p.bbox[0]) ? p.bbox[0][0] : p.bbox[0];
                     const minY = Array.isArray(p.bbox[0]) ? p.bbox[0][1] : p.bbox[1];
@@ -2321,7 +2379,7 @@ document.addEventListener('DOMContentLoaded', () => {
             type: 'FeatureCollection',
             features: (circunscripcionesData.features || []).map(f => {
                 const p = f.properties || {};
-                const coords = (p.center && Array.isArray(p.center)) ? p.center : [-78.44, -0.36];
+                const coords = (p.center && Array.isArray(p.center)) ? p.center : [-80.455, -1.054];
                 return {
                     type: 'Feature',
                     geometry: { type: 'Point', coordinates: coords },
@@ -2331,7 +2389,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         AppState.circunscripcionesLabelsGeojson = circunscripcionesCentroidesData;
 
-        // Auto-calcular Bounding Box global desde las 62 parroquias a encuestar
+        // Auto-calcular Bounding Box global desde las 14 parroquias a encuestar
         let globalMinX = Infinity, globalMinY = Infinity, globalMaxX = -Infinity, globalMaxY = -Infinity;
         if (parroquiasData.features && parroquiasData.features.length > 0) {
             parroquiasData.features.forEach(f => {
@@ -2349,7 +2407,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        let mapCenter = [-78.4850, -0.1850]; // Coordenadas centrales de Quito
+        let mapCenter = [-80.455, -1.054]; // Coordenadas centrales de Portoviejo
         let initialBounds = null;
 
         if (globalMinX !== Infinity && globalMaxX !== -Infinity) {
