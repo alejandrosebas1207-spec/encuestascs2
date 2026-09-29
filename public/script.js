@@ -42,7 +42,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Purga proactiva inmediata de cachés heredadas de otros cantones/proyectos en móviles
     if ('caches' in window) {
-        const VERSION_PROYECTO = 'portoviejo-2026-v2.0';
+        const VERSION_PROYECTO = 'portoviejo-2026-v2.1';
         if (localStorage.getItem('cs_proyecto_version') !== VERSION_PROYECTO) {
             caches.keys().then(keys => {
                 keys.forEach(k => {
@@ -3183,19 +3183,52 @@ document.addEventListener('DOMContentLoaded', () => {
     // Normaliza cualquier representación de BBOX a [ [minLng, minLat], [maxLng, maxLat] ] para MapLibre GL
     function normalizarBbox(b) {
         if (!b) return null;
+        let minLng, minLat, maxLng, maxLat;
+
         if (Array.isArray(b) && b.length === 2 && Array.isArray(b[0]) && Array.isArray(b[1])) {
-            const minLng = Number(b[0][0]), minLat = Number(b[0][1]);
-            const maxLng = Number(b[1][0]), maxLat = Number(b[1][1]);
-            if (Number.isFinite(minLng) && Number.isFinite(minLat) && Number.isFinite(maxLng) && Number.isFinite(maxLat)) {
-                return [[minLng, minLat], [maxLng, maxLat]];
+            let c0_0 = Number(b[0][0]), c0_1 = Number(b[0][1]);
+            let c1_0 = Number(b[1][0]), c1_1 = Number(b[1][1]);
+            if (!Number.isFinite(c0_0) || !Number.isFinite(c0_1) || !Number.isFinite(c1_0) || !Number.isFinite(c1_1)) {
+                return null;
             }
+
+            // Detección automática inteligente de orden [lat, lng] vs [lng, lat]:
+            // En Ecuador: Longitud oeste es negativa ~ -80 (magnitud > 40)
+            //             Latitud está cerca de la línea ecuatorial ~ -1 a -0.5 (magnitud <= 20)
+            if (Math.abs(c0_0) <= 20 && Math.abs(c0_1) > 40) {
+                // Viene serializado como [[lat1, lng1], [lat2, lng2]]
+                minLat = Math.min(c0_0, c1_0);
+                maxLat = Math.max(c0_0, c1_0);
+                minLng = Math.min(c0_1, c1_1);
+                maxLng = Math.max(c0_1, c1_1);
+            } else {
+                // Viene serializado como [[lng1, lat1], [lng2, lat2]]
+                minLng = Math.min(c0_0, c1_0);
+                maxLng = Math.max(c0_0, c1_0);
+                minLat = Math.min(c0_1, c1_1);
+                maxLat = Math.max(c0_1, c1_1);
+            }
+            return [[minLng, minLat], [maxLng, maxLat]];
         }
         if (Array.isArray(b) && b.length === 4 && typeof b[0] === 'number') {
-            const minLng = Number(b[0]), minLat = Number(b[1]);
-            const maxLng = Number(b[2]), maxLat = Number(b[3]);
-            if (Number.isFinite(minLng) && Number.isFinite(minLat) && Number.isFinite(maxLng) && Number.isFinite(maxLat)) {
-                return [[minLng, minLat], [maxLng, maxLat]];
+            let v0 = Number(b[0]), v1 = Number(b[1]), v2 = Number(b[2]), v3 = Number(b[3]);
+            if (!Number.isFinite(v0) || !Number.isFinite(v1) || !Number.isFinite(v2) || !Number.isFinite(v3)) {
+                return null;
             }
+            if (Math.abs(v0) <= 20 && Math.abs(v1) > 40) {
+                // [lat1, lng1, lat2, lng2]
+                minLat = Math.min(v0, v2);
+                maxLat = Math.max(v0, v2);
+                minLng = Math.min(v1, v3);
+                maxLng = Math.max(v1, v3);
+            } else {
+                // [lng1, lat1, lng2, lat2]
+                minLng = Math.min(v0, v2);
+                maxLng = Math.max(v0, v2);
+                minLat = Math.min(v1, v3);
+                maxLat = Math.max(v1, v3);
+            }
+            return [[minLng, minLat], [maxLng, maxLat]];
         }
         return null;
     }
@@ -3375,7 +3408,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function obtenerBboxCanton(nombreCanton) {
-        if (!nombreCanton || nombreCanton === 'Todos') return AppState.cantonBbox || [[-78.75, -0.45], [-78.20, 0.15]];
+        if (!nombreCanton || nombreCanton === 'Todos') return normalizarBbox(AppState.cantonBbox) || [[-80.59, -1.20], [-80.00, -0.79]];
         const norm = (s) => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toUpperCase().trim();
         const target = norm(nombreCanton);
         const parsPermitidas = (PARROQUIAS_POR_CANTON[nombreCanton] || []).map(norm);
@@ -3392,17 +3425,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 const matchPar = parsPermitidas.some(pp => pp === nom || nom.includes(pp) || pp.includes(nom));
 
                 if (matchCanton || matchPar) {
-                    const b = p.bbox || (f.geometry ? calcularBBOX(f.geometry) : null);
-                    if (b) {
+                    const nb = normalizarBbox(p.bbox) || (f.geometry ? normalizarBbox(calcularBBOX(f.geometry)) : null);
+                    if (nb) {
                         encontrados++;
-                        const bMinX = Array.isArray(b[0]) ? b[0][0] : b[0];
-                        const bMinY = Array.isArray(b[0]) ? b[0][1] : b[1];
-                        const bMaxX = Array.isArray(b[1]) ? b[1][0] : b[2];
-                        const bMaxY = Array.isArray(b[1]) ? b[1][1] : b[3];
-                        if (bMinX < minX) minX = bMinX;
-                        if (bMinY < minY) minY = bMinY;
-                        if (bMaxX > maxX) maxX = bMaxX;
-                        if (bMaxY > maxY) maxY = bMaxY;
+                        if (nb[0][0] < minX) minX = nb[0][0];
+                        if (nb[0][1] < minY) minY = nb[0][1];
+                        if (nb[1][0] > maxX) maxX = nb[1][0];
+                        if (nb[1][1] > maxY) maxY = nb[1][1];
                     }
                 }
             });
@@ -3411,7 +3440,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (encontrados > 0 && minX !== Infinity) {
             return [[minX, minY], [maxX, maxY]];
         }
-        return AppState.cantonBbox || [[-78.75, -0.45], [-78.20, 0.15]];
+        return normalizarBbox(AppState.cantonBbox) || [[-80.59, -1.20], [-80.00, -0.79]];
     }
 
     function actualizarPoligonosMapa(ajustarCamara = false) {
@@ -3781,8 +3810,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
                 }
             } else {
-                // Nivel 4: Vista global de Ibarra
-                const globalBbox = normalizarBbox(AppState.cantonBbox) || [[-78.50, 0.20], [-77.90, 0.90]];
+                // Nivel 4: Vista global de Portoviejo
+                const globalBbox = normalizarBbox(AppState.cantonBbox) || [[-80.59, -1.20], [-80.00, -0.79]];
                 map.fitBounds(globalBbox, {
                     padding: { top: 40, bottom: 40, left: 40, right: 40 },
                     maxZoom: 12.0,

@@ -428,14 +428,19 @@ app.get("/api/health", (req, res) => {
 app.get("/api/config", (req, res) => {
     res.set("Cache-Control", "no-cache, no-store, must-revalidate");
     let nombre = process.env.NOMBRE_PROYECTO || "Encuesta Portoviejo - Septiembre - 2026";
+    const envLng = Number(process.env.MAPA_CENTRO_LNG);
+    const envLat = Number(process.env.MAPA_CENTRO_LAT);
+    const envZoom = Number(process.env.MAPA_ZOOM_INICIAL);
+    // Portoviejo se ubica entre -80.65 y -80.20 de longitud, y -1.25 y -0.80 de latitud
+    const coordValida = Number.isFinite(envLng) && envLng < -80.1 && envLng > -80.7 && Number.isFinite(envLat) && envLat > -1.3 && envLat < -0.7;
     res.json({
         nombreProyecto: nombre,
         metaEncuestas: Number(process.env.META_ENCUESTAS) || 400,
         campoEncuestador: CAMPO_ENCUESTADOR,
         campoSupervisor: CAMPO_SUPERVISOR,
-        centroLng: process.env.MAPA_CENTRO_LNG ? Number(process.env.MAPA_CENTRO_LNG) : -80.4550,
-        centroLat: process.env.MAPA_CENTRO_LAT ? Number(process.env.MAPA_CENTRO_LAT) : -1.0540,
-        zoomInicial: process.env.MAPA_ZOOM_INICIAL ? Number(process.env.MAPA_ZOOM_INICIAL) : 11.5
+        centroLng: coordValida ? envLng : -80.4550,
+        centroLat: coordValida ? envLat : -1.0540,
+        zoomInicial: (Number.isFinite(envZoom) && envZoom >= 9 && envZoom <= 15) ? envZoom : 11.5
     });
 });
 
