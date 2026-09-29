@@ -32,13 +32,14 @@ const PORT = Number(process.env.PORT) || 3001;
 
 // El identificador y el token se reciben por variables de entorno de Render.
 const ASSET_ID = limpiarVar(
-    process.env.ASSET_ID_RUMINAHUI ||
+    process.env.ASSET_ID_PORTOVIEJO ||
     process.env.ASSET_ID ||
     process.env.KOBO_ASSET_ID ||
+    process.env.ASSET_ID_RUMINAHUI ||
     process.env.ASSET_ID_EL_CARMEN ||
     process.env.ASSET_ID_IBARRA ||
     process.env.ASSET_ID_PICHINCHA ||
-    "adduN7SJV4V77jvqpEw7HP"
+    ""
 );
 const API_TOKEN = limpiarVar(
     process.env.API_TOKEN ||
@@ -52,7 +53,7 @@ const LIMITE_POR_PAGINA = 3000;
 const CACHE_TTL_MS = (Number(process.env.CACHE_TTL_SEGUNDOS) || 90) * 1000;
 const TIMEOUT_MS = 30000;
 
-console.log(`[SUPERVISOR] 📡 Formulario Kobo configurado: ${ASSET_ID} (${API_TOKEN ? "Token presente ✓" : "Sin token ⚠️"})`);
+console.log(`[SUPERVISOR] 📡 Formulario Kobo configurado: ${ASSET_ID || "(ninguno)"} (${API_TOKEN ? "Token presente ✓" : "Sin token ⚠️"})`);
 
 // =======================================
 // MIDDLEWARE DE SEGURIDAD
@@ -152,31 +153,31 @@ function normalizarCoordenadas(valores, validarEcuador = false) {
     return [lat, lng];
 }
 
-// Diccionarios oficiales de decodificación de choices de Kobo (Rumiñahui 2026)
+// Diccionarios oficiales de decodificación de choices de Kobo (Portoviejo 2026)
 const PARROQUIAS_FORMULARIO = {
-    // Códigos numéricos de choices ej6po73
-    "1": "COTOGCHOA",
-    "3": "FAJARDO",
-    "4": "SAN PEDRO DE TABOADA",
-    "5": "SAN RAFAEL",
-    "6": "SANGOLQUI",
-    "7": "SANGOLQUI",
-    // Rumiñahui texto
-    "COTOGCHOA": "COTOGCHOA",
-    "FAJARDO": "FAJARDO",
-    "SAN PEDRO DE TABOADA": "SAN PEDRO DE TABOADA",
-    "SAN RAFAEL": "SAN RAFAEL",
-    "SANGOLQUÍ": "SANGOLQUÍ",
-    "SANGOLQUI": "SANGOLQUI"
+    "12 DE MARZO": "12 DE MARZO",
+    "18 DE OCTUBRE": "18 DE OCTUBRE",
+    "ABDON CALDERON": "ABDON CALDERON",
+    "ALHAJUELA / BAJO GRANDE": "ALHAJUELA / BAJO GRANDE",
+    "ANDRES DE VERA": "ANDRES DE VERA",
+    "COLON": "COLON",
+    "CRUCITA": "CRUCITA",
+    "FRANCISCO PACHECO": "FRANCISCO PACHECO",
+    "PICOAZA": "PICOAZA",
+    "PORTOVIEJO": "PORTOVIEJO",
+    "RIO CHICO": "RIO CHICO",
+    "SAN PABLO": "SAN PABLO",
+    "SAN PLACIDO": "SAN PLACIDO",
+    "SIMON BOLIVAR": "SIMON BOLIVAR"
 };
 
 const CIRCUNSCRIPCIONES_FORMULARIO = {
     "a": "CIRCUNSCRIPCION URBANA 1",
     "b": "CIRCUNSCRIPCION URBANA 2",
     "c": "CIRCUNSCRIPCION RURAL",
-    "1r": "CIRCUNSCRIPCION URBANA 1",
-    "2r": "CIRCUNSCRIPCION URBANA 2",
-    "3r": "CIRCUNSCRIPCION RURAL",
+    "1": "CIRCUNSCRIPCION URBANA 1",
+    "2": "CIRCUNSCRIPCION URBANA 2",
+    "3": "CIRCUNSCRIPCION RURAL",
     "cu1": "CIRCUNSCRIPCION URBANA 1",
     "cu2": "CIRCUNSCRIPCION URBANA 2",
     "cr": "CIRCUNSCRIPCION RURAL",
@@ -188,8 +189,7 @@ const CIRCUNSCRIPCIONES_FORMULARIO = {
 };
 
 const CANTONES_FORMULARIO = {
-    "1": "Rumiñahui", "2": "Rumiñahui",
-    "80": "Rumiñahui", "1705": "Rumiñahui"
+    "1": "Portoviejo", "1301": "Portoviejo", "portoviejo": "Portoviejo"
 };
 
 const TIPOLOGIAS_FORMULARIO = {
@@ -256,17 +256,19 @@ function normalizarEncuesta(raw) {
     const rawParroquia = extraerValor(raw, ["parr", "parroquia", "PARROQUIA", "nom_parroquia", "parroquiasI", "parroquiasII"]) || "";
     const parroquia = PARROQUIAS_FORMULARIO[rawParroquia] || String(rawParroquia).trim().toUpperCase();
 
-    // Cantón: por defecto Rumiñahui
+    // Cantón: por defecto Portoviejo
     const rawCanton = extraerValor(raw, ["canton", "CANTON", "cant", "nom_canton", "cod_canton", "can"]) || "";
-    let canton = CANTONES_FORMULARIO[rawCanton] || String(rawCanton).trim() || "Rumiñahui";
+    let canton = CANTONES_FORMULARIO[rawCanton] || String(rawCanton).trim() || "Portoviejo";
 
     // Circunscripción
     const rawCircuns = extraerValor(raw, ["circuns", "circunscripcion", "CIRCUNSCRIPCION"]) || "";
     let circunscripcion = CIRCUNSCRIPCIONES_FORMULARIO[rawCircuns] || String(rawCircuns).trim();
     if (!circunscripcion && parroquia) {
-        if (parroquia.includes("COTOGCHOA")) {
+        const rur = ['ABDON CALDERON', 'ALHAJUELA / BAJO GRANDE', 'CRUCITA', 'RIO CHICO', 'SAN PLACIDO'];
+        const urb2 = ['ANDRES DE VERA', 'COLON', 'PORTOVIEJO', 'SIMON BOLIVAR'];
+        if (rur.some(p => parroquia.includes(p))) {
             circunscripcion = "CIRCUNSCRIPCION RURAL";
-        } else if (parroquia.includes("SANGOLQUI")) {
+        } else if (urb2.some(p => parroquia.includes(p))) {
             circunscripcion = "CIRCUNSCRIPCION URBANA 2";
         } else {
             circunscripcion = "CIRCUNSCRIPCION URBANA 1";
@@ -425,15 +427,15 @@ app.get("/api/health", (req, res) => {
 
 app.get("/api/config", (req, res) => {
     res.set("Cache-Control", "no-cache, no-store, must-revalidate");
-    let nombre = process.env.NOMBRE_PROYECTO || "Encuesta Rumiñahui - Septiembre - 2026";
+    let nombre = process.env.NOMBRE_PROYECTO || "Encuesta Portoviejo - Septiembre - 2026";
     res.json({
         nombreProyecto: nombre,
-        metaEncuestas: Number(process.env.META_ENCUESTAS) || 900,
+        metaEncuestas: Number(process.env.META_ENCUESTAS) || 400,
         campoEncuestador: CAMPO_ENCUESTADOR,
         campoSupervisor: CAMPO_SUPERVISOR,
-        centroLng: process.env.MAPA_CENTRO_LNG ? Number(process.env.MAPA_CENTRO_LNG) : -78.4450,
-        centroLat: process.env.MAPA_CENTRO_LAT ? Number(process.env.MAPA_CENTRO_LAT) : -0.3320,
-        zoomInicial: process.env.MAPA_ZOOM_INICIAL ? Number(process.env.MAPA_ZOOM_INICIAL) : 12.5
+        centroLng: process.env.MAPA_CENTRO_LNG ? Number(process.env.MAPA_CENTRO_LNG) : -80.4550,
+        centroLat: process.env.MAPA_CENTRO_LAT ? Number(process.env.MAPA_CENTRO_LAT) : -1.0540,
+        zoomInicial: process.env.MAPA_ZOOM_INICIAL ? Number(process.env.MAPA_ZOOM_INICIAL) : 11.5
     });
 });
 

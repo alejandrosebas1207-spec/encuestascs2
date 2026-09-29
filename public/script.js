@@ -42,14 +42,18 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Purga proactiva inmediata de cachés heredadas de otros cantones/proyectos en móviles
     if ('caches' in window) {
-        const VERSION_PROYECTO = 'portoviejo-2026-v1.0';
+        const VERSION_PROYECTO = 'portoviejo-2026-v2.0';
         if (localStorage.getItem('cs_proyecto_version') !== VERSION_PROYECTO) {
             caches.keys().then(keys => {
                 keys.forEach(k => {
-                    if (!k.includes('portoviejo')) {
-                        caches.delete(k);
-                    }
+                    caches.delete(k);
                 });
+            });
+            // Purga radical de encuestas cacheadas de versiones anteriores
+            Object.keys(localStorage).forEach(key => {
+                if (key.startsWith('cs_encuestas') || key === 'cs_proyecto_version') {
+                    localStorage.removeItem(key);
+                }
             });
             localStorage.setItem('cs_proyecto_version', VERSION_PROYECTO);
         }
@@ -1160,10 +1164,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // 1. Limpieza de caché previa y Boot Instantáneo Portoviejo 2026
         try {
-            ['cs_encuestas_cache', 'cs_encuestas_machala_v1', 'cs_encuestas_pichincha_v1', 'cs_encuestas_pichincha_v2', 'cs_encuestas_quito_pm_v1', 'cs_encuestas_ruminahui_2026_v1'].forEach(k => {
+            ['cs_encuestas_cache', 'cs_encuestas_machala_v1', 'cs_encuestas_pichincha_v1', 'cs_encuestas_pichincha_v2', 'cs_encuestas_quito_pm_v1', 'cs_encuestas_ruminahui_2026_v1', 'cs_encuestas_portoviejo_2026_v1'].forEach(k => {
                 if (localStorage.getItem(k)) localStorage.removeItem(k);
             });
-            const cached = localStorage.getItem('cs_encuestas_portoviejo_2026_v1');
+            const cached = localStorage.getItem('cs_encuestas_portoviejo_2026_v2');
             if (cached) {
                 const parsed = JSON.parse(cached);
                 if (Array.isArray(parsed) && parsed.length > 0) {
@@ -1277,7 +1281,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Guardar último resultado para contingencia sin conexión en Portoviejo
             try {
-                localStorage.setItem('cs_encuestas_portoviejo_2026_v1', JSON.stringify(AppState.encuestas));
+                if (AppState.encuestas.length > 0) {
+                    localStorage.setItem('cs_encuestas_portoviejo_2026_v2', JSON.stringify(AppState.encuestas));
+                } else {
+                    localStorage.removeItem('cs_encuestas_portoviejo_2026_v2');
+                    localStorage.removeItem('cs_encuestas_portoviejo_2026_v1');
+                }
             } catch (e) {
                 console.warn('[Cache] Error al guardar caché:', e);
             }
@@ -1301,15 +1310,12 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Error cargando encuestas:', error);
             const hayDatosGuardados = Array.isArray(AppState.encuestas) && AppState.encuestas.length > 0;
             if (!hayDatosGuardados) {
-                mostrarError('No se pudieron cargar los datos de KoboToolbox.');
+                if (UI.badgeTexto) UI.badgeTexto.textContent = 'En espera';
+                if (UI.ultimaActualizacion) UI.ultimaActualizacion.textContent = 'Esperando configuración de KoboToolbox';
             } else {
                 mostrarToast('Modo contingencia: visualizando datos locales guardados', 'info');
-            }
-            if (UI.badgeTexto) UI.badgeTexto.textContent = hayDatosGuardados ? 'Sin conexión · datos guardados' : 'Sin conexión';
-            if (UI.ultimaActualizacion) {
-                UI.ultimaActualizacion.textContent = hayDatosGuardados
-                    ? 'Modo contingencia · cartografía y encuestas guardadas disponibles'
-                    : 'Modo contingencia · cartografía disponible';
+                if (UI.badgeTexto) UI.badgeTexto.textContent = 'Sin conexión · datos guardados';
+                if (UI.ultimaActualizacion) UI.ultimaActualizacion.textContent = 'Modo contingencia · cartografía y encuestas guardadas disponibles';
             }
             return false;
         } finally {
