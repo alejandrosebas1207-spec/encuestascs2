@@ -42,7 +42,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Purga proactiva inmediata de cachés heredadas de otros cantones/proyectos en móviles
     if ('caches' in window) {
-        const VERSION_PROYECTO = 'portoviejo-2026-v2.1';
+        const VERSION_PROYECTO = 'portoviejo-2026-v2.2';
         if (localStorage.getItem('cs_proyecto_version') !== VERSION_PROYECTO) {
             caches.keys().then(keys => {
                 keys.forEach(k => {
@@ -2201,7 +2201,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let circunscripcionesData = { type: 'FeatureCollection', features: [] };
 
         try {
-            const cacheBuster = '?v=portoviejo-1.0.0';
+            const cacheBuster = '?v=portoviejo-2.1.0';
             const [resPar, resSec, resCirc] = await Promise.all([
                 fetch('assets/parroquias.geojson' + cacheBuster),
                 fetch('assets/sectores_censales.geojson' + cacheBuster),
@@ -2256,22 +2256,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 let bbox = null;
                 let centroid = null;
                 if (f.geometry && f.geometry.type === 'Point' && Array.isArray(f.geometry.coordinates)) {
-                    centroid = f.geometry.coordinates;
+                    centroid = normalizarCoordsPunto(f.geometry.coordinates);
                     bbox = [
                         [centroid[0] - 0.001, centroid[1] - 0.001],
                         [centroid[0] + 0.001, centroid[1] + 0.001]
                     ];
-                } else if (p.bbox && Array.isArray(p.bbox)) {
-                    bbox = p.bbox;
                 } else if (f.geometry) {
-                    bbox = calcularBBOX(f.geometry);
+                    bbox = normalizarBbox(calcularBBOX(f.geometry));
+                    centroid = normalizarCoordsPunto(p.centroid, f.geometry);
+                } else if (p.bbox) {
+                    bbox = normalizarBbox(p.bbox);
+                    centroid = normalizarCoordsPunto(p.centroid);
                 }
                 if (!centroid) {
-                    if (p.centroid && Array.isArray(p.centroid)) {
-                        centroid = p.centroid;
-                    } else if (bbox) {
-                        centroid = [(bbox[0][0] + bbox[1][0]) / 2, (bbox[0][1] + bbox[1][1]) / 2];
-                    }
+                    centroid = normalizarCoordsPunto(p.centroid, f.geometry);
                 }
                 p.bbox = bbox;
                 p.centroid = centroid;
@@ -2316,23 +2314,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const scNum = String(p.sc || p.codigo_muestra || p.num_muestra || '').trim();
                 const tip = String(p.tipologia || '').trim().toUpperCase();
                 const etiq = p.etiquetaSC || (scNum && tip ? `${scNum} | ${tip}` : (scNum || tip));
-                let coords = p.centroid;
-                if (!coords || !Array.isArray(coords)) {
-                    if (f.geometry && f.geometry.type === 'Point' && Array.isArray(f.geometry.coordinates)) {
-                        coords = f.geometry.coordinates;
-                    } else if (p.bbox && Array.isArray(p.bbox)) {
-                        const minX = Array.isArray(p.bbox[0]) ? p.bbox[0][0] : p.bbox[0];
-                        const minY = Array.isArray(p.bbox[0]) ? p.bbox[0][1] : p.bbox[1];
-                        const maxX = Array.isArray(p.bbox[1]) ? p.bbox[1][0] : p.bbox[2];
-                        const maxY = Array.isArray(p.bbox[1]) ? p.bbox[1][1] : p.bbox[3];
-                        coords = [(minX + maxX) / 2, (minY + maxY) / 2];
-                    } else if (f.geometry) {
-                        const b = calcularBBOX(f.geometry);
-                        coords = [(b[0][0] + b[1][0]) / 2, (b[0][1] + b[1][1]) / 2];
-                    } else {
-                        coords = [-80.455, -1.054];
-                    }
-                }
+                const coords = normalizarCoordsPunto(p.centroid, f.geometry);
                 return {
                     type: 'Feature',
                     geometry: { type: 'Point', coordinates: coords },
@@ -2347,7 +2329,7 @@ document.addEventListener('DOMContentLoaded', () => {
             parroquiasData.features.forEach(f => {
                 const p = f.properties || {};
                 const nombre = (p.nombre || p.PARROQUIA || p.name || '').toUpperCase().trim();
-                const b = f.geometry ? calcularBBOX(f.geometry) : null;
+                const b = normalizarBbox(p.bbox) || (f.geometry ? normalizarBbox(calcularBBOX(f.geometry)) : null);
                 f.properties.bbox = b;
                 if (nombre) AppState.parroquiasMap.set(nombre, { feature: f, bbox: b, props: p });
             });
@@ -2360,17 +2342,7 @@ document.addEventListener('DOMContentLoaded', () => {
             features: (parroquiasData.features || []).map(f => {
                 const p = f.properties || {};
                 const nom = (p.nombre || p.PARROQUIA || p.name || '').toUpperCase().trim();
-                let coords = [-80.455, -1.054];
-                if (p.bbox && Array.isArray(p.bbox)) {
-                    const minX = Array.isArray(p.bbox[0]) ? p.bbox[0][0] : p.bbox[0];
-                    const minY = Array.isArray(p.bbox[0]) ? p.bbox[0][1] : p.bbox[1];
-                    const maxX = Array.isArray(p.bbox[1]) ? p.bbox[1][0] : p.bbox[2];
-                    const maxY = Array.isArray(p.bbox[1]) ? p.bbox[1][1] : p.bbox[3];
-                    coords = [(minX + maxX) / 2, (minY + maxY) / 2];
-                } else if (f.geometry) {
-                    const b = calcularBBOX(f.geometry);
-                    coords = [(b[0][0] + b[1][0]) / 2, (b[0][1] + b[1][1]) / 2];
-                }
+                const coords = normalizarCoordsPunto(p.centroid, f.geometry);
                 return {
                     type: 'Feature',
                     geometry: { type: 'Point', coordinates: coords },
@@ -2385,7 +2357,7 @@ document.addEventListener('DOMContentLoaded', () => {
             type: 'FeatureCollection',
             features: (circunscripcionesData.features || []).map(f => {
                 const p = f.properties || {};
-                const coords = (p.center && Array.isArray(p.center)) ? p.center : [-80.455, -1.054];
+                const coords = normalizarCoordsPunto(p.center || p.centroid, f.geometry);
                 return {
                     type: 'Feature',
                     geometry: { type: 'Point', coordinates: coords },
@@ -2399,16 +2371,16 @@ document.addEventListener('DOMContentLoaded', () => {
         let globalMinX = Infinity, globalMinY = Infinity, globalMaxX = -Infinity, globalMaxY = -Infinity;
         if (parroquiasData.features && parroquiasData.features.length > 0) {
             parroquiasData.features.forEach(f => {
-                const b = f.properties.bbox;
-                if (b && Array.isArray(b)) {
-                    const minX = Array.isArray(b[0]) ? b[0][0] : b[0];
-                    const minY = Array.isArray(b[0]) ? b[0][1] : b[1];
-                    const maxX = Array.isArray(b[1]) ? b[1][0] : b[2];
-                    const maxY = Array.isArray(b[1]) ? b[1][1] : b[3];
-                    if (minX < globalMinX) globalMinX = minX;
-                    if (minY < globalMinY) globalMinY = minY;
-                    if (maxX > globalMaxX) globalMaxX = maxX;
-                    if (maxY > globalMaxY) globalMaxY = maxY;
+                const b = normalizarBbox(f.properties.bbox) || (f.geometry ? normalizarBbox(calcularBBOX(f.geometry)) : null);
+                if (b) {
+                    const minLng = b[0][0];
+                    const minLat = b[0][1];
+                    const maxLng = b[1][0];
+                    const maxLat = b[1][1];
+                    if (minLng < globalMinX) globalMinX = minLng;
+                    if (minLat < globalMinY) globalMinY = minLat;
+                    if (maxLng > globalMaxX) globalMaxX = maxLng;
+                    if (maxLat > globalMaxY) globalMaxY = maxLat;
                 }
             });
         }
@@ -2637,18 +2609,30 @@ document.addEventListener('DOMContentLoaded', () => {
                         id: 'sectores-label',
                         type: 'symbol',
                         source: 'sectores-centroides-source',
-                        minzoom: 10.0,
+                        minzoom: 8.5,
                         layout: {
-                            'text-field': ['get', 'etiquetaSC'],
+                            'text-field': [
+                                'step',
+                                ['zoom'],
+                                ['concat', '#', ['get', 'etiquetaSC']],
+                                13.0,
+                                [
+                                    'case',
+                                    ['!=', ['coalesce', ['get', 'punto_referencial'], ''], ''],
+                                    ['concat', '#', ['get', 'etiquetaSC'], '\n', ['get', 'punto_referencial']],
+                                    ['concat', '#', ['get', 'etiquetaSC']]
+                                ]
+                            ],
                             'text-font': ['Open Sans Bold'],
                             'text-size': [
                                 'interpolate', ['linear'], ['zoom'],
-                                10, 8.5,
-                                13, 10.5,
-                                16, 12.5
+                                9, 9.0,
+                                11, 10.5,
+                                13, 12.0,
+                                16, 14.5
                             ],
-                            'text-offset': [0, -1.2],
-                            'text-anchor': 'bottom',
+                            'text-offset': [0, 0],
+                            'text-anchor': 'center',
                             'text-allow-overlap': true,
                             'text-ignore-placement': true,
                             'visibility': 'visible'
@@ -2656,7 +2640,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         paint: {
                             'text-color': EXPR_SECTORES_LABEL,
                             'text-halo-color': '#ffffff',
-                            'text-halo-width': 2.4
+                            'text-halo-width': 2.8
                         }
                     }
                 ]
@@ -3251,6 +3235,30 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         procesarCoords(geometry.coordinates);
         return [[minLng, minLat], [maxLng, maxLat]];
+    }
+
+    // Normaliza cualquier coordenada puntual a [lng, lat] para GeoJSON y MapLibre GL
+    function normalizarCoordsPunto(pt, fallbackGeom) {
+        if (Array.isArray(pt) && pt.length >= 2) {
+            let c0 = Number(pt[0]), c1 = Number(pt[1]);
+            if (Number.isFinite(c0) && Number.isFinite(c1)) {
+                // Si c0 es latitud (|c0| <= 20) y c1 es longitud (|c1| > 40): invertir a [lng, lat]
+                if (Math.abs(c0) <= 20 && Math.abs(c1) > 40) {
+                    return [c1, c0];
+                }
+                // Si c0 es longitud (|c0| > 40) y c1 es latitud (|c1| <= 20): ya es [lng, lat]
+                if (Math.abs(c0) > 40 && Math.abs(c1) <= 20) {
+                    return [c0, c1];
+                }
+            }
+        }
+        if (fallbackGeom) {
+            const b = calcularBBOX(fallbackGeom);
+            if (b && Number.isFinite(b[0][0]) && Number.isFinite(b[1][0])) {
+                return [(b[0][0] + b[1][0]) / 2, (b[0][1] + b[1][1]) / 2];
+            }
+        }
+        return [-80.4550, -1.0540];
     }
 
     async function cargarLimitesParroquiales() {
