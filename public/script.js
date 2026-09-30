@@ -2611,18 +2611,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         source: 'sectores-centroides-source',
                         minzoom: 8.5,
                         layout: {
-                            'text-field': [
-                                'step',
-                                ['zoom'],
-                                ['concat', '#', ['get', 'etiquetaSC']],
-                                13.0,
-                                [
-                                    'case',
-                                    ['!=', ['coalesce', ['get', 'punto_referencial'], ''], ''],
-                                    ['concat', '#', ['get', 'etiquetaSC'], '\n', ['get', 'punto_referencial']],
-                                    ['concat', '#', ['get', 'etiquetaSC']]
-                                ]
-                            ],
+                            'text-field': ['get', 'etiquetaSC'],
                             'text-font': ['Open Sans Bold'],
                             'text-size': [
                                 'interpolate', ['linear'], ['zoom'],
@@ -3022,28 +3011,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 renderizarVista(true, false);
             }
 
-            const esPuntoRef = (p.tipo_muestreo === 'PUNTO_REFERENCIAL' || !!p.punto_referencial || !!p.comunidad);
-            const tituloTipo = esPuntoRef ? 'Punto Referencial' : 'Sector Censal';
+            const ref = p.punto_referencial || p.PUNTO_REFERENCIAL || p.referencia || '';
+            const secAnm = p.sec_anm || p.SEC_ANM || '';
             let infoExtra = '';
-            if (esPuntoRef) {
-                if (p.comunidad) infoExtra += `<div style="font-size:0.75rem;color:#1e293b;margin-bottom:3px;">🏡 <strong>Comunidad/Barrio:</strong> ${p.comunidad}</div>`;
-                if (p.calle_1) infoExtra += `<div style="font-size:0.75rem;color:#1e293b;margin-bottom:3px;">🛣️ <strong>Vía:</strong> ${p.calle_1}</div>`;
-                if (p.punto_referencial) infoExtra += `<div style="font-size:0.75rem;color:#1e293b;background:#f1f5f9;padding:6px 8px;border-radius:6px;margin-bottom:8px;text-align:left;line-height:1.3;border:1px solid #e2e8f0;">📍 <strong>Ref:</strong> ${p.punto_referencial}</div>`;
-            } else {
-                if (p.sec_anm) infoExtra += `<div style="font-size:0.75rem;color:#1e293b;margin-bottom:3px;">📊 <strong>Código Censal:</strong> ${p.sec_anm}</div>`;
-                if (p.pob_t || p.v_pres) infoExtra += `<div style="font-size:0.75rem;color:#475569;margin-bottom:8px;">Población: ${p.pob_t || '-'} hab. · Viviendas: ${p.v_pres || '-'}</div>`;
+            if (ref) {
+                infoExtra += `<div style="font-size:0.8rem;color:#1e293b;background:#f8fafc;padding:7px 10px;border-radius:6px;margin:6px 0 8px;text-align:left;line-height:1.35;border:1px solid #e2e8f0;">📍 <strong>Punto Referencial:</strong><br><span style="color:#0f172a;font-weight:700;">${ref}</span></div>`;
             }
+            if (p.comunidad) infoExtra += `<div style="font-size:0.75rem;color:#475569;margin-bottom:3px;">🏡 <strong>Comunidad/Barrio:</strong> ${p.comunidad}</div>`;
+            if (secAnm) infoExtra += `<div style="font-size:0.72rem;color:#64748b;margin-bottom:4px;">📊 Código INEC: ${secAnm}</div>`;
 
-            new maplibregl.Popup({ offset: [0, -25], closeButton: true })
+            new maplibregl.Popup({ offset: [0, -15], closeButton: true })
                 .setLngLat(coords)
                 .setHTML(`
-                    <div style="font-family:'Inter',sans-serif;padding:4px;min-width:190px;text-align:center;">
-                        <div style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:0.95rem;color:#0f172a;margin-bottom:4px;">
-                            ${tituloTipo} <strong>${etiq}</strong>
+                    <div style="font-family:'Inter',sans-serif;padding:4px;min-width:200px;text-align:center;">
+                        <div style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:1.05rem;color:#0f172a;margin-bottom:4px;">
+                            Sector <strong>${etiq}</strong>
                         </div>
                         ${parroquia ? `<div style="font-size:0.8rem;color:#475569;margin-bottom:6px;">Parroquia <strong>${formatearNombreParroquia(parroquia)}</strong></div>` : ''}
                         ${infoExtra}
-                        <a href="${gmapsUrl}" target="_blank" rel="noopener noreferrer" class="cs-btn-gmaps" style="display:inline-flex;justify-content:center;width:100%;margin-top:2px;">
+                        <a href="${gmapsUrl}" target="_blank" rel="noopener noreferrer" class="cs-btn-gmaps" style="display:inline-flex;justify-content:center;width:100%;margin-top:4px;">
                             <svg class="cs-icon" style="width:13px;height:13px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
                             Cómo llegar (Google Maps)
                         </a>
@@ -3054,6 +3040,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         map.on('click', 'sectores-point', abrirPopupSector);
         map.on('click', 'sectores-fill', abrirPopupSector);
+        map.on('click', 'sectores-label', abrirPopupSector);
+        map.on('mouseenter', 'sectores-fill', () => { map.getCanvas().style.cursor = 'pointer'; });
+        map.on('mouseleave', 'sectores-fill', () => { map.getCanvas().style.cursor = ''; });
+        map.on('mouseenter', 'sectores-label', () => { map.getCanvas().style.cursor = 'pointer'; });
+        map.on('mouseleave', 'sectores-label', () => { map.getCanvas().style.cursor = ''; });
 
         // Click en Circunscripción
         map.on('mouseenter', 'circunscripciones-fill', () => { map.getCanvas().style.cursor = 'pointer'; });
@@ -3061,7 +3052,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         map.on('click', 'circunscripciones-fill', (e) => {
             const bboxPoint = [[e.point.x - 5, e.point.y - 5], [e.point.x + 5, e.point.y + 5]];
-            const featuresUnder = map.queryRenderedFeatures(bboxPoint, { layers: ['sectores-point', 'sectores-fill'] });
+            const featuresUnder = map.queryRenderedFeatures(bboxPoint, { layers: ['sectores-point', 'sectores-fill', 'sectores-label'] });
             if (featuresUnder && featuresUnder.length > 0) return;
 
             const f = e.features && e.features[0];
@@ -3669,7 +3660,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const refPunto = sectorMeta.props && (sectorMeta.props.punto_referencial || sectorMeta.props.PUNTO_REFERENCIAL || sectorMeta.props.referencia) 
                         ? ` · ${String(sectorMeta.props.punto_referencial || sectorMeta.props.PUNTO_REFERENCIAL || sectorMeta.props.referencia).trim()}` 
                         : '';
-                    titulo.textContent = `Sector #${etiq}${parr}${refPunto}`;
+                    titulo.textContent = `Sector ${etiq}${parr}${refPunto}`;
                     const centroid = sectorMeta.centroid || (sectorMeta.props && sectorMeta.props.centroid);
                     if (centroid) {
                         btnGmaps.href = `https://www.google.com/maps/dir/?api=1&destination=${centroid[1].toFixed(6)},${centroid[0].toFixed(6)}`;
