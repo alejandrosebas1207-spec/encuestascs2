@@ -126,9 +126,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Paleta oficial Clima Social de Alto Contraste para Mapa (Supervisores)
     const PALETA_SUPERVISORES = {
-        '1': '#028090', // Karina Guadalupe - Teal Intenso Oficial
-        '2': '#e11d48', // Diana Pila - Coral / Carmesí Vivo
-        '3': '#d97706', // Pedro Pérez - Ámbar Dorado Brillante
+        '1': '#028090', // Pierina González - Teal Intenso Oficial
+        '2': '#e11d48', // Marlon Cedeño - Coral / Carmesí Vivo
         'default': '#400054'
     };
 
@@ -214,35 +213,29 @@ document.addEventListener('DOMContentLoaded', () => {
         'SIMON BOLIVAR': { nombre: 'Simón Bolívar', linea: '#0d9488', fill: '#14b8a6', label: '#115e59', badge: '🟢' }
     };
 
-    // Directorio oficial del Equipo de Campo (Rumiñahui - Septiembre 2026)
+    // Directorio oficial del Equipo de Campo (Portoviejo - Montecristi · Septiembre 2026)
     const SUPERVISORES_CAMPO = {
-        '1': 'Karina Guadalupe',
-        '2': 'Diana Pila',
-        '3': 'Pedro Pérez'
+        '1': 'Pierina González',
+        '2': 'Marlon Cedeño'
     };
 
     const EQUIPO_CAMPO = {
-        '4': { nombre: 'Evelyn Tobar', supervisor: '1', etiqueta: 'Encuestadora 4 · Evelyn Tobar', corta: 'Enc. 4 · Evelyn' },
-        '5': { nombre: 'Duncan Espinosa', supervisor: '1', etiqueta: 'Encuestador 5 · Duncan Espinosa', corta: 'Enc. 5 · Duncan' },
-        '6': { nombre: 'Verónica Montesdeoca', supervisor: '1', etiqueta: 'Encuestadora 6 · Verónica Montesdeoca', corta: 'Enc. 6 · Verónica' },
-        '7': { nombre: 'Dilan Hernández', supervisor: '2', etiqueta: 'Encuestador 7 · Dilan Hernández', corta: 'Enc. 7 · Dilan' },
-        '8': { nombre: 'Aida Campos', supervisor: '2', etiqueta: 'Encuestadora 8 · Aida Campos', corta: 'Enc. 8 · Aida' },
-        '9': { nombre: 'Jessica Escalante', supervisor: '2', etiqueta: 'Encuestadora 9 · Jessica Escalante', corta: 'Enc. 9 · Jessica' },
-        '10': { nombre: 'Alberto Punguil', supervisor: '3', etiqueta: 'Encuestador 10 · Alberto Punguil', corta: 'Enc. 10 · Alberto' },
-        '11': { nombre: 'Elsa Ulrich', supervisor: '3', etiqueta: 'Encuestadora 11 · Elsa Ulrich', corta: 'Enc. 11 · Elsa' },
-        '12': { nombre: 'Odeth Jibaja', supervisor: '3', etiqueta: 'Encuestadora 12 · Odeth Jibaja', corta: 'Enc. 12 · Odeth' }
+        '3': { nombre: 'Junior Cedeño', supervisor: '1', etiqueta: 'Encuestador 3 · Junior Cedeño', corta: 'Enc. 3 · Junior', telefono: '0993701871' },
+        '4': { nombre: 'Michelle Peñafiel', supervisor: '1', etiqueta: 'Encuestadora 4 · Michelle Peñafiel', corta: 'Enc. 4 · Michelle', telefono: '0964081421' },
+        '5': { nombre: 'Kristhel Cedeño', supervisor: '1', etiqueta: 'Encuestadora 5 · Kristhel Cedeño', corta: 'Enc. 5 · Kristhel', telefono: '0986166460' },
+        '6': { nombre: 'Valeska Aguayo', supervisor: '2', etiqueta: 'Encuestadora 6 · Valeska Aguayo', corta: 'Enc. 6 · Valeska', telefono: '0983568435' },
+        '7': { nombre: 'Jamilet Moya', supervisor: '2', etiqueta: 'Encuestadora 7 · Jamilet Moya', corta: 'Enc. 7 · Jamilet', telefono: '0964109443' },
+        '8': { nombre: 'Hernán Cardenas', supervisor: '2', etiqueta: 'Encuestador 8 · Hernán Cardenas', corta: 'Enc. 8 · Hernán', telefono: '0985539340' }
     };
 
     const SUPERVISOR_ENCUESTADORES = {
-        '1': ['4', '5', '6'],
-        '2': ['7', '8', '9'],
-        '3': ['10', '11', '12']
+        '1': ['3', '4', '5'],
+        '2': ['6', '7', '8']
     };
 
     const ENCUESTADOR_A_SUPERVISOR = {
-        '4': '1', '5': '1', '6': '1',
-        '7': '2', '8': '2', '9': '2',
-        '10': '3', '11': '3', '12': '3'
+        '3': '1', '4': '1', '5': '1',
+        '6': '2', '7': '2', '8': '2'
     };
 
     function obtenerEtiquetaEncuestador(id, formato = 'completo') {
@@ -844,6 +837,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!e) return e;
         let sup = String(e.supervisor || e.C_digo_Supervisor || campo(e, AppState.config.campoSupervisor) || '').trim();
         let enc = String(e.encuestador || e.C_digo_encuestador || campo(e, AppState.config.campoEncuestador) || '').trim();
+
+        // Si no viene supervisor o viene vacío, autovincular según el encuestador oficial
+        if ((!sup || sup === 'Sin Asignar' || sup === 'undefined' || sup === 'null') && enc && ENCUESTADOR_A_SUPERVISOR[enc]) {
+            sup = ENCUESTADOR_A_SUPERVISOR[enc];
+        }
 
         e.supervisor = sup || 'Sin Asignar';
         e.encuestador = enc || 'Sin Asignar';
@@ -1624,7 +1622,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const hayFiltroActivo = (selSup !== 'Todos' || !!selEnc || !!targetPar || selFec !== 'Todas');
 
-        // 1. Selector Supervisores: `csup` es un entero libre en el XLSForm.
+        // 1. Selector Supervisores
         if (UI.supervisorFilter) {
             const actualSup = AppState.supervisorSeleccionado || 'Todos';
             UI.supervisorFilter.innerHTML = '<option value="Todos">Todos los supervisores</option>';
@@ -1632,7 +1630,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 .forEach(id => {
                     const option = document.createElement('option');
                     option.value = id;
-                    option.textContent = `Supervisor #${id} (${supervisores.get(id)} enc.)`;
+                    const nombreSup = SUPERVISORES_CAMPO[id] ? ` · ${SUPERVISORES_CAMPO[id]}` : '';
+                    option.textContent = `Supervisor ${id}${nombreSup} (${supervisores.get(id)} enc.)`;
                     UI.supervisorFilter.appendChild(option);
                 });
             UI.supervisorFilter.value = supervisores.has(actualSup) ? actualSup : 'Todos';
@@ -4123,13 +4122,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
             let g = grupos.get(codEnc);
             if (!g) {
-                const supVal = enc.supervisor || enc.C_digo_Supervisor || campo(enc, AppState.config.campoSupervisor) || '';
+                const rawSup = enc.supervisor || enc.C_digo_Supervisor || campo(enc, AppState.config.campoSupervisor) || '';
+                const resolvedSup = String(rawSup).trim() || ENCUESTADOR_A_SUPERVISOR[codEnc] || '';
                 g = {
                     id: codEnc,
                     encuestas: [],
                     duraciones: [],
                     totalMins: 0,
-                    supervisor: String(supVal).trim(),
+                    supervisor: resolvedSup,
                     parroquiasConteo: {},
                     cantonesConteo: {},
                     promStr: 'Sin datos',
@@ -4138,7 +4138,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 };
                 grupos.set(codEnc, g);
             } else if (!g.supervisor) {
-                const supVal = enc.supervisor || enc.C_digo_Supervisor || campo(enc, AppState.config.campoSupervisor) || '';
+                const supVal = enc.supervisor || enc.C_digo_Supervisor || campo(enc, AppState.config.campoSupervisor) || ENCUESTADOR_A_SUPERVISOR[codEnc] || '';
                 if (supVal) g.supervisor = String(supVal).trim();
             }
 
@@ -4181,7 +4181,7 @@ document.addEventListener('DOMContentLoaded', () => {
             g.numAlertas = g.encuestas.filter(e => e._tieneAlerta).length;
 
             // Cantón principal asignado según encuestas recolectadas
-            let topCan = 'Quito';
+            let topCan = 'Portoviejo';
             let topCnt = -1;
             for (const [can, cnt] of Object.entries(g.cantonesConteo || {})) {
                 if (cnt > topCnt) {
