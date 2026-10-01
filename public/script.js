@@ -60,12 +60,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Normalizador universal de texto (remueve tildes, diacríticos y espacios)
-    const normTexto = (s) => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toUpperCase().trim();
+    const normTexto = (s) => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[\/\-_]/g, ' ').replace(/\s+/g, ' ').toUpperCase().trim();
     const normCirc = (s) => {
         const n = normTexto(s);
         if (!n || n === 'TODAS') return 'TODAS';
-        if (n === 'A' || n.includes('URBANA 1') || n.includes('CIRCUNSCRIPCION 1') || n.includes('CIRC. 1')) return 'CIRCUNSCRIPCION URBANA 1';
-        if (n === 'B' || n.includes('URBANA 2') || n.includes('CIRCUNSCRIPCION 2') || n.includes('CIRC. 2')) return 'CIRCUNSCRIPCION URBANA 2';
+        if (n === 'A' || n.includes('URBANA 1') || n.includes('CIRCUNSCRIPCION 1') || n.includes('CIRC 1')) return 'CIRCUNSCRIPCION URBANA 1';
+        if (n === 'B' || n.includes('URBANA 2') || n.includes('CIRCUNSCRIPCION 2') || n.includes('CIRC 2')) return 'CIRCUNSCRIPCION URBANA 2';
         if (n === 'C' || n.includes('RURAL')) return 'CIRCUNSCRIPCION RURAL';
         if (n.includes('1')) return 'CIRCUNSCRIPCION URBANA 1';
         if (n.includes('2')) return 'CIRCUNSCRIPCION URBANA 2';
@@ -2200,7 +2200,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let circunscripcionesData = { type: 'FeatureCollection', features: [] };
 
         try {
-            const cacheBuster = '?v=portoviejo-2.1.0';
+            const cacheBuster = '?v=portoviejo-2.2.0';
             const [resPar, resSec, resCirc] = await Promise.all([
                 fetch('assets/parroquias.geojson' + cacheBuster),
                 fetch('assets/sectores_censales.geojson' + cacheBuster),
