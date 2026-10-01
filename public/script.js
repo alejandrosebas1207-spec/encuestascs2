@@ -261,6 +261,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function formatearNombreParroquia(nombre) {
         if (!nombre) return '';
+        const decodificada = normalizarParroquiaPortoviejo(nombre);
+        if (decodificada && COLORES_PARROQUIA[decodificada]) {
+            return COLORES_PARROQUIA[decodificada].nombre;
+        }
         const norm = (s) => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim().toUpperCase();
         const up = norm(nombre);
         for (const [k, v] of Object.entries(COLORES_PARROQUIA)) {
@@ -647,9 +651,31 @@ document.addEventListener('DOMContentLoaded', () => {
         return 'Portoviejo';
     }
 
+    const MAPA_PARROQUIAS_PORT = {
+        '5280': '12 DE MARZO',
+        '6770': '18 DE OCTUBRE',
+        '6775': 'FRANCISCO PACHECO',
+        '5845': 'PICOAZA',
+        '6585': 'SAN PABLO',
+        '5030': 'ANDRES DE VERA',
+        '5265': 'COLON',
+        '5795': 'PORTOVIEJO',
+        '6910': 'SIMON BOLIVAR',
+        '0010': 'ABDON CALDERON',
+        '10': 'ABDON CALDERON',
+        '0050': 'ALHAJUELA / BAJO GRANDE',
+        '50': 'ALHAJUELA / BAJO GRANDE',
+        '0770': 'CRUCITA',
+        '770': 'CRUCITA',
+        '3185': 'RIO CHICO',
+        '3625': 'SAN PLACIDO'
+    };
+
     function normalizarParroquiaPortoviejo(nombre) {
         if (!nombre) return '';
-        const n = String(nombre).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toUpperCase().trim();
+        const raw = String(nombre).trim();
+        if (MAPA_PARROQUIAS_PORT[raw]) return MAPA_PARROQUIAS_PORT[raw];
+        const n = raw.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toUpperCase().trim();
         if (n.includes('12') || n.includes('DOCE') || n.includes('MARZO')) return '12 DE MARZO';
         if (n.includes('18') || n.includes('DIECIOCHO') || n.includes('OCTUBRE')) return '18 DE OCTUBRE';
         if (n.includes('CALDERON') || n.includes('ABDON')) return 'ABDON CALDERON';
@@ -1091,11 +1117,14 @@ document.addEventListener('DOMContentLoaded', () => {
             // 1. Verificación Parroquial (Point in Polygon)
             const parroquiaDeclarada = obtenerParroquiaEncuesta(enc);
             const parroquiaReal = detectarParroquiaGPS(lng, lat);
+            const sectorMeta = resolverSectorEncuesta(enc);
+            const enSectorAsignado = sectorMeta && sectorMeta.feature && sectorMeta.feature.geometry && puntoEnGeometria(lng, lat, sectorMeta.feature.geometry);
 
             if (parroquiaReal && parroquiaDeclarada) {
                 const nReal = normStr(parroquiaReal);
                 const nDecl = normStr(parroquiaDeclarada);
-                if (nReal !== nDecl && !nReal.includes(nDecl) && !nDecl.includes(nReal)) {
+                // Si el punto está legítimamente dentro del sector censal asignado a esa parroquia, no disparar alerta de parroquia
+                if (!enSectorAsignado && nReal !== nDecl && !nReal.includes(nDecl) && !nDecl.includes(nReal)) {
                     alertas.push({
                         tipo: 'parroquia',
                         mensaje: `Parroquia registrada: "${parroquiaDeclarada}", pero el GPS cayó en "${parroquiaReal}".`
@@ -1106,7 +1135,6 @@ document.addEventListener('DOMContentLoaded', () => {
             // 2. Verificar el polígono del sector identificado dentro de su cantón.
             const scDeclarado = String(enc.sc || campo(enc, 'sc') || campo(enc, 'pto_ref') || '').trim();
             if (scDeclarado && AppState.sectoresMap) {
-                const sectorMeta = resolverSectorEncuesta(enc);
                 if (sectorMeta && sectorMeta.centroid) {
                     const [hLng, hLat] = sectorMeta.centroid;
                     const distKm = calcularDistancia(lat, lng, hLat, hLng);
@@ -2536,8 +2564,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         id: 'parroquias-label',
                         type: 'symbol',
                         source: 'parroquias-centroides-source',
-                        minzoom: 9.5,
-                        maxzoom: 15.0,
+                        minzoom: 8.5,
                         layout: {
                             'text-field': ['get', 'nombre'],
                             'text-font': ['Open Sans Bold'],
@@ -3522,60 +3549,41 @@ document.addEventListener('DOMContentLoaded', () => {
                     map.setPaintProperty('parroquias-label', 'text-color', EXPR_PARROQUIAS_LABEL);
                 }
             } else if (AppState.circunscripcionSeleccionada && AppState.circunscripcionSeleccionada !== 'Todas') {
-                // Al filtrar por circunscripción con parroquia en "Todas":
-                // 1) Ocultar completamente el relleno de parroquias para que Sangolquí no invada la otra circunscripción
-                if (map.getLayer('parroquias-fill')) {
-                    map.setLayoutProperty('parroquias-fill', 'visibility', 'none');
+                const targetCirc = normCirc(AppState.circunscripcionSeleccionada);
+                // Parroquias por circunscripción de Portoviejo
+                let parroquiasDeCirc = [];
+                if (targetCirc === 'CIRCUNSCRIPCION URBANA 1') {
+                    parroquiasDeCirc = ['12 DE MARZO', '18 DE OCTUBRE', 'FRANCISCO PACHECO', 'PICOAZA', 'SAN PABLO'];
+                } else if (targetCirc === 'CIRCUNSCRIPCION URBANA 2') {
+                    parroquiasDeCirc = ['ANDRES DE VERA', 'COLON', 'PORTOVIEJO', 'SIMON BOLIVAR'];
+                } else if (targetCirc === 'CIRCUNSCRIPCION RURAL') {
+                    parroquiasDeCirc = ['ABDON CALDERON', 'ALHAJUELA / BAJO GRANDE', 'CRUCITA', 'RIO CHICO', 'SAN PLACIDO'];
                 }
 
-                // 2) Ajustar líneas y etiquetas parroquiales de forma estrictamente confinada a la circunscripción activa
-                const targetCirc = normCirc(AppState.circunscripcionSeleccionada);
-                if (targetCirc === 'CIRCUNSCRIPCION URBANA 1') {
-                    // Solo trazar linderos internos de Fajardo, San Pedro de Taboada y San Rafael (excluir Sangolquí)
-                    const filterParroquiaCirc = [
-                        'any',
-                        ['==', ['upcase', ['coalesce', ['get', 'nombre'], ['get', 'PARROQUIA'], '']], 'FAJARDO'],
-                        ['==', ['upcase', ['coalesce', ['get', 'nombre'], ['get', 'PARROQUIA'], '']], 'SAN PEDRO DE TABOADA'],
-                        ['==', ['upcase', ['coalesce', ['get', 'nombre'], ['get', 'PARROQUIA'], '']], 'SAN RAFAEL']
-                    ];
-                    if (map.getLayer('parroquias-line')) {
-                        map.setLayoutProperty('parroquias-line', 'visibility', 'visible');
-                        map.setFilter('parroquias-line', filterParroquiaCirc);
-                        map.setPaintProperty('parroquias-line', 'line-width', 2.0);
-                        map.setPaintProperty('parroquias-line', 'line-color', EXPR_PARROQUIAS_LINE);
-                        map.setPaintProperty('parroquias-line', 'line-opacity', 0.70);
-                    }
+                const filterParroquiaCirc = parroquiasDeCirc.length > 0 ? [
+                    'any',
+                    ...parroquiasDeCirc.map(p => ['==', ['upcase', ['coalesce', ['get', 'nombre'], ['get', 'PARROQUIA'], '']], p])
+                ] : null;
 
-                    if (map.getLayer('parroquias-label')) {
-                        map.setLayoutProperty('parroquias-label', 'visibility', 'visible');
-                        map.setFilter('parroquias-label', filterParroquiaCirc);
-                        map.setPaintProperty('parroquias-label', 'text-color', EXPR_PARROQUIAS_LABEL);
-                    }
-                } else if (targetCirc === 'CIRCUNSCRIPCION URBANA 2') {
-                    // Sangolquí es la circunscripción completa; su límite oficial ya lo traza circunscripciones-line
-                    if (map.getLayer('parroquias-line')) {
-                        map.setLayoutProperty('parroquias-line', 'visibility', 'none');
-                    }
-                    if (map.getLayer('parroquias-label')) {
-                        map.setLayoutProperty('parroquias-label', 'visibility', 'none');
-                    }
-                } else if (targetCirc === 'CIRCUNSCRIPCION RURAL') {
-                    const filterParroquiaCirc = [
-                        '==', ['upcase', ['coalesce', ['get', 'nombre'], ['get', 'PARROQUIA'], '']], 'COTOGCHOA'
-                    ];
-                    if (map.getLayer('parroquias-line')) {
-                        map.setLayoutProperty('parroquias-line', 'visibility', 'visible');
-                        map.setFilter('parroquias-line', filterParroquiaCirc);
-                        map.setPaintProperty('parroquias-line', 'line-width', 2.0);
-                        map.setPaintProperty('parroquias-line', 'line-color', EXPR_PARROQUIAS_LINE);
-                        map.setPaintProperty('parroquias-line', 'line-opacity', 0.70);
-                    }
+                if (map.getLayer('parroquias-line')) {
+                    map.setLayoutProperty('parroquias-line', 'visibility', 'visible');
+                    map.setFilter('parroquias-line', filterParroquiaCirc);
+                    map.setPaintProperty('parroquias-line', 'line-width', 2.2);
+                    map.setPaintProperty('parroquias-line', 'line-color', EXPR_PARROQUIAS_LINE);
+                    map.setPaintProperty('parroquias-line', 'line-opacity', 0.85);
+                }
 
-                    if (map.getLayer('parroquias-label')) {
-                        map.setLayoutProperty('parroquias-label', 'visibility', 'visible');
-                        map.setFilter('parroquias-label', filterParroquiaCirc);
-                        map.setPaintProperty('parroquias-label', 'text-color', EXPR_PARROQUIAS_LABEL);
-                    }
+                if (map.getLayer('parroquias-fill')) {
+                    map.setLayoutProperty('parroquias-fill', 'visibility', 'visible');
+                    map.setFilter('parroquias-fill', filterParroquiaCirc);
+                    map.setPaintProperty('parroquias-fill', 'fill-color', EXPR_PARROQUIAS_FILL);
+                    map.setPaintProperty('parroquias-fill', 'fill-opacity', 0.12);
+                }
+
+                if (map.getLayer('parroquias-label')) {
+                    map.setLayoutProperty('parroquias-label', 'visibility', 'visible');
+                    map.setFilter('parroquias-label', filterParroquiaCirc);
+                    map.setPaintProperty('parroquias-label', 'text-color', EXPR_PARROQUIAS_LABEL);
                 }
             } else {
                 // Vista global: todas las 12 parroquias con su paleta de color diferenciada
