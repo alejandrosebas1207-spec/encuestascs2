@@ -39,7 +39,7 @@ const ASSET_ID = limpiarVar(
     process.env.ASSET_ID_EL_CARMEN ||
     process.env.ASSET_ID_IBARRA ||
     process.env.ASSET_ID_PICHINCHA ||
-    ""
+    "aNkxCUYbn7jJTXFZqHtAVM"
 );
 const API_TOKEN = limpiarVar(
     process.env.API_TOKEN ||
@@ -155,6 +155,25 @@ function normalizarCoordenadas(valores, validarEcuador = false) {
 
 // Diccionarios oficiales de decodificación de choices de Kobo (Portoviejo 2026)
 const PARROQUIAS_FORMULARIO = {
+    // Códigos numéricos de choices del XLSForm Kobo
+    "5280": "12 DE MARZO",
+    "6770": "18 DE OCTUBRE",
+    "6775": "FRANCISCO PACHECO",
+    "5845": "PICOAZA",
+    "6585": "SAN PABLO",
+    "5030": "ANDRES DE VERA",
+    "5265": "COLON",
+    "5795": "PORTOVIEJO",
+    "6910": "SIMON BOLIVAR",
+    "0010": "ABDON CALDERON",
+    "10": "ABDON CALDERON",
+    "0050": "ALHAJUELA / BAJO GRANDE",
+    "50": "ALHAJUELA / BAJO GRANDE",
+    "0770": "CRUCITA",
+    "770": "CRUCITA",
+    "3185": "RIO CHICO",
+    "3625": "SAN PLACIDO",
+    // Nombres directos en texto
     "12 DE MARZO": "12 DE MARZO",
     "18 DE OCTUBRE": "18 DE OCTUBRE",
     "ABDON CALDERON": "ABDON CALDERON",
