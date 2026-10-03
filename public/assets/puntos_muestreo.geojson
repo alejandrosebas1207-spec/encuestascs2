@@ -6,8 +6,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -80.586078,
-          -1.107595
+          -80.584107,
+          -1.107912
         ]
       },
       "properties": {
@@ -21,15 +21,15 @@
         "canton": "MONTECRISTI",
         "CANTON": "MONTECRISTI",
         "circunscripcion": "CIRCUNSCRIPCION RURAL",
-        "sec_anm": "130952001001",
+        "sec_anm": "130952001003",
         "etiquetaSC": "1 | D",
         "etiqueta": "1 | D",
-        "punto_referencial": "ESCUELA LA PILA",
-        "nombre": "ESCUELA LA PILA",
+        "punto_referencial": "GOBIERNO PARROQUIAL LA PILA",
+        "nombre": "GOBIERNO PARROQUIAL LA PILA",
         "casos": 10,
-        "pob_t": 439.0,
-        "v_pres": 121.0,
-        "dist_borde": 2561.5
+        "pob_t": 346.0,
+        "v_pres": 104.0,
+        "dist_borde": 2385.6
       }
     },
     {
@@ -68,8 +68,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -80.624606,
-          -1.149848
+          -80.58865,
+          -1.106612
         ]
       },
       "properties": {
@@ -83,15 +83,15 @@
         "canton": "MONTECRISTI",
         "CANTON": "MONTECRISTI",
         "circunscripcion": "CIRCUNSCRIPCION RURAL",
-        "sec_anm": "130952902001",
+        "sec_anm": "130952001001",
         "etiquetaSC": "3 | A",
         "etiqueta": "3 | A",
-        "punto_referencial": "IGLESIA EVANGELICA CAMINO DE SANTIDAD EL FARO",
-        "nombre": "IGLESIA EVANGELICA CAMINO DE SANTIDAD EL FARO",
+        "punto_referencial": "CEMENTERIO GENERAL LA PILA",
+        "nombre": "CEMENTERIO GENERAL LA PILA",
         "casos": 10,
-        "pob_t": 798.0,
-        "v_pres": 216.0,
-        "dist_borde": 916.1
+        "pob_t": 439.0,
+        "v_pres": 121.0,
+        "dist_borde": 2450.5
       }
     },
     {
@@ -99,8 +99,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -80.584198,
-          -1.023531
+          -80.66096,
+          -1.039578
         ]
       },
       "properties": {
@@ -114,15 +114,15 @@
         "canton": "MONTECRISTI",
         "CANTON": "MONTECRISTI",
         "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "sec_anm": "130950903005",
+        "sec_anm": "130950015008",
         "etiquetaSC": "4 | E",
         "etiqueta": "4 | E",
-        "punto_referencial": "SUBCENTRO DE SALUD DE LA SEQUITA",
-        "nombre": "SUBCENTRO DE SALUD DE LA SEQUITA",
+        "punto_referencial": "IGLESIA EVANGELICA NUEVA JERUSALEN",
+        "nombre": "IGLESIA EVANGELICA NUEVA JERUSALEN",
         "casos": 10,
-        "pob_t": 559.0,
-        "v_pres": 165.0,
-        "dist_borde": 306.8
+        "pob_t": 381.0,
+        "v_pres": 105.0,
+        "dist_borde": 265.9
       }
     },
     {
@@ -130,8 +130,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -80.58665,
-          -1.02933
+          -80.672448,
+          -1.002648
         ]
       },
       "properties": {
@@ -145,15 +145,15 @@
         "canton": "MONTECRISTI",
         "CANTON": "MONTECRISTI",
         "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "sec_anm": "130950903007",
+        "sec_anm": "130950015001",
         "etiquetaSC": "5 | C",
         "etiqueta": "5 | C",
-        "punto_referencial": "CLUB 30 DE MAYO",
-        "nombre": "CLUB 30 DE MAYO",
+        "punto_referencial": "U.E. ORLY FELIXINO LOPEZ",
+        "nombre": "U.E. ORLY FELIXINO LOPEZ",
         "casos": 10,
-        "pob_t": 582.0,
-        "v_pres": 155.0,
-        "dist_borde": 989.4
+        "pob_t": 315.0,
+        "v_pres": 93.0,
+        "dist_borde": 777.4
       }
     },
     {
@@ -161,8 +161,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -80.651306,
-          -1.040348
+          -80.662663,
+          -1.018829
         ]
       },
       "properties": {
@@ -176,15 +176,15 @@
         "canton": "MONTECRISTI",
         "CANTON": "MONTECRISTI",
         "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "sec_anm": "130950018002",
+        "sec_anm": "130950015004",
         "etiquetaSC": "6 | D",
         "etiqueta": "6 | D",
-        "punto_referencial": "IGLESIA CRISTIANA AMHI",
-        "nombre": "IGLESIA CRISTIANA AMHI",
+        "punto_referencial": "AREA RECREATIVA",
+        "nombre": "AREA RECREATIVA",
         "casos": 10,
-        "pob_t": 447.0,
-        "v_pres": 118.0,
-        "dist_borde": 913.3
+        "pob_t": 430.0,
+        "v_pres": 151.0,
+        "dist_borde": 1070.6
       }
     },
     {
@@ -192,8 +192,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -80.671732,
-          -1.004158
+          -80.670837,
+          -1.028436
         ]
       },
       "properties": {
@@ -207,15 +207,15 @@
         "canton": "MONTECRISTI",
         "CANTON": "MONTECRISTI",
         "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "sec_anm": "130950015001",
+        "sec_anm": "130950015004",
         "etiquetaSC": "7 | G",
         "etiqueta": "7 | G",
-        "punto_referencial": "IGLESIA CATOLICA SENIORA DEL CARMEN",
-        "nombre": "IGLESIA CATOLICA SENIORA DEL CARMEN",
+        "punto_referencial": "SUBESTACION MONTECRISTI TRANSELECTRIC",
+        "nombre": "SUBESTACION MONTECRISTI TRANSELECTRIC",
         "casos": 10,
-        "pob_t": 315.0,
-        "v_pres": 93.0,
-        "dist_borde": 896.1
+        "pob_t": 430.0,
+        "v_pres": 151.0,
+        "dist_borde": 298.0
       }
     },
     {
@@ -223,8 +223,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -80.795645,
-          -1.126526
+          -80.68229,
+          -1.016905
         ]
       },
       "properties": {
@@ -238,15 +238,15 @@
         "canton": "MONTECRISTI",
         "CANTON": "MONTECRISTI",
         "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "sec_anm": "130950926001",
+        "sec_anm": "130950014006",
         "etiquetaSC": "8 | C",
         "etiqueta": "8 | C",
-        "punto_referencial": "IGLESIA SAN PEDRO SAN PABLO",
-        "nombre": "IGLESIA SAN PEDRO SAN PABLO",
+        "punto_referencial": "JARDIN DE INFANTES JUANITO",
+        "nombre": "JARDIN DE INFANTES JUANITO",
         "casos": 10,
-        "pob_t": 287.0,
-        "v_pres": 90.0,
-        "dist_borde": 3175.2
+        "pob_t": 272.0,
+        "v_pres": 87.0,
+        "dist_borde": 848.7
       }
     },
     {
@@ -254,8 +254,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -80.80034,
-          -1.129311
+          -80.695002,
+          -1.03102
         ]
       },
       "properties": {
@@ -269,15 +269,15 @@
         "canton": "MONTECRISTI",
         "CANTON": "MONTECRISTI",
         "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "sec_anm": "130950926002",
+        "sec_anm": "130950004005",
         "etiquetaSC": "9 | H",
         "etiqueta": "9 | H",
-        "punto_referencial": "UNIDAD EDUCATIVA ANTHONY ALVIA AGUAYO",
-        "nombre": "UNIDAD EDUCATIVA ANTHONY ALVIA AGUAYO",
+        "punto_referencial": "IGLESIA CATOLICA",
+        "nombre": "IGLESIA CATOLICA",
         "casos": 10,
-        "pob_t": 251.0,
-        "v_pres": 75.0,
-        "dist_borde": 2895.1
+        "pob_t": 664.0,
+        "v_pres": 187.0,
+        "dist_borde": 1544.9
       }
     },
     {
@@ -285,8 +285,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -80.839521,
-          -1.168455
+          -80.687656,
+          -1.009937
         ]
       },
       "properties": {
@@ -300,15 +300,15 @@
         "canton": "MONTECRISTI",
         "CANTON": "MONTECRISTI",
         "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "sec_anm": "130950930002",
+        "sec_anm": "130950004004",
         "etiquetaSC": "10 | A",
         "etiqueta": "10 | A",
-        "punto_referencial": "SUB CENTRO DE SALUD PILE",
-        "nombre": "SUB CENTRO DE SALUD PILE",
+        "punto_referencial": "CNEL MONTECRISTI SUBESTACION #2",
+        "nombre": "CNEL MONTECRISTI SUBESTACION #2",
         "casos": 10,
-        "pob_t": 344.0,
-        "v_pres": 119.0,
-        "dist_borde": 2885.4
+        "pob_t": 511.0,
+        "v_pres": 151.0,
+        "dist_borde": 307.1
       }
     },
     {
@@ -316,8 +316,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -80.685891,
-          -0.99078
+          -80.686537,
+          -0.987342
         ]
       },
       "properties": {
@@ -331,15 +331,15 @@
         "canton": "MONTECRISTI",
         "CANTON": "MONTECRISTI",
         "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "sec_anm": "130950013007",
+        "sec_anm": "130950011006",
         "etiquetaSC": "11 | B",
         "etiqueta": "11 | B",
-        "punto_referencial": "IGLESIA EVANGELICA IEME",
-        "nombre": "IGLESIA EVANGELICA IEME",
+        "punto_referencial": "IGLESIA EVANGELICA ASAMBLEA DE DIOS",
+        "nombre": "IGLESIA EVANGELICA ASAMBLEA DE DIOS",
         "casos": 10,
-        "pob_t": 344.0,
-        "v_pres": 95.0,
-        "dist_borde": 667.8
+        "pob_t": 363.0,
+        "v_pres": 99.0,
+        "dist_borde": 358.5
       }
     },
     {
@@ -347,8 +347,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -80.683923,
-          -0.997419
+          -80.671539,
+          -0.967162
         ]
       },
       "properties": {
@@ -362,15 +362,15 @@
         "canton": "MONTECRISTI",
         "CANTON": "MONTECRISTI",
         "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "sec_anm": "130950010008",
+        "sec_anm": "130950012002",
         "etiquetaSC": "12 | F",
         "etiqueta": "12 | F",
-        "punto_referencial": "IGLESIA CATOLICA COMUNIDAD SAN FRANSISCO DE ASIS",
-        "nombre": "IGLESIA CATOLICA COMUNIDAD SAN FRANSISCO DE ASIS",
+        "punto_referencial": "ESTACION TELEFONICA CNT",
+        "nombre": "ESTACION TELEFONICA CNT",
         "casos": 10,
-        "pob_t": 457.0,
-        "v_pres": 124.0,
-        "dist_borde": 508.9
+        "pob_t": 198.0,
+        "v_pres": 59.0,
+        "dist_borde": 222.9
       }
     },
     {
@@ -378,8 +378,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -80.681408,
-          -0.988684
+          -80.6861,
+          -0.998202
         ]
       },
       "properties": {
@@ -393,15 +393,15 @@
         "canton": "MONTECRISTI",
         "CANTON": "MONTECRISTI",
         "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "sec_anm": "130950013003",
+        "sec_anm": "130950010007",
         "etiquetaSC": "13 | A",
         "etiqueta": "13 | A",
-        "punto_referencial": "IGLESIA EL NUEVO PRADO",
-        "nombre": "IGLESIA EL NUEVO PRADO",
+        "punto_referencial": "IGLESIA EVANGELICA APOSTOLICA DEL NOMBRE DE JESUS",
+        "nombre": "IGLESIA EVANGELICA APOSTOLICA DEL NOMBRE DE JESUS",
         "casos": 10,
-        "pob_t": 488.0,
-        "v_pres": 135.0,
-        "dist_borde": 497.3
+        "pob_t": 347.0,
+        "v_pres": 96.0,
+        "dist_borde": 344.5
       }
     },
     {
@@ -409,8 +409,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -80.682308,
-          -0.994257
+          -80.678561,
+          -0.983438
         ]
       },
       "properties": {
@@ -424,15 +424,15 @@
         "canton": "MONTECRISTI",
         "CANTON": "MONTECRISTI",
         "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "sec_anm": "130950013008",
+        "sec_anm": "130950012007",
         "etiquetaSC": "14 | F",
         "etiqueta": "14 | F",
-        "punto_referencial": "IGLESIA EVANGELICA ELOHIM MONTECRISTI",
-        "nombre": "IGLESIA EVANGELICA ELOHIM MONTECRISTI",
+        "punto_referencial": "IGLESIA NARCISA DE JESUS",
+        "nombre": "IGLESIA NARCISA DE JESUS",
         "casos": 10,
-        "pob_t": 529.0,
-        "v_pres": 134.0,
-        "dist_borde": 492.6
+        "pob_t": 476.0,
+        "v_pres": 128.0,
+        "dist_borde": 222.5
       }
     },
     {
@@ -471,8 +471,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -80.696281,
-          -0.997012
+          -80.719455,
+          -1.015226
         ]
       },
       "properties": {
@@ -486,15 +486,15 @@
         "canton": "MONTECRISTI",
         "CANTON": "MONTECRISTI",
         "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "sec_anm": "130950006002",
+        "sec_anm": "130950003005",
         "etiquetaSC": "16 | H",
         "etiqueta": "16 | H",
-        "punto_referencial": "ESCUELA EDUCATIVA  BASICA NINIOS DEL FUTURO",
-        "nombre": "ESCUELA EDUCATIVA  BASICA NINIOS DEL FUTURO",
+        "punto_referencial": "IGLESIA EVANGELICA CAMPAMENTO ELIM",
+        "nombre": "IGLESIA EVANGELICA CAMPAMENTO ELIM",
         "casos": 10,
-        "pob_t": 413.0,
-        "v_pres": 101.0,
-        "dist_borde": 665.8
+        "pob_t": 534.0,
+        "v_pres": 152.0,
+        "dist_borde": 274.5
       }
     },
     {
@@ -502,8 +502,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -80.709392,
-          -1.005418
+          -80.712422,
+          -1.002934
         ]
       },
       "properties": {
@@ -517,15 +517,15 @@
         "canton": "MONTECRISTI",
         "CANTON": "MONTECRISTI",
         "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "sec_anm": "130950002005",
+        "sec_anm": "130950002001",
         "etiquetaSC": "17 | F",
         "etiqueta": "17 | F",
-        "punto_referencial": "IGLESIA CRISTIANA",
-        "nombre": "IGLESIA CRISTIANA",
+        "punto_referencial": "IGLESIA BEATA FRANCISCA DE ROBBATO",
+        "nombre": "IGLESIA BEATA FRANCISCA DE ROBBATO",
         "casos": 10,
-        "pob_t": 498.0,
-        "v_pres": 143.0,
-        "dist_borde": 655.6
+        "pob_t": 471.0,
+        "v_pres": 116.0,
+        "dist_borde": 549.6
       }
     },
     {
@@ -533,8 +533,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -80.710731,
-          -1.002714
+          -80.705737,
+          -1.014492
         ]
       },
       "properties": {
@@ -548,15 +548,15 @@
         "canton": "MONTECRISTI",
         "CANTON": "MONTECRISTI",
         "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "sec_anm": "130950002002",
+        "sec_anm": "130950003007",
         "etiquetaSC": "18 | B",
         "etiqueta": "18 | B",
-        "punto_referencial": "IGLESIA EVANGELICA S.M.I.",
-        "nombre": "IGLESIA EVANGELICA S.M.I.",
+        "punto_referencial": "ESCUELA PARTICULAR \"ELOY ABAD ORDONIEZ\"",
+        "nombre": "ESCUELA PARTICULAR \"ELOY ABAD ORDONIEZ\"",
         "casos": 10,
-        "pob_t": 340.0,
-        "v_pres": 97.0,
-        "dist_borde": 628.6
+        "pob_t": 398.0,
+        "v_pres": 130.0,
+        "dist_borde": 290.8
       }
     },
     {
@@ -564,8 +564,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -80.698873,
-          -0.995216
+          -80.694246,
+          -0.992966
         ]
       },
       "properties": {
@@ -579,15 +579,15 @@
         "canton": "MONTECRISTI",
         "CANTON": "MONTECRISTI",
         "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "sec_anm": "130950007009",
+        "sec_anm": "130950008005",
         "etiquetaSC": "19 | G",
         "etiqueta": "19 | G",
-        "punto_referencial": "CNH - MIES",
-        "nombre": "CNH - MIES",
+        "punto_referencial": "MEGAPACIFIC S.A.",
+        "nombre": "MEGAPACIFIC S.A.",
         "casos": 10,
-        "pob_t": 538.0,
-        "v_pres": 150.0,
-        "dist_borde": 473.9
+        "pob_t": 249.0,
+        "v_pres": 79.0,
+        "dist_borde": 268.9
       }
     },
     {
@@ -595,8 +595,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -80.695756,
-          -0.993219
+          -80.691634,
+          -1.000729
         ]
       },
       "properties": {
@@ -610,15 +610,15 @@
         "canton": "MONTECRISTI",
         "CANTON": "MONTECRISTI",
         "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "sec_anm": "130950008004",
+        "sec_anm": "130950009002",
         "etiquetaSC": "20 | C",
         "etiqueta": "20 | C",
-        "punto_referencial": "IGLESIA CATOLICA SAGRADO CORAZON",
-        "nombre": "IGLESIA CATOLICA SAGRADO CORAZON",
+        "punto_referencial": "ROCA CALIDA GUARDERIA PARA ANCIANO",
+        "nombre": "ROCA CALIDA GUARDERIA PARA ANCIANO",
         "casos": 10,
-        "pob_t": 416.0,
-        "v_pres": 101.0,
-        "dist_borde": 430.1
+        "pob_t": 367.0,
+        "v_pres": 104.0,
+        "dist_borde": 327.8
       }
     },
     {
@@ -626,8 +626,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -80.708084,
-          -1.001901
+          -80.707265,
+          -1.000563
         ]
       },
       "properties": {
@@ -644,12 +644,12 @@
         "sec_anm": "130950001011",
         "etiquetaSC": "21 | E",
         "etiqueta": "21 | E",
-        "punto_referencial": "IGLESIA EVANGELICA APOSTOLICA DEL NOMBRE DE JESUS",
-        "nombre": "IGLESIA EVANGELICA APOSTOLICA DEL NOMBRE DE JESUS",
+        "punto_referencial": "COMERCIAL LOS PALMA",
+        "nombre": "COMERCIAL LOS PALMA",
         "casos": 10,
         "pob_t": 306.0,
         "v_pres": 84.0,
-        "dist_borde": 404.6
+        "dist_borde": 239.5
       }
     },
     {
@@ -657,8 +657,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -80.715812,
-          -1.003052
+          -80.712564,
+          -1.007693
         ]
       },
       "properties": {
@@ -672,164 +672,9 @@
         "canton": "MONTECRISTI",
         "CANTON": "MONTECRISTI",
         "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "sec_anm": "130950001003",
+        "sec_anm": "130950002009",
         "etiquetaSC": "22 | G",
         "etiqueta": "22 | G",
-        "punto_referencial": "IGLESIA EVANGELICA PENTECOSTES",
-        "nombre": "IGLESIA EVANGELICA PENTECOSTES",
-        "casos": 10,
-        "pob_t": 393.0,
-        "v_pres": 110.0,
-        "dist_borde": 379.2
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.694228,
-          -0.999835
-        ]
-      },
-      "properties": {
-        "sc": "23",
-        "codigo": 23,
-        "codigo_muestra": 23,
-        "num_muestra": 23,
-        "tipologia": "E",
-        "parroquia": "LEONIDAS PROAÑO",
-        "PARROQUIA": "LEONIDAS PROAÑO",
-        "canton": "MONTECRISTI",
-        "CANTON": "MONTECRISTI",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "sec_anm": "130950005005",
-        "etiquetaSC": "23 | E",
-        "etiqueta": "23 | E",
-        "punto_referencial": "ESCUELA PARTICULAR HOMERO CHIRIBOGA JIJON",
-        "nombre": "ESCUELA PARTICULAR HOMERO CHIRIBOGA JIJON",
-        "casos": 10,
-        "pob_t": 457.0,
-        "v_pres": 136.0,
-        "dist_borde": 378.4
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.712729,
-          -1.00477
-        ]
-      },
-      "properties": {
-        "sc": "24",
-        "codigo": 24,
-        "codigo_muestra": 24,
-        "num_muestra": 24,
-        "tipologia": "C",
-        "parroquia": "LEONIDAS PROAÑO",
-        "PARROQUIA": "LEONIDAS PROAÑO",
-        "canton": "MONTECRISTI",
-        "CANTON": "MONTECRISTI",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "sec_anm": "130950002007",
-        "etiquetaSC": "24 | C",
-        "etiqueta": "24 | C",
-        "punto_referencial": "UNIDAD EDUCATIVA FISCAL TIERRA SANTA",
-        "nombre": "UNIDAD EDUCATIVA FISCAL TIERRA SANTA",
-        "casos": 10,
-        "pob_t": 397.0,
-        "v_pres": 115.0,
-        "dist_borde": 367.5
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.691634,
-          -1.000729
-        ]
-      },
-      "properties": {
-        "sc": "25",
-        "codigo": 25,
-        "codigo_muestra": 25,
-        "num_muestra": 25,
-        "tipologia": "H",
-        "parroquia": "LEONIDAS PROAÑO",
-        "PARROQUIA": "LEONIDAS PROAÑO",
-        "canton": "MONTECRISTI",
-        "CANTON": "MONTECRISTI",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "sec_anm": "130950009002",
-        "etiquetaSC": "25 | H",
-        "etiqueta": "25 | H",
-        "punto_referencial": "ROCA CALIDA GUARDERIA PARA ANCIANO",
-        "nombre": "ROCA CALIDA GUARDERIA PARA ANCIANO",
-        "casos": 10,
-        "pob_t": 367.0,
-        "v_pres": 104.0,
-        "dist_borde": 327.8
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.705737,
-          -1.014492
-        ]
-      },
-      "properties": {
-        "sc": "26",
-        "codigo": 26,
-        "codigo_muestra": 26,
-        "num_muestra": 26,
-        "tipologia": "D",
-        "parroquia": "LEONIDAS PROAÑO",
-        "PARROQUIA": "LEONIDAS PROAÑO",
-        "canton": "MONTECRISTI",
-        "CANTON": "MONTECRISTI",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "sec_anm": "130950003007",
-        "etiquetaSC": "26 | D",
-        "etiqueta": "26 | D",
-        "punto_referencial": "ESCUELA PARTICULAR \"ELOY ABAD ORDONIEZ\"",
-        "nombre": "ESCUELA PARTICULAR \"ELOY ABAD ORDONIEZ\"",
-        "casos": 10,
-        "pob_t": 398.0,
-        "v_pres": 130.0,
-        "dist_borde": 290.8
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.712564,
-          -1.007693
-        ]
-      },
-      "properties": {
-        "sc": "27",
-        "codigo": 27,
-        "codigo_muestra": 27,
-        "num_muestra": 27,
-        "tipologia": "D",
-        "parroquia": "LEONIDAS PROAÑO",
-        "PARROQUIA": "LEONIDAS PROAÑO",
-        "canton": "MONTECRISTI",
-        "CANTON": "MONTECRISTI",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "sec_anm": "130950002009",
-        "etiquetaSC": "27 | D",
-        "etiqueta": "27 | D",
         "punto_referencial": "IGLESIA EVANGELICA SANTIDAD DE DIOS",
         "nombre": "IGLESIA EVANGELICA SANTIDAD DE DIOS",
         "casos": 10,
@@ -843,8 +688,163 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -80.719455,
-          -1.015226
+          -80.699404,
+          -0.994468
+        ]
+      },
+      "properties": {
+        "sc": "23",
+        "codigo": 23,
+        "codigo_muestra": 23,
+        "num_muestra": 23,
+        "tipologia": "E",
+        "parroquia": "LEONIDAS PROAÑO",
+        "PARROQUIA": "LEONIDAS PROAÑO",
+        "canton": "MONTECRISTI",
+        "CANTON": "MONTECRISTI",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "sec_anm": "130950007008",
+        "etiquetaSC": "23 | E",
+        "etiqueta": "23 | E",
+        "punto_referencial": "IGLESIA EVANGELICA REMANENTE DE FE",
+        "nombre": "IGLESIA EVANGELICA REMANENTE DE FE",
+        "casos": 10,
+        "pob_t": 507.0,
+        "v_pres": 135.0,
+        "dist_borde": 391.2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.709392,
+          -1.005418
+        ]
+      },
+      "properties": {
+        "sc": "24",
+        "codigo": 24,
+        "codigo_muestra": 24,
+        "num_muestra": 24,
+        "tipologia": "C",
+        "parroquia": "LEONIDAS PROAÑO",
+        "PARROQUIA": "LEONIDAS PROAÑO",
+        "canton": "MONTECRISTI",
+        "CANTON": "MONTECRISTI",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "sec_anm": "130950002005",
+        "etiquetaSC": "24 | C",
+        "etiqueta": "24 | C",
+        "punto_referencial": "IGLESIA CRISTIANA",
+        "nombre": "IGLESIA CRISTIANA",
+        "casos": 10,
+        "pob_t": 498.0,
+        "v_pres": 143.0,
+        "dist_borde": 655.6
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.6955,
+          -0.996928
+        ]
+      },
+      "properties": {
+        "sc": "25",
+        "codigo": 25,
+        "codigo_muestra": 25,
+        "num_muestra": 25,
+        "tipologia": "H",
+        "parroquia": "LEONIDAS PROAÑO",
+        "PARROQUIA": "LEONIDAS PROAÑO",
+        "canton": "MONTECRISTI",
+        "CANTON": "MONTECRISTI",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "sec_anm": "130950006002",
+        "etiquetaSC": "25 | H",
+        "etiqueta": "25 | H",
+        "punto_referencial": "INSPECTORIA MUNICIPAL PARROQUIA LEONIDAS PROANIO",
+        "nombre": "INSPECTORIA MUNICIPAL PARROQUIA LEONIDAS PROANIO",
+        "casos": 10,
+        "pob_t": 413.0,
+        "v_pres": 101.0,
+        "dist_borde": 581.9
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.695051,
+          -1.000399
+        ]
+      },
+      "properties": {
+        "sc": "26",
+        "codigo": 26,
+        "codigo_muestra": 26,
+        "num_muestra": 26,
+        "tipologia": "D",
+        "parroquia": "LEONIDAS PROAÑO",
+        "PARROQUIA": "LEONIDAS PROAÑO",
+        "canton": "MONTECRISTI",
+        "CANTON": "MONTECRISTI",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "sec_anm": "130950005004",
+        "etiquetaSC": "26 | D",
+        "etiqueta": "26 | D",
+        "punto_referencial": "ESCUELA PARTICULAR MIXTA SENDERO DEL SABER",
+        "nombre": "ESCUELA PARTICULAR MIXTA SENDERO DEL SABER",
+        "casos": 10,
+        "pob_t": 440.0,
+        "v_pres": 117.0,
+        "dist_borde": 308.8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.715812,
+          -1.003052
+        ]
+      },
+      "properties": {
+        "sc": "27",
+        "codigo": 27,
+        "codigo_muestra": 27,
+        "num_muestra": 27,
+        "tipologia": "D",
+        "parroquia": "LEONIDAS PROAÑO",
+        "PARROQUIA": "LEONIDAS PROAÑO",
+        "canton": "MONTECRISTI",
+        "CANTON": "MONTECRISTI",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "sec_anm": "130950001003",
+        "etiquetaSC": "27 | D",
+        "etiqueta": "27 | D",
+        "punto_referencial": "IGLESIA EVANGELICA PENTECOSTES",
+        "nombre": "IGLESIA EVANGELICA PENTECOSTES",
+        "casos": 10,
+        "pob_t": 393.0,
+        "v_pres": 110.0,
+        "dist_borde": 379.2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.692418,
+          -0.997183
         ]
       },
       "properties": {
@@ -858,15 +858,15 @@
         "canton": "MONTECRISTI",
         "CANTON": "MONTECRISTI",
         "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "sec_anm": "130950003005",
+        "sec_anm": "130950009004",
         "etiquetaSC": "28 | B",
         "etiqueta": "28 | B",
-        "punto_referencial": "IGLESIA EVANGELICA CAMPAMENTO ELIM",
-        "nombre": "IGLESIA EVANGELICA CAMPAMENTO ELIM",
+        "punto_referencial": "CNH SANTA CECILIA",
+        "nombre": "CNH SANTA CECILIA",
         "casos": 10,
-        "pob_t": 534.0,
-        "v_pres": 152.0,
-        "dist_borde": 274.5
+        "pob_t": 285.0,
+        "v_pres": 93.0,
+        "dist_borde": 272.2
       }
     },
     {
@@ -905,8 +905,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -80.65179,
-          -1.078498
+          -80.699055,
+          -1.080078
         ]
       },
       "properties": {
@@ -920,15 +920,15 @@
         "canton": "MONTECRISTI",
         "CANTON": "MONTECRISTI",
         "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "sec_anm": "130950914001",
+        "sec_anm": "130950918007",
         "etiquetaSC": "30 | D",
         "etiqueta": "30 | D",
-        "punto_referencial": "CAPILLA DEL NINIO DIOS",
-        "nombre": "CAPILLA DEL NINIO DIOS",
+        "punto_referencial": "CAPILLA NINIO DIVINO DE SAN GREGORIO",
+        "nombre": "CAPILLA NINIO DIVINO DE SAN GREGORIO",
         "casos": 10,
-        "pob_t": 505.0,
-        "v_pres": 143.0,
-        "dist_borde": 2110.6
+        "pob_t": 587.0,
+        "v_pres": 168.0,
+        "dist_borde": 316.4
       }
     },
     {
@@ -936,8 +936,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -80.646481,
-          -1.075043
+          -80.671223,
+          -1.080629
         ]
       },
       "properties": {
@@ -951,15 +951,15 @@
         "canton": "MONTECRISTI",
         "CANTON": "MONTECRISTI",
         "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "sec_anm": "130950914002",
+        "sec_anm": "130950916007",
         "etiquetaSC": "31 | F",
         "etiqueta": "31 | F",
-        "punto_referencial": "ESCUELA FLAVIO ALFARO",
-        "nombre": "ESCUELA FLAVIO ALFARO",
+        "punto_referencial": "C.I.B.V",
+        "nombre": "C.I.B.V",
         "casos": 10,
-        "pob_t": 305.0,
-        "v_pres": 95.0,
-        "dist_borde": 2001.3
+        "pob_t": 480.0,
+        "v_pres": 132.0,
+        "dist_borde": 1446.4
       }
     },
     {
@@ -967,8 +967,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -80.650158,
-          -1.078601
+          -80.645027,
+          -1.075869
         ]
       },
       "properties": {
@@ -982,15 +982,15 @@
         "canton": "MONTECRISTI",
         "CANTON": "MONTECRISTI",
         "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "sec_anm": "130950914001",
+        "sec_anm": "130950914003",
         "etiquetaSC": "32 | G",
         "etiqueta": "32 | G",
-        "punto_referencial": "U.E. KEELY SOLANGE QUIJIJE",
-        "nombre": "U.E. KEELY SOLANGE QUIJIJE",
+        "punto_referencial": "CNH SIMON BOLIVAR",
+        "nombre": "CNH SIMON BOLIVAR",
         "casos": 10,
-        "pob_t": 505.0,
-        "v_pres": 143.0,
-        "dist_borde": 1980.0
+        "pob_t": 319.0,
+        "v_pres": 97.0,
+        "dist_borde": 1828.7
       }
     },
     {
@@ -998,8 +998,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -80.648227,
-          -1.07872
+          -80.679513,
+          -1.042924
         ]
       },
       "properties": {
@@ -1013,15 +1013,15 @@
         "canton": "MONTECRISTI",
         "CANTON": "MONTECRISTI",
         "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "sec_anm": "130950914002",
+        "sec_anm": "130950921001",
         "etiquetaSC": "33 | E",
         "etiqueta": "33 | E",
-        "punto_referencial": "CENTRO DE SALUD",
-        "nombre": "CENTRO DE SALUD",
+        "punto_referencial": "ASOCIACION INTEPROF DE ARTESANOS EL CHORRILLO",
+        "nombre": "ASOCIACION INTEPROF DE ARTESANOS EL CHORRILLO",
         "casos": 10,
-        "pob_t": 305.0,
-        "v_pres": 95.0,
-        "dist_borde": 1837.2
+        "pob_t": 374.0,
+        "v_pres": 98.0,
+        "dist_borde": 235.6
       }
     },
     {
@@ -1029,8 +1029,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -80.65006,
-          -1.080298
+          -80.666863,
+          -1.041743
         ]
       },
       "properties": {
@@ -1044,15 +1044,15 @@
         "canton": "MONTECRISTI",
         "CANTON": "MONTECRISTI",
         "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "sec_anm": "130950914005",
+        "sec_anm": "130950016001",
         "etiquetaSC": "34 | B",
         "etiqueta": "34 | B",
-        "punto_referencial": "IGLESIA CATOLICA LA DOLOROSA",
-        "nombre": "IGLESIA CATOLICA LA DOLOROSA",
+        "punto_referencial": "IGLESIA CATOLICA DIOS ES TODO PARA MI",
+        "nombre": "IGLESIA CATOLICA DIOS ES TODO PARA MI",
         "casos": 10,
-        "pob_t": 630.0,
-        "v_pres": 166.0,
-        "dist_borde": 1833.7
+        "pob_t": 228.0,
+        "v_pres": 62.0,
+        "dist_borde": 344.1
       }
     },
     {
@@ -1060,8 +1060,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -80.644627,
-          -1.075517
+          -80.667451,
+          -1.06958
         ]
       },
       "properties": {
@@ -1075,350 +1075,9 @@
         "canton": "MONTECRISTI",
         "CANTON": "MONTECRISTI",
         "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "sec_anm": "130950914003",
+        "sec_anm": "130950916003",
         "etiquetaSC": "35 | A",
         "etiqueta": "35 | A",
-        "punto_referencial": "IGLESIA SAN JACINTO DE YAGUACHI",
-        "nombre": "IGLESIA SAN JACINTO DE YAGUACHI",
-        "casos": 10,
-        "pob_t": 319.0,
-        "v_pres": 97.0,
-        "dist_borde": 1833.1
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.675607,
-          -1.08767
-        ]
-      },
-      "properties": {
-        "sc": "36",
-        "codigo": 36,
-        "codigo_muestra": 36,
-        "num_muestra": 36,
-        "tipologia": "B",
-        "parroquia": "MONTECRISTI",
-        "PARROQUIA": "MONTECRISTI",
-        "canton": "MONTECRISTI",
-        "CANTON": "MONTECRISTI",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "sec_anm": "130950916009",
-        "etiquetaSC": "36 | B",
-        "etiqueta": "36 | B",
-        "punto_referencial": "COLEGIO DANIEL ACOSTA ROSALES",
-        "nombre": "COLEGIO DANIEL ACOSTA ROSALES",
-        "casos": 10,
-        "pob_t": 521.0,
-        "v_pres": 149.0,
-        "dist_borde": 1615.7
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.671626,
-          -1.082933
-        ]
-      },
-      "properties": {
-        "sc": "37",
-        "codigo": 37,
-        "codigo_muestra": 37,
-        "num_muestra": 37,
-        "tipologia": "D",
-        "parroquia": "MONTECRISTI",
-        "PARROQUIA": "MONTECRISTI",
-        "canton": "MONTECRISTI",
-        "CANTON": "MONTECRISTI",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "sec_anm": "130950916007",
-        "etiquetaSC": "37 | D",
-        "etiqueta": "37 | D",
-        "punto_referencial": "ESCUELA BASICA JUAN GILBERTO",
-        "nombre": "ESCUELA BASICA JUAN GILBERTO",
-        "casos": 10,
-        "pob_t": 480.0,
-        "v_pres": 132.0,
-        "dist_borde": 1534.0
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.566766,
-          -1.065188
-        ]
-      },
-      "properties": {
-        "sc": "38",
-        "codigo": 38,
-        "codigo_muestra": 38,
-        "num_muestra": 38,
-        "tipologia": "E",
-        "parroquia": "MONTECRISTI",
-        "PARROQUIA": "MONTECRISTI",
-        "canton": "MONTECRISTI",
-        "CANTON": "MONTECRISTI",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "sec_anm": "130950906004",
-        "etiquetaSC": "38 | E",
-        "etiqueta": "38 | E",
-        "punto_referencial": "IGLESIA EVANGELICA EL SHADY",
-        "nombre": "IGLESIA EVANGELICA EL SHADY",
-        "casos": 10,
-        "pob_t": 521.0,
-        "v_pres": 124.0,
-        "dist_borde": 1448.7
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.667835,
-          -1.077713
-        ]
-      },
-      "properties": {
-        "sc": "39",
-        "codigo": 39,
-        "codigo_muestra": 39,
-        "num_muestra": 39,
-        "tipologia": "F",
-        "parroquia": "MONTECRISTI",
-        "PARROQUIA": "MONTECRISTI",
-        "canton": "MONTECRISTI",
-        "CANTON": "MONTECRISTI",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "sec_anm": "130950916004",
-        "etiquetaSC": "39 | F",
-        "etiqueta": "39 | F",
-        "punto_referencial": "ESCUELA PEDRO MONCAYO",
-        "nombre": "ESCUELA PEDRO MONCAYO",
-        "casos": 10,
-        "pob_t": 519.0,
-        "v_pres": 138.0,
-        "dist_borde": 1423.0
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.669656,
-          -1.078268
-        ]
-      },
-      "properties": {
-        "sc": "40",
-        "codigo": 40,
-        "codigo_muestra": 40,
-        "num_muestra": 40,
-        "tipologia": "C",
-        "parroquia": "MONTECRISTI",
-        "PARROQUIA": "MONTECRISTI",
-        "canton": "MONTECRISTI",
-        "CANTON": "MONTECRISTI",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "sec_anm": "130950916006",
-        "etiquetaSC": "40 | C",
-        "etiqueta": "40 | C",
-        "punto_referencial": "IGLESIA CATOLICA SANTA GEMA",
-        "nombre": "IGLESIA CATOLICA SANTA GEMA",
-        "casos": 10,
-        "pob_t": 463.0,
-        "v_pres": 127.0,
-        "dist_borde": 1349.3
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.563286,
-          -1.064883
-        ]
-      },
-      "properties": {
-        "sc": "41",
-        "codigo": 41,
-        "codigo_muestra": 41,
-        "num_muestra": 41,
-        "tipologia": "G",
-        "parroquia": "MONTECRISTI",
-        "PARROQUIA": "MONTECRISTI",
-        "canton": "MONTECRISTI",
-        "CANTON": "MONTECRISTI",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "sec_anm": "130950906003",
-        "etiquetaSC": "41 | G",
-        "etiqueta": "41 | G",
-        "punto_referencial": "ESCUELA FISCAL ANIBAL SAN ANDRES #2",
-        "nombre": "ESCUELA FISCAL ANIBAL SAN ANDRES #2",
-        "casos": 10,
-        "pob_t": 481.0,
-        "v_pres": 123.0,
-        "dist_borde": 1326.6
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.677851,
-          -1.085068
-        ]
-      },
-      "properties": {
-        "sc": "42",
-        "codigo": 42,
-        "codigo_muestra": 42,
-        "num_muestra": 42,
-        "tipologia": "A",
-        "parroquia": "MONTECRISTI",
-        "PARROQUIA": "MONTECRISTI",
-        "canton": "MONTECRISTI",
-        "CANTON": "MONTECRISTI",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "sec_anm": "130950916011",
-        "etiquetaSC": "42 | A",
-        "etiqueta": "42 | A",
-        "punto_referencial": "IGLESIA CATOLICA SAN RAMON",
-        "nombre": "IGLESIA CATOLICA SAN RAMON",
-        "casos": 10,
-        "pob_t": 546.0,
-        "v_pres": 147.0,
-        "dist_borde": 1242.9
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.565222,
-          -1.063514
-        ]
-      },
-      "properties": {
-        "sc": "43",
-        "codigo": 43,
-        "codigo_muestra": 43,
-        "num_muestra": 43,
-        "tipologia": "B",
-        "parroquia": "MONTECRISTI",
-        "PARROQUIA": "MONTECRISTI",
-        "canton": "MONTECRISTI",
-        "CANTON": "MONTECRISTI",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "sec_anm": "130950906002",
-        "etiquetaSC": "43 | B",
-        "etiqueta": "43 | B",
-        "punto_referencial": "JARDIN CERRO GUAYABAL",
-        "nombre": "JARDIN CERRO GUAYABAL",
-        "casos": 10,
-        "pob_t": 400.0,
-        "v_pres": 99.0,
-        "dist_borde": 1220.3
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.671374,
-          -1.077597
-        ]
-      },
-      "properties": {
-        "sc": "44",
-        "codigo": 44,
-        "codigo_muestra": 44,
-        "num_muestra": 44,
-        "tipologia": "H",
-        "parroquia": "MONTECRISTI",
-        "PARROQUIA": "MONTECRISTI",
-        "canton": "MONTECRISTI",
-        "CANTON": "MONTECRISTI",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "sec_anm": "130950916002",
-        "etiquetaSC": "44 | H",
-        "etiqueta": "44 | H",
-        "punto_referencial": "CAPILLA SANTA CRUZ",
-        "nombre": "CAPILLA SANTA CRUZ",
-        "casos": 10,
-        "pob_t": 641.0,
-        "v_pres": 174.0,
-        "dist_borde": 1188.9
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.663482,
-          -1.053904
-        ]
-      },
-      "properties": {
-        "sc": "45",
-        "codigo": 45,
-        "codigo_muestra": 45,
-        "num_muestra": 45,
-        "tipologia": "D",
-        "parroquia": "MONTECRISTI",
-        "PARROQUIA": "MONTECRISTI",
-        "canton": "MONTECRISTI",
-        "CANTON": "MONTECRISTI",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "sec_anm": "130950019009",
-        "etiquetaSC": "45 | D",
-        "etiqueta": "45 | D",
-        "punto_referencial": "MUSEO HISTORICO ALFARISTA",
-        "nombre": "MUSEO HISTORICO ALFARISTA",
-        "casos": 10,
-        "pob_t": 323.0,
-        "v_pres": 89.0,
-        "dist_borde": 1106.3
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.667451,
-          -1.06958
-        ]
-      },
-      "properties": {
-        "sc": "46",
-        "codigo": 46,
-        "codigo_muestra": 46,
-        "num_muestra": 46,
-        "tipologia": "F",
-        "parroquia": "MONTECRISTI",
-        "PARROQUIA": "MONTECRISTI",
-        "canton": "MONTECRISTI",
-        "CANTON": "MONTECRISTI",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "sec_anm": "130950916003",
-        "etiquetaSC": "46 | F",
-        "etiqueta": "46 | F",
         "punto_referencial": "CAPILLA SANTA GEMA",
         "nombre": "CAPILLA SANTA GEMA",
         "casos": 10,
@@ -1437,19 +1096,19 @@
         ]
       },
       "properties": {
-        "sc": "47",
-        "codigo": 47,
-        "codigo_muestra": 47,
-        "num_muestra": 47,
-        "tipologia": "G",
+        "sc": "36",
+        "codigo": 36,
+        "codigo_muestra": 36,
+        "num_muestra": 36,
+        "tipologia": "B",
         "parroquia": "MONTECRISTI",
         "PARROQUIA": "MONTECRISTI",
         "canton": "MONTECRISTI",
         "CANTON": "MONTECRISTI",
         "circunscripcion": "CIRCUNSCRIPCION URBANA",
         "sec_anm": "130950916011",
-        "etiquetaSC": "47 | G",
-        "etiqueta": "47 | G",
+        "etiquetaSC": "36 | B",
+        "etiqueta": "36 | B",
         "punto_referencial": "CNH BAJO DEL PECHICHE",
         "nombre": "CNH BAJO DEL PECHICHE",
         "casos": 10,
@@ -1463,542 +1122,15 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -80.6545,
-          -1.06034
-        ]
-      },
-      "properties": {
-        "sc": "48",
-        "codigo": 48,
-        "codigo_muestra": 48,
-        "num_muestra": 48,
-        "tipologia": "A",
-        "parroquia": "MONTECRISTI",
-        "PARROQUIA": "MONTECRISTI",
-        "canton": "MONTECRISTI",
-        "CANTON": "MONTECRISTI",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "sec_anm": "130950019010",
-        "etiquetaSC": "48 | A",
-        "etiqueta": "48 | A",
-        "punto_referencial": "ANTIGUO MUNICIPIO",
-        "nombre": "ANTIGUO MUNICIPIO",
-        "casos": 10,
-        "pob_t": 549.0,
-        "v_pres": 157.0,
-        "dist_borde": 932.8
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.660319,
-          -1.054526
-        ]
-      },
-      "properties": {
-        "sc": "49",
-        "codigo": 49,
-        "codigo_muestra": 49,
-        "num_muestra": 49,
-        "tipologia": "E",
-        "parroquia": "MONTECRISTI",
-        "PARROQUIA": "MONTECRISTI",
-        "canton": "MONTECRISTI",
-        "CANTON": "MONTECRISTI",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "sec_anm": "130950019010",
-        "etiquetaSC": "49 | E",
-        "etiqueta": "49 | E",
-        "punto_referencial": "CAPILLA SAN JOSE",
-        "nombre": "CAPILLA SAN JOSE",
-        "casos": 10,
-        "pob_t": 549.0,
-        "v_pres": 157.0,
-        "dist_borde": 913.6
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.664071,
-          -1.050639
-        ]
-      },
-      "properties": {
-        "sc": "50",
-        "codigo": 50,
-        "codigo_muestra": 50,
-        "num_muestra": 50,
-        "tipologia": "B",
-        "parroquia": "MONTECRISTI",
-        "PARROQUIA": "MONTECRISTI",
-        "canton": "MONTECRISTI",
-        "CANTON": "MONTECRISTI",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "sec_anm": "130950016011",
-        "etiquetaSC": "50 | B",
-        "etiqueta": "50 | B",
-        "punto_referencial": "ESCUELA DE EDUCACION BASICA ELOY ALFARO #1",
-        "nombre": "ESCUELA DE EDUCACION BASICA ELOY ALFARO #1",
-        "casos": 10,
-        "pob_t": 407.0,
-        "v_pres": 117.0,
-        "dist_borde": 878.7
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.661317,
-          -1.052232
-        ]
-      },
-      "properties": {
-        "sc": "51",
-        "codigo": 51,
-        "codigo_muestra": 51,
-        "num_muestra": 51,
-        "tipologia": "C",
-        "parroquia": "MONTECRISTI",
-        "PARROQUIA": "MONTECRISTI",
-        "canton": "MONTECRISTI",
-        "CANTON": "MONTECRISTI",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "sec_anm": "130950019009",
-        "etiquetaSC": "51 | C",
-        "etiqueta": "51 | C",
-        "punto_referencial": "PARQUE PASEO LUDICO",
-        "nombre": "PARQUE PASEO LUDICO",
-        "casos": 10,
-        "pob_t": 323.0,
-        "v_pres": 89.0,
-        "dist_borde": 807.7
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.680482,
-          -1.081916
-        ]
-      },
-      "properties": {
-        "sc": "52",
-        "codigo": 52,
-        "codigo_muestra": 52,
-        "num_muestra": 52,
-        "tipologia": "H",
-        "parroquia": "MONTECRISTI",
-        "PARROQUIA": "MONTECRISTI",
-        "canton": "MONTECRISTI",
-        "CANTON": "MONTECRISTI",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "sec_anm": "130950916001",
-        "etiquetaSC": "52 | H",
-        "etiqueta": "52 | H",
-        "punto_referencial": "IGLESIA CATOLICA SEGUNDO BENIGNO",
-        "nombre": "IGLESIA CATOLICA SEGUNDO BENIGNO",
-        "casos": 10,
-        "pob_t": 664.0,
-        "v_pres": 184.0,
-        "dist_borde": 804.9
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.693356,
-          -1.082665
-        ]
-      },
-      "properties": {
-        "sc": "53",
-        "codigo": 53,
-        "codigo_muestra": 53,
-        "num_muestra": 53,
-        "tipologia": "F",
-        "parroquia": "MONTECRISTI",
-        "PARROQUIA": "MONTECRISTI",
-        "canton": "MONTECRISTI",
-        "CANTON": "MONTECRISTI",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "sec_anm": "130950918006",
-        "etiquetaSC": "53 | F",
-        "etiqueta": "53 | F",
-        "punto_referencial": "UPC",
-        "nombre": "UPC",
-        "casos": 10,
-        "pob_t": 414.0,
-        "v_pres": 102.0,
-        "dist_borde": 770.6
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.69557,
-          -1.082574
-        ]
-      },
-      "properties": {
-        "sc": "54",
-        "codigo": 54,
-        "codigo_muestra": 54,
-        "num_muestra": 54,
-        "tipologia": "B",
-        "parroquia": "MONTECRISTI",
-        "PARROQUIA": "MONTECRISTI",
-        "canton": "MONTECRISTI",
-        "CANTON": "MONTECRISTI",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "sec_anm": "130950918007",
-        "etiquetaSC": "54 | B",
-        "etiqueta": "54 | B",
-        "punto_referencial": "IGLESIA EVANGELICA APOSTOLICA NOMBRE DE JESUS",
-        "nombre": "IGLESIA EVANGELICA APOSTOLICA NOMBRE DE JESUS",
-        "casos": 10,
-        "pob_t": 587.0,
-        "v_pres": 168.0,
-        "dist_borde": 715.6
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.815261,
-          -1.23606
-        ]
-      },
-      "properties": {
-        "sc": "55",
-        "codigo": 55,
-        "codigo_muestra": 55,
-        "num_muestra": 55,
-        "tipologia": "D",
-        "parroquia": "MONTECRISTI",
-        "PARROQUIA": "MONTECRISTI",
-        "canton": "MONTECRISTI",
-        "CANTON": "MONTECRISTI",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "sec_anm": "130950934001",
-        "etiquetaSC": "55 | D",
-        "etiqueta": "55 | D",
-        "punto_referencial": "COMPLEJO DEPORTIVO MIRADOR DE SAN JOSE",
-        "nombre": "COMPLEJO DEPORTIVO MIRADOR DE SAN JOSE",
-        "casos": 10,
-        "pob_t": 57.0,
-        "v_pres": 31.0,
-        "dist_borde": 706.7
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.661363,
-          -1.05008
-        ]
-      },
-      "properties": {
-        "sc": "56",
-        "codigo": 56,
-        "codigo_muestra": 56,
-        "num_muestra": 56,
-        "tipologia": "H",
-        "parroquia": "MONTECRISTI",
-        "PARROQUIA": "MONTECRISTI",
-        "canton": "MONTECRISTI",
-        "CANTON": "MONTECRISTI",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "sec_anm": "130950019008",
-        "etiquetaSC": "56 | H",
-        "etiqueta": "56 | H",
-        "punto_referencial": "CUERPO DE BOMBEROS MONTECRISTI",
-        "nombre": "CUERPO DE BOMBEROS MONTECRISTI",
-        "casos": 10,
-        "pob_t": 316.0,
-        "v_pres": 94.0,
-        "dist_borde": 631.0
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.663404,
-          -1.047519
-        ]
-      },
-      "properties": {
-        "sc": "57",
-        "codigo": 57,
-        "codigo_muestra": 57,
-        "num_muestra": 57,
-        "tipologia": "G",
-        "parroquia": "MONTECRISTI",
-        "PARROQUIA": "MONTECRISTI",
-        "canton": "MONTECRISTI",
-        "CANTON": "MONTECRISTI",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "sec_anm": "130950016011",
-        "etiquetaSC": "57 | G",
-        "etiqueta": "57 | G",
-        "punto_referencial": "IGLESIA EVANGELICA ADVENTISTA",
-        "nombre": "IGLESIA EVANGELICA ADVENTISTA",
-        "casos": 10,
-        "pob_t": 407.0,
-        "v_pres": 117.0,
-        "dist_borde": 571.9
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.694703,
-          -1.080465
-        ]
-      },
-      "properties": {
-        "sc": "58",
-        "codigo": 58,
-        "codigo_muestra": 58,
-        "num_muestra": 58,
-        "tipologia": "E",
-        "parroquia": "MONTECRISTI",
-        "PARROQUIA": "MONTECRISTI",
-        "canton": "MONTECRISTI",
-        "CANTON": "MONTECRISTI",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "sec_anm": "130950918006",
-        "etiquetaSC": "58 | E",
-        "etiqueta": "58 | E",
-        "punto_referencial": "UNIDAD EDUCATIVA FLAVIO PALACIOS GARCIA",
-        "nombre": "UNIDAD EDUCATIVA FLAVIO PALACIOS GARCIA",
-        "casos": 10,
-        "pob_t": 414.0,
-        "v_pres": 102.0,
-        "dist_borde": 508.6
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.657655,
-          -1.050835
-        ]
-      },
-      "properties": {
-        "sc": "59",
-        "codigo": 59,
-        "codigo_muestra": 59,
-        "num_muestra": 59,
-        "tipologia": "E",
-        "parroquia": "MONTECRISTI",
-        "PARROQUIA": "MONTECRISTI",
-        "canton": "MONTECRISTI",
-        "CANTON": "MONTECRISTI",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "sec_anm": "130950019004",
-        "etiquetaSC": "59 | E",
-        "etiqueta": "59 | E",
-        "punto_referencial": "GAD MONTECRISTI",
-        "nombre": "GAD MONTECRISTI",
-        "casos": 10,
-        "pob_t": 373.0,
-        "v_pres": 101.0,
-        "dist_borde": 415.9
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.659201,
-          -1.049279
-        ]
-      },
-      "properties": {
-        "sc": "60",
-        "codigo": 60,
-        "codigo_muestra": 60,
-        "num_muestra": 60,
-        "tipologia": "F",
-        "parroquia": "MONTECRISTI",
-        "PARROQUIA": "MONTECRISTI",
-        "canton": "MONTECRISTI",
-        "CANTON": "MONTECRISTI",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "sec_anm": "130950019006",
-        "etiquetaSC": "60 | F",
-        "etiqueta": "60 | F",
-        "punto_referencial": "JARDIN DE INFANTES CALIXTO QUIJIJE",
-        "nombre": "JARDIN DE INFANTES CALIXTO QUIJIJE",
-        "casos": 10,
-        "pob_t": 316.0,
-        "v_pres": 92.0,
-        "dist_borde": 407.5
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.663648,
-          -1.044904
-        ]
-      },
-      "properties": {
-        "sc": "61",
-        "codigo": 61,
-        "codigo_muestra": 61,
-        "num_muestra": 61,
-        "tipologia": "C",
-        "parroquia": "MONTECRISTI",
-        "PARROQUIA": "MONTECRISTI",
-        "canton": "MONTECRISTI",
-        "CANTON": "MONTECRISTI",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "sec_anm": "130950016003",
-        "etiquetaSC": "61 | C",
-        "etiqueta": "61 | C",
-        "punto_referencial": "UNIDAD EDUCATIVA 23 DE OCTUBRE",
-        "nombre": "UNIDAD EDUCATIVA 23 DE OCTUBRE",
-        "casos": 10,
-        "pob_t": 284.0,
-        "v_pres": 81.0,
-        "dist_borde": 372.2
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.69858,
-          -1.078938
-        ]
-      },
-      "properties": {
-        "sc": "62",
-        "codigo": 62,
-        "codigo_muestra": 62,
-        "num_muestra": 62,
-        "tipologia": "H",
-        "parroquia": "MONTECRISTI",
-        "PARROQUIA": "MONTECRISTI",
-        "canton": "MONTECRISTI",
-        "CANTON": "MONTECRISTI",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "sec_anm": "130950918004",
-        "etiquetaSC": "62 | H",
-        "etiqueta": "62 | H",
-        "punto_referencial": "CASA COMUNAL BAJO DE LA PALMA",
-        "nombre": "CASA COMUNAL BAJO DE LA PALMA",
-        "casos": 10,
-        "pob_t": 616.0,
-        "v_pres": 178.0,
-        "dist_borde": 352.3
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.666863,
-          -1.041743
-        ]
-      },
-      "properties": {
-        "sc": "63",
-        "codigo": 63,
-        "codigo_muestra": 63,
-        "num_muestra": 63,
-        "tipologia": "C",
-        "parroquia": "MONTECRISTI",
-        "PARROQUIA": "MONTECRISTI",
-        "canton": "MONTECRISTI",
-        "CANTON": "MONTECRISTI",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "sec_anm": "130950016001",
-        "etiquetaSC": "63 | C",
-        "etiqueta": "63 | C",
-        "punto_referencial": "IGLESIA CATOLICA DIOS ES TODO PARA MI",
-        "nombre": "IGLESIA CATOLICA DIOS ES TODO PARA MI",
-        "casos": 10,
-        "pob_t": 228.0,
-        "v_pres": 62.0,
-        "dist_borde": 344.1
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.696582,
-          -1.078317
-        ]
-      },
-      "properties": {
-        "sc": "64",
-        "codigo": 64,
-        "codigo_muestra": 64,
-        "num_muestra": 64,
-        "tipologia": "A",
-        "parroquia": "MONTECRISTI",
-        "PARROQUIA": "MONTECRISTI",
-        "canton": "MONTECRISTI",
-        "CANTON": "MONTECRISTI",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "sec_anm": "130950918001",
-        "etiquetaSC": "64 | A",
-        "etiqueta": "64 | A",
-        "punto_referencial": "IGLESIA EVANGELICA EMANUEL",
-        "nombre": "IGLESIA EVANGELICA EMANUEL",
-        "casos": 10,
-        "pob_t": 506.0,
-        "v_pres": 141.0,
-        "dist_borde": 329.6
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           -80.660682,
           -1.046665
         ]
       },
       "properties": {
-        "sc": "65",
-        "codigo": 65,
-        "codigo_muestra": 65,
-        "num_muestra": 65,
+        "sc": "37",
+        "codigo": 37,
+        "codigo_muestra": 37,
+        "num_muestra": 37,
         "tipologia": "D",
         "parroquia": "MONTECRISTI",
         "PARROQUIA": "MONTECRISTI",
@@ -2006,8 +1138,8 @@
         "CANTON": "MONTECRISTI",
         "circunscripcion": "CIRCUNSCRIPCION URBANA",
         "sec_anm": "130950016008",
-        "etiquetaSC": "65 | D",
-        "etiqueta": "65 | D",
+        "etiquetaSC": "37 | D",
+        "etiqueta": "37 | D",
         "punto_referencial": "ESCUELA DE EDUCACION BASICA NUEVA ESPERANZA",
         "nombre": "ESCUELA DE EDUCACION BASICA NUEVA ESPERANZA",
         "casos": 10,
@@ -2021,30 +1153,154 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -80.680044,
-          -1.044285
+          -80.65179,
+          -1.078498
         ]
       },
       "properties": {
-        "sc": "66",
-        "codigo": 66,
-        "codigo_muestra": 66,
-        "num_muestra": 66,
-        "tipologia": "B",
+        "sc": "38",
+        "codigo": 38,
+        "codigo_muestra": 38,
+        "num_muestra": 38,
+        "tipologia": "E",
         "parroquia": "MONTECRISTI",
         "PARROQUIA": "MONTECRISTI",
         "canton": "MONTECRISTI",
         "CANTON": "MONTECRISTI",
         "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "sec_anm": "130950921002",
-        "etiquetaSC": "66 | B",
-        "etiqueta": "66 | B",
-        "punto_referencial": "IGLESIA SAN JOSE",
-        "nombre": "IGLESIA SAN JOSE",
+        "sec_anm": "130950914001",
+        "etiquetaSC": "38 | E",
+        "etiqueta": "38 | E",
+        "punto_referencial": "CAPILLA DEL NINIO DIOS",
+        "nombre": "CAPILLA DEL NINIO DIOS",
         "casos": 10,
-        "pob_t": 337.0,
-        "v_pres": 93.0,
-        "dist_borde": 255.2
+        "pob_t": 505.0,
+        "v_pres": 143.0,
+        "dist_borde": 2110.6
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.6545,
+          -1.06034
+        ]
+      },
+      "properties": {
+        "sc": "39",
+        "codigo": 39,
+        "codigo_muestra": 39,
+        "num_muestra": 39,
+        "tipologia": "F",
+        "parroquia": "MONTECRISTI",
+        "PARROQUIA": "MONTECRISTI",
+        "canton": "MONTECRISTI",
+        "CANTON": "MONTECRISTI",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "sec_anm": "130950019010",
+        "etiquetaSC": "39 | F",
+        "etiqueta": "39 | F",
+        "punto_referencial": "ANTIGUO MUNICIPIO",
+        "nombre": "ANTIGUO MUNICIPIO",
+        "casos": 10,
+        "pob_t": 549.0,
+        "v_pres": 157.0,
+        "dist_borde": 932.8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.693356,
+          -1.082665
+        ]
+      },
+      "properties": {
+        "sc": "40",
+        "codigo": 40,
+        "codigo_muestra": 40,
+        "num_muestra": 40,
+        "tipologia": "C",
+        "parroquia": "MONTECRISTI",
+        "PARROQUIA": "MONTECRISTI",
+        "canton": "MONTECRISTI",
+        "CANTON": "MONTECRISTI",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "sec_anm": "130950918006",
+        "etiquetaSC": "40 | C",
+        "etiqueta": "40 | C",
+        "punto_referencial": "UPC",
+        "nombre": "UPC",
+        "casos": 10,
+        "pob_t": 414.0,
+        "v_pres": 102.0,
+        "dist_borde": 770.6
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.675607,
+          -1.08767
+        ]
+      },
+      "properties": {
+        "sc": "41",
+        "codigo": 41,
+        "codigo_muestra": 41,
+        "num_muestra": 41,
+        "tipologia": "G",
+        "parroquia": "MONTECRISTI",
+        "PARROQUIA": "MONTECRISTI",
+        "canton": "MONTECRISTI",
+        "CANTON": "MONTECRISTI",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "sec_anm": "130950916009",
+        "etiquetaSC": "41 | G",
+        "etiqueta": "41 | G",
+        "punto_referencial": "COLEGIO DANIEL ACOSTA ROSALES",
+        "nombre": "COLEGIO DANIEL ACOSTA ROSALES",
+        "casos": 10,
+        "pob_t": 521.0,
+        "v_pres": 149.0,
+        "dist_borde": 1615.7
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.664071,
+          -1.050639
+        ]
+      },
+      "properties": {
+        "sc": "42",
+        "codigo": 42,
+        "codigo_muestra": 42,
+        "num_muestra": 42,
+        "tipologia": "A",
+        "parroquia": "MONTECRISTI",
+        "PARROQUIA": "MONTECRISTI",
+        "canton": "MONTECRISTI",
+        "CANTON": "MONTECRISTI",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "sec_anm": "130950016011",
+        "etiquetaSC": "42 | A",
+        "etiqueta": "42 | A",
+        "punto_referencial": "ESCUELA DE EDUCACION BASICA ELOY ALFARO #1",
+        "nombre": "ESCUELA DE EDUCACION BASICA ELOY ALFARO #1",
+        "casos": 10,
+        "pob_t": 407.0,
+        "v_pres": 117.0,
+        "dist_borde": 878.7
       }
     },
     {
@@ -2057,19 +1313,19 @@
         ]
       },
       "properties": {
-        "sc": "67",
-        "codigo": 67,
-        "codigo_muestra": 67,
-        "num_muestra": 67,
-        "tipologia": "H",
+        "sc": "43",
+        "codigo": 43,
+        "codigo_muestra": 43,
+        "num_muestra": 43,
+        "tipologia": "B",
         "parroquia": "MONTECRISTI",
         "PARROQUIA": "MONTECRISTI",
         "canton": "MONTECRISTI",
         "CANTON": "MONTECRISTI",
         "circunscripcion": "CIRCUNSCRIPCION URBANA",
         "sec_anm": "130950916004",
-        "etiquetaSC": "67 | H",
-        "etiqueta": "67 | H",
+        "etiquetaSC": "43 | B",
+        "etiqueta": "43 | B",
         "punto_referencial": "POZA HONDA",
         "nombre": "POZA HONDA",
         "casos": 10,
@@ -2083,55 +1339,24 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -80.671223,
-          -1.080629
-        ]
-      },
-      "properties": {
-        "sc": "68",
-        "codigo": 68,
-        "codigo_muestra": 68,
-        "num_muestra": 68,
-        "tipologia": "G",
-        "parroquia": "MONTECRISTI",
-        "PARROQUIA": "MONTECRISTI",
-        "canton": "MONTECRISTI",
-        "CANTON": "MONTECRISTI",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "sec_anm": "130950916007",
-        "etiquetaSC": "68 | G",
-        "etiqueta": "68 | G",
-        "punto_referencial": "C.I.B.V",
-        "nombre": "C.I.B.V",
-        "casos": 10,
-        "pob_t": 480.0,
-        "v_pres": 132.0,
-        "dist_borde": 1446.4
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           -80.676199,
           -1.080155
         ]
       },
       "properties": {
-        "sc": "69",
-        "codigo": 69,
-        "codigo_muestra": 69,
-        "num_muestra": 69,
-        "tipologia": "A",
+        "sc": "44",
+        "codigo": 44,
+        "codigo_muestra": 44,
+        "num_muestra": 44,
+        "tipologia": "H",
         "parroquia": "MONTECRISTI",
         "PARROQUIA": "MONTECRISTI",
         "canton": "MONTECRISTI",
         "CANTON": "MONTECRISTI",
         "circunscripcion": "CIRCUNSCRIPCION URBANA",
         "sec_anm": "130950916002",
-        "etiquetaSC": "69 | A",
-        "etiqueta": "69 | A",
+        "etiquetaSC": "44 | H",
+        "etiqueta": "44 | H",
         "punto_referencial": "CEMENTERIO MONTE OLIVO",
         "nombre": "CEMENTERIO MONTE OLIVO",
         "casos": 10,
@@ -2145,8 +1370,783 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -80.678599,
-          -1.043461
+          -80.663156,
+          -1.055008
+        ]
+      },
+      "properties": {
+        "sc": "45",
+        "codigo": 45,
+        "codigo_muestra": 45,
+        "num_muestra": 45,
+        "tipologia": "D",
+        "parroquia": "MONTECRISTI",
+        "PARROQUIA": "MONTECRISTI",
+        "canton": "MONTECRISTI",
+        "CANTON": "MONTECRISTI",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "sec_anm": "130950019009",
+        "etiquetaSC": "45 | D",
+        "etiqueta": "45 | D",
+        "punto_referencial": "CENTRO CIVICO CIUDAD ALFARO",
+        "nombre": "CENTRO CIVICO CIUDAD ALFARO",
+        "casos": 10,
+        "pob_t": 323.0,
+        "v_pres": 89.0,
+        "dist_borde": 1172.7
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.64796,
+          -1.079624
+        ]
+      },
+      "properties": {
+        "sc": "46",
+        "codigo": 46,
+        "codigo_muestra": 46,
+        "num_muestra": 46,
+        "tipologia": "F",
+        "parroquia": "MONTECRISTI",
+        "PARROQUIA": "MONTECRISTI",
+        "canton": "MONTECRISTI",
+        "CANTON": "MONTECRISTI",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "sec_anm": "130950914005",
+        "etiquetaSC": "46 | F",
+        "etiqueta": "46 | F",
+        "punto_referencial": "IGLESIA SANTA LUCIA",
+        "nombre": "IGLESIA SANTA LUCIA",
+        "casos": 10,
+        "pob_t": 630.0,
+        "v_pres": 166.0,
+        "dist_borde": 1739.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.660214,
+          -1.050619
+        ]
+      },
+      "properties": {
+        "sc": "47",
+        "codigo": 47,
+        "codigo_muestra": 47,
+        "num_muestra": 47,
+        "tipologia": "G",
+        "parroquia": "MONTECRISTI",
+        "PARROQUIA": "MONTECRISTI",
+        "canton": "MONTECRISTI",
+        "CANTON": "MONTECRISTI",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "sec_anm": "130950019006",
+        "etiquetaSC": "47 | G",
+        "etiqueta": "47 | G",
+        "punto_referencial": "UNIDAD EDUCATIVA PARTICULAR MONTECRISTI",
+        "nombre": "UNIDAD EDUCATIVA PARTICULAR MONTECRISTI",
+        "casos": 10,
+        "pob_t": 316.0,
+        "v_pres": 92.0,
+        "dist_borde": 592.8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.693942,
+          -1.079085
+        ]
+      },
+      "properties": {
+        "sc": "48",
+        "codigo": 48,
+        "codigo_muestra": 48,
+        "num_muestra": 48,
+        "tipologia": "A",
+        "parroquia": "MONTECRISTI",
+        "PARROQUIA": "MONTECRISTI",
+        "canton": "MONTECRISTI",
+        "CANTON": "MONTECRISTI",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "sec_anm": "130950918006",
+        "etiquetaSC": "48 | A",
+        "etiqueta": "48 | A",
+        "punto_referencial": "IGLESIA EVANGELICA FUENTE DE SALVACION",
+        "nombre": "IGLESIA EVANGELICA FUENTE DE SALVACION",
+        "casos": 10,
+        "pob_t": 414.0,
+        "v_pres": 102.0,
+        "dist_borde": 370.6
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.663648,
+          -1.044904
+        ]
+      },
+      "properties": {
+        "sc": "49",
+        "codigo": 49,
+        "codigo_muestra": 49,
+        "num_muestra": 49,
+        "tipologia": "E",
+        "parroquia": "MONTECRISTI",
+        "PARROQUIA": "MONTECRISTI",
+        "canton": "MONTECRISTI",
+        "CANTON": "MONTECRISTI",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "sec_anm": "130950016003",
+        "etiquetaSC": "49 | E",
+        "etiqueta": "49 | E",
+        "punto_referencial": "UNIDAD EDUCATIVA 23 DE OCTUBRE",
+        "nombre": "UNIDAD EDUCATIVA 23 DE OCTUBRE",
+        "casos": 10,
+        "pob_t": 284.0,
+        "v_pres": 81.0,
+        "dist_borde": 372.2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.670401,
+          -1.077307
+        ]
+      },
+      "properties": {
+        "sc": "50",
+        "codigo": 50,
+        "codigo_muestra": 50,
+        "num_muestra": 50,
+        "tipologia": "B",
+        "parroquia": "MONTECRISTI",
+        "PARROQUIA": "MONTECRISTI",
+        "canton": "MONTECRISTI",
+        "CANTON": "MONTECRISTI",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "sec_anm": "130950916005",
+        "etiquetaSC": "50 | B",
+        "etiqueta": "50 | B",
+        "punto_referencial": "IGLESIA CRISTIANA BETANIA",
+        "nombre": "IGLESIA CRISTIANA BETANIA",
+        "casos": 10,
+        "pob_t": 502.0,
+        "v_pres": 141.0,
+        "dist_borde": 1215.1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.696758,
+          -1.07764
+        ]
+      },
+      "properties": {
+        "sc": "51",
+        "codigo": 51,
+        "codigo_muestra": 51,
+        "num_muestra": 51,
+        "tipologia": "C",
+        "parroquia": "MONTECRISTI",
+        "PARROQUIA": "MONTECRISTI",
+        "canton": "MONTECRISTI",
+        "CANTON": "MONTECRISTI",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "sec_anm": "130950918001",
+        "etiquetaSC": "51 | C",
+        "etiqueta": "51 | C",
+        "punto_referencial": "ESCUELA FISCAL LUIS A. MARTINEZ",
+        "nombre": "ESCUELA FISCAL LUIS A. MARTINEZ",
+        "casos": 10,
+        "pob_t": 506.0,
+        "v_pres": 141.0,
+        "dist_borde": 285.4
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.663604,
+          -1.047803
+        ]
+      },
+      "properties": {
+        "sc": "52",
+        "codigo": 52,
+        "codigo_muestra": 52,
+        "num_muestra": 52,
+        "tipologia": "H",
+        "parroquia": "MONTECRISTI",
+        "PARROQUIA": "MONTECRISTI",
+        "canton": "MONTECRISTI",
+        "CANTON": "MONTECRISTI",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "sec_anm": "130950016011",
+        "etiquetaSC": "52 | H",
+        "etiqueta": "52 | H",
+        "punto_referencial": "CLINICA DE DIALISIS",
+        "nombre": "CLINICA DE DIALISIS",
+        "casos": 10,
+        "pob_t": 407.0,
+        "v_pres": 117.0,
+        "dist_borde": 610.2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.672459,
+          -1.083037
+        ]
+      },
+      "properties": {
+        "sc": "53",
+        "codigo": 53,
+        "codigo_muestra": 53,
+        "num_muestra": 53,
+        "tipologia": "F",
+        "parroquia": "MONTECRISTI",
+        "PARROQUIA": "MONTECRISTI",
+        "canton": "MONTECRISTI",
+        "CANTON": "MONTECRISTI",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "sec_anm": "130950916008",
+        "etiquetaSC": "53 | F",
+        "etiqueta": "53 | F",
+        "punto_referencial": "IGLESIA EVANGELICA NUEVA JERUSALEN",
+        "nombre": "IGLESIA EVANGELICA NUEVA JERUSALEN",
+        "casos": 10,
+        "pob_t": 407.0,
+        "v_pres": 116.0,
+        "dist_borde": 1465.4
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.677851,
+          -1.085068
+        ]
+      },
+      "properties": {
+        "sc": "54",
+        "codigo": 54,
+        "codigo_muestra": 54,
+        "num_muestra": 54,
+        "tipologia": "B",
+        "parroquia": "MONTECRISTI",
+        "PARROQUIA": "MONTECRISTI",
+        "canton": "MONTECRISTI",
+        "CANTON": "MONTECRISTI",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "sec_anm": "130950916011",
+        "etiquetaSC": "54 | B",
+        "etiqueta": "54 | B",
+        "punto_referencial": "IGLESIA CATOLICA SAN RAMON",
+        "nombre": "IGLESIA CATOLICA SAN RAMON",
+        "casos": 10,
+        "pob_t": 546.0,
+        "v_pres": 147.0,
+        "dist_borde": 1242.9
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.667835,
+          -1.077713
+        ]
+      },
+      "properties": {
+        "sc": "55",
+        "codigo": 55,
+        "codigo_muestra": 55,
+        "num_muestra": 55,
+        "tipologia": "D",
+        "parroquia": "MONTECRISTI",
+        "PARROQUIA": "MONTECRISTI",
+        "canton": "MONTECRISTI",
+        "CANTON": "MONTECRISTI",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "sec_anm": "130950916004",
+        "etiquetaSC": "55 | D",
+        "etiqueta": "55 | D",
+        "punto_referencial": "ESCUELA PEDRO MONCAYO",
+        "nombre": "ESCUELA PEDRO MONCAYO",
+        "casos": 10,
+        "pob_t": 519.0,
+        "v_pres": 138.0,
+        "dist_borde": 1423.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.657655,
+          -1.050835
+        ]
+      },
+      "properties": {
+        "sc": "56",
+        "codigo": 56,
+        "codigo_muestra": 56,
+        "num_muestra": 56,
+        "tipologia": "H",
+        "parroquia": "MONTECRISTI",
+        "PARROQUIA": "MONTECRISTI",
+        "canton": "MONTECRISTI",
+        "CANTON": "MONTECRISTI",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "sec_anm": "130950019004",
+        "etiquetaSC": "56 | H",
+        "etiqueta": "56 | H",
+        "punto_referencial": "GAD MONTECRISTI",
+        "nombre": "GAD MONTECRISTI",
+        "casos": 10,
+        "pob_t": 373.0,
+        "v_pres": 101.0,
+        "dist_borde": 415.9
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.695612,
+          -1.082981
+        ]
+      },
+      "properties": {
+        "sc": "57",
+        "codigo": 57,
+        "codigo_muestra": 57,
+        "num_muestra": 57,
+        "tipologia": "G",
+        "parroquia": "MONTECRISTI",
+        "PARROQUIA": "MONTECRISTI",
+        "canton": "MONTECRISTI",
+        "CANTON": "MONTECRISTI",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "sec_anm": "130950918007",
+        "etiquetaSC": "57 | G",
+        "etiqueta": "57 | G",
+        "punto_referencial": "IGLESIA CRISTIANA MONTE HOREB",
+        "nombre": "IGLESIA CRISTIANA MONTE HOREB",
+        "casos": 10,
+        "pob_t": 587.0,
+        "v_pres": 168.0,
+        "dist_borde": 713.5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.65006,
+          -1.080298
+        ]
+      },
+      "properties": {
+        "sc": "58",
+        "codigo": 58,
+        "codigo_muestra": 58,
+        "num_muestra": 58,
+        "tipologia": "E",
+        "parroquia": "MONTECRISTI",
+        "PARROQUIA": "MONTECRISTI",
+        "canton": "MONTECRISTI",
+        "CANTON": "MONTECRISTI",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "sec_anm": "130950914005",
+        "etiquetaSC": "58 | E",
+        "etiqueta": "58 | E",
+        "punto_referencial": "IGLESIA CATOLICA LA DOLOROSA",
+        "nombre": "IGLESIA CATOLICA LA DOLOROSA",
+        "casos": 10,
+        "pob_t": 630.0,
+        "v_pres": 166.0,
+        "dist_borde": 1833.7
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.680248,
+          -1.04499
+        ]
+      },
+      "properties": {
+        "sc": "59",
+        "codigo": 59,
+        "codigo_muestra": 59,
+        "num_muestra": 59,
+        "tipologia": "E",
+        "parroquia": "MONTECRISTI",
+        "PARROQUIA": "MONTECRISTI",
+        "canton": "MONTECRISTI",
+        "CANTON": "MONTECRISTI",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "sec_anm": "130950921002",
+        "etiquetaSC": "59 | E",
+        "etiqueta": "59 | E",
+        "punto_referencial": "ALIANZA CRISTIANA Y MISIONERA \"EL CHORRILLO\"",
+        "nombre": "ALIANZA CRISTIANA Y MISIONERA \"EL CHORRILLO\"",
+        "casos": 10,
+        "pob_t": 337.0,
+        "v_pres": 93.0,
+        "dist_borde": 204.3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.658501,
+          -1.048833
+        ]
+      },
+      "properties": {
+        "sc": "60",
+        "codigo": 60,
+        "codigo_muestra": 60,
+        "num_muestra": 60,
+        "tipologia": "F",
+        "parroquia": "MONTECRISTI",
+        "PARROQUIA": "MONTECRISTI",
+        "canton": "MONTECRISTI",
+        "CANTON": "MONTECRISTI",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "sec_anm": "130950019003",
+        "etiquetaSC": "60 | F",
+        "etiqueta": "60 | F",
+        "punto_referencial": "HOSPITAL BASICO VIRGEN DE MONSERRATE",
+        "nombre": "HOSPITAL BASICO VIRGEN DE MONSERRATE",
+        "casos": 10,
+        "pob_t": 592.0,
+        "v_pres": 156.0,
+        "dist_borde": 318.6
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.661317,
+          -1.052232
+        ]
+      },
+      "properties": {
+        "sc": "61",
+        "codigo": 61,
+        "codigo_muestra": 61,
+        "num_muestra": 61,
+        "tipologia": "C",
+        "parroquia": "MONTECRISTI",
+        "PARROQUIA": "MONTECRISTI",
+        "canton": "MONTECRISTI",
+        "CANTON": "MONTECRISTI",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "sec_anm": "130950019009",
+        "etiquetaSC": "61 | C",
+        "etiqueta": "61 | C",
+        "punto_referencial": "PARQUE PASEO LUDICO",
+        "nombre": "PARQUE PASEO LUDICO",
+        "casos": 10,
+        "pob_t": 323.0,
+        "v_pres": 89.0,
+        "dist_borde": 807.7
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.695232,
+          -1.08043
+        ]
+      },
+      "properties": {
+        "sc": "62",
+        "codigo": 62,
+        "codigo_muestra": 62,
+        "num_muestra": 62,
+        "tipologia": "H",
+        "parroquia": "MONTECRISTI",
+        "PARROQUIA": "MONTECRISTI",
+        "canton": "MONTECRISTI",
+        "CANTON": "MONTECRISTI",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "sec_anm": "130950918005",
+        "etiquetaSC": "62 | H",
+        "etiqueta": "62 | H",
+        "punto_referencial": "IGLESIA CATOLICA SANTA CRUZ",
+        "nombre": "IGLESIA CATOLICA SANTA CRUZ",
+        "casos": 10,
+        "pob_t": 382.0,
+        "v_pres": 100.0,
+        "dist_borde": 505.7
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.661954,
+          -1.050157
+        ]
+      },
+      "properties": {
+        "sc": "63",
+        "codigo": 63,
+        "codigo_muestra": 63,
+        "num_muestra": 63,
+        "tipologia": "C",
+        "parroquia": "MONTECRISTI",
+        "PARROQUIA": "MONTECRISTI",
+        "canton": "MONTECRISTI",
+        "CANTON": "MONTECRISTI",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "sec_anm": "130950019007",
+        "etiquetaSC": "63 | C",
+        "etiqueta": "63 | C",
+        "punto_referencial": "CONSEJO PROVINCIAL",
+        "nombre": "CONSEJO PROVINCIAL",
+        "casos": 10,
+        "pob_t": 417.0,
+        "v_pres": 113.0,
+        "dist_borde": 681.9
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.680482,
+          -1.081916
+        ]
+      },
+      "properties": {
+        "sc": "64",
+        "codigo": 64,
+        "codigo_muestra": 64,
+        "num_muestra": 64,
+        "tipologia": "A",
+        "parroquia": "MONTECRISTI",
+        "PARROQUIA": "MONTECRISTI",
+        "canton": "MONTECRISTI",
+        "CANTON": "MONTECRISTI",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "sec_anm": "130950916001",
+        "etiquetaSC": "64 | A",
+        "etiqueta": "64 | A",
+        "punto_referencial": "IGLESIA CATOLICA SEGUNDO BENIGNO",
+        "nombre": "IGLESIA CATOLICA SEGUNDO BENIGNO",
+        "casos": 10,
+        "pob_t": 664.0,
+        "v_pres": 184.0,
+        "dist_borde": 804.9
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.660319,
+          -1.054526
+        ]
+      },
+      "properties": {
+        "sc": "65",
+        "codigo": 65,
+        "codigo_muestra": 65,
+        "num_muestra": 65,
+        "tipologia": "D",
+        "parroquia": "MONTECRISTI",
+        "PARROQUIA": "MONTECRISTI",
+        "canton": "MONTECRISTI",
+        "CANTON": "MONTECRISTI",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "sec_anm": "130950019010",
+        "etiquetaSC": "65 | D",
+        "etiqueta": "65 | D",
+        "punto_referencial": "CAPILLA SAN JOSE",
+        "nombre": "CAPILLA SAN JOSE",
+        "casos": 10,
+        "pob_t": 549.0,
+        "v_pres": 157.0,
+        "dist_borde": 913.6
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.646481,
+          -1.075043
+        ]
+      },
+      "properties": {
+        "sc": "66",
+        "codigo": 66,
+        "codigo_muestra": 66,
+        "num_muestra": 66,
+        "tipologia": "B",
+        "parroquia": "MONTECRISTI",
+        "PARROQUIA": "MONTECRISTI",
+        "canton": "MONTECRISTI",
+        "CANTON": "MONTECRISTI",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "sec_anm": "130950914002",
+        "etiquetaSC": "66 | B",
+        "etiqueta": "66 | B",
+        "punto_referencial": "ESCUELA FLAVIO ALFARO",
+        "nombre": "ESCUELA FLAVIO ALFARO",
+        "casos": 10,
+        "pob_t": 305.0,
+        "v_pres": 95.0,
+        "dist_borde": 2001.3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.650158,
+          -1.078601
+        ]
+      },
+      "properties": {
+        "sc": "67",
+        "codigo": 67,
+        "codigo_muestra": 67,
+        "num_muestra": 67,
+        "tipologia": "H",
+        "parroquia": "MONTECRISTI",
+        "PARROQUIA": "MONTECRISTI",
+        "canton": "MONTECRISTI",
+        "CANTON": "MONTECRISTI",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "sec_anm": "130950914001",
+        "etiquetaSC": "67 | H",
+        "etiqueta": "67 | H",
+        "punto_referencial": "U.E. KEELY SOLANGE QUIJIJE",
+        "nombre": "U.E. KEELY SOLANGE QUIJIJE",
+        "casos": 10,
+        "pob_t": 505.0,
+        "v_pres": 143.0,
+        "dist_borde": 1980.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.679002,
+          -1.08247
+        ]
+      },
+      "properties": {
+        "sc": "68",
+        "codigo": 68,
+        "codigo_muestra": 68,
+        "num_muestra": 68,
+        "tipologia": "G",
+        "parroquia": "MONTECRISTI",
+        "PARROQUIA": "MONTECRISTI",
+        "canton": "MONTECRISTI",
+        "CANTON": "MONTECRISTI",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "sec_anm": "130950916010",
+        "etiquetaSC": "68 | G",
+        "etiqueta": "68 | G",
+        "punto_referencial": "SEGURO CAMPESINO",
+        "nombre": "SEGURO CAMPESINO",
+        "casos": 10,
+        "pob_t": 550.0,
+        "v_pres": 149.0,
+        "dist_borde": 929.3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.662142,
+          -1.047398
+        ]
+      },
+      "properties": {
+        "sc": "69",
+        "codigo": 69,
+        "codigo_muestra": 69,
+        "num_muestra": 69,
+        "tipologia": "A",
+        "parroquia": "MONTECRISTI",
+        "PARROQUIA": "MONTECRISTI",
+        "canton": "MONTECRISTI",
+        "CANTON": "MONTECRISTI",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "sec_anm": "130950016011",
+        "etiquetaSC": "69 | A",
+        "etiqueta": "69 | A",
+        "punto_referencial": "CONSEJO DE LA JUDICATURA",
+        "nombre": "CONSEJO DE LA JUDICATURA",
+        "casos": 10,
+        "pob_t": 407.0,
+        "v_pres": 117.0,
+        "dist_borde": 468.9
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.659551,
+          -1.047672
         ]
       },
       "properties": {
@@ -2160,15 +2160,15 @@
         "canton": "MONTECRISTI",
         "CANTON": "MONTECRISTI",
         "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "sec_anm": "130950921001",
+        "sec_anm": "130950019001",
         "etiquetaSC": "70 | D",
         "etiqueta": "70 | D",
-        "punto_referencial": "EL CHORRILLO",
-        "nombre": "EL CHORRILLO",
+        "punto_referencial": "IGLESIA MONTECRISTI",
+        "nombre": "IGLESIA MONTECRISTI",
         "casos": 10,
-        "pob_t": 374.0,
-        "v_pres": 98.0,
-        "dist_borde": 335.6
+        "pob_t": 347.0,
+        "v_pres": 103.0,
+        "dist_borde": 299.4
       }
     }
   ]

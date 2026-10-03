@@ -2108,7 +2108,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let circunscripcionesData = { type: 'FeatureCollection', features: [] };
 
         try {
-            const cacheBuster = '?v=montecristi-1.1.0';
+            const cacheBuster = '?v=montecristi-1.2.0';
             const [resPar, resSec, resCirc] = await Promise.all([
                 fetch('assets/parroquias.geojson' + cacheBuster),
                 fetch('assets/sectores_censales.geojson' + cacheBuster),
