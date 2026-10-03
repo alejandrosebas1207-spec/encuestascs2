@@ -1084,10 +1084,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // 1. Limpieza de caché previa y Boot Instantáneo Montecristi 2026
         try {
-            ['cs_encuestas_cache', 'cs_encuestas_machala_v1', 'cs_encuestas_pichincha_v1', 'cs_encuestas_pichincha_v2', 'cs_encuestas_quito_pm_v1', 'cs_encuestas_ruminahui_2026_v1', 'cs_encuestas_portoviejo_2026_v1', 'cs_encuestas_portoviejo_2026_v2'].forEach(k => {
+            ['cs_encuestas_cache', 'cs_encuestas_machala_v1', 'cs_encuestas_pichincha_v1', 'cs_encuestas_pichincha_v2', 'cs_encuestas_quito_pm_v1', 'cs_encuestas_ruminahui_2026_v1', 'cs_encuestas_portoviejo_2026_v1', 'cs_encuestas_portoviejo_2026_v2', 'cs_encuestas_montecristi_2026_v1'].forEach(k => {
                 if (localStorage.getItem(k)) localStorage.removeItem(k);
             });
-            const cached = localStorage.getItem('cs_encuestas_montecristi_2026_v1');
+            const cached = localStorage.getItem('cs_encuestas_montecristi_2026_v2');
             if (cached) {
                 const parsed = JSON.parse(cached);
                 if (Array.isArray(parsed) && parsed.length > 0) {
@@ -1202,9 +1202,9 @@ document.addEventListener('DOMContentLoaded', () => {
             // Guardar último resultado para contingencia sin conexión en Montecristi
             try {
                 if (AppState.encuestas.length > 0) {
-                    localStorage.setItem('cs_encuestas_montecristi_2026_v1', JSON.stringify(AppState.encuestas));
+                    localStorage.setItem('cs_encuestas_montecristi_2026_v2', JSON.stringify(AppState.encuestas));
                 } else {
-                    localStorage.removeItem('cs_encuestas_montecristi_2026_v1');
+                    localStorage.removeItem('cs_encuestas_montecristi_2026_v2');
                 }
             } catch (e) {
                 console.warn('[Cache] Error al guardar caché:', e);
@@ -2108,7 +2108,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let circunscripcionesData = { type: 'FeatureCollection', features: [] };
 
         try {
-            const cacheBuster = '?v=montecristi-1.2.0';
+            const cacheBuster = '?v=montecristi-1.3.0';
             const [resPar, resSec, resCirc] = await Promise.all([
                 fetch('assets/parroquias.geojson' + cacheBuster),
                 fetch('assets/sectores_censales.geojson' + cacheBuster),

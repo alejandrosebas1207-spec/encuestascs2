@@ -25,9 +25,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;600&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
 
   <!-- Preload Cartografía Clave (Caché optimizada para móviles) -->
-  <link rel="preload" href="assets/parroquias.geojson?v=montecristi-1.2.0" as="fetch" crossorigin>
-  <link rel="preload" href="assets/sectores_censales.geojson?v=montecristi-1.2.0" as="fetch" crossorigin>
-  <link rel="preload" href="assets/circunscripciones.geojson?v=montecristi-1.2.0" as="fetch" crossorigin>
+  <link rel="preload" href="assets/parroquias.geojson?v=montecristi-1.3.0" as="fetch" crossorigin>
+  <link rel="preload" href="assets/sectores_censales.geojson?v=montecristi-1.3.0" as="fetch" crossorigin>
+  <link rel="preload" href="assets/circunscripciones.geojson?v=montecristi-1.3.0" as="fetch" crossorigin>
 
   <!-- MapLibre GL CSS (Aceleración WebGL Nativa en GPU) -->
   <link rel="stylesheet" href="libs/maplibre-gl.css" />
@@ -471,11 +471,11 @@
 
   <!-- ===== SCRIPTS ===== -->
   <script src="libs/maplibre-gl.js"></script>
-  <script src="script.js?v=6.1.0"></script>
+  <script src="script.js?v=6.1.1"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/service-worker.js?v=42').then(reg => {
+        navigator.serviceWorker.register('/service-worker.js?v=43').then(reg => {
           if (reg && reg.update) reg.update();
         }).catch(error => {
           console.warn('No se pudo preparar el modo sin conexión:', error);

@@ -30,18 +30,16 @@ function limpiarVar(val) {
 
 const PORT = Number(process.env.PORT) || 3001;
 
-// El identificador y el token se reciben por variables de entorno de Render.
-const ASSET_ID = limpiarVar(
+// El identificador y el token se reciben por variables de entorno de Render para Montecristi.
+// Se excluyen explícitamente formularios anteriores (Portoviejo, Rumiñahui, etc.)
+const ASSET_ID_RAW = limpiarVar(
     process.env.ASSET_ID_MONTECRISTI ||
     process.env.ASSET_ID ||
     process.env.KOBO_ASSET_ID ||
-    process.env.ASSET_ID_PORTOVIEJO ||
-    process.env.ASSET_ID_RUMINAHUI ||
-    process.env.ASSET_ID_EL_CARMEN ||
-    process.env.ASSET_ID_IBARRA ||
-    process.env.ASSET_ID_PICHINCHA ||
-    "aNkxCUYbn7jJTXFZqHtAVM"
+    ""
 );
+// Si en Render quedó configurado el formulario de Portoviejo u otros anteriores, se ignora
+const ASSET_ID = ["aNkxCUYbn7jJTXFZqHtAVM", "adduN7SJV4V77jvqpEw7HP"].includes(ASSET_ID_RAW) ? "" : ASSET_ID_RAW;
 const API_TOKEN = limpiarVar(
     process.env.API_TOKEN ||
     process.env.KOBO_API_TOKEN ||
