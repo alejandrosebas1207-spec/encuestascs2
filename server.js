@@ -32,9 +32,10 @@ const PORT = Number(process.env.PORT) || 3001;
 
 // El identificador y el token se reciben por variables de entorno de Render.
 const ASSET_ID = limpiarVar(
-    process.env.ASSET_ID_PORTOVIEJO ||
+    process.env.ASSET_ID_MONTECRISTI ||
     process.env.ASSET_ID ||
     process.env.KOBO_ASSET_ID ||
+    process.env.ASSET_ID_PORTOVIEJO ||
     process.env.ASSET_ID_RUMINAHUI ||
     process.env.ASSET_ID_EL_CARMEN ||
     process.env.ASSET_ID_IBARRA ||
@@ -153,62 +154,36 @@ function normalizarCoordenadas(valores, validarEcuador = false) {
     return [lat, lng];
 }
 
-// Diccionarios oficiales de decodificación de choices de Kobo (Portoviejo 2026)
+// Diccionarios oficiales de decodificación de choices de Kobo (Montecristi 2026)
 const PARROQUIAS_FORMULARIO = {
     // Códigos numéricos de choices del XLSForm Kobo
-    "5280": "12 DE MARZO",
-    "6770": "18 DE OCTUBRE",
-    "6775": "FRANCISCO PACHECO",
-    "5845": "PICOAZA",
-    "6585": "SAN PABLO",
-    "5030": "ANDRES DE VERA",
-    "5265": "COLON",
-    "5795": "PORTOVIEJO",
-    "6910": "SIMON BOLIVAR",
-    "0010": "ABDON CALDERON",
-    "10": "ABDON CALDERON",
-    "0050": "ALHAJUELA / BAJO GRANDE",
-    "50": "ALHAJUELA / BAJO GRANDE",
-    "0770": "CRUCITA",
-    "770": "CRUCITA",
-    "3185": "RIO CHICO",
-    "3625": "SAN PLACIDO",
+    "7460": "ANIBAL SAN ANDRES",
+    "7490": "COLORADO",
+    "7500": "GENERAL ELOY ALFARO DELGA",
+    "7495": "LEONIDAS PROAÑO",
+    "5665": "MONTECRISTI",
+    "1545": "LA PILA",
     // Nombres directos en texto
-    "12 DE MARZO": "12 DE MARZO",
-    "18 DE OCTUBRE": "18 DE OCTUBRE",
-    "ABDON CALDERON": "ABDON CALDERON",
-    "ALHAJUELA / BAJO GRANDE": "ALHAJUELA / BAJO GRANDE",
-    "ANDRES DE VERA": "ANDRES DE VERA",
-    "COLON": "COLON",
-    "CRUCITA": "CRUCITA",
-    "FRANCISCO PACHECO": "FRANCISCO PACHECO",
-    "PICOAZA": "PICOAZA",
-    "PORTOVIEJO": "PORTOVIEJO",
-    "RIO CHICO": "RIO CHICO",
-    "SAN PABLO": "SAN PABLO",
-    "SAN PLACIDO": "SAN PLACIDO",
-    "SIMON BOLIVAR": "SIMON BOLIVAR"
+    "ANIBAL SAN ANDRES": "ANIBAL SAN ANDRES",
+    "COLORADO": "COLORADO",
+    "GENERAL ELOY ALFARO DELGADO": "GENERAL ELOY ALFARO DELGA",
+    "GENERAL ELOY ALFARO DELGA": "GENERAL ELOY ALFARO DELGA",
+    "LEONIDAS PROAÑO": "LEONIDAS PROAÑO",
+    "MONTECRISTI": "MONTECRISTI",
+    "LA PILA": "LA PILA"
 };
 
 const CIRCUNSCRIPCIONES_FORMULARIO = {
-    "a": "CIRCUNSCRIPCION URBANA 1",
-    "b": "CIRCUNSCRIPCION URBANA 2",
-    "c": "CIRCUNSCRIPCION RURAL",
-    "1": "CIRCUNSCRIPCION URBANA 1",
-    "2": "CIRCUNSCRIPCION URBANA 2",
-    "3": "CIRCUNSCRIPCION RURAL",
-    "cu1": "CIRCUNSCRIPCION URBANA 1",
-    "cu2": "CIRCUNSCRIPCION URBANA 2",
-    "cr": "CIRCUNSCRIPCION RURAL",
-    "circunscripcion 1": "CIRCUNSCRIPCION URBANA 1",
-    "circunscripcion 2": "CIRCUNSCRIPCION URBANA 2",
-    "circunscripcion rural": "CIRCUNSCRIPCION RURAL",
-    "circunscripcion urbana 1": "CIRCUNSCRIPCION URBANA 1",
-    "circunscripcion urbana 2": "CIRCUNSCRIPCION URBANA 2"
+    "1": "CIRCUNSCRIPCION URBANA",
+    "2": "CIRCUNSCRIPCION RURAL",
+    "urbana": "CIRCUNSCRIPCION URBANA",
+    "rural": "CIRCUNSCRIPCION RURAL",
+    "CIRCUNSCRIPCION URBANA": "CIRCUNSCRIPCION URBANA",
+    "CIRCUNSCRIPCION RURAL": "CIRCUNSCRIPCION RURAL"
 };
 
 const CANTONES_FORMULARIO = {
-    "1": "Portoviejo", "1301": "Portoviejo", "portoviejo": "Portoviejo"
+    "1": "Montecristi", "1309": "Montecristi", "montecristi": "Montecristi", "Montecristi": "Montecristi"
 };
 
 const TIPOLOGIAS_FORMULARIO = {
@@ -275,22 +250,18 @@ function normalizarEncuesta(raw) {
     const rawParroquia = extraerValor(raw, ["parr", "parroquia", "PARROQUIA", "nom_parroquia", "parroquiasI", "parroquiasII"]) || "";
     const parroquia = PARROQUIAS_FORMULARIO[rawParroquia] || String(rawParroquia).trim().toUpperCase();
 
-    // Cantón: por defecto Portoviejo
+    // Cantón: por defecto Montecristi
     const rawCanton = extraerValor(raw, ["canton", "CANTON", "cant", "nom_canton", "cod_canton", "can"]) || "";
-    let canton = CANTONES_FORMULARIO[rawCanton] || String(rawCanton).trim() || "Portoviejo";
+    let canton = CANTONES_FORMULARIO[rawCanton] || String(rawCanton).trim() || "Montecristi";
 
     // Circunscripción
     const rawCircuns = extraerValor(raw, ["circuns", "circunscripcion", "CIRCUNSCRIPCION"]) || "";
     let circunscripcion = CIRCUNSCRIPCIONES_FORMULARIO[rawCircuns] || String(rawCircuns).trim();
     if (!circunscripcion && parroquia) {
-        const rur = ['ABDON CALDERON', 'ALHAJUELA / BAJO GRANDE', 'CRUCITA', 'RIO CHICO', 'SAN PLACIDO'];
-        const urb2 = ['ANDRES DE VERA', 'COLON', 'PORTOVIEJO', 'SIMON BOLIVAR'];
-        if (rur.some(p => parroquia.includes(p))) {
+        if (parroquia.includes('PILA')) {
             circunscripcion = "CIRCUNSCRIPCION RURAL";
-        } else if (urb2.some(p => parroquia.includes(p))) {
-            circunscripcion = "CIRCUNSCRIPCION URBANA 2";
         } else {
-            circunscripcion = "CIRCUNSCRIPCION URBANA 1";
+            circunscripcion = "CIRCUNSCRIPCION URBANA";
         }
     }
 
@@ -446,20 +417,20 @@ app.get("/api/health", (req, res) => {
 
 app.get("/api/config", (req, res) => {
     res.set("Cache-Control", "no-cache, no-store, must-revalidate");
-    let nombre = process.env.NOMBRE_PROYECTO || "Encuesta Portoviejo - Septiembre - 2026";
+    let nombre = process.env.NOMBRE_PROYECTO || "Encuesta Montecristi - Septiembre - 2026";
     const envLng = Number(process.env.MAPA_CENTRO_LNG);
     const envLat = Number(process.env.MAPA_CENTRO_LAT);
     const envZoom = Number(process.env.MAPA_ZOOM_INICIAL);
-    // Portoviejo se ubica entre -80.65 y -80.20 de longitud, y -1.25 y -0.80 de latitud
-    const coordValida = Number.isFinite(envLng) && envLng < -80.1 && envLng > -80.7 && Number.isFinite(envLat) && envLat > -1.3 && envLat < -0.7;
+    // Montecristi se ubica entre -80.85 y -80.45 de longitud, y -1.20 y -0.90 de latitud
+    const coordValida = Number.isFinite(envLng) && envLng < -80.3 && envLng > -80.9 && Number.isFinite(envLat) && envLat > -1.3 && envLat < -0.8;
     res.json({
         nombreProyecto: nombre,
-        metaEncuestas: Number(process.env.META_ENCUESTAS) || 400,
+        metaEncuestas: Number(process.env.META_ENCUESTAS) || 700,
         campoEncuestador: CAMPO_ENCUESTADOR,
         campoSupervisor: CAMPO_SUPERVISOR,
-        centroLng: coordValida ? envLng : -80.4550,
-        centroLat: coordValida ? envLat : -1.0540,
-        zoomInicial: (Number.isFinite(envZoom) && envZoom >= 9 && envZoom <= 15) ? envZoom : 11.5
+        centroLng: coordValida ? envLng : -80.6600,
+        centroLat: coordValida ? envLat : -1.0500,
+        zoomInicial: (Number.isFinite(envZoom) && envZoom >= 9 && envZoom <= 15) ? envZoom : 11.8
     });
 });
 

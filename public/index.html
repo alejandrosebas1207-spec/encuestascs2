@@ -9,8 +9,8 @@
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="format-detection" content="telephone=no">
-  <meta name="description" content="Panel de Supervisión de Campo en tiempo real — Clima Social · Encuesta Portoviejo - Septiembre - 2026">
-  <title>Clima Social · Encuesta Portoviejo - Septiembre - 2026</title>
+  <meta name="description" content="Panel de Supervisión de Campo en tiempo real — Clima Social · Encuesta Montecristi - Septiembre - 2026">
+  <title>Clima Social · Encuesta Montecristi - Septiembre - 2026</title>
   <link rel="icon" type="image/png" href="assets/icono.png">
   <link rel="manifest" href="manifest.webmanifest">
 
@@ -25,10 +25,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;600&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
 
   <!-- Preload Cartografía Clave (Caché optimizada para móviles) -->
-  <link rel="preload" href="assets/parroquias.geojson?v=portoviejo-1.0.0" as="fetch" crossorigin>
-  <link rel="preload" href="assets/sectores_censales.geojson?v=portoviejo-1.0.0" as="fetch" crossorigin>
-  <link rel="preload" href="assets/circunscripciones.geojson?v=portoviejo-1.0.0" as="fetch" crossorigin>
-  <link rel="preload" href="assets/puntos_muestreo.geojson?v=portoviejo-1.0.0" as="fetch" crossorigin>
+  <link rel="preload" href="assets/parroquias.geojson?v=montecristi-1.0.0" as="fetch" crossorigin>
+  <link rel="preload" href="assets/sectores_censales.geojson?v=montecristi-1.0.0" as="fetch" crossorigin>
+  <link rel="preload" href="assets/circunscripciones.geojson?v=montecristi-1.0.0" as="fetch" crossorigin>
 
   <!-- MapLibre GL CSS (Aceleración WebGL Nativa en GPU) -->
   <link rel="stylesheet" href="libs/maplibre-gl.css" />
@@ -60,7 +59,7 @@
         </a>
         <div class="cs-header__divider"></div>
         <div class="cs-header__title-group">
-          <h1 class="cs-header__title" id="tituloProyecto">Encuesta Portoviejo - Septiembre - 2026</h1>
+          <h1 class="cs-header__title" id="tituloProyecto">Encuesta Montecristi - Septiembre - 2026</h1>
           <span class="cs-header__live-badge" id="badgeConexion">
             <span class="cs-header__live-dot"></span>
             <span id="badgeTexto">En espera</span>
@@ -93,7 +92,6 @@
   <main class="cs-container">
 
     <!-- ===== FILA DE INDICADORES CLAVE (KPIS MODERNOS · CLIMA SOCIAL) ===== -->
-    <!-- ===== FILA DE INDICADORES CLAVE (KPIS MODERNOS · CLIMA SOCIAL) ===== -->
     <section class="cs-kpi-grid" data-mobile-panel="kpis" aria-label="Indicadores clave">
 
       <div class="cs-kpi-card cs-kpi-card--teal">
@@ -107,7 +105,7 @@
         </div>
         <div class="cs-kpi-bottom">
           <span class="cs-kpi-badge">Total Recolectadas</span>
-          <span class="cs-kpi-sub" id="kpiMeta">Meta: 900 (Rumiñahui)</span>
+          <span class="cs-kpi-sub" id="kpiMeta">Meta: 700 (Montecristi)</span>
         </div>
         <div class="cs-progress-bar"><div class="cs-progress-bar__fill" id="barraAvance" style="width:0%"></div></div>
       </div>
@@ -153,7 +151,7 @@
         </div>
         <div class="cs-kpi-bottom">
           <span class="cs-kpi-badge" id="kpiTituloAvance">Avance General</span>
-          <span class="cs-kpi-sub" id="kpiSubAvance">Cumplimiento cantonal (900)</span>
+          <span class="cs-kpi-sub" id="kpiSubAvance">Cumplimiento cantonal (700)</span>
         </div>
       </div>
 
@@ -195,7 +193,7 @@
             </label>
             <div class="cs-select-wrap">
               <select id="circunscripcionFilter" class="cs-select">
-                <option value="Todas">Todas las circunscripciones (3)</option>
+                <option value="Todas">Todas las circunscripciones (2)</option>
               </select>
             </div>
           </div>
@@ -208,7 +206,7 @@
             </label>
             <div class="cs-select-wrap">
               <select id="parroquiaFilter" class="cs-select">
-                <option value="Todas">Todas las parroquias (14)</option>
+                <option value="Todas">Todas las parroquias (6)</option>
               </select>
             </div>
           </div>
@@ -220,7 +218,7 @@
             </label>
             <div class="cs-select-wrap">
               <select id="sectorFilter" class="cs-select">
-                <option value="Todos">Todos los puntos y sectores (40)</option>
+                <option value="Todos">Todos los sectores sorteados (70)</option>
               </select>
             </div>
           </div>
@@ -303,7 +301,7 @@
             </div>
 
             <!-- Barra Rápida de Circunscripciones (1-Tap sobre el mapa) -->
-            <div class="cs-circ-legend-bar" id="circLegendBar" aria-label="Circunscripciones de Portoviejo"></div>
+            <div class="cs-circ-legend-bar" id="circLegendBar" aria-label="Circunscripciones de Montecristi"></div>
           </div>
 
           <div id="map"></div>
@@ -473,11 +471,11 @@
 
   <!-- ===== SCRIPTS ===== -->
   <script src="libs/maplibre-gl.js"></script>
-  <script src="script.js?v=6.0.7"></script>
+  <script src="script.js?v=6.0.8"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/service-worker.js?v=39').then(reg => {
+        navigator.serviceWorker.register('/service-worker.js?v=40').then(reg => {
           if (reg && reg.update) reg.update();
         }).catch(error => {
           console.warn('No se pudo preparar el modo sin conexión:', error);
