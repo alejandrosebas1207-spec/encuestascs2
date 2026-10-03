@@ -1,18 +1,18 @@
 /* Modo de contingencia: conserva solo la aplicación y cartografía pública.
  * No almacena respuestas de Kobo ni coordenadas de encuestas en el teléfono. */
-const CACHE_NAME = 'clima-social-montecristi-v1.0.0';
+const CACHE_NAME = 'clima-social-montecristi-v1.1.0';
 const APP_SHELL = [
   '/',
   '/index.html',
   '/style.css?v=6.0.0',
-  '/script.js?v=6.0.8',
+  '/script.js?v=6.0.9',
   '/libs/maplibre-gl.js',
   '/libs/maplibre-gl.css',
   '/assets/icono.png',
   '/assets/01_ClimaSocial_Horizontal_Transparente.png',
-  '/assets/circunscripciones.geojson?v=montecristi-1.0.0',
-  '/assets/parroquias.geojson?v=montecristi-1.0.0',
-  '/assets/sectores_censales.geojson?v=montecristi-1.0.0'
+  '/assets/circunscripciones.geojson?v=montecristi-1.1.0',
+  '/assets/parroquias.geojson?v=montecristi-1.1.0',
+  '/assets/sectores_censales.geojson?v=montecristi-1.1.0'
 ];
 
 self.addEventListener('install', event => {
