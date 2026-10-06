@@ -3587,13 +3587,22 @@ body.modo-oscuro .cs-alert-badge {
 }
 
 .cs-standby__logo-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  padding: 10px 24px;
+  border-radius: 14px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.22);
   margin-bottom: 24px;
 }
 
 .cs-standby__logo {
-  height: 48px;
+  height: 42px;
   width: auto;
+  max-width: 240px;
   object-fit: contain;
+  display: block;
 }
 
 .cs-standby__status {
