@@ -873,27 +873,30 @@ body.modo-oscuro .maplibregl-map .maplibregl-canvas {
 }
 
 /* Barra Flotante Glassmorphism del Sector Censal Activo */
+/* Barra Flotante Glassmorphism del Sector Censal Activo */
 .cs-sector-active-bar {
   position: absolute;
-  top: 0.85rem;
+  bottom: 1.25rem;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 400;
+  z-index: 500;
   display: inline-flex;
   align-items: center;
-  gap: 0.75rem;
-  padding: 0.35rem 0.5rem 0.35rem 0.95rem;
-  background: rgba(44, 11, 54, 0.92);
+  gap: 0.65rem;
+  padding: 0.4rem 0.6rem 0.4rem 0.95rem;
+  background: rgba(30, 27, 75, 0.95);
   backdrop-filter: blur(12px) saturate(180%);
   -webkit-backdrop-filter: blur(12px) saturate(180%);
-  border: 1.5px solid rgba(245, 158, 11, 0.6);
+  border: 1.5px solid #f59e0b;
   border-radius: var(--radius-full);
-  box-shadow: 0 10px 28px -4px rgba(15, 23, 42, 0.35), 0 0 16px rgba(245, 158, 11, 0.25);
-  animation: slideDownGlass 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  box-shadow: 0 10px 28px -4px rgba(15, 23, 42, 0.5), 0 0 20px rgba(245, 158, 11, 0.35);
+  animation: slideUpGlass 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  max-width: calc(100% - 24px);
+  pointer-events: auto;
 }
 
-@keyframes slideDownGlass {
-  0% { transform: translateX(-50%) translateY(-20px); opacity: 0; }
+@keyframes slideUpGlass {
+  0% { transform: translateX(-50%) translateY(20px); opacity: 0; }
   100% { transform: translateX(-50%) translateY(0); opacity: 1; }
 }
 
@@ -906,6 +909,30 @@ body.modo-oscuro .maplibregl-map .maplibregl-canvas {
   font-size: 0.82rem;
   font-weight: 700;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cs-sector-active-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+
+.cs-sector-active-close:hover {
+  background: rgba(239, 68, 68, 0.8);
+  transform: scale(1.1);
 }
 
 .cs-btn-gmaps {
@@ -935,7 +962,7 @@ body.modo-oscuro .maplibregl-map .maplibregl-canvas {
   height: 13px;
 }
 
-/* Leyenda Dinámica de Supervisores en Mapa */
+/* Conteos por supervisor y encuestador en el mapa */
 .cs-map-legend {
   position: absolute;
   bottom: 12px;
@@ -948,7 +975,7 @@ body.modo-oscuro .maplibregl-map .maplibregl-canvas {
   border-radius: 8px;
   padding: 0.35rem 0.55rem;
   box-shadow: 0 4px 14px rgba(15, 23, 42, 0.12);
-  max-width: 220px;
+  max-width: 280px;
   pointer-events: auto;
   transition: all var(--cs-transition);
 }
@@ -984,8 +1011,21 @@ body.modo-oscuro .cs-map-legend__header {
   display: flex;
   flex-direction: column;
   gap: 0.22rem;
-  max-height: 110px;
+  max-height: 230px;
   overflow-y: auto;
+}
+
+.cs-map-legend__group-title {
+  color: var(--text-muted);
+  font-size: 0.62rem;
+  font-weight: 800;
+  margin-top: 0.25rem;
+}
+
+.cs-map-legend__name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .cs-map-legend__item {
@@ -1142,7 +1182,7 @@ body.modo-oscuro .cs-ribbon-title {
 
 .cs-ribbon-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr)) minmax(240px, 1.3fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr)) minmax(260px, 1.4fr);
   gap: 0.65rem;
   flex: 1;
   min-width: 0;
@@ -1647,6 +1687,51 @@ body.modo-oscuro .cs-group-pill {
   color: #94a3b8;
 }
 
+.cs-table-group-header--errors {
+  background-color: rgba(239, 68, 68, 0.05);
+  border-top: 1px dashed rgba(239, 68, 68, 0.35);
+}
+
+.cs-table-group-header--errors:hover {
+  background-color: rgba(239, 68, 68, 0.1);
+}
+
+.cs-group-pill--danger {
+  background: rgba(239, 68, 68, 0.12) !important;
+  color: #b91c1c !important;
+  border-color: rgba(239, 68, 68, 0.25) !important;
+}
+
+body.modo-oscuro .cs-group-pill--danger {
+  background: rgba(239, 68, 68, 0.2) !important;
+  color: #fca5a5 !important;
+  border-color: rgba(239, 68, 68, 0.4) !important;
+}
+
+.cs-enc-total-pill--danger {
+  background: #fee2e2 !important;
+  color: #991b1b !important;
+  border: 1px solid #fca5a5 !important;
+}
+
+.cs-enc-total-pill--warning {
+  background: #fef3c7 !important;
+  color: #92400e !important;
+  border: 1px solid #fde68a !important;
+}
+
+body.modo-oscuro .cs-enc-total-pill--danger {
+  background: rgba(239, 68, 68, 0.2) !important;
+  color: #fca5a5 !important;
+  border-color: rgba(239, 68, 68, 0.4) !important;
+}
+
+body.modo-oscuro .cs-enc-total-pill--warning {
+  background: rgba(245, 158, 11, 0.2) !important;
+  color: #fcd34d !important;
+  border-color: rgba(245, 158, 11, 0.4) !important;
+}
+
 .cs-enc-row td {
   padding-left: 0.85rem;
 }
@@ -1690,55 +1775,14 @@ body.modo-oscuro .cs-group-pill {
 }
 
 .cs-enc-name {
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: var(--text-main);
-  letter-spacing: -0.01em;
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-  flex-wrap: wrap;
-  min-width: 0;
-  line-height: 1.25;
-}
-
-.cs-enc-title {
-  font-size: 0.78rem;
+  font-size: 0.77rem;
   font-weight: 700;
   color: var(--text-main);
   letter-spacing: -0.01em;
   white-space: nowrap;
-}
-
-.cs-badge--parroquia {
-  background: #eff6ff;
-  color: #1d4ed8;
-  font-weight: 600;
-  font-size: 0.65rem;
-  padding: 0.08rem 0.42rem;
-  border-radius: 4px;
-  border: 1px solid #bfdbfe;
-  white-space: nowrap;
-  letter-spacing: normal;
-  display: inline-flex;
-  align-items: center;
-}
-
-body.modo-oscuro .cs-badge--parroquia {
-  background: rgba(37, 99, 235, 0.15);
-  color: #93c5fd;
-  border-color: rgba(37, 99, 235, 0.3);
-}
-
-.cs-badge--supervisor {
-  background: var(--bg-subtle);
-  color: var(--text-muted);
-  font-weight: 600;
-  font-size: 0.62rem;
-  padding: 0.06rem 0.35rem;
-  border-radius: 4px;
-  border: 1px solid var(--border-subtle);
-  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.15;
 }
 
 .cs-enc-sub {
@@ -3337,7 +3381,7 @@ body.modo-oscuro .cs-layer-pill--pendientes.active {
     transform: translateX(-50%);
     width: calc(100% - 20px);
     max-width: 380px;
-    z-index: 50;
+    z-index: 500;
   }
 }
 
@@ -3460,6 +3504,26 @@ body.modo-oscuro .cs-alert-badge {
   height: 50px;
   position: relative;
   z-index: 2;
+  transform-origin: bottom center;
+  animation: cs-pegman-breathe 2.4s ease-in-out infinite alternate;
+}
+
+@keyframes cs-pegman-breathe {
+  0% { transform: translateY(0) scaleY(1); }
+  100% { transform: translateY(-1.5px) scaleY(1.02); }
+}
+
+/* Animación sutil de saludo en el brazo derecho */
+.cs-pegman-arm-waving {
+  transform-origin: 25px 16px;
+  animation: cs-pegman-wave 2.2s ease-in-out infinite;
+}
+
+@keyframes cs-pegman-wave {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-8deg); }
+  50% { transform: rotate(0deg); }
+  75% { transform: rotate(-6deg); }
 }
 
 /* Radar / Halo concéntrico en el suelo */
@@ -3471,9 +3535,9 @@ body.modo-oscuro .cs-alert-badge {
   width: 26px;
   height: 12px;
   border-radius: 50%;
-  background: radial-gradient(ellipse at center, rgba(242, 100, 25, 0.45) 0%, rgba(242, 100, 25, 0) 70%);
-  border: 2px solid rgba(242, 100, 25, 0.85);
-  box-shadow: 0 0 10px rgba(242, 100, 25, 0.45);
+  background: radial-gradient(ellipse at center, rgba(79, 126, 144, 0.5) 0%, rgba(79, 126, 144, 0) 70%);
+  border: 2px solid rgba(79, 126, 144, 0.85);
+  box-shadow: 0 0 10px rgba(79, 126, 144, 0.45);
   animation: cs-gps-ripple 2s infinite ease-out;
   pointer-events: none;
   z-index: 1;
@@ -3492,4 +3556,114 @@ body.modo-oscuro .cs-alert-badge {
   }
 }
 
+/* ==========================================================================
+   ESTADO STANDBY / SISTEMA EN ESPERA (CLIMA SOCIAL)
+   ========================================================================== */
+.cs-standby {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: radial-gradient(circle at 50% 30%, #1e112a 0%, #0d0614 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: #f8fafc;
+}
 
+.cs-standby__card {
+  max-width: 520px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  padding: 36px 30px;
+  text-align: center;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 40px rgba(64, 0, 84, 0.35);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  animation: cs-fade-in 0.4s ease-out;
+}
+
+.cs-standby__logo-wrap {
+  margin-bottom: 24px;
+}
+
+.cs-standby__logo {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+}
+
+.cs-standby__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(14, 165, 233, 0.12);
+  border: 1px solid rgba(14, 165, 233, 0.35);
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #38bdf8;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+
+.cs-standby__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow: 0 0 10px #38bdf8;
+  animation: cs-pulse 2s infinite;
+}
+
+.cs-standby__title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 14px 0;
+  letter-spacing: -0.02em;
+}
+
+.cs-standby__desc {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: #cbd5e1;
+  margin: 0 0 22px 0;
+}
+
+.cs-standby__note {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border-left: 3px solid #f59e0b;
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: #e2e8f0;
+  text-align: left;
+  margin-bottom: 26px;
+}
+
+.cs-standby__note svg {
+  width: 18px;
+  height: 18px;
+  color: #f59e0b;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.cs-standby__footer {
+  font-size: 0.78rem;
+  color: #64748b;
+  letter-spacing: 0.04em;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 18px;
+}

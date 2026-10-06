@@ -9,8 +9,8 @@
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="format-detection" content="telephone=no">
-  <meta name="description" content="Panel de Supervisión de Campo en tiempo real — Clima Social · Encuesta Montecristi - Septiembre - 2026">
-  <title>Clima Social · Encuesta Montecristi - Septiembre - 2026</title>
+  <meta name="description" content="Panel de Supervisión de Campo en tiempo real — Clima Social · Encuesta Cantonal Ibarra 2026">
+  <title>Clima Social · Encuesta Cantonal Ibarra 2026</title>
   <link rel="icon" type="image/png" href="assets/icono.png">
   <link rel="manifest" href="manifest.webmanifest">
 
@@ -25,17 +25,40 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;600&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
 
   <!-- Preload Cartografía Clave (Caché optimizada para móviles) -->
-  <link rel="preload" href="assets/parroquias.geojson?v=montecristi-1.3.0" as="fetch" crossorigin>
-  <link rel="preload" href="assets/sectores_censales.geojson?v=montecristi-1.3.0" as="fetch" crossorigin>
-  <link rel="preload" href="assets/circunscripciones.geojson?v=montecristi-1.3.0" as="fetch" crossorigin>
+  <link rel="preload" href="assets/parroquias.geojson?v=73.0.0" as="fetch" crossorigin>
+  <link rel="preload" href="assets/sectores_censales.geojson?v=73.0.0" as="fetch" crossorigin>
 
   <!-- MapLibre GL CSS (Aceleración WebGL Nativa en GPU) -->
   <link rel="stylesheet" href="libs/maplibre-gl.css" />
 
   <!-- Estilos del Dashboard -->
-  <link rel="stylesheet" href="style.css?v=6.0.0">
+  <link rel="stylesheet" href="style.css?v=73.0.0">
 </head>
 <body>
+
+    <!-- ===== STANDBY OVERLAY (ESTADO EN ESPERA / REPOSO) ===== -->
+  <div class="cs-standby" id="standbyOverlay" style="display:none;">
+    <div class="cs-standby__card">
+      <div class="cs-standby__logo-wrap">
+        <img src="assets/01_ClimaSocial_Horizontal_Transparente.png" onerror="this.onerror=null; this.src='assets/01_Logo_Clima_Social_Horizontal_Oficial.svg';" alt="Clima Social" class="cs-standby__logo">
+      </div>
+      <div class="cs-standby__status">
+        <span class="cs-standby__dot"></span>
+        <span class="cs-standby__status-text">SISTEMA EN ESPERA · STANDBY</span>
+      </div>
+      <h2 class="cs-standby__title">Terminal de Supervisión de Campo</h2>
+      <p class="cs-standby__desc">
+        Este enlace se encuentra en reposo institucional. La conectividad con KoboToolbox, la cartografía territorial y el directorio del equipo de campo han sido desactivados para proteger la confidencialidad de la información.
+      </p>
+      <div class="cs-standby__note">
+        <svg class="cs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12.01" y1="8" x2="12" y2="8"/></svg>
+        <span>Cuando inicie el próximo proyecto territorial, esta pantalla se actualizará automáticamente con la nueva cartografía y el equipo asignado.</span>
+      </div>
+      <div class="cs-standby__footer">
+        <span>Clima Social · Inteligencia Territorial & Percepción</span>
+      </div>
+    </div>
+  </div>
 
   <!-- ===== LOADING OVERLAY ===== -->
   <div class="cs-loading" id="cargaOverlay">
@@ -55,11 +78,11 @@
     <div class="cs-header__inner">
       <div class="cs-header__brand">
         <a href="#" class="cs-brand__link" title="Clima Social · Supervisión">
-          <img src="assets/01_ClimaSocial_Horizontal_Transparente.png" alt="Clima Social" class="cs-brand__logo">
+          <img src="assets/01_ClimaSocial_Horizontal_Transparente.png" onerror="this.onerror=null; this.src='assets/01_Logo_Clima_Social_Horizontal_Oficial.svg';" alt="Clima Social" class="cs-brand__logo">
         </a>
         <div class="cs-header__divider"></div>
         <div class="cs-header__title-group">
-          <h1 class="cs-header__title" id="tituloProyecto">Encuesta Montecristi - Septiembre - 2026</h1>
+          <h1 class="cs-header__title" id="tituloProyecto">Encuesta Cantonal Ibarra 2026</h1>
           <span class="cs-header__live-badge" id="badgeConexion">
             <span class="cs-header__live-dot"></span>
             <span id="badgeTexto">En espera</span>
@@ -92,6 +115,7 @@
   <main class="cs-container">
 
     <!-- ===== FILA DE INDICADORES CLAVE (KPIS MODERNOS · CLIMA SOCIAL) ===== -->
+    <!-- ===== FILA DE INDICADORES CLAVE (KPIS MODERNOS · CLIMA SOCIAL) ===== -->
     <section class="cs-kpi-grid" data-mobile-panel="kpis" aria-label="Indicadores clave">
 
       <div class="cs-kpi-card cs-kpi-card--teal">
@@ -105,7 +129,7 @@
         </div>
         <div class="cs-kpi-bottom">
           <span class="cs-kpi-badge">Total Recolectadas</span>
-          <span class="cs-kpi-sub" id="kpiMeta">Meta: 700 (Montecristi)</span>
+          <span class="cs-kpi-sub" id="kpiMeta">Meta: 500 (Ibarra)</span>
         </div>
         <div class="cs-progress-bar"><div class="cs-progress-bar__fill" id="barraAvance" style="width:0%"></div></div>
       </div>
@@ -151,7 +175,7 @@
         </div>
         <div class="cs-kpi-bottom">
           <span class="cs-kpi-badge" id="kpiTituloAvance">Avance General</span>
-          <span class="cs-kpi-sub" id="kpiSubAvance">Cumplimiento cantonal (700)</span>
+          <span class="cs-kpi-sub" id="kpiSubAvance">Cumplimiento cantonal (500)</span>
         </div>
       </div>
 
@@ -185,15 +209,16 @@
             </div>
           </div>
 
-          <!-- Circunscripción -->
-          <div class="cs-ribbon-field" id="wrapCircunscripcionFilter">
-            <label for="circunscripcionFilter" class="cs-field-label">
+
+          <!-- Cantón (Ibarra) -->
+          <div class="cs-ribbon-field" id="wrapCantonFilter">
+            <label for="cantonFilter" class="cs-field-label">
               <svg class="cs-icon cs-icon--xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              <span>Circunscripción</span>
+              <span>Cantón</span>
             </label>
             <div class="cs-select-wrap">
-              <select id="circunscripcionFilter" class="cs-select">
-                <option value="Todas">Todas las circunscripciones (2)</option>
+              <select id="cantonFilter" class="cs-select">
+                <option value="Todos">Ibarra</option>
               </select>
             </div>
           </div>
@@ -206,19 +231,20 @@
             </label>
             <div class="cs-select-wrap">
               <select id="parroquiaFilter" class="cs-select">
-                <option value="Todas">Todas las parroquias (6)</option>
+                <option value="Todas">Todas las parroquias (9)</option>
               </select>
             </div>
           </div>
-          <!-- Sector Censal -->
+
+          <!-- Sector Censal (1 al 50) -->
           <div class="cs-ribbon-field">
             <label for="sectorFilter" class="cs-field-label">
               <svg class="cs-icon cs-icon--xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
-              <span>Sector / Punto</span>
+              <span>Sector Censal</span>
             </label>
             <div class="cs-select-wrap">
               <select id="sectorFilter" class="cs-select">
-                <option value="Todos">Todos los sectores sorteados (70)</option>
+                <option value="Todos">Todos los sectores (50)</option>
               </select>
             </div>
           </div>
@@ -278,85 +304,91 @@
         <div class="cs-map-wrapper">
           <!-- Contenedor Superior Unificado de Controles del Mapa (Zero-Overlap) -->
           <div class="cs-map-top-overlay" id="mapTopOverlay">
+
             <div class="cs-map-top-row">
               <!-- Barra Flotante de Control de Capas (Prender y Apagar) -->
               <div class="cs-map-layer-toggles" id="mapLayerToggles" aria-label="Capas del Mapa">
-                <button type="button" class="cs-layer-pill active" id="toggleCircunscripciones" data-layer-group="circunscripciones" title="Límites de Circunscripciones (3)">
-                  <span class="cs-layer-pill__dot" style="background: #400054;"></span>
-                  <span id="lblToggleCircunscripciones">Circunscripciones (3)</span>
-                </button>
-                <button type="button" class="cs-layer-pill active" id="toggleParroquias" data-layer-group="parroquias" title="Límites Parroquiales (14)">
+                <button type="button" class="cs-layer-pill active" id="toggleParroquias" data-layer-group="parroquias" title="Límites Parroquiales de Estudio (9)">
                   <span class="cs-layer-pill__dot" style="background: #2563eb;"></span>
-                  <span id="lblToggleParroquias">Parroquias (14)</span>
+                  <span id="lblToggleParroquias">Parroquias (9)</span>
                 </button>
-                <button type="button" class="cs-layer-pill active" id="toggleSectores" data-layer-group="sectores" title="Puntos y Sectores Sorteados">
-                  <span class="cs-layer-pill__dot" style="background: #059669;"></span>
-                  <span id="lblToggleSectores">Muestra (40)</span>
+                <button type="button" class="cs-layer-pill active" id="toggleSectores" data-layer-group="sectores" title="Sectores Censales Sorteados (50)">
+                  <span class="cs-layer-pill__dot" style="background: #3b82f6;"></span>
+                  <span id="lblToggleSectores">Sectores (50)</span>
                 </button>
-                <button type="button" class="cs-layer-pill cs-layer-pill--pendientes" id="toggleSoloPendientes" title="Filtrar únicamente puntos pendientes de completar (<10 encuestas)">
+                <button type="button" class="cs-layer-pill cs-layer-pill--pendientes" id="toggleSoloPendientes" title="Filtrar únicamente sectores pendientes de completar (<10 encuestas)">
                   <span class="cs-layer-pill__dot" style="background: #f59e0b;"></span>
                   <span id="lblToggleSoloPendientes">Solo Pendientes</span>
                 </button>
               </div>
             </div>
-
-            <!-- Barra Rápida de Circunscripciones (1-Tap sobre el mapa) -->
-            <div class="cs-circ-legend-bar" id="circLegendBar" aria-label="Circunscripciones de Montecristi"></div>
           </div>
 
           <div id="map"></div>
 
-          <!-- Barra flotante de navegación para Punto de Referencia activo -->
+          <!-- Barra flotante de navegación para Punto de Muestra activo -->
           <div class="cs-sector-active-bar" id="barraSectorActivo" style="display:none;">
             <div class="cs-sector-active-info">
               <span class="cs-sector-active-icon">🎯</span>
-              <span class="cs-sector-active-title" id="sectorActivoTitulo">Punto de Referencia</span>
+              <span class="cs-sector-active-title" id="sectorActivoTitulo">Punto de Muestra</span>
             </div>
             <a id="btnRutaGoogleMaps" class="cs-btn-gmaps" href="#" target="_blank" rel="noopener noreferrer">
               <svg class="cs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
               Cómo llegar (Google Maps)
             </a>
+            <button type="button" class="cs-sector-active-close" id="btnCerrarSectorActivo" title="Cerrar barra">✕</button>
           </div>
 
-          <!-- Leyenda Dinámica de Encuestadores -->
+          <!-- Conteos de encuestas visibles en el mapa -->
           <div class="cs-map-legend" id="mapLegend" style="display:none;">
             <div class="cs-map-legend__header">
-              <span class="cs-legend-title">Encuestadores</span>
+              <span class="cs-legend-title">Encuestas en el mapa</span>
             </div>
             <div class="cs-map-legend__items" id="mapLegendItems"></div>
           </div>
 
           <button type="button" class="cs-locate-btn" id="locateBtn" title="Centrar en mi ubicación GPS" aria-label="Centrar ubicación GPS">
             <svg class="cs-locate-pegman-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="22" height="22" aria-hidden="true">
-              <!-- Cabeza con visera -->
+              <!-- Cabeza con rostro y visera -->
               <circle cx="12" cy="5" r="3.2" fill="#fcd34d"/>
-              <path d="M9 4.2C9.5 2.5 10.6 1.8 12 1.8C13.4 1.8 14.5 2.5 15 4.2H9Z" fill="#0f172a"/>
-              <path d="M8.8 4.6H15.8C16.4 4.6 16.8 5.1 16 5.3L14.8 5.6H9.2L8.8 4.6Z" fill="#f26419"/>
-              <!-- Chaleco naranja Clima Social -->
-              <path d="M8 9.2C8 8.4 8.8 7.8 9.6 7.8H14.4C15.2 7.8 16 8.4 16 9.2V15.5H8V9.2Z" fill="#f26419"/>
-              <rect x="8" y="12" width="8" height="1.4" fill="#fef08a"/>
-              <!-- Brazos -->
-              <path d="M8 9.5L6 13C5.6 13.6 6 14.4 6.8 14.4L8 14.2" stroke="#f26419" stroke-width="1.6" stroke-linecap="round"/>
-              <path d="M16 9.5L18 13C18.4 13.6 18 14.4 17.2 14.4L16 14.2" stroke="#f26419" stroke-width="1.6" stroke-linecap="round"/>
-              <!-- Manos -->
-              <circle cx="6.4" cy="14" r="0.9" fill="#fcd34d"/>
-              <circle cx="17.6" cy="14" r="0.9" fill="#fcd34d"/>
-              <!-- Piernas y Pantalón -->
-              <rect x="9.2" y="15.5" width="2.4" height="6" rx="1.2" fill="#1e293b"/>
-              <rect x="12.4" y="15.5" width="2.4" height="6" rx="1.2" fill="#1e293b"/>
-              <!-- Zapatos -->
-              <ellipse cx="9.8" cy="21.8" rx="1.8" ry="1.1" fill="#0f172a"/>
-              <ellipse cx="14.2" cy="21.8" rx="1.8" ry="1.1" fill="#0f172a"/>
+              <path d="M9 4.2C9.5 2.5 10.6 1.8 12 1.8C13.4 1.8 14.5 2.5 15 4.2H9Z" fill="#334155"/>
+              <path d="M8.8 4.6H15.8C16.4 4.6 16.8 5.1 16 5.3L14.8 5.6H9.2L8.8 4.6Z" fill="#0f172a"/>
+              <circle cx="11" cy="5.2" r="0.45" fill="#0f172a"/>
+              <circle cx="13" cy="5.2" r="0.45" fill="#0f172a"/>
+              <path d="M11.2 6.5C11.5 6.9 12.5 6.9 12.8 6.5" stroke="#0f172a" stroke-width="0.5" stroke-linecap="round"/>
+              <!-- Chaleco gris técnico Clima Social -->
+              <path d="M8 8.8C8 8.2 8.6 7.6 9.4 7.6H14.6C15.4 7.6 16 8.2 16 8.8V15.5H8V8.8Z" fill="#64748b" stroke="#334155" stroke-width="0.5"/>
+              <line x1="12" y1="8" x2="12" y2="15.5" stroke="#cbd5e1" stroke-width="0.6" stroke-dasharray="0.8 0.5"/>
+              <rect x="8.5" y="12.2" width="2.8" height="2.6" rx="0.4" fill="#475569"/>
+              <rect x="12.7" y="12.2" width="2.8" height="2.6" rx="0.4" fill="#475569"/>
+              <!-- Isotipo oficial Clima Social en el pecho -->
+              <circle cx="13.8" cy="9.8" r="1.8" fill="#ffffff"/>
+              <circle cx="13.8" cy="8.9" r="0.6" fill="#C23B49"/>
+              <circle cx="14.7" cy="9.8" r="0.6" fill="#4F7E90"/>
+              <circle cx="13.8" cy="10.7" r="0.6" fill="#F0A200"/>
+              <circle cx="12.9" cy="9.8" r="0.6" fill="#40004F"/>
+              <circle cx="13.8" cy="9.8" r="0.35" fill="#ffffff"/>
+              <!-- Brazos y Portapapeles -->
+              <path d="M8 9.5L6 13C5.6 13.6 6 14.4 6.8 14.4L8 14.2" stroke="#64748b" stroke-width="1.6" stroke-linecap="round"/>
+              <rect x="4.5" y="11.8" width="3" height="4" rx="0.5" fill="#ffffff" stroke="#0f172a" stroke-width="0.4"/>
+              <line x1="5.2" y1="13" x2="6.8" y2="13" stroke="#64748b" stroke-width="0.4"/>
+              <line x1="5.2" y1="14.2" x2="6.5" y2="14.2" stroke="#64748b" stroke-width="0.4"/>
+              <path d="M16 9.5L18 13C18.4 13.6 18 14.4 17.2 14.4L16 14.2" stroke="#64748b" stroke-width="1.6" stroke-linecap="round"/>
+              <circle cx="6.4" cy="14" r="0.8" fill="#fcd34d"/>
+              <circle cx="17.6" cy="14" r="0.8" fill="#fcd34d"/>
+              <!-- Piernas (Jeans) y Zapatos -->
+              <rect x="9.2" y="15.5" width="2.4" height="5.5" rx="0.8" fill="#2563eb"/>
+              <rect x="12.4" y="15.5" width="2.4" height="5.5" rx="0.8" fill="#2563eb"/>
+              <ellipse cx="9.8" cy="21.5" rx="1.8" ry="1.1" fill="#ffffff" stroke="#0f172a" stroke-width="0.5"/>
+              <ellipse cx="9.8" cy="22" rx="1.5" ry="0.4" fill="#0f172a"/>
+              <ellipse cx="14.2" cy="21.5" rx="1.8" ry="1.1" fill="#ffffff" stroke="#0f172a" stroke-width="0.5"/>
+              <ellipse cx="14.2" cy="22" rx="1.5" ry="0.4" fill="#0f172a"/>
             </svg>
           </button>
         </div>
 
         <div class="cs-map-stats">
           <span id="mapStats"><strong>0</strong> encuestas mapeadas</span>
-          <button type="button" class="cs-btn-alert-filter" id="btnFiltroAlertas" style="display:none;" title="Filtrar encuestas con inconsistencias espaciales">
-            <span>⚠️</span>
-            <span id="txtFiltroAlertas">0 Inconsistencias</span>
-          </button>
           <span class="cs-live-pulse-label">
             <span class="cs-live-mini-dot"></span> Sincronización activa
           </span>
@@ -403,19 +435,10 @@
                 <svg class="cs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                 Equipo de Encuestadores
               </h3>
-              <!-- Selector de Agrupación de la Tabla: Parroquia / Supervisor -->
-              <div class="cs-table-group-switch" id="tableGroupSwitch" role="group" aria-label="Agrupar encuestadores por">
-                <button type="button" class="cs-group-tab-btn is-active" id="btnAgruparParroquia" data-modo="parroquia" title="Agrupar por Parroquia">
-                  <span>Por Parroquia</span>
-                </button>
-                <button type="button" class="cs-group-tab-btn" id="btnAgruparSupervisor" data-modo="supervisor" title="Agrupar por Supervisor">
-                  <span>Por Supervisor</span>
-                </button>
-              </div>
             </div>
             <div class="cs-search-bar">
               <svg class="cs-icon cs-icon--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-              <input type="search" id="searchInput" placeholder="Buscar encuestador, parroquia o supervisor…" autocomplete="off">
+              <input type="search" id="searchInput" placeholder="Buscar encuestador o supervisor…" autocomplete="off">
             </div>
           </div>
 
@@ -471,12 +494,44 @@
 
   <!-- ===== SCRIPTS ===== -->
   <script src="libs/maplibre-gl.js"></script>
-  <script src="script.js?v=6.1.1"></script>
+  <script src="script.js?v=73.5.0"></script>
   <script>
     if ('serviceWorker' in navigator) {
+      let refreshing = false;
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        if (!refreshing) {
+          refreshing = true;
+          window.location.reload();
+        }
+      });
+
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/service-worker.js?v=43').then(reg => {
-          if (reg && reg.update) reg.update();
+        // Conservar únicamente la caché de esta versión
+        if ('caches' in window) {
+          caches.keys().then(names => {
+            names.forEach(name => {
+              if (name !== 'clima-social-ibarra-2026-v2') {
+                caches.delete(name);
+              }
+            });
+          });
+        }
+        navigator.serviceWorker.register('/service-worker.js?v=73.5.0').then(reg => {
+          if (!reg) return;
+          if (reg.waiting) {
+            reg.waiting.postMessage({ type: 'SKIP_WAITING' });
+          }
+          reg.addEventListener('updatefound', () => {
+            const newWorker = reg.installing;
+            if (newWorker) {
+              newWorker.addEventListener('statechange', () => {
+                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                  newWorker.postMessage({ type: 'SKIP_WAITING' });
+                }
+              });
+            }
+          });
+          if (reg.update) reg.update();
         }).catch(error => {
           console.warn('No se pudo preparar el modo sin conexión:', error);
         });

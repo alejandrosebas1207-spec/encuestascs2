@@ -1,0 +1,19 @@
+{
+  "estado": "STANDBY",
+  "version": "1.0.0",
+  "proyecto": "Terminal de Supervisión en Espera",
+  "canton": "",
+  "provincia": "",
+  "modalidad": "sectores",
+  "meta": 0,
+  "bounds": null,
+  "kobo": {
+    "asset_id": "",
+    "campo_encuestador": "codenc",
+    "campo_supervisor": "codsup"
+  },
+  "equipo": {
+    "supervisores": {},
+    "encuestadores": {}
+  }
+}

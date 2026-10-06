@@ -1,37 +1,41 @@
-/* Modo de contingencia: conserva solo la aplicación y cartografía pública.
+/* Modo de contingencia: conserva solo la aplicación y cartografía pública de Ibarra 2026.
  * No almacena respuestas de Kobo ni coordenadas de encuestas en el teléfono. */
-const CACHE_NAME = 'clima-social-montecristi-v1.3.0';
+const CACHE_NAME = 'clima-social-standby-1791303408';
 const APP_SHELL = [
   '/',
   '/index.html',
-  '/style.css?v=6.0.0',
-  '/script.js?v=6.1.1',
+  '/style.css?v=73.5.0',
+  '/script.js?v=73.5.0',
   '/libs/maplibre-gl.js',
   '/libs/maplibre-gl.css',
   '/assets/icono.png',
   '/assets/01_ClimaSocial_Horizontal_Transparente.png',
-  '/assets/circunscripciones.geojson?v=montecristi-1.3.0',
-  '/assets/parroquias.geojson?v=montecristi-1.3.0',
-  '/assets/sectores_censales.geojson?v=montecristi-1.3.0'
+  '/assets/01_Logo_Clima_Social_Horizontal_Oficial.svg'
 ];
 
+self.addEventListener('message', event => {
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
+});
+
 self.addEventListener('install', event => {
+  self.skipWaiting();
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => cache.addAll(APP_SHELL))
-      .then(() => self.skipWaiting())
   );
 });
 
 self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys()
-      .then(keys => Promise.all(
-        keys.filter(key => key !== CACHE_NAME).map(key => {
-          console.log('[SW] Eliminando caché obsoleta:', key);
+      .then(keys => Promise.all(keys.map(key => {
+        if (key !== CACHE_NAME) {
+          console.log('[SW] Purgando caché obsoleta o heredada:', key);
           return caches.delete(key);
-        })
-      ))
+        }
+      })))
       .then(() => self.clients.claim())
   );
 });
@@ -41,8 +45,8 @@ self.addEventListener('fetch', event => {
   const url = new URL(request.url);
   if (request.method !== 'GET' || url.origin !== self.location.origin || url.pathname.startsWith('/api/')) return;
 
-  // 1. Navegación (HTML): Network First, fallback a caché
-  if (request.mode === 'navigate' || url.pathname.endsWith('.html') || url.pathname === '/') {
+  // 1. Navegación HTML: Network-first estricto, fallback EXCLUSIVO al shell de Quito v17
+  if (request.mode === 'navigate' || url.pathname === '/' || url.pathname.endsWith('.html')) {
     event.respondWith(
       fetch(request)
         .then(response => {
@@ -52,12 +56,12 @@ self.addEventListener('fetch', event => {
           }
           return response;
         })
-        .catch(() => caches.match('/index.html'))
+        .catch(() => caches.open(CACHE_NAME).then(cache => cache.match('/index.html')))
     );
     return;
   }
 
-  // 2. GeoJSON y scripts/estilos de aplicación: Network First (prioridad red para cambios de cantón inmediatos)
+  // 2. Cartografía y código (.geojson, .js, .css): Network-First
   if (url.pathname.endsWith('.geojson') || url.pathname.endsWith('.js') || url.pathname.endsWith('.css')) {
     event.respondWith(
       fetch(request)
@@ -68,21 +72,23 @@ self.addEventListener('fetch', event => {
           }
           return response;
         })
-        .catch(() => caches.match(request))
+        .catch(() => caches.open(CACHE_NAME).then(cache => cache.match(request)))
     );
     return;
   }
 
-  // 3. Recursos estáticos inmutables (fuentes, librerías fijas, imágenes): Cache First
+  // 3. Assets estáticos (imágenes, fuentes, librerías): Cache-first dentro de CACHE_NAME
   event.respondWith(
-    caches.match(request).then(cached => {
-      if (cached) return cached;
-      return fetch(request).then(response => {
-        if (response.ok && (url.pathname.startsWith('/assets/') || url.pathname.startsWith('/libs/'))) {
-          const copy = response.clone();
-          caches.open(CACHE_NAME).then(cache => cache.put(request, copy));
-        }
-        return response;
+    caches.open(CACHE_NAME).then(cache => {
+      return cache.match(request).then(cached => {
+        if (cached) return cached;
+        return fetch(request).then(response => {
+          if (response.ok && (url.pathname.startsWith('/assets/') || url.pathname.startsWith('/libs/') || url.pathname.startsWith('/fonts/'))) {
+            const copy = response.clone();
+            cache.put(request, copy);
+          }
+          return response;
+        });
       });
     })
   );
