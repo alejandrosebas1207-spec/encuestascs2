@@ -1,6 +1,6 @@
 /* Modo de contingencia: conserva solo la aplicación y cartografía pública de Ibarra 2026.
  * No almacena respuestas de Kobo ni coordenadas de encuestas en el teléfono. */
-const CACHE_NAME = 'clima-social-standby-1791303408';
+const CACHE_NAME = 'clima-social-carchi-1791343050';
 const APP_SHELL = [
   '/',
   '/index.html',

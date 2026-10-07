@@ -1,16 +1,26 @@
 {
-  "estado": "STANDBY",
+  "estado": "ACTIVO",
   "version": "1.0.0",
-  "proyecto": "Terminal de Supervisión en Espera",
+  "proyecto": "Movilidad Movidelnor · Carchi 2026",
   "canton": "",
-  "provincia": "",
+  "provincia": "Carchi",
   "modalidad": "sectores",
-  "meta": 0,
-  "bounds": null,
+  "meta": 310,
+  "bounds": [
+    [
+      -78.46012,
+      0.34428
+    ],
+    [
+      -77.65581,
+      0.95814
+    ]
+  ],
   "kobo": {
     "asset_id": "",
     "campo_encuestador": "codenc",
-    "campo_supervisor": "codsup"
+    "campo_supervisor": "codsup",
+    "choices_parroquias": {}
   },
   "equipo": {
     "supervisores": {},
