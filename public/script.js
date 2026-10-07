@@ -189,76 +189,174 @@ document.addEventListener('DOMContentLoaded', () => {
         '#047857'  // 28: Verde Esmeralda Oscuro
     ];
 
-    // Parroquias oficiales con levantamiento de muestra (10 parroquias activas de Ibarra)
-    const PARROQUIAS_POR_CANTON = {
-        'IBARRA': [
-            'AMBUQUI / CHOTA',
-            'ANGOCHAGUA',
-            'CARANQUI',
-            'GUAYAQUIL DE ALPACHACA',
-            'LA DOLOROSA DEL PRIORATO',
-            'LA ESPERANZA',
-            'SAGRARIO',
-            'SALINAS',
-            'SAN ANTONIO',
-            'SAN FRANCISCO'
-        ]
+    // Parroquias oficiales organizadas por Cantón (se enriquece automáticamente desde el GeoJSON)
+    const PARROQUIAS_POR_CANTON = {};
+
+    // =========================================================================
+    // IDENTIDAD VISUAL Y PALETA CROMÁTICA POR CANTÓN (CLIMA SOCIAL)
+    // =========================================================================
+    function hexToRgba(hex, alpha = 0.20) {
+        if (!hex || typeof hex !== 'string') return `rgba(2, 128, 144, ${alpha})`;
+        let c = hex.replace('#', '').trim();
+        if (c.length === 3) c = c.split('').map(x => x + x).join('');
+        if (c.length !== 6) return `rgba(2, 128, 144, ${alpha})`;
+        const num = parseInt(c, 16);
+        const r = (num >> 16) & 255;
+        const g = (num >> 8) & 255;
+        const b = num & 255;
+        return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+    }
+
+    const PALETA_ROTATIVA_CANTONES = [
+        '#028090', '#7c3aed', '#059669', '#d97706', '#ea580c',
+        '#2563eb', '#1d4ed8', '#0d9488', '#dc2626', '#9333ea',
+        '#0891b2', '#0284c7', '#65a30d', '#1e40af', '#be185d',
+        '#4f46e5', '#ca8a04', '#047857', '#991b1b', '#0369a1'
+    ];
+
+    const PALETA_CANTONES_DEF = {
+        // === IMBABURA ===
+        'IBARRA': { nombre: 'Ibarra', hex: '#028090', badge: '📍' },
+        'OTAVALO': { nombre: 'Otavalo', hex: '#7c3aed', badge: '🧵' },
+        'COTACACHI': { nombre: 'Cotacachi', hex: '#059669', badge: '🏔️' },
+        'ANTONIO ANTE': { nombre: 'Antonio Ante', hex: '#d97706', badge: '🏭' },
+        'ATUNTAQUI': { nombre: 'Antonio Ante', hex: '#d97706', badge: '🏭' },
+        'PIMAMPIRO': { nombre: 'Pimampiro', hex: '#ea580c', badge: '🍑' },
+        'SAN MIGUEL DE URCUQUI': { nombre: 'Urcuquí', hex: '#2563eb', badge: '🔬' },
+        'URCUQUI': { nombre: 'Urcuquí', hex: '#2563eb', badge: '🔬' },
+
+        // === CARCHI ===
+        'TULCAN': { nombre: 'Tulcán', hex: '#1d4ed8', badge: '🌲' },
+        'TULCÁN': { nombre: 'Tulcán', hex: '#1d4ed8', badge: '🌲' },
+        'MONTUFAR': { nombre: 'Montúfar', hex: '#0d9488', badge: '🏛️' },
+        'MONTÚFAR': { nombre: 'Montúfar', hex: '#0d9488', badge: '🏛️' },
+        'ESPEJO': { nombre: 'Espejo', hex: '#b91c1c', badge: '🌾' },
+        'MIRA': { nombre: 'Mira', hex: '#9333ea', badge: '🍇' },
+        'BOLIVAR': { nombre: 'Bolívar', hex: '#c2410c', badge: '⛰️' },
+        'BOLÍVAR': { nombre: 'Bolívar', hex: '#c2410c', badge: '⛰️' },
+        'SAN PEDRO DE HUACA': { nombre: 'San Pedro de Huaca', hex: '#0891b2', badge: '🥔' },
+        'HUACA': { nombre: 'Huaca', hex: '#0891b2', badge: '🥔' },
+
+        // === ESMERALDAS ===
+        'ESMERALDAS': { nombre: 'Esmeraldas', hex: '#059669', badge: '🌴' },
+        'ATACAMES': { nombre: 'Atacames', hex: '#0284c7', badge: '🏖️' },
+        'QUININDE': { nombre: 'Quinindé', hex: '#ea580c', badge: '🌿' },
+        'QUININDÉ': { nombre: 'Quinindé', hex: '#ea580c', badge: '🌿' },
+        'SAN LORENZO': { nombre: 'San Lorenzo', hex: '#7c3aed', badge: '🚂' },
+        'ELOY ALFARO': { nombre: 'Eloy Alfaro', hex: '#65a30d', badge: '🛶' },
+        'MUISNE': { nombre: 'Muisne', hex: '#1e40af', badge: '🦀' },
+        'RIOVERDE': { nombre: 'Rioverde', hex: '#be185d', badge: '🌊' },
+
+        // === PICHINCHA ===
+        'QUITO': { nombre: 'Quito', hex: '#1e3a8a', badge: '🏛️' },
+        'D.M. QUITO': { nombre: 'Quito', hex: '#1e3a8a', badge: '🏛️' },
+        'RUMIÑAHUI': { nombre: 'Rumiñahui', hex: '#400054', badge: '🌽' },
+        'RUMINAHUI': { nombre: 'Rumiñahui', hex: '#400054', badge: '🌽' },
+        'MEJIA': { nombre: 'Mejía', hex: '#991b1b', badge: '🌋' },
+        'MEJÍA': { nombre: 'Mejía', hex: '#991b1b', badge: '🌋' },
+        'CAYAMBE': { nombre: 'Cayambe', hex: '#ea580c', badge: '🧀' },
+        'PEDRO MONCAYO': { nombre: 'Pedro Moncayo', hex: '#db2777', badge: '🌹' },
+        'SAN MIGUEL DE LOS BANCOS': { nombre: 'Los Bancos', hex: '#047857', badge: '🦜' },
+        'PEDRO VICENTE MALDONADO': { nombre: 'P.V. Maldonado', hex: '#0284c7', badge: '🌿' },
+        'PUERTO QUITO': { nombre: 'Puerto Quito', hex: '#15803d', badge: '🛶' },
+
+        // === GUAYAS & COSTA ===
+        'GUAYAQUIL': { nombre: 'Guayaquil', hex: '#0284c7', badge: '⚓' },
+        'SAMBORONDON': { nombre: 'Samborondón', hex: '#7c3aed', badge: '🏙️' },
+        'SAMBORONDÓN': { nombre: 'Samborondón', hex: '#7c3aed', badge: '🏙️' },
+        'DAULE': { nombre: 'Daule', hex: '#d97706', badge: '🌾' },
+        'DURAN': { nombre: 'Durán', hex: '#e11d48', badge: '🚆' },
+        'DURÁN': { nombre: 'Durán', hex: '#e11d48', badge: '🚆' },
+        'MACHALA': { nombre: 'Machala', hex: '#d97706', badge: '🍌' },
+        'MANTA': { nombre: 'Manta', hex: '#0d9488', badge: '🐟' },
+        'PORTOVIEJO': { nombre: 'Portoviejo', hex: '#15803d', badge: '🌳' },
+        'SANTO DOMINGO': { nombre: 'Santo Domingo', hex: '#c2410c', badge: '🍍' },
+
+        // === SIERRA SUR & CENTRO ===
+        'CUENCA': { nombre: 'Cuenca', hex: '#b91c1c', badge: '⛲' },
+        'LOJA': { nombre: 'Loja', hex: '#2563eb', badge: '🎵' },
+        'AMBATO': { nombre: 'Ambato', hex: '#4d7c0f', badge: '🍎' },
+        'RIOBAMBA': { nombre: 'Riobamba', hex: '#334155', badge: '🚂' }
     };
 
-    // Paleta cromática oficial por Cantón (Encuesta Cantonal Ibarra 2026)
-    const COLORES_CANTON = {
-        'IBARRA': { 
-            nombre: 'Ibarra', 
-            hex: '#028090', 
-            linea: '#028090', 
-            fill: 'rgba(2, 128, 144, 0.22)', 
-            fillSector: 'rgba(2, 128, 144, 0.35)', 
-            lineaSector: '#005f73', 
-            label: '#005f73', 
-            badge: '📍' 
+    const COLORES_CANTON = {};
+
+    function registrarColorCanton(clave, info) {
+        const keyNorm = normTexto(clave);
+        const hex = info.hex || '#028090';
+        COLORES_CANTON[keyNorm] = {
+            nombre: info.nombre || clave,
+            hex: hex,
+            linea: hex,
+            fill: hexToRgba(hex, 0.20),
+            fillSector: hexToRgba(hex, 0.35),
+            lineaSector: hex,
+            label: hex,
+            badge: info.badge || '📍',
+            pinSlug: `pin-can-${keyNorm.toLowerCase().replace(/[^a-z0-9]/g, '-')}`
+        };
+        return COLORES_CANTON[keyNorm];
+    }
+
+    Object.keys(PALETA_CANTONES_DEF).forEach(k => {
+        registrarColorCanton(k, PALETA_CANTONES_DEF[k]);
+    });
+
+    function obtenerConfigCanton(cantonNombre) {
+        if (!cantonNombre) {
+            return COLORES_CANTON['IBARRA'] || {
+                nombre: 'Territorio',
+                hex: '#028090',
+                linea: '#028090',
+                fill: 'rgba(2, 128, 144, 0.20)',
+                fillSector: 'rgba(2, 128, 144, 0.35)',
+                lineaSector: '#005f73',
+                label: '#005f73',
+                badge: '📍',
+                pinSlug: 'pin-referencia'
+            };
         }
-    };
+        const kNorm = normTexto(cantonNombre);
+        if (COLORES_CANTON[kNorm]) return COLORES_CANTON[kNorm];
 
-    // Expresiones MapLibre GL por Cantón
-    const EXPR_PARROQUIAS_FILL = [
-        'match',
-        ['upcase', ['coalesce', ['get', 'canton'], ['get', 'CANTON'], 'IBARRA']],
-        'IBARRA', 'rgba(2, 128, 144, 0.20)',
-        'rgba(2, 128, 144, 0.20)'
-    ];
+        // Autodescubrimiento con hash determinista
+        let hash = 0;
+        for (let i = 0; i < kNorm.length; i++) {
+            hash = (hash << 5) - hash + kNorm.charCodeAt(i);
+            hash |= 0;
+        }
+        const hexElegido = PALETA_ROTATIVA_CANTONES[Math.abs(hash) % PALETA_ROTATIVA_CANTONES.length];
+        return registrarColorCanton(kNorm, {
+            nombre: cantonNombre,
+            hex: hexElegido,
+            badge: '📍'
+        });
+    }
 
-    const EXPR_PARROQUIAS_LINE = [
-        'match',
-        ['upcase', ['coalesce', ['get', 'canton'], ['get', 'CANTON'], 'IBARRA']],
-        'IBARRA', '#028090',
-        '#028090'
-    ];
+    // Expresiones MapLibre GL multicantón
+    function generarExprCanton(propiedad, fallback) {
+        const expr = ['match', ['upcase', ['coalesce', ['get', 'canton'], ['get', 'CANTON'], '']]];
+        const keys = Object.keys(COLORES_CANTON);
+        for (let i = 0; i < keys.length; i++) {
+            const k = keys[i];
+            const val = COLORES_CANTON[k][propiedad];
+            if (val) {
+                expr.push(k, val);
+            }
+        }
+        expr.push(fallback);
+        return expr;
+    }
 
-    const EXPR_PARROQUIAS_LABEL = [
-        'match',
-        ['upcase', ['coalesce', ['get', 'canton'], ['get', 'CANTON'], 'IBARRA']],
-        'IBARRA', '#005f73',
-        '#005f73'
-    ];
+    const EXPR_PARROQUIAS_FILL = generarExprCanton('fill', 'rgba(2, 128, 144, 0.20)');
+    const EXPR_PARROQUIAS_LINE = generarExprCanton('linea', '#028090');
+    const EXPR_PARROQUIAS_LABEL = generarExprCanton('label', '#005f73');
+    const EXPR_SECTORES_FILL = generarExprCanton('fillSector', 'rgba(2, 128, 144, 0.35)');
+    const EXPR_SECTORES_LINE = generarExprCanton('lineaSector', '#028090');
+    const EXPR_SECTORES_LABEL = generarExprCanton('label', '#005f73');
+    const EXPR_PIN_CANTON = generarExprCanton('pinSlug', 'pin-referencia');
 
-    const EXPR_SECTORES_FILL = [
-        'match',
-        ['upcase', ['coalesce', ['get', 'canton'], ['get', 'CANTON'], 'IBARRA']],
-        'IBARRA', '#028090',
-        '#028090'
-    ];
-
-    const EXPR_SECTORES_LINE = EXPR_PARROQUIAS_LINE;
-    const EXPR_SECTORES_LABEL = EXPR_PARROQUIAS_LABEL;
-
-    const EXPR_PIN_CANTON = [
-        'match',
-        ['upcase', ['coalesce', ['get', 'canton'], ['get', 'CANTON'], 'IBARRA']],
-        'IBARRA', 'pin-ibarra',
-        'pin-referencia'
-    ];
-
-    // Aliases para máxima compatibilidad
+    // Aliases para compatibilidad
     const EXPR_CANTON_PARROQUIAS_LINE = EXPR_PARROQUIAS_LINE;
     const EXPR_CANTON_PARROQUIAS_LABEL = EXPR_PARROQUIAS_LABEL;
     const EXPR_CANTON_SECTORES_FILL = EXPR_SECTORES_FILL;
@@ -2288,7 +2386,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         source: 'sectores-source',
                         filter: ['==', ['geometry-type'], 'Point'],
                         layout: {
-                            'icon-image': 'pin-referencia',
+                            'icon-image': EXPR_PIN_CANTON,
                             'icon-size': [
                                 'interpolate', ['linear'], ['zoom'],
                                 10, 0.65,
@@ -2518,18 +2616,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 // Generar pin temático oficial para cada cantón según COLORES_CANTON
-                const SLUG_CANTONES = {
-                    'IBARRA': 'pin-ibarra'
-                };
-
-                Object.keys(SLUG_CANTONES).forEach(cantonNombre => {
-                    const idImg = SLUG_CANTONES[cantonNombre];
+                Object.keys(COLORES_CANTON).forEach(cantonKey => {
+                    const cfg = COLORES_CANTON[cantonKey];
+                    const idImg = cfg.pinSlug || `pin-can-${cantonKey.toLowerCase()}`;
                     if (!map.hasImage(idImg)) {
-                        const cfg = COLORES_CANTON[cantonNombre] || { hex: '#028090', lineaSector: '#005f73' };
                         const img = generarImagenPin(cfg.hex, cfg.lineaSector || cfg.linea || cfg.hex, false);
                         if (img) map.addImage(idImg, img, { pixelRatio: 2 });
                     }
                 });
+                if (!map.hasImage('pin-ibarra') && map.hasImage('pin-can-ibarra')) {
+                    // Alias de compatibilidad
+                }
             } catch (errIcon) {
                 console.warn('[MapLibre Pin Marker]', errIcon);
             }
@@ -2853,6 +2950,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     const canton = p.CANTON || p.canton || '';
                     const tipo = p.ESTADO || 'Rural';
                     const cod = p.CODPAR || p.cod || p.codigo || '';
+
+                    const cNorm = String(canton || '').trim().toUpperCase();
+                    const nNorm = String(nombre || '').trim().toUpperCase();
+                    if (cNorm) {
+                        obtenerConfigCanton(cNorm);
+                        if (!PARROQUIAS_POR_CANTON[cNorm]) PARROQUIAS_POR_CANTON[cNorm] = [];
+                        if (nNorm && !PARROQUIAS_POR_CANTON[cNorm].includes(nNorm)) {
+                            PARROQUIAS_POR_CANTON[cNorm].push(nNorm);
+                        }
+                    }
 
                     if (cod && nombre) {
                         AppState.diccionarioParroquias[String(cod).trim()] = nombre.toUpperCase();
