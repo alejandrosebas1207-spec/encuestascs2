@@ -2288,9 +2288,25 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         AppState.parroquiasCentroidesGeojson = parroquiasCentroidesData;
 
-        // Auto-calcular Bounding Box global desde las 53 parroquias y 266 puntos a encuestar
+        // Auto-calcular Bounding Box global PRIORIZANDO los SECTORES CENSALES de la muestra
         let globalMinX = Infinity, globalMinY = Infinity, globalMaxX = -Infinity, globalMaxY = -Infinity;
-        if (parroquiasData.features && parroquiasData.features.length > 0) {
+        if (sectoresData.features && sectoresData.features.length > 0) {
+            sectoresData.features.forEach(f => {
+                const b = f.properties.bbox || (f.geometry ? calcularBBOX(f.geometry) : null);
+                if (b && Array.isArray(b)) {
+                    const minX = Array.isArray(b[0]) ? b[0][0] : b[0];
+                    const minY = Array.isArray(b[0]) ? b[0][1] : b[1];
+                    const maxX = Array.isArray(b[1]) ? b[1][0] : b[2];
+                    const maxY = Array.isArray(b[1]) ? b[1][1] : b[3];
+                    if (minX < globalMinX) globalMinX = minX;
+                    if (minY < globalMinY) globalMinY = minY;
+                    if (maxX > globalMaxX) globalMaxX = maxX;
+                    if (maxY > globalMaxY) globalMaxY = maxY;
+                }
+            });
+        }
+        // Fallback: solo si no hay sectores, usar límites de parroquias
+        if (globalMinX === Infinity && parroquiasData.features && parroquiasData.features.length > 0) {
             parroquiasData.features.forEach(f => {
                 const b = f.properties.bbox || (f.geometry ? calcularBBOX(f.geometry) : null);
                 if (b && Array.isArray(b)) {
@@ -2305,25 +2321,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         }
-        if (sectoresData.features && sectoresData.features.length > 0) {
-            sectoresData.features.forEach(f => {
-                if (f.geometry && f.geometry.coordinates) {
-                    const [x, y] = f.geometry.coordinates;
-                    if (x < globalMinX) globalMinX = x;
-                    if (y < globalMinY) globalMinY = y;
-                    if (x > globalMaxX) globalMaxX = x;
-                    if (y > globalMaxY) globalMaxY = y;
-                }
-            });
-        }
 
-        const BBOX_CANTON = [[-78.20, 0.15], [-77.96, 0.59]];
-        let mapCenter = [-78.12, 0.35]; // Ibarra Centro
+        const BBOX_CANTON = [[-78.25, 0.20], [-77.85, 0.85]];
+        let mapCenter = [-78.12, 0.35];
         let initialBounds = BBOX_CANTON;
 
         if (globalMinX !== Infinity && globalMaxX !== -Infinity) {
+            // Margen suave del 5%
+            const dx = (globalMaxX - globalMinX) * 0.05 || 0.01;
+            const dy = (globalMaxY - globalMinY) * 0.05 || 0.01;
             mapCenter = [(globalMinX + globalMaxX) / 2, (globalMinY + globalMaxY) / 2];
-            initialBounds = [[globalMinX, globalMinY], [globalMaxX, globalMaxY]];
+            initialBounds = [[globalMinX - dx, globalMinY - dy], [globalMaxX + dx, globalMaxY + dy]];
         }
         AppState.cantonBbox = initialBounds;
 
@@ -3133,46 +3141,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const target = norm(nombreParroquia);
         const cantActivo = (AppState.cantonSeleccionado && AppState.cantonSeleccionado !== 'Todos') ? norm(AppState.cantonSeleccionado) : null;
 
-        // 1. Buscar en AppState.parroquiasGeojson (priorizando match de cantón y match exacto de parroquia)
-        if (AppState.parroquiasGeojson && AppState.parroquiasGeojson.features) {
-            // Intento 1: Match exacto de nombre y match de cantón
-            let feat = AppState.parroquiasGeojson.features.find(f => {
-                const p = f.properties || {};
-                const n = norm(p.nombre || p.PARROQUIA || p.name || '');
-                const c = norm(p.canton || p.CANTON || '');
-                const parMatch = (n === target);
-                const canMatch = !cantActivo || (c === cantActivo || c.includes(cantActivo) || cantActivo.includes(c));
-                return parMatch && canMatch;
-            });
-
-            // Intento 2: Match exacto de nombre sin filtro de cantón
-            if (!feat) {
-                feat = AppState.parroquiasGeojson.features.find(f => {
-                    const p = f.properties || {};
-                    const n = norm(p.nombre || p.PARROQUIA || p.name || '');
-                    return n === target;
-                });
-            }
-
-            // Intento 3: Match parcial cuidadoso (prohibiendo colisión Rosario <-> Yunganza)
-            if (!feat) {
-                feat = AppState.parroquiasGeojson.features.find(f => {
-                    const p = f.properties || {};
-                    const n = norm(p.nombre || p.PARROQUIA || p.name || '');
-                    const c = norm(p.canton || p.CANTON || '');
-                    if ((n === 'ROSARIO' && target.includes('YUNGANZA')) || (target === 'ROSARIO' && n.includes('YUNGANZA'))) return false;
-                    const canMatch = !cantActivo || (c === cantActivo);
-                    return canMatch && (n.includes(target) || target.includes(n));
-                });
-            }
-
-            if (feat) {
-                if (feat.properties && feat.properties.bbox) return feat.properties.bbox;
-                if (feat.geometry) return calcularBBOX(feat.geometry);
-            }
-        }
-
-        // 2. Fallback: calcular envolvente de los sectores censales que pertenezcan a esa parroquia
+        // PRIORIDAD 1: Calcular la envolvente sobre los SECTORES CENSALES de la muestra en esa parroquia
         if (AppState.sectoresGeojson && AppState.sectoresGeojson.features) {
             let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
             let encontrados = 0;
@@ -3180,9 +3149,92 @@ document.addEventListener('DOMContentLoaded', () => {
                 const p = f.properties || {};
                 const par = norm(p.parroquia || p.PARROQUIA || '');
                 const c = norm(p.canton || p.CANTON || '');
-                const parMatch = (par === target);
+                const parMatch = (par === target || par.includes(target) || target.includes(par));
                 const canMatch = !cantActivo || (c === cantActivo);
                 if (parMatch && canMatch) {
+                    const b = p.bbox || (f.geometry ? calcularBBOX(f.geometry) : null);
+                    if (b) {
+                        encontrados++;
+                        const bMinX = Array.isArray(b[0]) ? b[0][0] : b[0];
+                        const bMinY = Array.isArray(b[0]) ? b[0][1] : b[1];
+                        const bMaxX = Array.isArray(b[1]) ? b[1][0] : b[2];
+                        const bMaxY = Array.isArray(b[1]) ? b[1][1] : b[3];
+                        if (bMinX < minX) minX = bMinX;
+                        if (bMinY < minY) minY = bMinY;
+                        if (bMaxX > maxX) maxX = bMaxX;
+                        if (bMaxY > maxY) maxY = bMaxY;
+                    }
+                }
+            });
+            if (encontrados > 0 && minX !== Infinity) {
+                // Margen suave del 10%
+                const dx = (maxX - minX) * 0.10 || 0.003;
+                const dy = (maxY - minY) * 0.10 || 0.003;
+                return [[minX - dx, minY - dy], [maxX + dx, maxY + dy]];
+            }
+        }
+
+        // PRIORIDAD 2: Solo si no hay sectores censales, recurrir al polígono de la parroquia
+        if (AppState.parroquiasGeojson && AppState.parroquiasGeojson.features) {
+            let feat = AppState.parroquiasGeojson.features.find(f => {
+                const p = f.properties || {};
+                const n = norm(p.nombre || p.PARROQUIA || p.name || '');
+                const c = norm(p.canton || p.CANTON || '');
+                const parMatch = (n === target || n.includes(target) || target.includes(n));
+                const canMatch = !cantActivo || (c === cantActivo || c.includes(cantActivo) || cantActivo.includes(c));
+                return parMatch && canMatch;
+            });
+            if (feat) {
+                if (feat.properties && feat.properties.bbox) return feat.properties.bbox;
+                if (feat.geometry) return calcularBBOX(feat.geometry);
+            }
+        }
+
+        return null;
+    }
+
+    function obtenerBboxCanton(nombreCanton) {
+        if (!nombreCanton || nombreCanton === 'Todos') return AppState.cantonBbox;
+        const norm = (s) => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toUpperCase().trim();
+        const target = norm(nombreCanton);
+
+        // PRIORIDAD 1: Envolvente de los SECTORES CENSALES del cantón
+        if (AppState.sectoresGeojson && AppState.sectoresGeojson.features) {
+            let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+            let encontrados = 0;
+            AppState.sectoresGeojson.features.forEach(f => {
+                const p = f.properties || {};
+                const c = norm(p.canton || p.CANTON || '');
+                if (c && (c === target || c.includes(target) || target.includes(c))) {
+                    const b = p.bbox || (f.geometry ? calcularBBOX(f.geometry) : null);
+                    if (b) {
+                        encontrados++;
+                        const bMinX = Array.isArray(b[0]) ? b[0][0] : b[0];
+                        const bMinY = Array.isArray(b[0]) ? b[0][1] : b[1];
+                        const bMaxX = Array.isArray(b[1]) ? b[1][0] : b[2];
+                        const bMaxY = Array.isArray(b[1]) ? b[1][1] : b[3];
+                        if (bMinX < minX) minX = bMinX;
+                        if (bMinY < minY) minY = bMinY;
+                        if (bMaxX > maxX) maxX = bMaxX;
+                        if (bMaxY > maxY) maxY = bMaxY;
+                    }
+                }
+            });
+            if (encontrados > 0 && minX !== Infinity) {
+                const dx = (maxX - minX) * 0.08 || 0.005;
+                const dy = (maxY - minY) * 0.08 || 0.005;
+                return [[minX - dx, minY - dy], [maxX + dx, maxY + dy]];
+            }
+        }
+
+        // PRIORIDAD 2: Envolvente de las parroquias del cantón
+        if (AppState.parroquiasGeojson && AppState.parroquiasGeojson.features) {
+            let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+            let encontrados = 0;
+            AppState.parroquiasGeojson.features.forEach(f => {
+                const p = f.properties || {};
+                const c = norm(p.canton || p.CANTON || '');
+                if (c && (c === target || c.includes(target) || target.includes(c))) {
                     const b = p.bbox || (f.geometry ? calcularBBOX(f.geometry) : null);
                     if (b) {
                         encontrados++;
@@ -3202,76 +3254,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        return null;
-    }
-
-    function obtenerBboxCanton(nombreCanton) {
-        if (!nombreCanton || nombreCanton === 'Todos') return AppState.cantonBbox || [[-78.9539, -3.5878], [-76.6921, -1.4484]];
-        const norm = (s) => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toUpperCase().trim();
-        const target = norm(nombreCanton);
-        
-        let parsPermitidas = [];
-        for (const [canKey, pList] of Object.entries(PARROQUIAS_POR_CANTON)) {
-            const nCan = norm(canKey);
-            if (nCan === target || target.includes(nCan) || nCan.includes(target)) {
-                parsPermitidas = pList.map(norm);
-                break;
-            }
-        }
-
-        let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
-        let encontrados = 0;
-
-        if (AppState.parroquiasGeojson && AppState.parroquiasGeojson.features) {
-            AppState.parroquiasGeojson.features.forEach(f => {
-                const p = f.properties || {};
-                const c = norm(p.canton || p.CANTON || '');
-                const nom = norm(p.nombre || p.PARROQUIA || p.name || '');
-                // El cantón debe coincidir estrictamente si está definido en la propiedad
-                const matchCanton = c && (c === target || c.includes(target) || target.includes(c));
-                const matchPar = parsPermitidas.includes(nom);
-
-                if (c ? matchCanton : matchPar) {
-                    const b = p.bbox || (f.geometry ? calcularBBOX(f.geometry) : null);
-                    if (b) {
-                        encontrados++;
-                        const bMinX = Array.isArray(b[0]) ? b[0][0] : b[0];
-                        const bMinY = Array.isArray(b[0]) ? b[0][1] : b[1];
-                        const bMaxX = Array.isArray(b[1]) ? b[1][0] : b[2];
-                        const bMaxY = Array.isArray(b[1]) ? b[1][1] : b[3];
-                        if (bMinX < minX) minX = bMinX;
-                        if (bMinY < minY) minY = bMinY;
-                        if (bMaxX > maxX) maxX = bMaxX;
-                        if (bMaxY > maxY) maxY = bMaxY;
-                    }
-                }
-            });
-        }
-
-        // Fallback: calcular envolvente con los puntos del cantón si no se obtuvieron parroquias
-        if (encontrados === 0 && AppState.sectoresGeojson && AppState.sectoresGeojson.features) {
-            AppState.sectoresGeojson.features.forEach(f => {
-                const p = f.properties || {};
-                const c = norm(p.canton || p.CANTON || '');
-                if (c && (c === target || c.includes(target) || target.includes(c))) {
-                    const coords = f.geometry ? f.geometry.coordinates : null;
-                    if (coords && Array.isArray(coords)) {
-                        const [lng, lat] = coords;
-                        if (lng < minX) minX = lng;
-                        if (lat < minY) minY = lat;
-                        if (lng > maxX) maxX = lng;
-                        if (lat > maxY) maxY = lat;
-                        encontrados++;
-                    }
-                }
-            });
-        }
-
-        if (encontrados > 0 && minX !== Infinity) {
-            return [[minX, minY], [maxX, maxY]];
-        }
-
-        return AppState.cantonBbox || [[-78.9539, -3.5878], [-76.6921, -1.4484]];
+        return AppState.cantonBbox;
     }
 
     function actualizarPoligonosMapa(ajustarCamara = false) {
@@ -3527,33 +3510,35 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
             } else if (AppState.parroquiaSeleccionada && AppState.parroquiaSeleccionada !== 'Todas') {
-                // Nivel 2: Zoom a la Parroquia seleccionada
+                // Nivel 2: Zoom a la Parroquia seleccionada (focalizado en sus sectores censales)
                 const bboxPar = obtenerBboxParroquia(AppState.parroquiaSeleccionada);
                 if (bboxPar) {
                     map.fitBounds(bboxPar, {
-                        padding: { top: 60, bottom: 50, left: 50, right: 50 },
-                        maxZoom: 14.5,
+                        padding: { top: 50, bottom: 45, left: 45, right: 45 },
+                        maxZoom: 15.5,
                         duration: 850
                     });
                 }
             } else if (AppState.cantonSeleccionado && AppState.cantonSeleccionado !== 'Todos') {
-                // Nivel 3: Zoom al Cantón seleccionado
+                // Nivel 3: Zoom al Cantón seleccionado (focalizado en sus sectores censales)
                 const bboxCan = obtenerBboxCanton(AppState.cantonSeleccionado);
                 if (bboxCan) {
                     map.fitBounds(bboxCan, {
-                        padding: { top: 45, bottom: 45, left: 45, right: 45 },
-                        maxZoom: 12.5,
+                        padding: { top: 40, bottom: 40, left: 40, right: 40 },
+                        maxZoom: 13.5,
                         duration: 850
                     });
                 }
             } else {
-                // Nivel 4: Vista global de Ibarra
-                const globalBbox = AppState.cantonBbox || [[-78.20, 0.15], [-77.96, 0.59]];
-                map.fitBounds(globalBbox, {
-                    padding: { top: 40, bottom: 40, left: 40, right: 40 },
-                    maxZoom: 12.5,
-                    duration: 850
-                });
+                // Nivel 4: Vista global de la muestra territorial activa
+                const globalBbox = AppState.cantonBbox;
+                if (globalBbox) {
+                    map.fitBounds(globalBbox, {
+                        padding: { top: 35, bottom: 35, left: 35, right: 35 },
+                        maxZoom: 13.0,
+                        duration: 850
+                    });
+                }
             }
         }
     }
