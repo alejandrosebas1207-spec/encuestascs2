@@ -1,7 +1,7 @@
 {
-  "name": "Clima Social · Encuesta Montecristi - Septiembre - 2026",
-  "short_name": "Montecristi CS",
-  "description": "Supervisión de campo para Encuesta Montecristi - Septiembre - 2026.",
+  "name": "Clima Social · Supervisión Ibarra 2026",
+  "short_name": "CS Ibarra",
+  "description": "Supervisión de campo para Encuesta Cantonal Ibarra 2026.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#f8fafc",

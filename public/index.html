@@ -32,7 +32,7 @@
   <link rel="stylesheet" href="libs/maplibre-gl.css" />
 
   <!-- Estilos del Dashboard -->
-  <link rel="stylesheet" href="style.css?v=82.0.0">
+  <link rel="stylesheet" href="style.css?v=83.0.0">
 </head>
 <body>
 
@@ -223,7 +223,7 @@
           </div>
 
 
-          <!-- Cantón (Ibarra) -->
+          <!-- Cantón -->
           <div class="cs-ribbon-field" id="wrapCantonFilter">
             <label for="cantonFilter" class="cs-field-label">
               <svg class="cs-icon cs-icon--xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -231,7 +231,7 @@
             </label>
             <div class="cs-select-wrap">
               <select id="cantonFilter" class="cs-select">
-                <option value="Todos">Ibarra</option>
+                <option value="Todos">Todos los cantones</option>
               </select>
             </div>
           </div>
@@ -244,12 +244,12 @@
             </label>
             <div class="cs-select-wrap">
               <select id="parroquiaFilter" class="cs-select">
-                <option value="Todas">Todas las parroquias (9)</option>
+                <option value="Todas">Todas las parroquias</option>
               </select>
             </div>
           </div>
 
-          <!-- Sector Censal (1 al 50) -->
+          <!-- Sector Censal -->
           <div class="cs-ribbon-field">
             <label for="sectorFilter" class="cs-field-label">
               <svg class="cs-icon cs-icon--xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
@@ -257,7 +257,7 @@
             </label>
             <div class="cs-select-wrap">
               <select id="sectorFilter" class="cs-select">
-                <option value="Todos">Todos los sectores (50)</option>
+                <option value="Todos">Todos los sectores</option>
               </select>
             </div>
           </div>
@@ -507,7 +507,7 @@
 
   <!-- ===== SCRIPTS ===== -->
   <script src="libs/maplibre-gl.js"></script>
-  <script src="script.js?v=82.0.0"></script>
+  <script src="script.js?v=83.0.0"></script>
   <script>
     if ('serviceWorker' in navigator) {
       let refreshing = false;

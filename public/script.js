@@ -1643,29 +1643,42 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!supKeys.includes(actualSup) && actualSup !== 'Todos') AppState.supervisorSeleccionado = 'Todos';
         }
 
-        // 1.1 Selector Cantón (Ibarra)
+        // 1.1 Selector Cantón
         if (UI.cantonFilter) {
             const actualCan = AppState.cantonSeleccionado || 'Todos';
-            const keysCantones = Object.keys(PARROQUIAS_POR_CANTON);
+            const setCantones = new Set(Object.keys(PARROQUIAS_POR_CANTON));
+            if (AppState.sectoresGeojson && AppState.sectoresGeojson.features) {
+                AppState.sectoresGeojson.features.forEach(f => {
+                    const c = f.properties && (f.properties.canton || f.properties.CANTON);
+                    if (c) setCantones.add(String(c).trim().toUpperCase());
+                });
+            }
+            if (AppState.parroquiasGeojson && AppState.parroquiasGeojson.features) {
+                AppState.parroquiasGeojson.features.forEach(f => {
+                    const c = f.properties && (f.properties.canton || f.properties.CANTON);
+                    if (c) setCantones.add(String(c).trim().toUpperCase());
+                });
+            }
+            const keysCantones = Array.from(setCantones).sort((a, b) => a.localeCompare(b, 'es'));
             let cantonesList = [];
 
             if (keysCantones.length > 1) {
                 cantonesList = [
-                    { id: 'Todos', label: 'Todos los Cantones', badge: '🌐' },
+                    { id: 'Todos', label: 'Todos los Cantones' },
                     ...keysCantones.map(can => {
-                        const cInfo = COLORES_CANTON[can] || {};
-                        return { id: can, label: cInfo.nombre || can, badge: cInfo.badge || '📍' };
+                        const cInfo = COLORES_CANTON[can] || obtenerConfigCanton(can) || {};
+                        return { id: can, label: cInfo.nombre || can };
                     })
                 ];
             } else if (keysCantones.length === 1) {
                 const can = keysCantones[0];
-                const cInfo = COLORES_CANTON[can] || {};
+                const cInfo = COLORES_CANTON[can] || obtenerConfigCanton(can) || {};
                 cantonesList = [
-                    { id: 'Todos', label: cInfo.nombre || can, badge: cInfo.badge || '📍' }
+                    { id: 'Todos', label: cInfo.nombre || can }
                 ];
             } else {
                 cantonesList = [
-                    { id: 'Todos', label: 'Todos los Cantones', badge: '🌐' }
+                    { id: 'Todos', label: 'Todos los Cantones' }
                 ];
             }
 
@@ -1676,18 +1689,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (c.id === 'Todos') {
                         cnt = AppState.encuestas.length;
                     } else {
-                        cnt = AppState.encuestas.filter(e => obtenerCantonEncuesta(e) === c.id).length;
+                        cnt = AppState.encuestas.filter(e => normCanton(obtenerCantonEncuesta(e)) === normCanton(c.id)).length;
                     }
                 }
                 const extra = cnt > 0 ? ` (${cnt} enc.)` : '';
-                html += `<option value="${c.id}">${c.badge} ${c.label}${extra}</option>`;
+                html += `<option value="${c.id}">${c.label}${extra}</option>`;
             });
             UI.cantonFilter.innerHTML = html;
             const validCantones = cantonesList.map(c => c.id);
             UI.cantonFilter.value = validCantones.includes(actualCan) ? actualCan : 'Todos';
         }
 
-        // 2b. Selector Sectores Censales (50 sectores de Ibarra)
+        // 2b. Selector Sectores Censales
         if (UI.sectorFilter) {
             const actualSec = AppState.sectorSeleccionado || 'Todos';
             const parActivaNorm = (AppState.parroquiaSeleccionada !== 'Todas') ? normTexto(AppState.parroquiaSeleccionada) : null;
@@ -1700,7 +1713,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const tipologia = String(p.tipologia || '').trim().toUpperCase();
                     const etiqueta = p.etiquetaSC || p.etiqueta || (scNum && tipologia ? `${scNum}|${tipologia}` : scNum);
                     const parroquia = String(p.parroquia || p.PARROQUIA || '').trim();
-                    const canton = String(p.canton || p.CANTON || 'IBARRA').trim();
+                    const canton = String(p.canton || p.CANTON || '').trim();
                     const scKey = p.sc_key || `${canton}_${scNum}`;
 
                     // Filtrar por Cantón si está activo (Cascada Cantón ➔ Puntos)
@@ -1789,17 +1802,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 opt.dataset.parroquia = item.parroquia;
                 opt.dataset.scKey = item.scKey;
 
-                const cBadge = (COLORES_CANTON[item.canton] || {}).badge || '📍 ';
-
                 if (esCompleto) {
-                    opt.textContent = `🟢 ${cBadge} ${item.detalle} (${displayCount}/10 COMPLETO)`;
+                    opt.textContent = `${item.detalle} (${displayCount}/10 - COMPLETO)`;
                     opt.style.color = '#059669';
                     opt.style.fontWeight = '700';
                 } else if (displayCount > 0) {
-                    opt.textContent = `🟡 ${cBadge} ${item.detalle} (${displayCount}/10)`;
+                    opt.textContent = `${item.detalle} (${displayCount}/10)`;
                     opt.style.color = '#d97706';
                 } else {
-                    opt.textContent = `⚪ ${cBadge} ${item.detalle} (0/10)`;
+                    opt.textContent = `${item.detalle} (0/10)`;
                     opt.style.color = '#64748b';
                 }
                 frag.appendChild(opt);
@@ -1858,11 +1869,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const opt = document.createElement('option');
                 opt.value = p;
                 const count = parroquias.get(p) || 0;
-                const pMeta = AppState.parroquiasMap ? AppState.parroquiasMap.get(p) : null;
-                const cP = pMeta && pMeta.props ? normCanton(pMeta.props.canton || pMeta.props.CANTON) : '';
-                const cInfo = COLORES_CANTON[cP];
-                const cBadge = cInfo ? `${cInfo.badge} ` : '';
-                opt.textContent = count > 0 ? `${cBadge}${p} (${count} enc.)` : `${cBadge}${p}`;
+                opt.textContent = count > 0 ? `${p} (${count} enc.)` : p;
                 frag.appendChild(opt);
             });
             UI.parroquiaFilter.appendChild(frag);
@@ -2250,14 +2257,30 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         AppState.sectoresCentroidesGeojson = sectoresCentroidesData;
 
-        // Indexar Parroquias (62 parroquias en estudio)
+        // Indexar Parroquias y Mapeo Canónico por Cantón
         if (parroquiasData.features) {
+            AppState.diccionarioParroquias = AppState.diccionarioParroquias || {};
             parroquiasData.features.forEach(f => {
                 const p = f.properties || {};
                 const nombre = (p.nombre || p.PARROQUIA || p.name || '').toUpperCase().trim();
+                const canton = (p.canton || p.CANTON || '').trim().toUpperCase();
+                const cod = p.CODPAR || p.cod || p.codigo || '';
                 const b = f.geometry ? calcularBBOX(f.geometry) : null;
                 f.properties.bbox = b;
                 if (nombre) AppState.parroquiasMap.set(nombre, { feature: f, bbox: b, props: p });
+
+                if (canton) {
+                    obtenerConfigCanton(canton);
+                    if (!PARROQUIAS_POR_CANTON[canton]) PARROQUIAS_POR_CANTON[canton] = [];
+                    if (nombre && !PARROQUIAS_POR_CANTON[canton].includes(nombre)) {
+                        PARROQUIAS_POR_CANTON[canton].push(nombre);
+                    }
+                }
+                if (cod && nombre) {
+                    AppState.diccionarioParroquias[String(cod).trim()] = nombre;
+                    const n = parseInt(cod, 10);
+                    if (!isNaN(n)) AppState.diccionarioParroquias[String(n)] = nombre;
+                }
             });
         }
         AppState.puntosMuestreoMap = AppState.sectoresMap;
@@ -3293,7 +3316,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const targetCanton = AppState.cantonSeleccionado;
                 const parsPermitidas = (PARROQUIAS_POR_CANTON[targetCanton] || []).map(p => p.toUpperCase().trim());
                 const filterParCanton = [
-                    'all',
+                    'any',
                     ['==', ['upcase', ['coalesce', ['get', 'canton'], ['get', 'CANTON'], '']], targetCanton.toUpperCase()],
                     ['in', ['upcase', ['coalesce', ['get', 'nombre'], ['get', 'parroquia'], ['get', 'PARROQUIA'], '']], ['literal', parsPermitidas]]
                 ];
@@ -3381,7 +3404,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const targetCan = AppState.cantonSeleccionado;
                 const parsPermitidas = (PARROQUIAS_POR_CANTON[targetCan] || []).map(p => p.toUpperCase().trim());
                 baseTerritorialFilter = [
-                    'all',
+                    'any',
                     ['==', ['upcase', ['coalesce', ['get', 'canton'], ['get', 'CANTON'], '']], targetCan.toUpperCase()],
                     ['in', ['upcase', ['coalesce', ['get', 'parroquia'], ['get', 'PARROQUIA'], '']], ['literal', parsPermitidas]]
                 ];
