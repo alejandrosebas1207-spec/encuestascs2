@@ -11,44 +11,13 @@
     [-77.80, 0.75]
   ],
   "kobo": {
-    "asset_id": "aGbxNjPcsMXWfPiDUtUpWo",
+    "asset_id": "ag7L7pRAqLCwckTTgAYiTT",
     "campo_encuestador": "codenc",
     "campo_supervisor": "codsup",
-    "choices_parroquias": {
-      "5440": "GUAYAQUIL DE ALPACHACA",
-      "6780": "LA DOLOROSA DEL PRIORATO",
-      "5915": "SAGRARIO",
-      "5165": "CARANQUI",
-      "5960": "SAN FRANCISCO",
-      "0100": "AMBUQUI / CHOTA",
-      "0130": "ANGOCHAGUA",
-      "2020": "LA ESPERANZA",
-      "3290": "SALINAS",
-      "3315": "SAN ANTONIO"
-    }
+    "choices_parroquias": {}
   },
   "equipo": {
-    "supervisores": {
-      "1": {
-        "nombre": "Melina Toaquiza",
-        "primerNombre": "Melina",
-        "color": "#028090"
-      },
-      "2": {
-        "nombre": "Pierina González",
-        "primerNombre": "Pierina",
-        "color": "#e11d48"
-      }
-    },
-    "encuestadores": {
-      "3": { "nombre": "Valeria Enriquez", "primerNombre": "Valeria", "supervisor": "1" },
-      "4": { "nombre": "Patricia Aldas", "primerNombre": "Patricia", "supervisor": "1" },
-      "5": { "nombre": "Benjamín González", "primerNombre": "Benjamín", "supervisor": "1" },
-      "6": { "nombre": "Isabel Mantilla", "primerNombre": "Isabel", "supervisor": "1" },
-      "7": { "nombre": "Anahí Vega de la Torre", "primerNombre": "Anahí", "supervisor": "2" },
-      "8": { "nombre": "Lizeth Revelo", "primerNombre": "Lizeth", "supervisor": "2" },
-      "9": { "nombre": "Alan Herrera", "primerNombre": "Alan", "supervisor": "2" },
-      "10": { "nombre": "Sebastián Pardo", "primerNombre": "Sebastián", "supervisor": "2" }
-    }
+    "supervisores": {},
+    "encuestadores": {}
   }
 }
