@@ -42,7 +42,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Purga proactiva inmediata de cachés heredadas de otros cantones o versiones en el navegador (Brave/Chrome)
     if ('caches' in window) {
-        const CACHE_VALIDA = 'clima-social-ibarra-2026-v2';
+        const CACHE_VALIDA = 'clima-social-v80-purge';
         caches.keys().then(keys => {
             keys.forEach(k => {
                 if (k !== CACHE_VALIDA) {
@@ -61,10 +61,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // =========================================================================
     const AppState = {
         config: {
-            nombreProyecto: 'Encuesta Cantonal Ibarra 2026',
-            metaEncuestas: 500,
-            campoEncuestador: 'encuestador',
-            campoSupervisor: 'supervisor'
+            nombreProyecto: 'Terminal de Supervisión',
+            metaEncuestas: 0,
+            campoEncuestador: 'codenc',
+            campoSupervisor: 'codsup'
         },
         encuestas: [],
         supervisorSeleccionado: 'Todos',
@@ -112,77 +112,11 @@ document.addEventListener('DOMContentLoaded', () => {
         'default': '#f26419'
     };
 
-    // Nómina oficial del Equipo de Campo (Encuesta Cantonal Ibarra 2026)
-    let SUPERVISORES_CAMPO = {
-        '1': {
-            nombre: 'Gabriela Caranqui',
-            primerNombre: 'Gabriela'
-        },
-        '2': {
-            nombre: 'Melina Toaquiza',
-            primerNombre: 'Melina'
-        }
-    };
-
-    let EQUIPO_CAMPO = {
-        '3': {
-            nombre: 'Valeria Enriquez',
-            primerNombre: 'Valeria',
-            supervisor: '1'
-        },
-        '4': {
-            nombre: 'Patricia Aldas',
-            primerNombre: 'Patricia',
-            supervisor: '1'
-        },
-        '5': {
-            nombre: 'Benjamín González',
-            primerNombre: 'Benjamín',
-            supervisor: '1'
-        },
-        '6': {
-            nombre: 'Isabel Mantilla',
-            primerNombre: 'Isabel',
-            supervisor: '1'
-        },
-        '7': {
-            nombre: 'Anahí Vega de la Torre',
-            primerNombre: 'Anahí',
-            supervisor: '2'
-        },
-        '8': {
-            nombre: 'Lizeth Revelo',
-            primerNombre: 'Lizeth',
-            supervisor: '2'
-        },
-        '9': {
-            nombre: 'Alan Herrera',
-            primerNombre: 'Alan',
-            supervisor: '2'
-        },
-        '10': {
-            nombre: 'Sebastián Pardo',
-            primerNombre: 'Sebastián',
-            supervisor: '2'
-        }
-    };
-
-    // Asignación estricta de 4 encuestadores por supervisor (Ibarra 2026)
-    let SUPERVISOR_ENCUESTADORES = {
-        '1': ['3', '4', '5', '6'],
-        '2': ['7', '8', '9', '10']
-    };
-
-    let ENCUESTADOR_A_SUPERVISOR = {
-        '3': '1',
-        '4': '1',
-        '5': '1',
-        '6': '1',
-        '7': '2',
-        '8': '2',
-        '9': '2',
-        '10': '2'
-    };
+    // Directorio dinámico del Equipo de Campo (100% desacoplado, se puebla desde config.json)
+    let SUPERVISORES_CAMPO = {};
+    let EQUIPO_CAMPO = {};
+    let SUPERVISOR_ENCUESTADORES = {};
+    let ENCUESTADOR_A_SUPERVISOR = {};
 
     function obtenerEtiquetaEncuestador(id, formato = 'corto') {
         const raw = String(id || '').trim();
@@ -520,13 +454,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // EXTRACCIÓN Y NORMALIZACIÓN DE PARROQUIA Y CANTÓN (IBARRA)
     // =========================================================================
     function normalizarCanton(valor) {
-        if (!valor) return 'IBARRA';
-        const texto = normTexto(valor);
-        const codigos = {
-            '1001': 'IBARRA', 'IBARRA': 'IBARRA', '100150': 'IBARRA', '30': 'IBARRA', '030': 'IBARRA'
-        };
-        if (codigos[texto]) return codigos[texto];
-        return 'IBARRA';
+        if (!valor) return (AppState.config && (AppState.config.canton || AppState.config.provincia)) ? normTexto(AppState.config.canton || AppState.config.provincia) : 'TERRITORIO';
+        return normTexto(valor);
     }
 
     function parroquiaDeclarada(encuesta) {
@@ -1011,40 +940,15 @@ document.addEventListener('DOMContentLoaded', () => {
         configurarNavegacionMovil();
         configurarEventos();
 
-        // 1. Limpieza de caché previa y Boot Instantáneo Ibarra 2026
+        // 1. Purga estricta de cachés residuales de proyectos anteriores
         try {
-            const VERSION_ACTUAL = 'v74.0.0';
-            if (localStorage.getItem('cs_version_app') !== VERSION_ACTUAL) {
-                localStorage.removeItem('cs_encuestas_ibarra_2026_v1');
-                localStorage.removeItem('cs_encuestas_otavalo_2026_v1');
-                localStorage.removeItem('cs_encuestas_morona_2026_nomina_v1');
-                localStorage.setItem('cs_version_app', VERSION_ACTUAL);
-            }
-            [
-                'cs_encuestas_cache',
-                'cs_encuestas_machala_v1',
-                'cs_encuestas_cuenca_v1',
-                'cs_encuestas_cuenca',
-                'cs_encuestas_pichincha_v1',
-                'cs_encuestas_quito_2026',
-                'cs_encuestas_morona_2026',
-                'cs_encuestas_morona_2026_nomina_v1',
-                'cs_encuestas_otavalo_2026_v1',
-                'cs_proyecto_version'
-            ].forEach(k => {
-                if (localStorage.getItem(k)) localStorage.removeItem(k);
-            });
-            const cached = localStorage.getItem('cs_encuestas_ibarra_2026_v1');
-            if (cached) {
-                const parsed = JSON.parse(cached);
-                if (Array.isArray(parsed) && parsed.length > 0) {
-                    AppState.encuestas = parsed.map(normalizarSupervisorEncuesta);
-                    if (UI.badgeTexto) UI.badgeTexto.textContent = 'Datos guardados';
-                    if (UI.cargaOverlay) UI.cargaOverlay.style.display = 'none';
+            Object.keys(localStorage).forEach(k => {
+                if (k.startsWith('cs_encuestas') || (k.startsWith('cs_') && k !== 'modo_oscuro')) {
+                    localStorage.removeItem(k);
                 }
-            }
+            });
         } catch (e) {
-            console.warn('[Cache] Error al leer caché:', e);
+            console.warn('[Cache] Error purgando localStorage:', e);
         }
 
         // Failsafe de seguridad: nunca dejar la pantalla bloqueada más de 6s
@@ -1211,7 +1115,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Guardar último resultado; el mapa base sigue necesitando conexión.
             try {
-                localStorage.setItem('cs_encuestas_ibarra_2026_v1', JSON.stringify(AppState.encuestas));
+                // Caché en localStorage desactivada para prevenir filtración entre proyectos
             } catch (e) {
                 console.warn('[Cache] Error al guardar caché:', e);
             }
@@ -3921,7 +3825,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         totalMins: 0,
                         numAlertas: 0,
                         supervisor: String(supOficial).trim(),
-                        cantonesConteo: { 'Ibarra': 0 },
+                        cantonesConteo: {},
                         promStr: '--',
                         minStr: '--',
                         maxStr: '--'
@@ -3931,6 +3835,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const resultado = [];
+        const territorioDefecto = (AppState.config && (AppState.config.canton || AppState.config.provincia)) || 'Territorio';
         for (const g of grupos.values()) {
             if (g.duraciones.length > 0) {
                 const prom = g.totalMins / g.duraciones.length;
@@ -3943,7 +3848,7 @@ document.addEventListener('DOMContentLoaded', () => {
             g.numAlertas = g.encuestas.filter(e => e._tieneAlerta).length;
 
             // Cantón principal asignado según encuestas recolectadas
-            let topCan = 'Ibarra';
+            let topCan = territorioDefecto;
             let topCnt = -1;
             for (const [can, cnt] of Object.entries(g.cantonesConteo || {})) {
                 if (cnt > topCnt) {

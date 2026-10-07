@@ -56,19 +56,19 @@ function obtenerParametrosActivos() {
     const config = leerConfiguracion();
     const esStandby = (config.estado || "STANDBY").toUpperCase() === "STANDBY";
 
-    const assetId = esStandby ? "" : limpiarVar(
-        process.env.ASSET_ID ||
-        (config.kobo && config.kobo.asset_id) ||
-        ""
-    );
+    const koboAssetFromConfig = config.kobo && typeof config.kobo.asset_id === "string" ? config.kobo.asset_id.trim() : null;
+    const assetId = esStandby
+        ? ""
+        : (koboAssetFromConfig !== null
+            ? koboAssetFromConfig
+            : limpiarVar(process.env.ASSET_ID || ""));
 
-    const apiToken = esStandby ? "" : limpiarVar(
-        process.env.API_TOKEN ||
-        process.env.KOBO_API_TOKEN ||
-        process.env.KOBO_TOKEN ||
-        (config.kobo && config.kobo.api_token) ||
-        ""
-    );
+    const koboTokenFromConfig = config.kobo && typeof config.kobo.api_token === "string" ? config.kobo.api_token.trim() : null;
+    const apiToken = esStandby
+        ? ""
+        : (koboTokenFromConfig !== null && koboTokenFromConfig !== ""
+            ? koboTokenFromConfig
+            : limpiarVar(process.env.API_TOKEN || process.env.KOBO_API_TOKEN || process.env.KOBO_TOKEN || ""));
 
     const campoEnc = limpiarVar(
         process.env.CAMPO_ENCUESTADOR ||
