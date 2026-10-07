@@ -1015,8 +1015,89 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // =========================================================================
-    // INICIALIZACIÓN
+    // INICIALIZACIÓN Y BYPASS DE INSPECCIÓN
     // =========================================================================
+    function configurarBypassStandby() {
+        const logoBtn = document.getElementById('standbyLogoBtn');
+        const standbyEl = document.getElementById('standbyOverlay');
+        const inspectBar = document.getElementById('inspectBar');
+        const btnSalir = document.getElementById('btnSalirInspeccion');
+
+        if (!logoBtn) return;
+
+        let clickCount = 0;
+        let clickTimer = null;
+        let pressTimer = null;
+
+        const activar = async () => {
+            if (standbyEl) standbyEl.style.display = 'none';
+            if (inspectBar) inspectBar.style.display = 'flex';
+            mostrarToast('🔓 Modo Inspección Cartográfica activo', 'info');
+            document.title = 'Clima Social · Modo Inspección';
+
+            const nom = (AppState.config && (AppState.config.proyecto || AppState.config.nombreProyecto)) || 'Inspección Cartográfica';
+            if (UI.tituloProyecto) UI.tituloProyecto.textContent = nom;
+
+            if (!map) {
+                if (UI.cargaOverlay) UI.cargaOverlay.style.display = 'flex';
+                try {
+                    await inicializarMapa();
+                    await cargarLimitesParroquiales();
+                    poblarFiltros();
+                    renderizarVista(false, false);
+                } catch (e) {
+                    console.warn('[Inspección] Error cargando mapa:', e);
+                } finally {
+                    if (UI.cargaOverlay) UI.cargaOverlay.style.display = 'none';
+                }
+            } else {
+                setTimeout(() => map.resize(), 100);
+                setTimeout(() => map.resize(), 400);
+            }
+        };
+
+        const desactivar = () => {
+            if (inspectBar) inspectBar.style.display = 'none';
+            if (standbyEl) standbyEl.style.display = 'flex';
+            document.title = 'Clima Social · Terminal en Espera';
+            mostrarToast('🔒 Terminal en espera (Standby)', 'info');
+        };
+
+        if (btnSalir) {
+            btnSalir.onclick = desactivar;
+        }
+
+        // Acceso 1: 3 clics rápidos en desktop o móvil
+        logoBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            clickCount++;
+            if (clickCount === 1) {
+                clickTimer = setTimeout(() => {
+                    clickCount = 0;
+                }, 900);
+            } else if (clickCount >= 3) {
+                clearTimeout(clickTimer);
+                clickCount = 0;
+                activar();
+            }
+        });
+
+        // Acceso 2: Mantener presionado 1.3s en móvil táctil
+        logoBtn.addEventListener('touchstart', () => {
+            pressTimer = setTimeout(() => {
+                activar();
+            }, 1300);
+        }, { passive: true });
+
+        logoBtn.addEventListener('touchend', () => {
+            if (pressTimer) clearTimeout(pressTimer);
+        }, { passive: true });
+
+        logoBtn.addEventListener('touchcancel', () => {
+            if (pressTimer) clearTimeout(pressTimer);
+        }, { passive: true });
+    }
+
     function configurarNavegacionMovil() {
         const navBtns = document.querySelectorAll('#mobileNav .cs-mobile-nav-btn');
         if (!navBtns || navBtns.length === 0) return;
@@ -1058,6 +1139,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const esActivo = await cargarConfiguracion();
             if (!esActivo) {
                 console.log('[App] Terminal en modo STANDBY (en espera).');
+                configurarBypassStandby();
                 return;
             }
             try {

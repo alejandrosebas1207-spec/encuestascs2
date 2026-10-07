@@ -3676,3 +3676,103 @@ body.modo-oscuro .cs-alert-badge {
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   padding-top: 18px;
 }
+
+/* =========================================================================
+   BARRA FLOTANTE MODO INSPECCIÓN (BYPASS DE STANDBY)
+   ========================================================================= */
+.cs-inspect-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 42px;
+  background: #0f172a;
+  color: #f8fafc;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  z-index: 9999;
+  border-bottom: 2px solid #028090;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  font-family: 'Poppins', sans-serif;
+  animation: cs-fade-in 0.25s ease-out;
+}
+
+.cs-inspect-bar__info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cs-inspect-bar__pulse {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #028090;
+  box-shadow: 0 0 0 0 rgba(2, 128, 144, 0.7);
+  animation: cs-pulse 1.8s infinite;
+}
+
+.cs-inspect-bar__title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.cs-inspect-bar__sub {
+  font-size: 0.72rem;
+  color: #94a3b8;
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+@media (max-width: 600px) {
+  .cs-inspect-bar__sub {
+    display: none;
+  }
+}
+
+.cs-inspect-bar__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Poppins', sans-serif;
+}
+
+.cs-inspect-bar__btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+.cs-inspect-bar__btn:hover {
+  background: #dc2626;
+  border-color: #dc2626;
+}
+
+.cs-standby__logo-wrap {
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.cs-standby__logo-wrap:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.32);
+}
+
+.cs-standby__logo-wrap:active {
+  transform: scale(0.96);
+}
