@@ -1,17 +1,23 @@
 {
-  "estado": "ACTIVO",
+  "estado": "STANDBY",
   "version": "1.0.0",
-  "proyecto": "Movilidad Movidelnor - Imbabura 2026",
-  "canton": "Todos",
-  "provincia": "Imbabura",
+  "proyecto": "Movilidad Movidelnor · Carchi 2026",
+  "canton": "",
+  "provincia": "Carchi",
   "modalidad": "sectores",
-  "meta": 1900,
+  "meta": 310,
   "bounds": [
-    [-78.85, 0.12],
-    [-77.80, 0.75]
+    [
+      -78.46012,
+      0.34428
+    ],
+    [
+      -77.65581,
+      0.95814
+    ]
   ],
   "kobo": {
-    "asset_id": "ag7L7pRAqLCwckTTgAYiTT",
+    "asset_id": "",
     "campo_encuestador": "codenc",
     "campo_supervisor": "codsup",
     "choices_parroquias": {}

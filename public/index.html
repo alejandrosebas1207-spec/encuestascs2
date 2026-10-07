@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv=86.0.0"X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#2c0b36">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -25,14 +25,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
 
   <!-- Preload Cartografía Clave (Caché optimizada para móviles) -->
-  <link rel="preload" href="assets/parroquias.geojson?v=80.0.0" as="fetch" crossorigin>
-  <link rel="preload" href="assets/sectores_censales.geojson?v=80.0.0" as="fetch" crossorigin>
+  <link rel="preload" href="assets/parroquias.geojson?v=86.0.0" as="fetch" crossorigin>
+  <link rel="preload" href="assets/sectores_censales.geojson?v=86.0.0" as="fetch" crossorigin>
 
   <!-- MapLibre GL CSS (Aceleración WebGL Nativa en GPU) -->
   <link rel="stylesheet" href="libs/maplibre-gl.css" />
 
   <!-- Estilos del Dashboard -->
-  <link rel="stylesheet" href="style.css?v=85.0.0">
+  <link rel="stylesheet" href="style.css?v=86.0.0">
 </head>
 <body>
 
@@ -507,7 +507,7 @@
 
   <!-- ===== SCRIPTS ===== -->
   <script src="libs/maplibre-gl.js"></script>
-  <script src="script.js?v=85.0.0"></script>
+  <script src="script.js?v=86.0.0"></script>
   <script>
     if ('serviceWorker' in navigator) {
       let refreshing = false;
@@ -529,7 +529,7 @@
             });
           });
         }
-        navigator.serviceWorker.register('/service-worker.js?v=73.5.0').then(reg => {
+        navigator.serviceWorker.register('/service-worker.js?v=86.0.0').then(reg => {
           if (!reg) return;
           if (reg.waiting) {
             reg.waiting.postMessage({ type: 'SKIP_WAITING' });
