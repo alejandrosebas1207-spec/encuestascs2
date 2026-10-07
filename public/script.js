@@ -1219,10 +1219,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         document.title = 'Clima Social · ' + nom;
 
-        const meta = AppState.config.meta || AppState.config.metaEncuestas || 500;
-        const canton = AppState.config.canton || '';
+        const meta = AppState.config.meta || AppState.config.metaEncuestas || 1900;
+        const cantProv = AppState.config.provincia || AppState.config.canton || 'Imbabura';
         if (UI.kpiMeta) {
-            UI.kpiMeta.textContent = `Meta: ${meta.toLocaleString()} ${canton ? '(' + canton + ')' : ''}`;
+            UI.kpiMeta.textContent = `Meta: ${meta.toLocaleString()} (${cantProv})`;
         }
 
         if (AppState.config.bounds && Array.isArray(AppState.config.bounds)) {
@@ -2052,14 +2052,15 @@ document.addEventListener('DOMContentLoaded', () => {
             };
         }
 
-        // 4. Ámbito General (Ibarra)
-        const metaGeneral = AppState.config.metaEncuestas || 500;
+        // 4. Ámbito General (Imbabura)
+        const metaGeneral = AppState.config.meta || AppState.config.metaEncuestas || 1900;
+        const provLabel = AppState.config.provincia || 'Imbabura';
         return {
             meta: metaGeneral,
-            etiquetaMeta: `Meta: ${metaGeneral.toLocaleString()} (Ibarra)`,
-            subPendientes: `Faltan para la meta cantonal`,
+            etiquetaMeta: `Meta: ${metaGeneral.toLocaleString()} (${provLabel})`,
+            subPendientes: `Faltan para la meta provincial`,
             tituloAvance: `Avance General`,
-            subAvance: `Cumplimiento cantonal (${metaGeneral.toLocaleString()})`
+            subAvance: `Cumplimiento provincial (${metaGeneral.toLocaleString()})`
         };
     }
 

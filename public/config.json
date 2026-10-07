@@ -1,14 +1,14 @@
 {
   "estado": "ACTIVO",
   "version": "1.0.0",
-  "proyecto": "Encuesta Cantonal Ibarra 2026",
-  "canton": "Ibarra",
+  "proyecto": "Movilidad Movidelnor - Imbabura 2026",
+  "canton": "Todos",
   "provincia": "Imbabura",
   "modalidad": "sectores",
-  "meta": 500,
+  "meta": 1900,
   "bounds": [
-    [-78.36, 0.14],
-    [-78.14, 0.29]
+    [-78.85, 0.12],
+    [-77.80, 0.75]
   ],
   "kobo": {
     "asset_id": "aGbxNjPcsMXWfPiDUtUpWo",
