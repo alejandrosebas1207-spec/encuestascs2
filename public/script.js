@@ -80,9 +80,11 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         filtroGPS: 'Todos',
         filtroSoloAlertas: false,
+        filtroSoloAtipicas: false,
         filtroSoloPendientes: false,
         conteoPorSector: new Map(),
         totalAlertas: 0,
+        totalAtipicas: 0,
         erroresColapsados: true,
         filtroTabla: '',
         modoVisualizacion: 'puntos',
@@ -124,17 +126,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const numOnly = parseInt(raw, 10);
         const sid = !isNaN(numOnly) ? String(numOnly) : raw;
         const miembro = EQUIPO_CAMPO[sid] || EQUIPO_CAMPO[raw];
-        if (miembro) {
-            if (formato === 'completo') return `Enc. ${sid} · ${miembro.nombre}`;
+        if (miembro && miembro.nombre) {
+            if (formato === 'completo') return `Encuestador ${sid} · ${miembro.nombre}`;
             if (formato === 'nombre') return miembro.nombre;
-            if (formato === 'primerNombre') return miembro.primerNombre;
-            if (formato === 'busqueda') return `Enc. ${sid} ${miembro.primerNombre} ${miembro.nombre}`;
-            return `Enc. ${sid} · ${miembro.primerNombre}`;
+            if (formato === 'primerNombre') return miembro.primerNombre || miembro.nombre;
+            if (formato === 'busqueda') return `Encuestador ${sid} ${miembro.nombre}`;
+            return `Encuestador ${sid} · ${miembro.primerNombre || miembro.nombre}`;
         }
         if (!isNaN(numOnly)) {
-            return `Enc. ${sid}`;
+            return `Encuestador ${sid}`;
         }
-        return `Enc. ${raw}`;
+        return `Encuestador ${raw}`;
     }
 
     function obtenerEtiquetaSupervisor(id, formato = 'corto') {
@@ -143,18 +145,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const numOnly = parseInt(raw, 10);
         const sid = !isNaN(numOnly) ? String(numOnly) : raw;
         const miembro = SUPERVISORES_CAMPO[sid] || SUPERVISORES_CAMPO[raw];
-        if (miembro) {
-            if (formato === 'completo') return `Sup. ${sid} · ${miembro.nombre}`;
-            if (formato === 'micro') return `Sup. ${sid}`;
+        if (miembro && miembro.nombre) {
+            if (formato === 'completo') return `Supervisor ${sid} · ${miembro.nombre}`;
+            if (formato === 'micro') return `Supervisor ${sid}`;
             if (formato === 'nombre') return miembro.nombre;
-            if (formato === 'primerNombre') return miembro.primerNombre;
-            if (formato === 'busqueda') return `Sup. ${sid} ${miembro.primerNombre} ${miembro.nombre}`;
-            return `Sup. ${sid} · ${miembro.primerNombre}`;
+            if (formato === 'primerNombre') return miembro.primerNombre || miembro.nombre;
+            if (formato === 'busqueda') return `Supervisor ${sid} ${miembro.nombre}`;
+            return `Supervisor ${sid} · ${miembro.primerNombre || miembro.nombre}`;
         }
         if (!isNaN(numOnly)) {
-            return `Sup. ${sid}`;
+            return `Supervisor ${sid}`;
         }
-        return `Sup. ${raw}`;
+        return `Supervisor ${raw}`;
     }
 
     // Paleta cromática distintiva de alto contraste para Encuestadores (excluye Teal #0d9488 de Muestreo)
@@ -981,27 +983,31 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!AppState.encuestas) return;
 
         let totalAlertas = 0;
+        let totalAtipicas = 0;
         AppState.encuestas.forEach(enc => {
             const alertas = [];
 
-            // ÚNICAMENTE VERIFICACIÓN DE CÓDIGOS DE ENCUESTADOR Y SUPERVISOR
+            // ÚNICAMENTE VERIFICACIÓN DE CÓDIGOS DE ENCUESTADOR Y SUPERVISOR (SI HAY NÓMINA OFICIAL DEFINIDA)
             const encCodStr = String(enc.encuestador || enc.C_digo_encuestador || campo(enc, AppState.config.campoEncuestador) || '').trim();
             const supCodOriginal = String(enc._supervisorOriginal || enc.supervisor || enc.C_digo_Supervisor || campo(enc, AppState.config.campoSupervisor) || '').trim();
+            const hayNominaOficial = Object.keys(EQUIPO_CAMPO).length > 0;
 
-            if (!EQUIPO_CAMPO[encCodStr]) {
-                alertas.push({
-                    tipo: 'encuestador',
-                    titulo: 'No oficial',
-                    mensaje: `Encuestador no oficial (${encCodStr})`
-                });
-            } else {
-                const supEsperado = ENCUESTADOR_A_SUPERVISOR[encCodStr];
-                if (supCodOriginal && supCodOriginal !== supEsperado) {
+            if (hayNominaOficial) {
+                if (!EQUIPO_CAMPO[encCodStr]) {
                     alertas.push({
-                        tipo: 'supervisor',
-                        titulo: 'Supervisor erróneo',
-                        mensaje: `Sup. ${supCodOriginal} en vez de ${supEsperado}`
+                        tipo: 'encuestador',
+                        titulo: 'No oficial',
+                        mensaje: `Encuestador no oficial (${encCodStr})`
                     });
+                } else {
+                    const supEsperado = ENCUESTADOR_A_SUPERVISOR[encCodStr];
+                    if (supCodOriginal && supEsperado && supCodOriginal !== supEsperado) {
+                        alertas.push({
+                            tipo: 'supervisor',
+                            titulo: 'Supervisor erróneo',
+                            mensaje: `Sup. ${supCodOriginal} en vez de ${supEsperado}`
+                        });
+                    }
                 }
             }
 
@@ -1009,9 +1015,28 @@ document.addEventListener('DOMContentLoaded', () => {
             enc._alertas = alertas;
             enc._alertaMensaje = alertas.map(a => a.mensaje).join(' · ');
             if (enc._tieneAlerta) totalAlertas++;
+
+            // AUDITORÍA DE TIEMPO DE APLICACIÓN (ENCUESTAS ATÍPICAS < 10 MIN)
+            let duracionMin = null;
+            if (enc.start && enc.end) {
+                const tInicio = new Date(enc.start).getTime();
+                const tFin = new Date(enc.end).getTime();
+                if (!isNaN(tInicio) && !isNaN(tFin) && tFin > tInicio) {
+                    duracionMin = (tFin - tInicio) / 60000;
+                }
+            }
+
+            // Umbral estricto: encuestas completadas en menos de 10 minutos
+            const umbralMin = 10.0;
+            const esAtipica = (duracionMin !== null && duracionMin > 0 && duracionMin < umbralMin);
+            enc._duracionMin = duracionMin;
+            enc._umbralMin = umbralMin;
+            enc._esAtipica = esAtipica;
+            if (esAtipica) totalAtipicas++;
         });
 
         AppState.totalAlertas = totalAlertas;
+        AppState.totalAtipicas = totalAtipicas;
     }
 
     // =========================================================================
@@ -1281,6 +1306,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const data = await res.json();
             if (!Array.isArray(data.resultados)) throw new Error('Respuesta de encuestas inválida');
+            ocultarError();
             const rawEncuestas = data.resultados;
             AppState.encuestas = rawEncuestas.map(normalizarSupervisorEncuesta).filter(e => {
                 const codEnc = String(e.encuestador || e.C_digo_encuestador || campo(e, AppState.config.campoEncuestador) || '').trim();
@@ -1468,6 +1494,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 label: `⚠️ Errores (${AppState.totalAlertas})`,
                 onClear: () => {
                     AppState.filtroSoloAlertas = false;
+                    renderizarVista();
+                }
+            });
+        }
+        if (AppState.filtroSoloAtipicas) {
+            activeCount++;
+            chips.push({
+                tipo: 'alerta',
+                label: `⏱️ Atípicas (${AppState.totalAtipicas})`,
+                onClear: () => {
+                    AppState.filtroSoloAtipicas = false;
                     renderizarVista();
                 }
             });
@@ -1959,6 +1996,11 @@ document.addEventListener('DOMContentLoaded', () => {
         // Filtro por Errores de Código
         if (AppState.filtroSoloAlertas) {
             filtradas = filtradas.filter(e => e._tieneAlerta);
+        }
+
+        // Filtro por Encuestas Atípicas (Duración sospechosamente corta)
+        if (AppState.filtroSoloAtipicas) {
+            filtradas = filtradas.filter(e => e._esAtipica);
         }
 
         // Filtro por Solo Sectores Pendientes (< 10 encuestas)
@@ -2887,8 +2929,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!e.features || !e.features.length) return;
             const p = e.features[0].properties;
             const coords = e.features[0].geometry.coordinates;
-            const tieneAlerta = p.tieneAlerta === true || p.tieneAlerta === 'true';
-            const colorPunto = tieneAlerta ? '#dc2626' : (p.color || obtenerColorEncuestador(p.encuestador));
+            const esAtipica = p.esAtipica === true || p.esAtipica === 'true';
+            const tieneAlerta = p.tieneAlerta === true || p.tieneAlerta === 'true' || esAtipica;
+            const colorPunto = esAtipica ? '#dc2626' : (tieneAlerta ? '#dc2626' : (p.color || obtenerColorEncuestador(p.encuestador)));
 
             let distInfo = '';
             if (AppState.ubicacionSupervisor) {
@@ -2897,10 +2940,17 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             let bannerAlerta = '';
-            if (tieneAlerta) {
+            if (esAtipica) {
+                bannerAlerta = `
+                    <div style="background:#fee2e2;border:1.5px solid #dc2626;color:#991b1b;padding:6px 8px;border-radius:6px;margin:6px 0 8px 0;font-size:0.75rem;line-height:1.3;">
+                        <strong style="display:block;margin-bottom:2px;font-size:0.76rem;color:#dc2626;">⏱️ Alerta: Encuesta Atípica (&lt; 10 min)</strong>
+                        <span>Duración registrada: <strong>${p.duracionMin || 'Menos de 10 min'}</strong></span>
+                    </div>
+                `;
+            } else if (tieneAlerta) {
                 bannerAlerta = `
                     <div style="background:#fee2e2;border:1px solid #fca5a5;color:#991b1b;padding:6px 8px;border-radius:6px;margin:6px 0 8px 0;font-size:0.75rem;line-height:1.3;">
-                        <strong style="display:block;margin-bottom:2px;font-size:0.76rem;color:#b91c1c;">⚠️ Error:</strong>
+                        <strong style="display:block;margin-bottom:2px;font-size:0.76rem;color:#b91c1c;">⚠️ Observación:</strong>
                         <span>${p.alertaMensaje || 'Código no válido'}</span>
                     </div>
                 `;
@@ -3610,6 +3660,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const parroquia = obtenerParroquiaEncuesta(enc) || '';
             const barrio = enc.barrio || campo(enc, 'BARRIO_O_SECTOR') || campo(enc, 'barrio');
             const fecha = formatearFechaHoraEcuador(enc);
+            const esAtipica = Boolean(enc._esAtipica);
+            const duracionMin = enc._duracionMin !== null && enc._duracionMin !== undefined ? Number(enc._duracionMin).toFixed(1) : null;
+            const colorPunto = esAtipica ? '#dc2626' : obtenerColorEncuestador(encuestador);
 
             features.push({
                 type: 'Feature',
@@ -3620,15 +3673,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 properties: {
                     encuestador,
                     supervisor,
-                    color: obtenerColorEncuestador(encuestador),
+                    color: colorPunto,
+                    esAtipica,
+                    duracionMin: duracionMin !== null ? `${duracionMin} min` : 'N/D',
                     sc,
                     tipologia,
                     microEtiqueta,
                     parroquia,
                     barrio,
                     fecha,
-                    tieneAlerta: Boolean(enc._tieneAlerta),
-                    alertaMensaje: enc._alertaMensaje || ''
+                    tieneAlerta: Boolean(enc._tieneAlerta || esAtipica),
+                    alertaMensaje: enc._alertaMensaje || (esAtipica ? `Duración atípica: ${duracionMin} min (< 10 min)` : '')
                 }
             });
         }
@@ -3976,6 +4031,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     duraciones: [],
                     totalMins: 0,
                     numAlertas: 0,
+                    numAtipicas: 0,
                     supervisor: String(supVal).trim(),
                     cantonesConteo: {},
                     promStr: 'Sin datos',
@@ -3987,6 +4043,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (enc._tieneAlerta) {
                 g.numAlertas = (g.numAlertas || 0) + 1;
+            }
+            if (enc._esAtipica) {
+                g.numAtipicas = (g.numAtipicas || 0) + 1;
             }
 
             g.encuestas.push(enc);
@@ -4108,6 +4167,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <span class="cs-time-tag cs-time-tag--avg" title="Tiempo promedio por encuesta">⏱️ ${grupo.promStr}</span>
                             <span class="cs-time-tag cs-time-tag--min" title="Tiempo mínimo registrado">⬇️ ${grupo.minStr}</span>
                             <span class="cs-time-tag cs-time-tag--max" title="Tiempo máximo registrado">⬆️ ${grupo.maxStr}</span>
+                            ${grupo.numAtipicas > 0 ? `<span class="cs-time-tag" style="background:#fee2e2;color:#dc2626;font-weight:700;border:1px solid #fca5a5;" title="${grupo.numAtipicas} encuestas con duración < 10 min">⚠️ ${grupo.numAtipicas} atípicas</span>` : ''}
                         </div>
                     </div>
                 </div>
@@ -4818,11 +4878,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 AppState.fechaSeleccionada = 'Todas';
                 AppState.encuestadorSeleccionado = null;
                 AppState.filtroSoloAlertas = false;
+                AppState.filtroSoloAtipicas = false;
                 AppState.filtroSoloPendientes = false;
                 AppState.mostrarEtiquetas = false;
                 AppState.filtroTabla = '';
                 if (UI.cantonFilter) UI.cantonFilter.value = 'Todos';
                 if (UI.toggleSoloPendientes) UI.toggleSoloPendientes.classList.remove('active');
+                if (UI.cardKpiAtipicas) UI.cardKpiAtipicas.classList.remove('active');
                 if (UI.btnEtiquetasOn) UI.btnEtiquetasOn.classList.remove('active');
                 if (UI.btnEtiquetasOff) UI.btnEtiquetasOff.classList.add('active');
                 if (UI.searchInput) UI.searchInput.value = '';

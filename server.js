@@ -84,6 +84,12 @@ function obtenerParametrosActivos() {
 
     const choicesParroquias = (config.kobo && config.kobo.choices_parroquias) || {};
     const choicesCantones = (config.kobo && config.kobo.choices_cantones) || {};
+    const choicesProvincias = (config.kobo && config.kobo.choices_provincias) || {
+        "4": "Carchi",
+        "8": "Esmeraldas",
+        "10": "Imbabura",
+        "17": "Pichincha"
+    };
     const choicesTipologias = (config.kobo && config.kobo.choices_tipologias) || {
         "1": "A", "2": "B", "3": "C", "4": "D", "5": "E", "6": "F", "7": "G", "8": "H",
         "a": "A", "b": "B", "c": "C", "d": "D", "e": "E", "f": "F", "g": "G", "h": "H"
@@ -98,6 +104,7 @@ function obtenerParametrosActivos() {
         campoSup,
         choicesParroquias,
         choicesCantones,
+        choicesProvincias,
         choicesTipologias
     };
 }
@@ -242,6 +249,10 @@ function normalizarEncuesta(raw, params) {
     const rawParroquia = extraerValor(raw, ["parroquia", "PARROQUIA", "nom_parroquia", "parr"]) || "";
     const parroquia = params.choicesParroquias[rawParroquia] || String(rawParroquia).trim().toUpperCase();
 
+    const rawProvincia = extraerValor(raw, ["provincia", "PROVINCIA", "nom_provincia", "prov"]) || "";
+    const provinciaDefecto = params.config.provincia || "";
+    const provincia = params.choicesProvincias[rawProvincia] || (rawProvincia ? String(rawProvincia).trim() : provinciaDefecto);
+
     const rawCanton = extraerValor(raw, ["canton", "CANTON", "canton_nombre", "nom_can", "nom_canton"]) || "";
     const cantonDefecto = params.config.canton || "Territorio";
     const canton = params.choicesCantones[rawCanton] || (rawCanton ? String(rawCanton).trim() : cantonDefecto);
@@ -296,6 +307,7 @@ function normalizarEncuesta(raw, params) {
         barrio,
         parroquia,
         canton,
+        provincia,
         circunscripcion,
         genero,
         edad,
@@ -376,11 +388,16 @@ async function obtenerDatosKobo() {
             throw new Error("Respuesta de Kobo incompleta: el conteo no coincide con las boletas recibidas.");
         }
 
+        const provinciaObjetivo = (params.config.provincia || "").trim().toUpperCase();
+
         const resultados = resultadosRaw
             .map(raw => normalizarEncuesta(raw, params))
             .filter(e => {
                 if (String(e.encuestador).trim() === "98" || String(e.supervisor).trim() === "98") return false;
                 if (e.consentimiento === "NO" || String(e.consen).trim() === "2") return false;
+                if (provinciaObjetivo && e.provincia && e.provincia.trim().toUpperCase() !== provinciaObjetivo) {
+                    return false;
+                }
                 return true;
             });
 

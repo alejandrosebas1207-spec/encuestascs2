@@ -604,6 +604,11 @@ body.modo-oscuro .cs-btn-icon:hover {
 .cs-kpi-card--purple .cs-kpi-icon-wrap { background-color: var(--cs-indigo-light); color: var(--cs-indigo); }
 .cs-kpi-card--purple .cs-kpi-card__value { color: var(--cs-indigo); }
 
+.cs-kpi-card--rose .cs-kpi-icon-wrap { background-color: var(--cs-coral-light); color: var(--cs-coral); }
+.cs-kpi-card--rose .cs-kpi-card__value { color: var(--cs-coral); }
+.cs-kpi-card--clickable { cursor: pointer; user-select: none; }
+.cs-kpi-card--clickable:active { transform: scale(0.98); }
+
 /* Barra de Progreso Elegante */
 .cs-progress-bar {
   position: absolute;

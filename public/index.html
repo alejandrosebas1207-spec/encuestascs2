@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv=86.0.0"X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#2c0b36">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -10,7 +10,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="format-detection" content="telephone=no">
   <meta name="description" content="Panel de Supervisión de Campo en tiempo real — Clima Social">
-  <title>Clima Social · Supervisión Territorial</title>
+  <title>Clima Social · Movilidad Movidelnor - Carchi 2026</title>
   <link rel="icon" type="image/png" href="assets/icono.png">
   <link rel="manifest" href="manifest.webmanifest">
 
@@ -25,14 +25,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
 
   <!-- Preload Cartografía Clave (Caché optimizada para móviles) -->
-  <link rel="preload" href="assets/parroquias.geojson?v=86.0.0" as="fetch" crossorigin>
-  <link rel="preload" href="assets/sectores_censales.geojson?v=86.0.0" as="fetch" crossorigin>
+  <link rel="preload" href="assets/parroquias.geojson?v=96.0.0" as="fetch" crossorigin>
+  <link rel="preload" href="assets/sectores_censales.geojson?v=96.0.0" as="fetch" crossorigin>
 
   <!-- MapLibre GL CSS (Aceleración WebGL Nativa en GPU) -->
   <link rel="stylesheet" href="libs/maplibre-gl.css" />
 
   <!-- Estilos del Dashboard -->
-  <link rel="stylesheet" href="style.css?v=86.0.0">
+  <link rel="stylesheet" href="style.css?v=96.0.0">
 </head>
 <body>
 
@@ -95,7 +95,7 @@
         </a>
         <div class="cs-header__divider"></div>
         <div class="cs-header__title-group">
-          <h1 class="cs-header__title" id="tituloProyecto">Movilidad Movidelnor · Imbabura 2026</h1>
+          <h1 class="cs-header__title" id="tituloProyecto">Movilidad Movidelnor · Carchi 2026</h1>
           <span class="cs-header__live-badge" id="badgeConexion">
             <span class="cs-header__live-dot"></span>
             <span id="badgeTexto">En vivo</span>
@@ -142,7 +142,7 @@
         </div>
         <div class="cs-kpi-bottom">
           <span class="cs-kpi-badge">Total Recolectadas</span>
-          <span class="cs-kpi-sub" id="kpiMeta">Meta: 1.900 (Imbabura)</span>
+          <span class="cs-kpi-sub" id="kpiMeta">Meta: 310 (Carchi)</span>
         </div>
         <div class="cs-progress-bar"><div class="cs-progress-bar__fill" id="barraAvance" style="width:0%"></div></div>
       </div>
@@ -321,13 +321,13 @@
             <div class="cs-map-top-row">
               <!-- Barra Flotante de Control de Capas (Prender y Apagar) -->
               <div class="cs-map-layer-toggles" id="mapLayerToggles" aria-label="Capas del Mapa">
-                <button type="button" class="cs-layer-pill active" id="toggleParroquias" data-layer-group="parroquias" title="Límites Parroquiales de Estudio (9)">
+                <button type="button" class="cs-layer-pill active" id="toggleParroquias" data-layer-group="parroquias" title="Límites Parroquiales de Estudio (15)">
                   <span class="cs-layer-pill__dot" style="background: #2563eb;"></span>
-                  <span id="lblToggleParroquias">Parroquias (9)</span>
+                  <span id="lblToggleParroquias">Parroquias (15)</span>
                 </button>
-                <button type="button" class="cs-layer-pill active" id="toggleSectores" data-layer-group="sectores" title="Sectores Censales Sorteados (50)">
+                <button type="button" class="cs-layer-pill active" id="toggleSectores" data-layer-group="sectores" title="Sectores Censales Sorteados (31)">
                   <span class="cs-layer-pill__dot" style="background: #3b82f6;"></span>
-                  <span id="lblToggleSectores">Sectores (50)</span>
+                  <span id="lblToggleSectores">Sectores (31)</span>
                 </button>
                 <button type="button" class="cs-layer-pill cs-layer-pill--pendientes" id="toggleSoloPendientes" title="Filtrar únicamente sectores pendientes de completar (<10 encuestas)">
                   <span class="cs-layer-pill__dot" style="background: #f59e0b;"></span>
@@ -507,7 +507,7 @@
 
   <!-- ===== SCRIPTS ===== -->
   <script src="libs/maplibre-gl.js"></script>
-  <script src="script.js?v=86.0.0"></script>
+  <script src="script.js?v=96.0.0"></script>
   <script>
     if ('serviceWorker' in navigator) {
       let refreshing = false;
@@ -523,13 +523,13 @@
         if ('caches' in window) {
           caches.keys().then(names => {
             names.forEach(name => {
-              if (name !== 'clima-social-ibarra-2026-v2') {
+              if (name !== 'clima-social-carchi-v96') {
                 caches.delete(name);
               }
             });
           });
         }
-        navigator.serviceWorker.register('/service-worker.js?v=86.0.0').then(reg => {
+        navigator.serviceWorker.register('/service-worker.js?v=96.0.0').then(reg => {
           if (!reg) return;
           if (reg.waiting) {
             reg.waiting.postMessage({ type: 'SKIP_WAITING' });
