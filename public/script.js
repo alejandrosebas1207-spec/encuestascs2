@@ -1307,13 +1307,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = await res.json();
             if (!Array.isArray(data.resultados)) throw new Error('Respuesta de encuestas inválida');
             ocultarError();
-            const rawEncuestas = data.resultados;
+            const provObjetivo = (AppState.config && AppState.config.provincia) ? normTexto(AppState.config.provincia) : null;
             AppState.encuestas = rawEncuestas.map(normalizarSupervisorEncuesta).filter(e => {
                 const codEnc = String(e.encuestador || e.C_digo_encuestador || campo(e, AppState.config.campoEncuestador) || '').trim();
                 const codSup = String(e.supervisor || e.C_digo_Supervisor || campo(e, AppState.config.campoSupervisor) || '').trim();
                 const consent = String(e.consentimiento || e.consen || '').trim().toUpperCase();
                 if (codEnc === '98' || codSup === '98') return false;
                 if (consent === 'NO' || consent === '2') return false;
+                if (provObjetivo && e.provincia && normTexto(e.provincia) !== provObjetivo) return false;
                 return true;
             });
 

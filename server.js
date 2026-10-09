@@ -249,13 +249,30 @@ function normalizarEncuesta(raw, params) {
     const rawParroquia = extraerValor(raw, ["parroquia", "PARROQUIA", "nom_parroquia", "parr"]) || "";
     const parroquia = params.choicesParroquias[rawParroquia] || String(rawParroquia).trim().toUpperCase();
 
-    const rawProvincia = extraerValor(raw, ["provincia", "PROVINCIA", "nom_provincia", "prov"]) || "";
-    const provinciaDefecto = params.config.provincia || "";
-    const provincia = params.choicesProvincias[rawProvincia] || (rawProvincia ? String(rawProvincia).trim() : provinciaDefecto);
-
     const rawCanton = extraerValor(raw, ["canton", "CANTON", "canton_nombre", "nom_can", "nom_canton"]) || "";
     const cantonDefecto = params.config.canton || "Territorio";
     const canton = params.choicesCantones[rawCanton] || (rawCanton ? String(rawCanton).trim() : cantonDefecto);
+
+    const rawProvincia = extraerValor(raw, ["provincia", "PROVINCIA", "nom_provincia", "prov"]) || "";
+    let provincia = params.choicesProvincias[rawProvincia] || (rawProvincia ? String(rawProvincia).trim() : "");
+    if (!provincia) {
+        const canNorm = String(canton || rawCanton).toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
+        if (["80", "81", "82", "ELOY ALFARO", "RIOVERDE", "SAN LORENZO"].some(k => canNorm.includes(k))) {
+            provincia = "Esmeraldas";
+        } else if (["40", "41", "42", "43", "44", "BOLIVAR", "ESPEJO", "MIRA", "MONTUFAR", "SAN PEDRO DE HUACA", "TULCAN", "HUACA"].some(k => canNorm.includes(k))) {
+            provincia = "Carchi";
+        } else if (["101", "102", "103", "104", "105", "106", "ANTONIO ANTE", "COTACACHI", "IBARRA", "OTAVALO", "PIMAMPIRO", "SAN MIGUEL DE URCUQUI", "URCUQUI"].some(k => canNorm.includes(k))) {
+            provincia = "Imbabura";
+        } else if (["171", "PEDRO MONCAYO", "QUITO", "MEJIA", "CAYAMBE", "RUMINAHUI"].some(k => canNorm.includes(k))) {
+            provincia = "Pichincha";
+        } else {
+            const parNorm = String(parroquia || rawParroquia).trim();
+            if (parNorm.startsWith("8")) provincia = "Esmeraldas";
+            else if (parNorm.startsWith("4")) provincia = "Carchi";
+            else if (parNorm.startsWith("10")) provincia = "Imbabura";
+            else if (parNorm.startsWith("17")) provincia = "Pichincha";
+        }
+    }
 
     const rawCirc = extraerValor(raw, ["circunscripcion", "circ", "CIRCUNSCRIPCION"]) || "";
     const CIRCUNSCRIPCIONES = { "1": "CIRCUNSCRIPCION URBANA 1", "2": "CIRCUNSCRIPCION URBANA 2", "3": "CIRCUNSCRIPCION RURAL" };
