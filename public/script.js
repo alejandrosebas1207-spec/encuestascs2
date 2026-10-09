@@ -1746,9 +1746,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (AppState.sectoresGeojson && AppState.sectoresGeojson.features) {
                 AppState.sectoresGeojson.features.forEach(f => {
                     const p = f.properties || {};
-                    const scNum = String(p.sc || p.codigo_muestra || p.num_muestra || '').trim();
-                    const tipologia = String(p.tipologia || '').trim().toUpperCase();
-                    const etiqueta = p.etiquetaSC || p.etiqueta || (scNum && tipologia ? `${scNum}|${tipologia}` : scNum);
+                    const scNum = String(p.num_muestra || p.NUM_MUESTRA || p.sc || p.codigo_muestra || '').trim();
+                    const tipologia = String(p.tipologia || p.TIPOLOGIA || '').trim().toUpperCase();
+                    const etiqueta = p.etiqueta || p.ETIQUETA || p.etiquetaSC || (scNum && tipologia ? `${scNum} | ${tipologia}` : scNum);
                     const parroquia = String(p.parroquia || p.PARROQUIA || '').trim();
                     const canton = String(p.canton || p.CANTON || '').trim();
                     const scKey = p.sc_key || `${canton}_${scNum}`;
@@ -2196,19 +2196,24 @@ document.addEventListener('DOMContentLoaded', () => {
         if (sectoresData.features) {
             sectoresData.features.forEach(f => {
                 const p = f.properties || {};
-                const cod = String(p.sc || p.codigo_muestra || p.num_muestra || '').trim();
-                const tip = String(p.tipologia || '').trim().toUpperCase();
+                const cod = String(p.num_muestra || p.NUM_MUESTRA || p.sc || p.codigo_muestra || '').trim();
+                const tip = String(p.tipologia || p.TIPOLOGIA || '').trim().toUpperCase();
                 const can = String(p.canton || p.CANTON || '').trim();
                 let par = String(p.parroquia || p.PARROQUIA || '').trim().toUpperCase();
-                if (par.includes('YUNGANZA')) par = 'YUNGANZA /EL ROSARIO';
-                const secAnm = String(p.sec_anm || '').trim();
-                const etiq = p.etiqueta || p.etiquetaSC || (cod && tip ? `${cod}|${tip}` : (cod || tip));
+                const secAnm = String(p.sec_anm || p.COD_SECTOR || p.cod_sector || '').trim();
+                const etiq = p.etiqueta || p.ETIQUETA || p.etiquetaSC || (cod && tip ? `${cod} | ${tip}` : (cod || tip));
                 p.sc = cod;
+                p.num_muestra = cod;
+                p.NUM_MUESTRA = cod;
                 p.tipologia = tip;
+                p.TIPOLOGIA = tip;
                 p.canton = can;
+                p.CANTON = can;
                 p.parroquia = par;
+                p.PARROQUIA = par;
                 p.sc_key = p.sc_key || (can && cod ? `${can}_${cod}` : '');
                 p.etiqueta = etiq;
+                p.ETIQUETA = etiq;
                 p.etiquetaSC = etiq;
 
                 let bbox = null;
@@ -2273,9 +2278,9 @@ document.addEventListener('DOMContentLoaded', () => {
             type: 'FeatureCollection',
             features: (sectoresData.features || []).map(f => {
                 const p = f.properties || {};
-                const scNum = String(p.sc || p.codigo_muestra || p.num_muestra || '').trim();
-                const tip = String(p.tipologia || '').trim().toUpperCase();
-                const etiq = p.etiqueta || p.etiquetaSC || (scNum && tip ? `${scNum}|${tip}` : (scNum || tip));
+                const scNum = String(p.num_muestra || p.NUM_MUESTRA || p.sc || p.codigo_muestra || '').trim();
+                const tip = String(p.tipologia || p.TIPOLOGIA || '').trim().toUpperCase();
+                const etiq = p.etiqueta || p.ETIQUETA || p.etiquetaSC || (scNum && tip ? `${scNum} | ${tip}` : (scNum || tip));
                 let coords = (f.geometry && f.geometry.type === 'Point') ? f.geometry.coordinates : p.centroid;
                 if (!coords || !Array.isArray(coords)) {
                     if (p.bbox && Array.isArray(p.bbox)) {
@@ -2288,13 +2293,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         const b = calcularBBOX(f.geometry);
                         coords = [(b[0][0] + b[1][0]) / 2, (b[0][1] + b[1][1]) / 2];
                     } else {
-                        coords = [-78.2625, 0.2285];
+                        coords = [-77.95, 0.60];
                     }
                 }
                 return {
                     type: 'Feature',
                     geometry: { type: 'Point', coordinates: coords },
-                    properties: { ...p, etiquetaSC: etiq, etiqueta: etiq, sc: scNum, tipologia: tip }
+                    properties: { ...p, etiquetaSC: etiq, etiqueta: etiq, ETIQUETA: etiq, sc: scNum, num_muestra: scNum, NUM_MUESTRA: scNum, tipologia: tip, TIPOLOGIA: tip }
                 };
             })
         };
@@ -2513,7 +2518,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         id: 'sectores-fill',
                         type: 'fill',
                         source: 'sectores-source',
-                        filter: ['==', ['geometry-type'], 'Polygon'],
+                        filter: ['any', ['==', ['geometry-type'], 'Polygon'], ['==', ['geometry-type'], 'MultiPolygon']],
                         paint: {
                             'fill-color': EXPR_SECTORES_FILL,
                             'fill-opacity': 0.20
@@ -2523,7 +2528,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         id: 'sectores-line',
                         type: 'line',
                         source: 'sectores-source',
-                        filter: ['==', ['geometry-type'], 'Polygon'],
+                        filter: ['any', ['==', ['geometry-type'], 'Polygon'], ['==', ['geometry-type'], 'MultiPolygon']],
                         paint: {
                             'line-color': EXPR_SECTORES_LINE,
                             'line-width': [
@@ -2560,15 +2565,16 @@ document.addEventListener('DOMContentLoaded', () => {
                         id: 'sectores-label',
                         type: 'symbol',
                         source: 'sectores-centroides-source',
-                        minzoom: 9.0,
+                        minzoom: 6.5,
                         layout: {
-                            'text-field': ['coalesce', ['get', 'etiquetaSC'], ['get', 'etiqueta'], ''],
+                            'text-field': ['coalesce', ['get', 'etiquetaSC'], ['get', 'etiqueta'], ['get', 'ETIQUETA'], ''],
                             'text-font': ['Open Sans Bold'],
                             'text-size': [
                                 'interpolate', ['linear'], ['zoom'],
-                                9, 10,
-                                12, 12.5,
-                                15, 14.5
+                                7, 10,
+                                10, 11.5,
+                                12, 13,
+                                15, 15
                             ],
                             'text-anchor': 'center',
                             'text-allow-overlap': true,
