@@ -4588,7 +4588,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const keys = Object.keys(e);
             for (let i = 0; i < keys.length; i++) {
                 const k = keys[i].toLowerCase();
-                if (k.includes('edad') || k.endsWith('/p10') || k === 'p10' || k.endsWith('/p2') || k === 'p2') {
+                if (k.endsWith('/p10') || k === 'p10' || k.includes('edad')) {
                     rawEdad = e[keys[i]];
                     if (rawEdad !== undefined && rawEdad !== null && rawEdad !== '') break;
                 }

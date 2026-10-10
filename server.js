@@ -165,21 +165,21 @@ function extraerValor(obj, claves) {
     if (!obj || typeof obj !== "object") return "";
     const valorTexto = value => value === undefined || value === null || typeof value === "object"
         ? "" : String(value).trim();
-    for (let i = 0; i < claves.length; i++) {
-        const k = claves[i];
-        const valor = valorTexto(obj[k]);
-        if (valor) return valor;
-    }
     const keys = Object.keys(obj);
-    for (let i = 0; i < keys.length; i++) {
-        const key = keys[i];
-        for (let j = 0; j < claves.length; j++) {
-            const k = claves[j];
-            const valor = valorTexto(obj[key]);
-            if (key.endsWith("/" + k) && valor) {
-                return valor;
+    for (let j = 0; j < claves.length; j++) {
+        const k = claves[j];
+        const directo = valorTexto(obj[k]);
+        if (directo) return directo;
+        for (let i = 0; i < keys.length; i++) {
+            const key = keys[i];
+            if (key.endsWith("/" + k)) {
+                const valor = valorTexto(obj[key]);
+                if (valor) return valor;
             }
         }
+    }
+    for (let i = 0; i < keys.length; i++) {
+        const key = keys[i];
         if (typeof obj[key] === "object" && obj[key] !== null) {
             const nested = extraerValor(obj[key], claves);
             if (nested) return nested;
