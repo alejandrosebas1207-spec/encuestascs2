@@ -2976,6 +2976,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         <p style="margin:4px 0;font-size:0.8rem;"><strong>Parroquia:</strong> ${p.parroquia}</p>
                         ${p.sc ? `<p style="margin:4px 0;font-size:0.8rem;"><strong>Punto de Muestreo:</strong> #${p.sc}${p.tipologia ? ` (Tipología ${p.tipologia})` : ''}</p>` : ''}
                         ${p.barrio ? `<p style="margin:4px 0;font-size:0.8rem;"><strong>Barrio:</strong> ${p.barrio}</p>` : ''}
+                        <div style="margin:6px 0;padding:5px 8px;background:#f8fafc;border-radius:4px;border-left:3px solid #028090;font-size:0.78rem;">
+                            <strong>Perfil:</strong> ${p.sexo || 'No esp.'} · ${p.edad || 'Edad no esp.'}
+                        </div>
                         <p style="margin:4px 0;font-size:0.75rem;color:#64748b;">Fecha: ${p.fecha}</p>
                         ${distInfo}
                     </div>
@@ -3672,6 +3675,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const duracionMin = enc._duracionMin !== null && enc._duracionMin !== undefined ? Number(enc._duracionMin).toFixed(1) : null;
             const colorPunto = esAtipica ? '#dc2626' : obtenerColorEncuestador(encuestador);
 
+            const { sexo: demogSexo, edad: demogEdad } = extraerSexoYEdad(enc);
+
             features.push({
                 type: 'Feature',
                 geometry: {
@@ -3690,6 +3695,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     parroquia,
                     barrio,
                     fecha,
+                    sexo: demogSexo || 'No especificado',
+                    edad: demogEdad !== null && demogEdad !== undefined ? `${demogEdad} años` : 'No especificada',
                     tieneAlerta: Boolean(enc._tieneAlerta || esAtipica),
                     alertaMensaje: enc._alertaMensaje || (esAtipica ? `Duración atípica: ${duracionMin} min (< 10 min)` : '')
                 }
@@ -4524,6 +4531,9 @@ document.addEventListener('DOMContentLoaded', () => {
         let sexo = null;
         let rawGen = (
             e.genero ||
+            e._9_G_NERO ||
+            e['9. GÉNERO'] ||
+            e.p9_1 ||
             e.sexo ||
             e.p1 ||
             e.p_genero ||
@@ -4532,6 +4542,8 @@ document.addEventListener('DOMContentLoaded', () => {
             e.filtro_sexo ||
             e['1. ¿CUÁL ES SU GÉNERO?'] ||
             e['1._CU_L_ES_SU_G_NERO'] ||
+            campo(e, '_9_G_NERO') ||
+            campo(e, 'p9_1') ||
             campo(e, 'genero') ||
             campo(e, 'sexo') ||
             campo(e, 'p1') ||
@@ -4543,7 +4555,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const keys = Object.keys(e);
             for (let i = 0; i < keys.length; i++) {
                 const k = keys[i].toLowerCase();
-                if (k.includes('genero') || k.includes('sexo') || k.endsWith('/p1') || k === 'p1') {
+                if (k.includes('genero') || k.includes('g_nero') || k.includes('sexo') || k.endsWith('/p1') || k === 'p1') {
                     rawGen = e[keys[i]];
                     if (rawGen) break;
                 }
@@ -4561,10 +4573,13 @@ document.addEventListener('DOMContentLoaded', () => {
         let edad = null;
         let rawEdad = (
             e.edad !== undefined ? e.edad :
+            e.p10 !== undefined ? e.p10 :
             e.p2 !== undefined ? e.p2 :
             e.p_edad !== undefined ? e.p_edad :
             e.filtro_edad !== undefined ? e.filtro_edad :
+            e['10. ¿CUÁNTOS AÑOS TIENE? (Anota la edad en años cumplidos)'] !== undefined ? e['10. ¿CUÁNTOS AÑOS TIENE? (Anota la edad en años cumplidos)'] :
             e['2. ¿CUÁL ES SU EDAD? (edad cumplida en años)'] !== undefined ? e['2. ¿CUÁL ES SU EDAD? (edad cumplida en años)'] :
+            campo(e, 'p10') !== undefined ? campo(e, 'p10') :
             campo(e, 'edad') !== undefined ? campo(e, 'edad') :
             campo(e, 'p2')
         );
@@ -4573,7 +4588,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const keys = Object.keys(e);
             for (let i = 0; i < keys.length; i++) {
                 const k = keys[i].toLowerCase();
-                if (k.includes('edad') || k.endsWith('/p2') || k === 'p2') {
+                if (k.includes('edad') || k.endsWith('/p10') || k === 'p10' || k.endsWith('/p2') || k === 'p2') {
                     rawEdad = e[keys[i]];
                     if (rawEdad !== undefined && rawEdad !== null && rawEdad !== '') break;
                 }

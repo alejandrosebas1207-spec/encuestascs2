@@ -523,13 +523,13 @@
         if ('caches' in window) {
           caches.keys().then(names => {
             names.forEach(name => {
-              if (name !== 'clima-social-v100-carchi-fix') {
+              if (name !== 'clima-social-v102-carchi') {
                 caches.delete(name);
               }
             });
           });
         }
-        navigator.serviceWorker.register('/service-worker.js?v=100.0.0').then(reg => {
+        navigator.serviceWorker.register('/service-worker.js?v=102.0.0').then(reg => {
           if (!reg) return;
           if (reg.waiting) {
             reg.waiting.postMessage({ type: 'SKIP_WAITING' });

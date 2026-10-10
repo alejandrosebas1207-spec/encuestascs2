@@ -279,6 +279,7 @@ function normalizarEncuesta(raw, params) {
     const circunscripcion = CIRCUNSCRIPCIONES[rawCirc] || String(rawCirc).trim();
 
     const rawGen = extraerValor(raw, [
+        "_9_G_NERO", "9. GÉNERO", "p9_1",
         "p1", "p1_1", "genero", "p_genero", "sexo", "gender",
         "1. ¿CUÁL ES SU GÉNERO?", "1._CU_L_ES_SU_G_NERO",
         "genero_resp", "p1_genero"
@@ -291,11 +292,12 @@ function normalizarEncuesta(raw, params) {
         genero = "Mujer";
     } else if (rawGen === "3") {
         genero = "LGBTIQ+";
-    } else if (rawGen === "0") {
+    } else if (rawGen === "0" || rawGen === "4") {
         genero = "Otro";
     }
 
     const edadRaw = extraerValor(raw, [
+        "p10", "10. ¿CUÁNTOS AÑOS TIENE? (Anota la edad en años cumplidos)",
         "p2", "edad", "p_edad", "age",
         "2. ¿CUÁL ES SU EDAD? (edad cumplida en años)",
         "2._CU_L_ES_SU_EDAD_edad_cumplida_en_a_os",
