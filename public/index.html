@@ -507,7 +507,7 @@
 
   <!-- ===== SCRIPTS ===== -->
   <script src="libs/maplibre-gl.js"></script>
-  <script src="script.js?v=105.0.0"></script>
+  <script src="script.js?v=106.0.0"></script>
   <script>
     if ('serviceWorker' in navigator) {
       let refreshing = false;
@@ -529,7 +529,7 @@
             });
           });
         }
-        navigator.serviceWorker.register('/service-worker.js?v=105.0.0').then(reg => {
+        navigator.serviceWorker.register('/service-worker.js?v=106.0.0').then(reg => {
           if (!reg) return;
           if (reg.waiting) {
             reg.waiting.postMessage({ type: 'SKIP_WAITING' });

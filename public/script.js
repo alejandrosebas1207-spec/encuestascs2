@@ -4517,12 +4517,23 @@ document.addEventListener('DOMContentLoaded', () => {
     // PIRÁMIDE POBLACIONAL (SEXO Y GRUPOS DE EDAD) - ULTRA LIGERA
     // =========================================================================
     const COHORTES_PIRAMIDE = [
-        { id: '61+', label: '61+', min: 61, max: 125 },
+        { id: '61+', label: '61 y más', min: 61, max: 125 },
         { id: '45-60', label: '45-60', min: 45, max: 60 },
         { id: '30-44', label: '30-44', min: 30, max: 44 },
         { id: '20-29', label: '20-29', min: 20, max: 29 },
-        { id: '16-19', label: '16-19', min: 16, max: 19 }
+        { id: '15-19', label: '15-19', min: 15, max: 19 }
     ];
+
+    const CUOTAS_TIPOLOGIA = {
+        'A': { '15-19': { H: 0, M: 1 }, '20-29': { H: 1, M: 2 }, '30-44': { H: 2, M: 1 }, '45-60': { H: 1, M: 1 }, '61+': { H: 1, M: 0 } },
+        'B': { '15-19': { H: 0, M: 2 }, '20-29': { H: 2, M: 0 }, '30-44': { H: 2, M: 0 }, '45-60': { H: 1, M: 2 }, '61+': { H: 0, M: 1 } },
+        'C': { '15-19': { H: 1, M: 0 }, '20-29': { H: 2, M: 1 }, '30-44': { H: 1, M: 2 }, '45-60': { H: 1, M: 1 }, '61+': { H: 0, M: 1 } },
+        'D': { '15-19': { H: 2, M: 0 }, '20-29': { H: 0, M: 2 }, '30-44': { H: 0, M: 2 }, '45-60': { H: 2, M: 1 }, '61+': { H: 1, M: 0 } },
+        'E': { '15-19': { H: 0, M: 1 }, '20-29': { H: 1, M: 1 }, '30-44': { H: 2, M: 1 }, '45-60': { H: 0, M: 2 }, '61+': { H: 2, M: 0 } },
+        'F': { '15-19': { H: 0, M: 1 }, '20-29': { H: 2, M: 0 }, '30-44': { H: 3, M: 0 }, '45-60': { H: 0, M: 3 }, '61+': { H: 0, M: 1 } },
+        'G': { '15-19': { H: 1, M: 0 }, '20-29': { H: 0, M: 2 }, '30-44': { H: 0, M: 3 }, '45-60': { H: 3, M: 0 }, '61+': { H: 1, M: 0 } },
+        'H': { '15-19': { H: 1, M: 0 }, '20-29': { H: 1, M: 1 }, '30-44': { H: 1, M: 2 }, '45-60': { H: 2, M: 0 }, '61+': { H: 0, M: 2 } }
+    };
 
     function extraerSexoYEdad(e) {
         if (!e) return { sexo: null, edad: null };
@@ -4649,12 +4660,32 @@ document.addEventListener('DOMContentLoaded', () => {
         if (UI.tagMujeres) UI.tagMujeres.textContent = `♀ ${pctMujeres}% (${totalMujeres})`;
 
         // Subtítulo contextual reactivo al sector o filtro activo
+        let tipologiaSector = '';
+        if (AppState.sectorSeleccionado && AppState.sectorSeleccionado !== 'Todos') {
+            const secMeta = AppState.sectoresMap.get(AppState.sectorSeleccionado);
+            if (secMeta && secMeta.props) {
+                tipologiaSector = String(secMeta.props.tipologia || secMeta.props.TIPOLOGIA || '').trim().toUpperCase();
+            }
+            if (!tipologiaSector && encuestas && encuestas.length > 0) {
+                for (let i = 0; i < encuestas.length; i++) {
+                    const t = String(campo(encuestas[i], 'tipologia') || campo(encuestas[i], 'TIPOLOGIA') || encuestas[i].tipologia || '').trim().toUpperCase();
+                    if (t && CUOTAS_TIPOLOGIA[t]) { tipologiaSector = t; break; }
+                }
+            }
+            if (!tipologiaSector) {
+                const secStr = String(AppState.sectorSeleccionado).toUpperCase();
+                const m = secStr.match(/[|\s_-]([A-H])$/) || secStr.match(/([A-H])$/);
+                if (m && CUOTAS_TIPOLOGIA[m[1]]) tipologiaSector = m[1];
+            }
+        }
+
         if (UI.subtextoPiramide) {
             if (AppState.sectorSeleccionado && AppState.sectorSeleccionado !== 'Todos') {
                 const scLimpio = AppState.sectorSeleccionado.includes('_') 
                     ? AppState.sectorSeleccionado.split('_')[1] 
                     : AppState.sectorSeleccionado;
-                UI.subtextoPiramide.textContent = `(Sector ${scLimpio} · ${total} encuestas)`;
+                const txtTip = tipologiaSector ? ` · Tipo ${tipologiaSector}` : '';
+                UI.subtextoPiramide.textContent = `(Sector ${scLimpio}${txtTip} · ${total} encuestas)`;
                 // Asegurar que la pirámide esté abierta al enfocar un sector
                 if (UI.panelPiramide && UI.panelPiramide.classList.contains('collapsed')) {
                     UI.panelPiramide.classList.remove('collapsed');
@@ -4696,9 +4727,23 @@ document.addEventListener('DOMContentLoaded', () => {
             const barWidthH = Math.min(100, Math.max(nH > 0 ? 5 : 0, (nH / conRegistroValido / (maxPct / 100)) * 100));
             const barWidthM = Math.min(100, Math.max(nM > 0 ? 5 : 0, (nM / conRegistroValido / (maxPct / 100)) * 100));
 
+            const cuota = (tipologiaSector && CUOTAS_TIPOLOGIA[tipologiaSector]) ? CUOTAS_TIPOLOGIA[tipologiaSector][c.id] : null;
+
+            let labelH = nH > 0 ? `${nH} <span class="cs-piramide-pct">(${pctH}%)</span>` : '';
+            let labelM = nM > 0 ? `<span class="cs-piramide-pct">(${pctM}%)</span> ${nM}` : '';
+            let rowTitle = `Edad ${c.label}: ${nH} hombres (${pctH}%), ${nM} mujeres (${pctM}%)`;
+
+            if (cuota) {
+                rowTitle = `Edad ${c.label} · Hombres: ${nH}/${cuota.H} (meta) | Mujeres: ${nM}/${cuota.M} (meta)`;
+                const hColor = nH === cuota.H ? '#10B981' : (nH > cuota.H ? '#F59E0B' : 'inherit');
+                const mColor = nM === cuota.M ? '#10B981' : (nM > cuota.M ? '#F59E0B' : 'inherit');
+                labelH = `<span style="color:${hColor}; font-weight:700;">${nH}</span><span class="cs-piramide-pct" style="opacity:0.75;">/${cuota.H}</span>`;
+                labelM = `<span class="cs-piramide-pct" style="opacity:0.75;">${cuota.M}/</span><span style="color:${mColor}; font-weight:700;">${nM}</span>`;
+            }
+
             html += `
-                <div class="cs-piramide-row" title="Edad ${c.label}: ${nH} hombres (${pctH}%), ${nM} mujeres (${pctM}%)">
-                    <div class="cs-piramide-val cs-piramide-val--hombres">${nH > 0 ? `${nH} <span class="cs-piramide-pct">(${pctH}%)</span>` : ''}</div>
+                <div class="cs-piramide-row" title="${rowTitle}">
+                    <div class="cs-piramide-val cs-piramide-val--hombres">${labelH}</div>
                     <div class="cs-piramide-side cs-piramide-side--left">
                         <div class="cs-piramide-bar cs-piramide-bar--hombres" style="width: ${barWidthH}%;"></div>
                     </div>
@@ -4706,16 +4751,24 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="cs-piramide-side cs-piramide-side--right">
                         <div class="cs-piramide-bar cs-piramide-bar--mujeres" style="width: ${barWidthM}%;"></div>
                     </div>
-                    <div class="cs-piramide-val cs-piramide-val--mujeres">${nM > 0 ? `<span class="cs-piramide-pct">(${pctM}%)</span> ${nM}` : ''}</div>
+                    <div class="cs-piramide-val cs-piramide-val--mujeres">${labelM}</div>
                 </div>
             `;
         });
 
-        html += `
-            <div class="cs-piramide-footer-note">
-                Base analizada: ${conRegistroValido} encuestas con sexo y edad clasificados
-            </div>
-        `;
+        if (tipologiaSector && CUOTAS_TIPOLOGIA[tipologiaSector]) {
+            html += `
+                <div class="cs-piramide-footer-note">
+                    <strong>Cuota Tipo ${tipologiaSector}:</strong> 5 ♂ / 5 ♀ (10 meta) · Base: ${conRegistroValido} encuestas
+                </div>
+            `;
+        } else {
+            html += `
+                <div class="cs-piramide-footer-note">
+                    Base analizada: ${conRegistroValido} encuestas con sexo y edad clasificados
+                </div>
+            `;
+        }
 
         UI.filasPiramide.innerHTML = html;
     }
