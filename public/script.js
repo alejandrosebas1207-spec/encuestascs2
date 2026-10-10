@@ -1307,6 +1307,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = await res.json();
             if (!Array.isArray(data.resultados)) throw new Error('Respuesta de encuestas inválida');
             ocultarError();
+            const rawEncuestas = data.resultados;
             const provObjetivo = (AppState.config && AppState.config.provincia) ? normTexto(AppState.config.provincia) : null;
             AppState.encuestas = rawEncuestas.map(normalizarSupervisorEncuesta).filter(e => {
                 const codEnc = String(e.encuestador || e.C_digo_encuestador || campo(e, AppState.config.campoEncuestador) || '').trim();
