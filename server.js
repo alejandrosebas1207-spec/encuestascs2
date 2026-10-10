@@ -279,10 +279,10 @@ function normalizarEncuesta(raw, params) {
     const circunscripcion = CIRCUNSCRIPCIONES[rawCirc] || String(rawCirc).trim();
 
     const rawGen = extraerValor(raw, [
-        "_9_G_NERO", "9. GÉNERO", "p9_1",
-        "p1", "p1_1", "genero", "p_genero", "sexo", "gender",
+        "p9", "_9_G_NERO", "9. GÉNERO", "p9_1",
+        "genero", "p_genero", "sexo", "gender",
         "1. ¿CUÁL ES SU GÉNERO?", "1._CU_L_ES_SU_G_NERO",
-        "genero_resp", "p1_genero"
+        "genero_resp", "p1_genero", "p1"
     ]) || "";
 
     let genero = rawGen;

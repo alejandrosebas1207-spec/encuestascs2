@@ -4531,6 +4531,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let sexo = null;
         let rawGen = (
             e.genero ||
+            e.p9 ||
             e._9_G_NERO ||
             e['9. GÉNERO'] ||
             e.p9_1 ||
@@ -4555,7 +4556,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const keys = Object.keys(e);
             for (let i = 0; i < keys.length; i++) {
                 const k = keys[i].toLowerCase();
-                if (k.includes('genero') || k.includes('g_nero') || k.includes('sexo') || k.endsWith('/p1') || k === 'p1') {
+                if (k.endsWith('/p9') || k === 'p9' || k.includes('genero') || k.includes('g_nero') || k.includes('sexo') || k.endsWith('/p1') || k === 'p1') {
                     rawGen = e[keys[i]];
                     if (rawGen) break;
                 }
