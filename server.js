@@ -70,17 +70,15 @@ function obtenerParametrosActivos() {
             ? koboTokenFromConfig
             : limpiarVar(process.env.API_TOKEN || process.env.KOBO_API_TOKEN || process.env.KOBO_TOKEN || ""));
 
-    const campoEnc = limpiarVar(
-        process.env.CAMPO_ENCUESTADOR ||
-        (config.kobo && config.kobo.campo_encuestador) ||
-        "codenc"
-    );
+    const koboEncFromConfig = config.kobo && typeof config.kobo.campo_encuestador === "string" ? config.kobo.campo_encuestador.trim() : null;
+    const campoEnc = (koboEncFromConfig !== null && koboEncFromConfig !== "")
+        ? koboEncFromConfig
+        : limpiarVar(process.env.CAMPO_ENCUESTADOR || "codenc");
 
-    const campoSup = limpiarVar(
-        process.env.CAMPO_SUPERVISOR ||
-        (config.kobo && config.kobo.campo_supervisor) ||
-        "codsup"
-    );
+    const koboSupFromConfig = config.kobo && typeof config.kobo.campo_supervisor === "string" ? config.kobo.campo_supervisor.trim() : null;
+    const campoSup = (koboSupFromConfig !== null && koboSupFromConfig !== "")
+        ? koboSupFromConfig
+        : limpiarVar(process.env.CAMPO_SUPERVISOR || "codsup");
 
     const choicesParroquias = (config.kobo && config.kobo.choices_parroquias) || {};
     const choicesCantones = (config.kobo && config.kobo.choices_cantones) || {};

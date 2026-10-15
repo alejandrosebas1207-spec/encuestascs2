@@ -1,6 +1,6 @@
 {
   "estado": "ACTIVO",
-  "version": "109.0.0",
+  "version": "110.0.0",
   "proyecto": "Encuesta Cantonal Antonio Ante 2026",
   "canton": "Antonio Ante",
   "provincia": "Imbabura",
@@ -17,22 +17,23 @@
     ]
   ],
   "kobo": {
-    "asset_id": "ag7L7pRAqLCwckTTgAYiTT",
+    "asset_id": "arrjp4gcxa5vYHpCFdaqNH",
+    "api_token": "07cf361cc0dcfc56f489d599435c8e0ed6ce9387",
     "campo_encuestador": "codencu",
     "campo_supervisor": "codsup",
     "choices_parroquias": {
-      "100250": "ATUNTAQUI",
-      "100251": "ANDRADE MARÍN (LOURDES)",
-      "100252": "SAN JOSÉ DE CHALTURA",
-      "100253": "IMBAYA",
-      "100254": "SAN FRANCISCO DE NATABUELA",
-      "100255": "SAN ROQUE",
       "1": "ANDRADE MARIN/LOURDES",
       "2": "ATUNTAQUI",
       "3": "IMBAYA",
       "4": "SAN FCO. DE NATABUELA",
       "5": "SAN JOSE DE CHALTURA",
-      "6": "SAN ROQUE"
+      "6": "SAN ROQUE",
+      "100250": "ATUNTAQUI",
+      "100251": "ANDRADE MARIN/LOURDES",
+      "100252": "SAN JOSE DE CHALTURA",
+      "100253": "IMBAYA",
+      "100254": "SAN FCO. DE NATABUELA",
+      "100255": "SAN ROQUE"
     },
     "choices_provincias": {
       "10": "Imbabura"
