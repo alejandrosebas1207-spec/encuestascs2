@@ -1321,11 +1321,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
             auditarEncuestas();
 
-            // Guardar último resultado; el mapa base sigue necesitando conexión.
+            // Blindaje 2: Guardar último resultado en localStorage con clave scoped al proyecto
             try {
-                // Caché en localStorage desactivada para prevenir filtración entre proyectos
+                const cacheStorageKey = 'cs_encuestas_' + String((AppState.config && (AppState.config.proyecto || AppState.config.canton)) || 'default').replace(/[^a-zA-Z0-9]/g, '_');
+                if (Array.isArray(data.resultados) && data.resultados.length > 0) {
+                    localStorage.setItem(cacheStorageKey, JSON.stringify({
+                        resultados: data.resultados,
+                        ts: Date.now(),
+                        proyecto: AppState.config.proyecto
+                    }));
+                }
             } catch (e) {
-                console.warn('[Cache] Error al guardar caché:', e);
+                console.warn('[Cache] Error al guardar caché en localStorage:', e);
             }
             
             poblarFiltros();
@@ -1344,12 +1351,39 @@ document.addEventListener('DOMContentLoaded', () => {
             return true;
         } catch (error) {
             console.error('Error cargando encuestas:', error);
-            const hayDatosGuardados = Array.isArray(AppState.encuestas) && AppState.encuestas.length > 0;
+
+            // Blindaje 2: Recuperación offline si no hay encuestas en memoria
+            const cacheStorageKey = 'cs_encuestas_' + String((AppState.config && (AppState.config.proyecto || AppState.config.canton)) || 'default').replace(/[^a-zA-Z0-9]/g, '_');
+            let recuperadoOffline = false;
+            if ((!AppState.encuestas || AppState.encuestas.length === 0) && typeof localStorage !== 'undefined') {
+                try {
+                    const rawStored = localStorage.getItem(cacheStorageKey);
+                    if (rawStored) {
+                        const parsed = JSON.parse(rawStored);
+                        if (parsed && Array.isArray(parsed.resultados) && parsed.resultados.length > 0) {
+                            AppState.encuestas = parsed.resultados.map(normalizarSupervisorEncuesta);
+                            auditarEncuestas();
+                            poblarFiltros();
+                            renderizarVista(false, false);
+                            recuperadoOffline = true;
+                            if (UI.badgeTexto) UI.badgeTexto.textContent = 'Modo Respaldo';
+                            if (UI.ultimaActualizacion) {
+                                const f = new Date(parsed.ts || Date.now());
+                                UI.ultimaActualizacion.textContent = `Sin conexión · Mostrando datos locales (${f.toLocaleTimeString('es-EC', { timeZone: 'America/Guayaquil' })})`;
+                            }
+                        }
+                    }
+                } catch (e) {
+                    console.warn('[Cache Offline Fallback]', e);
+                }
+            }
+
+            const hayDatosGuardados = (Array.isArray(AppState.encuestas) && AppState.encuestas.length > 0);
             if (!hayDatosGuardados) {
                 mostrarError('No se pudieron cargar los datos de KoboToolbox.');
             }
-            if (UI.badgeTexto) UI.badgeTexto.textContent = 'Actualización pendiente';
-            if (UI.ultimaActualizacion) {
+            if (UI.badgeTexto && !recuperadoOffline) UI.badgeTexto.textContent = 'Actualización pendiente';
+            if (UI.ultimaActualizacion && !recuperadoOffline) {
                 UI.ultimaActualizacion.textContent = hayDatosGuardados
                     ? 'No se pudo actualizar · mostrando los últimos datos disponibles. Reintentando en 30 s…'
                     : 'No se pudo cargar la información. Reintentando en 30 s…';
@@ -2173,7 +2207,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let sectoresData = { type: 'FeatureCollection', features: [] };
 
         try {
-            const versionQuery = '?v=73.0.0';
+            const versionQuery = '?v=' + ((AppState.config && AppState.config.version) || '110.0.0');
             const [resPar, resSec] = await Promise.all([
                 fetch('assets/parroquias.geojson' + versionQuery),
                 fetch('assets/sectores_censales.geojson' + versionQuery)
@@ -2620,6 +2654,26 @@ document.addEventListener('DOMContentLoaded', () => {
             if (map.doubleClickZoom) map.doubleClickZoom.enable();
         } catch (err) {
             console.warn('[Map Gestures]', err);
+        }
+
+        // Blindaje 3: Auto-recuperación de pérdida de contexto WebGL en Android (Galaxy A01 Core)
+        try {
+            const canvas = map.getCanvas();
+            if (canvas) {
+                canvas.addEventListener('webglcontextlost', (e) => {
+                    e.preventDefault();
+                    console.warn('[Map WebGL] 🛡️ Contexto WebGL liberado por el sistema. Aguardando restauración…');
+                }, false);
+                canvas.addEventListener('webglcontextrestored', () => {
+                    console.log('[Map WebGL] 🛡️ Contexto WebGL restaurado exitosamente.');
+                    try {
+                        map.resize();
+                        renderizarVista(false, false);
+                    } catch (_) {}
+                }, false);
+            }
+        } catch (errWebGL) {
+            console.warn('[WebGL Watchdog]', errWebGL);
         }
 
         // =====================================================================

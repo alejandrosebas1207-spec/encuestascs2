@@ -159,6 +159,22 @@ let cache = {
     assetId: null
 };
 
+const RUTA_BACKUP = path.join(__dirname, ".cache_backup.json");
+try {
+    if (fs.existsSync(RUTA_BACKUP)) {
+        const rawBackup = fs.readFileSync(RUTA_BACKUP, "utf-8");
+        const parsed = JSON.parse(rawBackup);
+        if (parsed && Array.isArray(parsed.resultados)) {
+            cache.datos = parsed;
+            cache.timestamp = parsed.obtenidoEn || Date.now();
+            cache.assetId = parsed.assetId || null;
+            console.log(`[SUPERVISOR] 🛡️ Respaldo local de arranque cargado: ${parsed.resultados.length} encuestas.`);
+        }
+    }
+} catch (e) {
+    console.warn("[SUPERVISOR] No se pudo leer .cache_backup.json:", e.message);
+}
+
 function extraerValor(obj, claves) {
     if (!obj || typeof obj !== "object") return "";
     const valorTexto = value => value === undefined || value === null || typeof value === "object"
@@ -422,10 +438,14 @@ async function obtenerDatosKobo() {
             estado: "ACTIVO",
             total: resultados.length,
             resultados,
-            obtenidoEn: Date.now()
+            obtenidoEn: Date.now(),
+            assetId: params.assetId
         };
         cache.timestamp = Date.now();
         cache.assetId = params.assetId;
+        try {
+            fs.writeFileSync(RUTA_BACKUP, JSON.stringify(cache.datos), "utf-8");
+        } catch (_) {}
         return cache.datos;
     })();
 
@@ -497,6 +517,18 @@ app.get("/api/encuestas", async (req, res) => {
                 ? "Kobo tardó demasiado en responder"
                 : error.message;
         console.error(`[${new Date().toLocaleTimeString("es-EC")}] Error al consultar Kobo: ${mensaje}`);
+        
+        // Blindaje 1: Fallback a respaldo si Kobo falla temporalmente
+        const params = obtenerParametrosActivos();
+        if (cache.datos && Array.isArray(cache.datos.resultados) && (!cache.assetId || cache.assetId === params.assetId)) {
+            console.warn(`[SUPERVISOR] 🛡️ Kobo inaccesible (${mensaje}). Sirviendo respaldo local con ${cache.datos.resultados.length} encuestas.`);
+            res.set("X-Data-Fallback", "true");
+            return res.json({
+                ...cache.datos,
+                fallback: true,
+                mensajeAviso: "Servido desde respaldo local debido a intermitencia temporal en KoboToolbox."
+            });
+        }
         res.status(502).json({ error: "No fue posible acceder a Kobo.", detalle: mensaje });
     }
 });
