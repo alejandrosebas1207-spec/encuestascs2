@@ -10,7 +10,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="format-detection" content="telephone=no">
   <meta name="description" content="Panel de Supervisión de Campo en tiempo real — Clima Social">
-  <title>Clima Social · Movilidad Movidelnor - Carchi 2026</title>
+  <title>Clima Social · Encuesta Cantonal Antonio Ante 2026</title>
   <link rel="icon" type="image/png" href="assets/icono.png">
   <link rel="manifest" href="manifest.webmanifest">
 
@@ -25,53 +25,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
 
   <!-- Preload Cartografía Clave (Caché optimizada para móviles) -->
-  <link rel="preload" href="assets/parroquias.geojson?v=108.0.0" as="fetch" crossorigin>
-  <link rel="preload" href="assets/sectores_censales.geojson?v=108.0.0" as="fetch" crossorigin>
+  <link rel="preload" href="assets/parroquias.geojson?v=109.0.0" as="fetch" crossorigin>
+  <link rel="preload" href="assets/sectores_censales.geojson?v=109.0.0" as="fetch" crossorigin>
 
   <!-- MapLibre GL CSS (Aceleración WebGL Nativa en GPU) -->
   <link rel="stylesheet" href="libs/maplibre-gl.css" />
 
   <!-- Estilos del Dashboard -->
-  <link rel="stylesheet" href="style.css?v=108.0.0">
+  <link rel="stylesheet" href="style.css?v=109.0.0">
 </head>
 <body>
-
-    <!-- ===== STANDBY OVERLAY (ESTADO EN ESPERA / REPOSO) ===== -->
-  <div class="cs-standby" id="standbyOverlay" style="display:flex;">
-    <div class="cs-standby__card">
-      <div class="cs-standby__logo-wrap" id="standbyLogoBtn" role="button" tabindex="0" title="Clima Social · Toca 3 veces para inspeccionar cartografía">
-        <img src="assets/01_ClimaSocial_Horizontal_Transparente.png" onerror="this.onerror=null; this.src='assets/01_Logo_Clima_Social_Horizontal_Oficial.svg';" alt="Clima Social" class="cs-standby__logo">
-      </div>
-      <div class="cs-standby__status">
-        <span class="cs-standby__dot"></span>
-        <span class="cs-standby__status-text">SISTEMA EN ESPERA · STANDBY</span>
-      </div>
-      <h2 class="cs-standby__title">Terminal de Supervisión de Campo</h2>
-      <p class="cs-standby__desc">
-        Este enlace se encuentra en reposo institucional. La conectividad con KoboToolbox, la cartografía territorial y el directorio del equipo de campo han sido desactivados para proteger la confidencialidad de la información.
-      </p>
-      <div class="cs-standby__note">
-        <svg class="cs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12.01" y1="8" x2="12" y2="8"/></svg>
-        <span>Cuando inicie el próximo proyecto territorial, esta pantalla se actualizará automáticamente con la nueva cartografía y el equipo asignado.</span>
-      </div>
-      <div class="cs-standby__footer">
-        <span>Clima Social · Inteligencia Territorial & Percepción</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- ===== BARRA FLOTANTE MODO INSPECCIÓN ===== -->
-  <div class="cs-inspect-bar" id="inspectBar" style="display:none;">
-    <div class="cs-inspect-bar__info">
-      <span class="cs-inspect-bar__pulse"></span>
-      <span class="cs-inspect-bar__title">Modo Inspección Cartográfica</span>
-      <span class="cs-inspect-bar__sub">Standby activo · Solo consulta</span>
-    </div>
-    <button type="button" class="cs-inspect-bar__btn" id="btnSalirInspeccion">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"/><line x1="12" y1="2" x2="12" y2="12"/></svg>
-      <span>Volver a Standby</span>
-    </button>
-  </div>
 
   <!-- ===== LOADING OVERLAY ===== -->
   <div class="cs-loading" id="cargaOverlay">
@@ -95,7 +58,7 @@
         </a>
         <div class="cs-header__divider"></div>
         <div class="cs-header__title-group">
-          <h1 class="cs-header__title" id="tituloProyecto">Movilidad Movidelnor · Carchi 2026</h1>
+          <h1 class="cs-header__title" id="tituloProyecto">Encuesta Cantonal Antonio Ante 2026</h1>
           <span class="cs-header__live-badge" id="badgeConexion">
             <span class="cs-header__live-dot"></span>
             <span id="badgeTexto">En vivo</span>
@@ -188,7 +151,7 @@
         </div>
         <div class="cs-kpi-bottom">
           <span class="cs-kpi-badge" id="kpiTituloAvance">Avance General</span>
-          <span class="cs-kpi-sub" id="kpiSubAvance">Cumplimiento cantonal (500)</span>
+          <span class="cs-kpi-sub" id="kpiSubAvance">Cumplimiento cantonal (300)</span>
         </div>
       </div>
 
@@ -321,13 +284,13 @@
             <div class="cs-map-top-row">
               <!-- Barra Flotante de Control de Capas (Prender y Apagar) -->
               <div class="cs-map-layer-toggles" id="mapLayerToggles" aria-label="Capas del Mapa">
-                <button type="button" class="cs-layer-pill active" id="toggleParroquias" data-layer-group="parroquias" title="Límites Parroquiales de Estudio (13)">
+                <button type="button" class="cs-layer-pill active" id="toggleParroquias" data-layer-group="parroquias" title="Límites Parroquiales de Estudio (6)">
                   <span class="cs-layer-pill__dot" style="background: #2563eb;"></span>
-                  <span id="lblToggleParroquias">Parroquias (13)</span>
+                  <span id="lblToggleParroquias">Parroquias (6)</span>
                 </button>
-                <button type="button" class="cs-layer-pill active" id="toggleSectores" data-layer-group="sectores" title="Sectores Censales Sorteados (31)">
+                <button type="button" class="cs-layer-pill active" id="toggleSectores" data-layer-group="sectores" title="Sectores Censales Sorteados (30)">
                   <span class="cs-layer-pill__dot" style="background: #3b82f6;"></span>
-                  <span id="lblToggleSectores">Sectores (31)</span>
+                  <span id="lblToggleSectores">Sectores (30)</span>
                 </button>
                 <button type="button" class="cs-layer-pill cs-layer-pill--pendientes" id="toggleSoloPendientes" title="Filtrar únicamente sectores pendientes de completar (<10 encuestas)">
                   <span class="cs-layer-pill__dot" style="background: #f59e0b;"></span>
@@ -507,7 +470,7 @@
 
   <!-- ===== SCRIPTS ===== -->
   <script src="libs/maplibre-gl.js"></script>
-  <script src="script.js?v=108.0.0"></script>
+  <script src="script.js?v=109.0.0"></script>
   <script>
     if ('serviceWorker' in navigator) {
       let refreshing = false;
@@ -523,13 +486,13 @@
         if ('caches' in window) {
           caches.keys().then(names => {
             names.forEach(name => {
-              if (name !== 'clima-social-v108-carchi-standby') {
+              if (name !== 'clima-social-v109-antonioante') {
                 caches.delete(name);
               }
             });
           });
         }
-        navigator.serviceWorker.register('/service-worker.js?v=108.0.0').then(reg => {
+        navigator.serviceWorker.register('/service-worker.js?v=109.0.0').then(reg => {
           if (!reg) return;
           if (reg.waiting) {
             reg.waiting.postMessage({ type: 'SKIP_WAITING' });
