@@ -231,8 +231,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // === CARCHI ===
         'TULCAN': { nombre: 'Tulcán', hex: '#1d4ed8', badge: '🌲' },
         'TULCÁN': { nombre: 'Tulcán', hex: '#1d4ed8', badge: '🌲' },
-        'MONTUFAR': { nombre: 'Montúfar', hex: '#0d9488', badge: '🏛️' },
-        'MONTÚFAR': { nombre: 'Montúfar', hex: '#0d9488', badge: '🏛️' },
+        'MONTUFAR': { nombre: 'Montúfar', hex: '#0d9488',  },
+        'MONTÚFAR': { nombre: 'Montúfar', hex: '#0d9488',  },
         'ESPEJO': { nombre: 'Espejo', hex: '#b91c1c', badge: '🌾' },
         'MIRA': { nombre: 'Mira', hex: '#9333ea', badge: '🍇' },
         'BOLIVAR': { nombre: 'Bolívar', hex: '#c2410c', badge: '⛰️' },
@@ -251,8 +251,8 @@ document.addEventListener('DOMContentLoaded', () => {
         'RIOVERDE': { nombre: 'Rioverde', hex: '#be185d', badge: '🌊' },
 
         // === PICHINCHA ===
-        'QUITO': { nombre: 'Quito', hex: '#1e3a8a', badge: '🏛️' },
-        'D.M. QUITO': { nombre: 'Quito', hex: '#1e3a8a', badge: '🏛️' },
+        'QUITO': { nombre: 'Quito', hex: '#1e3a8a',  },
+        'D.M. QUITO': { nombre: 'Quito', hex: '#1e3a8a',  },
         'RUMIÑAHUI': { nombre: 'Rumiñahui', hex: '#400054', badge: '🌽' },
         'RUMINAHUI': { nombre: 'Rumiñahui', hex: '#400054', badge: '🌽' },
         'MEJIA': { nombre: 'Mejía', hex: '#991b1b', badge: '🌋' },
@@ -265,8 +265,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // === GUAYAS & COSTA ===
         'GUAYAQUIL': { nombre: 'Guayaquil', hex: '#0284c7', badge: '⚓' },
-        'SAMBORONDON': { nombre: 'Samborondón', hex: '#7c3aed', badge: '🏙️' },
-        'SAMBORONDÓN': { nombre: 'Samborondón', hex: '#7c3aed', badge: '🏙️' },
+        'SAMBORONDON': { nombre: 'Samborondón', hex: '#7c3aed',  },
+        'SAMBORONDÓN': { nombre: 'Samborondón', hex: '#7c3aed',  },
         'DAULE': { nombre: 'Daule', hex: '#d97706', badge: '🌾' },
         'DURAN': { nombre: 'Durán', hex: '#e11d48', badge: '🚆' },
         'DURÁN': { nombre: 'Durán', hex: '#e11d48', badge: '🚆' },
@@ -340,11 +340,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // PALETA CROMÁTICA OFICIAL POR CIRCUNSCRIPCIÓN (DIRECTRIZ CANTONAL CLIMA SOCIAL)
     // =========================================================================
     const PALETA_CIRCUNSCRIPCIONES = {
-        'CIRCUNSCRIPCION URBANA 1': { nombre: 'Urbana 1 (Norte)', hex: '#028090', fill: 'rgba(2, 128, 144, 0.26)', badge: '🏙️' },
-        'CIRCUNSCRIPCION URBANA 2': { nombre: 'Urbana 2 (Centro)', hex: '#7c3aed', fill: 'rgba(124, 58, 237, 0.26)', badge: '🏛️' },
-        'CIRCUNSCRIPCION URBANA 3': { nombre: 'Urbana 3 (Sur)', hex: '#ea580c', fill: 'rgba(234, 88, 12, 0.26)', badge: '🏢' },
-        'CIRCUNSCRIPCION URBANA': { nombre: 'Urbana', hex: '#028090', fill: 'rgba(2, 128, 144, 0.26)', badge: '🏙️' },
-        'CIRCUNSCRIPCION RURAL': { nombre: 'Rural', hex: '#059669', fill: 'rgba(5, 150, 105, 0.26)', badge: '🌄' }
+        'CIRCUNSCRIPCION URBANA 1': { nombre: 'Urbana 1 (Norte)', hex: '#028090', fill: 'rgba(2, 128, 144, 0.26)',  },
+        'CIRCUNSCRIPCION URBANA 2': { nombre: 'Urbana 2 (Centro)', hex: '#7c3aed', fill: 'rgba(124, 58, 237, 0.26)',  },
+        'CIRCUNSCRIPCION URBANA 3': { nombre: 'Urbana 3 (Sur)', hex: '#ea580c', fill: 'rgba(234, 88, 12, 0.26)',  },
+        'CIRCUNSCRIPCION URBANA': { nombre: 'Urbana', hex: '#028090', fill: 'rgba(2, 128, 144, 0.26)',  },
+        'CIRCUNSCRIPCION RURAL': { nombre: 'Rural', hex: '#059669', fill: 'rgba(5, 150, 105, 0.26)',  }
     };
 
     function normCircunscripcion(val) {
@@ -1553,7 +1553,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     onClear: () => {
                         AppState.cantonSeleccionado = 'Todos';
                         if (UI.cantonFilter) UI.cantonFilter.value = 'Todos';
-                if (UI.circunscripcionFilter) UI.circunscripcionFilter.value = 'Todas';
+                if (UI.circunscripcionFilter) {
+                    UI.circunscripcionFilter.value = 'Todas';
+                    UI.circunscripcionFilter.style.color = '';
+                    UI.circunscripcionFilter.style.fontWeight = '';
+                }
                         poblarFiltros();
                         renderizarVista(true, true);
                     }
@@ -1860,12 +1864,24 @@ document.addEventListener('DOMContentLoaded', () => {
                     const opt = document.createElement('option');
                     opt.value = c;
                     const cInfo = PALETA_CIRCUNSCRIPCIONES[c] || {};
-                    opt.textContent = cInfo.nombre ? (cInfo.badge || '🏛️') + ' ' + cInfo.nombre : c;
+                    opt.textContent = cInfo.nombre || c;
+                    if (cInfo.hex) {
+                        opt.style.color = cInfo.hex;
+                        opt.style.fontWeight = '700';
+                    }
                     fragCirc.appendChild(opt);
                 });
                 UI.circunscripcionFilter.appendChild(fragCirc);
                 UI.circunscripcionFilter.value = circsList.includes(actualCirc) ? actualCirc : 'Todas';
                 if (!circsList.includes(actualCirc) && actualCirc !== 'Todas') AppState.circunscripcionSeleccionada = 'Todas';
+                const cInfoAct = PALETA_CIRCUNSCRIPCIONES[UI.circunscripcionFilter.value];
+                if (cInfoAct && cInfoAct.hex && UI.circunscripcionFilter.value !== 'Todas') {
+                    UI.circunscripcionFilter.style.color = cInfoAct.hex;
+                    UI.circunscripcionFilter.style.fontWeight = '700';
+                } else {
+                    UI.circunscripcionFilter.style.color = '';
+                    UI.circunscripcionFilter.style.fontWeight = '';
+                }
             } else {
                 if (UI.wrapCircunscripcionFilter) UI.wrapCircunscripcionFilter.style.display = 'none';
             }
@@ -5173,12 +5189,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Filtro Circunscripción
         if (UI.circunscripcionFilter) {
+            const actualizarColorSelectCirc = () => {
+                const val = UI.circunscripcionFilter.value;
+                const cInfo = PALETA_CIRCUNSCRIPCIONES[val];
+                if (cInfo && cInfo.hex && val !== 'Todas') {
+                    UI.circunscripcionFilter.style.color = cInfo.hex;
+                    UI.circunscripcionFilter.style.fontWeight = '700';
+                } else {
+                    UI.circunscripcionFilter.style.color = '';
+                    UI.circunscripcionFilter.style.fontWeight = '';
+                }
+            };
             UI.circunscripcionFilter.addEventListener('change', (e) => {
                 AppState.circunscripcionSeleccionada = e.target.value;
                 AppState.parroquiaSeleccionada = 'Todas';
                 AppState.sectorSeleccionado = 'Todos';
                 if (UI.parroquiaFilter) UI.parroquiaFilter.value = 'Todas';
                 if (UI.sectorFilter) UI.sectorFilter.value = 'Todos';
+                actualizarColorSelectCirc();
                 poblarFiltros();
                 renderizarVista(false, true);
             });
