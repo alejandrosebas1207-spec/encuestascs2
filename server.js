@@ -293,10 +293,10 @@ function normalizarEncuesta(raw, params) {
     const circunscripcion = CIRCUNSCRIPCIONES[rawCirc] || String(rawCirc).trim();
 
     const rawGen = extraerValor(raw, [
-        "p9", "_9_G_NERO", "9. GÉNERO", "p9_1",
-        "genero", "p_genero", "sexo", "gender",
+        "p1", "p1_genero", "genero_resp",
         "1. ¿CUÁL ES SU GÉNERO?", "1._CU_L_ES_SU_G_NERO",
-        "genero_resp", "p1_genero", "p1"
+        "genero", "p_genero", "sexo", "gender",
+        "p9", "_9_G_NERO", "9. GÉNERO", "p9_1"
     ]) || "";
 
     let genero = rawGen;
@@ -311,15 +311,15 @@ function normalizarEncuesta(raw, params) {
     }
 
     const edadRaw = extraerValor(raw, [
-        "p10", "10. ¿CUÁNTOS AÑOS TIENE? (Anota la edad en años cumplidos)",
-        "p2", "edad", "p_edad", "age",
+        "p2", "p2_edad",
         "2. ¿CUÁL ES SU EDAD? (edad cumplida en años)",
         "2._CU_L_ES_SU_EDAD_edad_cumplida_en_a_os",
         "2. ¿CUÁNTOS AÑOS TIENE?",
-        "p2_edad"
+        "edad", "p_edad", "age",
+        "p10", "10. ¿CUÁNTOS AÑOS TIENE? (Anota la edad en años cumplidos)"
     ]) || "";
     const edadNum = Number(edadRaw);
-    const edad = (!isNaN(edadNum) && edadNum > 0 && edadNum < 120) ? edadNum : null;
+    const edad = (!isNaN(edadNum) && edadNum >= 16 && edadNum <= 115) ? edadNum : null;
 
     return {
         _id: id,

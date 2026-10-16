@@ -40,18 +40,7 @@
 })();
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Purga proactiva inmediata de cachés heredadas de otros cantones o versiones en el navegador (Brave/Chrome)
-    if ('caches' in window) {
-        const CACHE_VALIDA = 'clima-social-v80-purge';
-        caches.keys().then(keys => {
-            keys.forEach(k => {
-                if (k !== CACHE_VALIDA) {
-                    console.log('[Cache] Purgando caché obsoleta o de cantón previo:', k);
-                    caches.delete(k);
-                }
-            });
-        }).catch(() => {});
-    }
+    // Limpieza de cachés residuales delegada al ciclo de vida del Service Worker
 
     // Normalizador universal de texto (remueve tildes, diacríticos y espacios)
     const normTexto = (s) => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toUpperCase().trim();
