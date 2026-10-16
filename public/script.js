@@ -4070,8 +4070,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const encuestador = enc.encuestador || enc.C_digo_encuestador || campo(enc, AppState.config.campoEncuestador) || 'N/A';
             const supervisor = String(enc.supervisor || enc.C_digo_Supervisor || campo(enc, AppState.config.campoSupervisor) || 'N/A');
             const sc = enc.sc || campo(enc, 'sc') || '';
-            const tipologiaRaw = enc.tipologia || campo(enc, 'tipologia') || campo(enc, 'TIPOLOGIA') || '';
-            const tipologia = String(tipologiaRaw).trim().toUpperCase();
+            const tipologiaRaw = enc.tipologia || campo(enc, 'tipologia') || campo(enc, 'TIPOLOGIA') || campo(enc, 'tipol') || '';
+            const choicesTip = (AppState.config && AppState.config.kobo && AppState.config.kobo.choices_tipologias) || {};
+            const tipologia = choicesTip[tipologiaRaw] || (/^[1-8]$/.test(String(tipologiaRaw).trim()) ? String.fromCharCode(64 + Number(tipologiaRaw)) : String(tipologiaRaw).trim().toUpperCase());
 
             let microEtiqueta = '';
             if (sc !== undefined && sc !== null && String(sc).trim() !== '') {
@@ -4933,18 +4934,18 @@ document.addEventListener('DOMContentLoaded', () => {
         { id: '45-60', label: '45-60', min: 45, max: 60 },
         { id: '30-44', label: '30-44', min: 30, max: 44 },
         { id: '20-29', label: '20-29', min: 20, max: 29 },
-        { id: '15-19', label: '15-19', min: 15, max: 19 }
+        { id: '16-19', label: '16-19', min: 16, max: 19 }
     ];
 
     const CUOTAS_TIPOLOGIA = {
-        'A': { '15-19': { H: 0, M: 1 }, '20-29': { H: 1, M: 2 }, '30-44': { H: 2, M: 1 }, '45-60': { H: 1, M: 1 }, '61+': { H: 1, M: 0 } },
-        'B': { '15-19': { H: 0, M: 2 }, '20-29': { H: 2, M: 0 }, '30-44': { H: 2, M: 0 }, '45-60': { H: 1, M: 2 }, '61+': { H: 0, M: 1 } },
-        'C': { '15-19': { H: 1, M: 0 }, '20-29': { H: 2, M: 1 }, '30-44': { H: 1, M: 2 }, '45-60': { H: 1, M: 1 }, '61+': { H: 0, M: 1 } },
-        'D': { '15-19': { H: 2, M: 0 }, '20-29': { H: 0, M: 2 }, '30-44': { H: 0, M: 2 }, '45-60': { H: 2, M: 1 }, '61+': { H: 1, M: 0 } },
-        'E': { '15-19': { H: 0, M: 1 }, '20-29': { H: 1, M: 1 }, '30-44': { H: 2, M: 1 }, '45-60': { H: 0, M: 2 }, '61+': { H: 2, M: 0 } },
-        'F': { '15-19': { H: 0, M: 1 }, '20-29': { H: 2, M: 0 }, '30-44': { H: 3, M: 0 }, '45-60': { H: 0, M: 3 }, '61+': { H: 0, M: 1 } },
-        'G': { '15-19': { H: 1, M: 0 }, '20-29': { H: 0, M: 2 }, '30-44': { H: 0, M: 3 }, '45-60': { H: 3, M: 0 }, '61+': { H: 1, M: 0 } },
-        'H': { '15-19': { H: 1, M: 0 }, '20-29': { H: 1, M: 1 }, '30-44': { H: 1, M: 2 }, '45-60': { H: 2, M: 0 }, '61+': { H: 0, M: 2 } }
+        'A': { '16-19': { H: 0, M: 1 }, '20-29': { H: 1, M: 2 }, '30-44': { H: 2, M: 1 }, '45-60': { H: 1, M: 1 }, '61+': { H: 1, M: 0 } },
+        'B': { '16-19': { H: 0, M: 2 }, '20-29': { H: 2, M: 0 }, '30-44': { H: 2, M: 0 }, '45-60': { H: 1, M: 2 }, '61+': { H: 0, M: 1 } },
+        'C': { '16-19': { H: 1, M: 0 }, '20-29': { H: 2, M: 1 }, '30-44': { H: 1, M: 2 }, '45-60': { H: 1, M: 1 }, '61+': { H: 0, M: 1 } },
+        'D': { '16-19': { H: 2, M: 0 }, '20-29': { H: 0, M: 2 }, '30-44': { H: 0, M: 2 }, '45-60': { H: 2, M: 1 }, '61+': { H: 1, M: 0 } },
+        'E': { '16-19': { H: 0, M: 1 }, '20-29': { H: 1, M: 1 }, '30-44': { H: 2, M: 1 }, '45-60': { H: 0, M: 2 }, '61+': { H: 2, M: 0 } },
+        'F': { '16-19': { H: 0, M: 1 }, '20-29': { H: 2, M: 0 }, '30-44': { H: 3, M: 0 }, '45-60': { H: 0, M: 3 }, '61+': { H: 0, M: 1 } },
+        'G': { '16-19': { H: 1, M: 0 }, '20-29': { H: 0, M: 2 }, '30-44': { H: 0, M: 3 }, '45-60': { H: 3, M: 0 }, '61+': { H: 1, M: 0 } },
+        'H': { '16-19': { H: 1, M: 0 }, '20-29': { H: 1, M: 1 }, '30-44': { H: 1, M: 2 }, '45-60': { H: 2, M: 0 }, '61+': { H: 0, M: 2 } }
     };
 
     function extraerSexoYEdad(e) {
@@ -5021,7 +5022,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (rawEdad !== undefined && rawEdad !== null && rawEdad !== '') {
             const n = parseInt(rawEdad, 10);
-            if (!isNaN(n) && n >= 15 && n <= 115) {
+            if (!isNaN(n) && n >= 16 && n <= 115) {
                 edad = n;
             }
         }
@@ -5073,15 +5074,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Subtítulo contextual reactivo al sector o filtro activo
         let tipologiaSector = '';
+        const normalizarLetraTipologia = (val) => {
+            if (!val) return '';
+            const str = String(val).trim().toUpperCase();
+            if (CUOTAS_TIPOLOGIA[str]) return str;
+            if (/^[1-8]$/.test(str)) return String.fromCharCode(64 + Number(str));
+            const choices = (AppState.config && AppState.config.kobo && AppState.config.kobo.choices_tipologias) || {};
+            if (choices[val] && CUOTAS_TIPOLOGIA[choices[val]]) return choices[val];
+            return '';
+        };
+
         if (AppState.sectorSeleccionado && AppState.sectorSeleccionado !== 'Todos') {
             const secMeta = AppState.sectoresMap.get(AppState.sectorSeleccionado);
             if (secMeta && secMeta.props) {
-                tipologiaSector = String(secMeta.props.tipologia || secMeta.props.TIPOLOGIA || '').trim().toUpperCase();
+                tipologiaSector = normalizarLetraTipologia(secMeta.props.tipologia || secMeta.props.TIPOLOGIA);
             }
             if (!tipologiaSector && encuestas && encuestas.length > 0) {
                 for (let i = 0; i < encuestas.length; i++) {
-                    const t = String(campo(encuestas[i], 'tipologia') || campo(encuestas[i], 'TIPOLOGIA') || encuestas[i].tipologia || '').trim().toUpperCase();
-                    if (t && CUOTAS_TIPOLOGIA[t]) { tipologiaSector = t; break; }
+                    const rawT = encuestas[i].tipologia || campo(encuestas[i], 'tipologia') || campo(encuestas[i], 'TIPOLOGIA') || campo(encuestas[i], 'tipol');
+                    const t = normalizarLetraTipologia(rawT);
+                    if (t) { tipologiaSector = t; break; }
                 }
             }
             if (!tipologiaSector) {
