@@ -25,14 +25,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
 
   <!-- Preload Cartografía Clave (Caché optimizada para móviles) -->
-  <link rel="preload" href="assets/parroquias.geojson?v=110.0.0" as="fetch" crossorigin>
-  <link rel="preload" href="assets/sectores_censales.geojson?v=110.0.0" as="fetch" crossorigin>
+  <link rel="preload" href="assets/parroquias.geojson?v=110.0.1" as="fetch" crossorigin>
+  <link rel="preload" href="assets/sectores_censales.geojson?v=110.0.1" as="fetch" crossorigin>
 
   <!-- MapLibre GL CSS (Aceleración WebGL Nativa en GPU) -->
   <link rel="stylesheet" href="libs/maplibre-gl.css" />
 
   <!-- Estilos del Dashboard -->
-  <link rel="stylesheet" href="style.css?v=110.0.0">
+  <link rel="stylesheet" href="style.css?v=110.0.1">
 </head>
 <body>
 
@@ -195,6 +195,19 @@
             <div class="cs-select-wrap">
               <select id="cantonFilter" class="cs-select">
                 <option value="Todos">Todos los cantones</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Circunscripción -->
+          <div class="cs-ribbon-field" id="wrapCircunscripcionFilter">
+            <label for="circunscripcionFilter" class="cs-field-label">
+              <svg class="cs-icon cs-icon--xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+              <span>Circunscripción</span>
+            </label>
+            <div class="cs-select-wrap">
+              <select id="circunscripcionFilter" class="cs-select">
+                <option value="Todas">Todas las circunscripciones</option>
               </select>
             </div>
           </div>
@@ -470,7 +483,7 @@
 
   <!-- ===== SCRIPTS ===== -->
   <script src="libs/maplibre-gl.js"></script>
-  <script src="script.js?v=110.0.0"></script>
+  <script src="script.js?v=110.0.1"></script>
   <script>
     if ('serviceWorker' in navigator) {
       let refreshing = false;
@@ -492,7 +505,7 @@
             });
           });
         }
-        navigator.serviceWorker.register('/service-worker.js?v=110.0.0').then(reg => {
+        navigator.serviceWorker.register('/service-worker.js?v=110.0.1').then(reg => {
           if (!reg) return;
           if (reg.waiting) {
             reg.waiting.postMessage({ type: 'SKIP_WAITING' });
