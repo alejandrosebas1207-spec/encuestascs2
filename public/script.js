@@ -4951,28 +4951,16 @@ document.addEventListener('DOMContentLoaded', () => {
     function extraerSexoYEdad(e) {
         if (!e) return { sexo: null, edad: null };
 
-        // 1. Sexo / Género (Detección directa y tolerante a variantes de formulario)
+        // 1. Sexo / Género: P1 es "1. ¿CUÁL ES SU GÉNERO?" (1=Masculino/Hombre, 2=Femenino/Mujer)
         let sexo = null;
         let rawGen = (
-            e.genero ||
-            e.p9 ||
-            e._9_G_NERO ||
-            e['9. GÉNERO'] ||
-            e.p9_1 ||
-            e.sexo ||
-            e.p1 ||
-            e.p_genero ||
-            e.p_sexo ||
-            e.filtro_genero ||
-            e.filtro_sexo ||
-            e['1. ¿CUÁL ES SU GÉNERO?'] ||
-            e['1._CU_L_ES_SU_G_NERO'] ||
-            campo(e, '_9_G_NERO') ||
-            campo(e, 'p9_1') ||
-            campo(e, 'genero') ||
-            campo(e, 'sexo') ||
-            campo(e, 'p1') ||
-            campo(e, 'p_genero') ||
+            e.p1 !== undefined ? e.p1 :
+            campo(e, 'p1') !== undefined ? campo(e, 'p1') :
+            campo(e, 'p1_1') !== undefined ? campo(e, 'p1_1') :
+            e.sexo !== undefined ? e.sexo :
+            e.genero !== undefined ? e.genero :
+            campo(e, 'sexo') !== undefined ? campo(e, 'sexo') :
+            campo(e, 'genero') !== undefined ? campo(e, 'genero') :
             ''
         );
 
@@ -4980,7 +4968,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const keys = Object.keys(e);
             for (let i = 0; i < keys.length; i++) {
                 const k = keys[i].toLowerCase();
-                if (k.endsWith('/p9') || k === 'p9' || k.includes('genero') || k.includes('g_nero') || k.includes('sexo') || k.endsWith('/p1') || k === 'p1') {
+                if (k.endsWith('/p1') || k === 'p1' || k.endsWith('/p1_1') || k.includes('genero') || k.includes('sexo')) {
                     rawGen = e[keys[i]];
                     if (rawGen) break;
                 }
@@ -4994,26 +4982,23 @@ document.addEventListener('DOMContentLoaded', () => {
             sexo = 'Mujer';
         }
 
-        // 2. Edad (Detección directa y numérica segura)
+        // 2. Edad: P2 es siempre "¿CUÁNTOS AÑOS TIENE? / EDAD CUMPLIDA EN AÑOS" (16 a 99+)
+        // NOTA: p10 en estos formularios es problema o calificación, JAMÁS edad.
         let edad = null;
         let rawEdad = (
-            e.edad !== undefined ? e.edad :
-            e.p10 !== undefined ? e.p10 :
             e.p2 !== undefined ? e.p2 :
-            e.p_edad !== undefined ? e.p_edad :
-            e.filtro_edad !== undefined ? e.filtro_edad :
-            e['10. ¿CUÁNTOS AÑOS TIENE? (Anota la edad en años cumplidos)'] !== undefined ? e['10. ¿CUÁNTOS AÑOS TIENE? (Anota la edad en años cumplidos)'] :
-            e['2. ¿CUÁL ES SU EDAD? (edad cumplida en años)'] !== undefined ? e['2. ¿CUÁL ES SU EDAD? (edad cumplida en años)'] :
-            campo(e, 'p10') !== undefined ? campo(e, 'p10') :
+            campo(e, 'p2') !== undefined ? campo(e, 'p2') :
+            e.edad !== undefined ? e.edad :
             campo(e, 'edad') !== undefined ? campo(e, 'edad') :
-            campo(e, 'p2')
+            e.p_edad !== undefined ? e.p_edad :
+            ''
         );
 
         if (rawEdad === undefined || rawEdad === null || rawEdad === '') {
             const keys = Object.keys(e);
             for (let i = 0; i < keys.length; i++) {
                 const k = keys[i].toLowerCase();
-                if (k.endsWith('/p10') || k === 'p10' || k.includes('edad')) {
+                if (k.endsWith('/p2') || k === 'p2' || (k.includes('edad') && !k.includes('cuota'))) {
                     rawEdad = e[keys[i]];
                     if (rawEdad !== undefined && rawEdad !== null && rawEdad !== '') break;
                 }
