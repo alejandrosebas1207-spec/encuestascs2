@@ -340,15 +340,35 @@ document.addEventListener('DOMContentLoaded', () => {
     // PALETA CROMÁTICA OFICIAL POR CIRCUNSCRIPCIÓN (DIRECTRIZ CANTONAL CLIMA SOCIAL)
     // =========================================================================
     const PALETA_CIRCUNSCRIPCIONES = {
-        'CIRCUNSCRIPCION URBANA 1': { nombre: 'Urbana 1 (Norte)', hex: '#028090', fill: 'rgba(2, 128, 144, 0.26)',  },
-        'CIRCUNSCRIPCION URBANA 2': { nombre: 'Urbana 2 (Centro)', hex: '#7c3aed', fill: 'rgba(124, 58, 237, 0.26)',  },
-        'CIRCUNSCRIPCION URBANA 3': { nombre: 'Urbana 3 (Sur)', hex: '#ea580c', fill: 'rgba(234, 88, 12, 0.26)',  },
-        'CIRCUNSCRIPCION URBANA': { nombre: 'Urbana', hex: '#028090', fill: 'rgba(2, 128, 144, 0.26)',  },
-        'CIRCUNSCRIPCION RURAL': { nombre: 'Rural', hex: '#059669', fill: 'rgba(5, 150, 105, 0.26)',  }
+        'CIRCUNSCRIPCION URBANA 1': { nombre: 'Urbana 1 (Norte)', hex: '#028090', fill: 'rgba(2, 128, 144, 0.26)' },
+        'CIRCUNSCRIPCIÓN URBANA 1': { nombre: 'Urbana 1 (Norte)', hex: '#028090', fill: 'rgba(2, 128, 144, 0.26)' },
+        'CIRCUNSCRIPCION URBANA 2': { nombre: 'Urbana 2 (Centro)', hex: '#7c3aed', fill: 'rgba(124, 58, 237, 0.26)' },
+        'CIRCUNSCRIPCIÓN URBANA 2': { nombre: 'Urbana 2 (Centro)', hex: '#7c3aed', fill: 'rgba(124, 58, 237, 0.26)' },
+        'CIRCUNSCRIPCION URBANA 3': { nombre: 'Urbana 3 (Sur)', hex: '#ea580c', fill: 'rgba(234, 88, 12, 0.26)' },
+        'CIRCUNSCRIPCIÓN URBANA 3': { nombre: 'Urbana 3 (Sur)', hex: '#ea580c', fill: 'rgba(234, 88, 12, 0.26)' },
+        'CIRCUNSCRIPCION URBANA': { nombre: 'Urbana', hex: '#028090', fill: 'rgba(2, 128, 144, 0.26)' },
+        'CIRCUNSCRIPCIÓN URBANA': { nombre: 'Urbana', hex: '#028090', fill: 'rgba(2, 128, 144, 0.26)' },
+        'CIRCUNSCRIPCION RURAL': { nombre: 'Rural', hex: '#059669', fill: 'rgba(5, 150, 105, 0.26)' },
+        'CIRCUNSCRIPCIÓN RURAL': { nombre: 'Rural', hex: '#059669', fill: 'rgba(5, 150, 105, 0.26)' },
+        'URBANA 1': { nombre: 'Urbana 1 (Norte)', hex: '#028090', fill: 'rgba(2, 128, 144, 0.26)' },
+        'URBANA 2': { nombre: 'Urbana 2 (Centro)', hex: '#7c3aed', fill: 'rgba(124, 58, 237, 0.26)' },
+        'URBANA 3': { nombre: 'Urbana 3 (Sur)', hex: '#ea580c', fill: 'rgba(234, 88, 12, 0.26)' },
+        'URBANA': { nombre: 'Urbana', hex: '#028090', fill: 'rgba(2, 128, 144, 0.26)' },
+        'RURAL': { nombre: 'Rural', hex: '#059669', fill: 'rgba(5, 150, 105, 0.26)' }
     };
 
     function normCircunscripcion(val) {
         return String(val || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toUpperCase().trim();
+    }
+
+    function obtenerVariantesCircunscripcion(circ) {
+        if (!circ || circ === 'Todas') return [];
+        const raw = String(circ || '').trim().toUpperCase();
+        const sinAcento = normCircunscripcion(raw);
+        const conAcento = sinAcento.replace(/CIRCUNSCRIPCION/g, 'CIRCUNSCRIPCIÓN');
+        const soloNombre = sinAcento.replace(/^CIRCUNSCRIPCI[OÓ]N\s+/g, '');
+        const soloNombreAcento = conAcento.replace(/^CIRCUNSCRIPCI[OÓ]N\s+/g, '');
+        return Array.from(new Set([raw, sinAcento, conAcento, soloNombre, soloNombreAcento]));
     }
 
     function resolverCircunscripcionParroquia(nombreParroquia) {
@@ -2261,6 +2281,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Así, una boleta previa de Quito nunca puede volver a centrar el mapa
         // cuando se selecciona Cayambe, Mejía o Rumiñahui.
         const hayFiltroTerritorial = AppState.cantonSeleccionado !== 'Todos'
+            || (AppState.circunscripcionSeleccionada && AppState.circunscripcionSeleccionada !== 'Todas')
             || AppState.parroquiaSeleccionada !== 'Todas'
             || AppState.sectorSeleccionado !== 'Todos';
         actualizarMapa(encuestas, ajustarCamara && !hayFiltroTerritorial);
@@ -2303,6 +2324,29 @@ document.addEventListener('DOMContentLoaded', () => {
                 subPendientes: `Para meta en ${AppState.parroquiaSeleccionada}`,
                 tituloAvance: `Avance Parroquia`,
                 subAvance: `${numSectores || 1} sectores (${metaParr} encuestas)`
+            };
+        }
+
+        // 2.5 Filtro por Circunscripción
+        if (AppState.circunscripcionSeleccionada && AppState.circunscripcionSeleccionada !== 'Todas') {
+            const cNorm = normCircunscripcion(AppState.circunscripcionSeleccionada);
+            let numSectoresCirc = 0;
+            if (AppState.sectoresGeojson && Array.isArray(AppState.sectoresGeojson.features)) {
+                numSectoresCirc = AppState.sectoresGeojson.features.filter(f => {
+                    const props = f.properties || {};
+                    const c = normCircunscripcion(props.circunscripcion || props.CIRCUNSCRIPCION || resolverCircunscripcionParroquia(props.parroquia));
+                    return c === cNorm;
+                }).length;
+            }
+            const metaCirc = Math.max(10, (numSectoresCirc || 1) * 10);
+            const cInfo = PALETA_CIRCUNSCRIPCIONES[cNorm] || {};
+            const nomCirc = cInfo.nombre || AppState.circunscripcionSeleccionada;
+            return {
+                meta: metaCirc,
+                etiquetaMeta: `Meta: ${metaCirc.toLocaleString()} (${nomCirc})`,
+                subPendientes: `Para meta en ${nomCirc}`,
+                tituloAvance: `Avance ${nomCirc}`,
+                subAvance: `${numSectoresCirc || 1} sectores (${metaCirc} encuestas)`
             };
         }
 
@@ -3489,6 +3533,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function obtenerBboxCircunscripcion(nombreCirc) {
         if (!nombreCirc || nombreCirc === 'Todas') return null;
         const target = normCircunscripcion(nombreCirc);
+        const variantes = obtenerVariantesCircunscripcion(nombreCirc);
         let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
         let encontrados = 0;
 
@@ -3496,7 +3541,7 @@ document.addEventListener('DOMContentLoaded', () => {
             AppState.sectoresGeojson.features.forEach(f => {
                 const p = f.properties || {};
                 const c = normCircunscripcion(p.circunscripcion || p.CIRCUNSCRIPCION || '');
-                if (c === target) {
+                if (c === target || variantes.includes(c)) {
                     const b = p.bbox || (f.geometry ? calcularBBOX(f.geometry) : null);
                     if (b) {
                         encontrados++;
@@ -3522,7 +3567,7 @@ document.addEventListener('DOMContentLoaded', () => {
             AppState.parroquiasGeojson.features.forEach(f => {
                 const p = f.properties || {};
                 const c = normCircunscripcion(p.circunscripcion || p.CIRCUNSCRIPCION || '');
-                if (c === target) {
+                if (c === target || variantes.includes(c)) {
                     const b = p.bbox || (f.geometry ? calcularBBOX(f.geometry) : null);
                     if (b) {
                         encontrados++;
@@ -3539,7 +3584,9 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
         if (encontrados > 0 && minX !== Infinity) {
-            return [[minX, minY], [maxX, maxY]];
+            const dx = (maxX - minX) * 0.08 || 0.005;
+            const dy = (maxY - minY) * 0.08 || 0.005;
+            return [[minX - dx, minY - dy], [maxX + dx, maxY + dy]];
         }
         return null;
     }
@@ -3700,7 +3747,12 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (AppState.circunscripcionSeleccionada && AppState.circunscripcionSeleccionada !== 'Todas') {
                 // PRIORIDAD: Si hay circunscripción seleccionada, filtrar estrictamente las parroquias de esa circunscripción
                 const targetCirc = normCircunscripcion(AppState.circunscripcionSeleccionada);
-                let filterCirc = ['==', ['upcase', ['coalesce', ['get', 'circunscripcion'], ['get', 'CIRCUNSCRIPCION'], '']], targetCirc];
+                const variantesCirc = obtenerVariantesCircunscripcion(AppState.circunscripcionSeleccionada);
+                let filterCirc = [
+                    'in',
+                    ['upcase', ['coalesce', ['get', 'circunscripcion'], ['get', 'CIRCUNSCRIPCION'], '']],
+                    ['literal', variantesCirc]
+                ];
                 if (AppState.cantonSeleccionado && AppState.cantonSeleccionado !== 'Todos') {
                     const targetCanton = AppState.cantonSeleccionado.toUpperCase();
                     filterCirc = ['all', ['==', ['upcase', ['coalesce', ['get', 'canton'], ['get', 'CANTON'], '']], targetCanton], filterCirc];
@@ -3806,7 +3858,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     : matchParExpr;
             } else if (AppState.circunscripcionSeleccionada && AppState.circunscripcionSeleccionada !== 'Todas') {
                 const targetCirc = normCircunscripcion(AppState.circunscripcionSeleccionada);
-                baseTerritorialFilter = ['==', ['upcase', ['coalesce', ['get', 'circunscripcion'], ['get', 'CIRCUNSCRIPCION'], '']], targetCirc];
+                const variantesCirc = obtenerVariantesCircunscripcion(AppState.circunscripcionSeleccionada);
+                baseTerritorialFilter = [
+                    'in',
+                    ['upcase', ['coalesce', ['get', 'circunscripcion'], ['get', 'CIRCUNSCRIPCION'], '']],
+                    ['literal', variantesCirc]
+                ];
             } else if (AppState.cantonSeleccionado && AppState.cantonSeleccionado !== 'Todos') {
                 const targetCan = AppState.cantonSeleccionado;
                 const parsPermitidas = (PARROQUIAS_POR_CANTON[targetCan] || []).map(p => p.toUpperCase().trim());
