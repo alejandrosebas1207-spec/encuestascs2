@@ -25,14 +25,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
 
   <!-- Preload Cartografía Clave (Caché optimizada para móviles) -->
-  <link rel="preload" href="assets/parroquias.geojson?v=110.0.2" as="fetch" crossorigin>
-  <link rel="preload" href="assets/sectores_censales.geojson?v=110.0.2" as="fetch" crossorigin>
+  <link rel="preload" href="assets/parroquias.geojson?v=110.0.3" as="fetch" crossorigin>
+  <link rel="preload" href="assets/sectores_censales.geojson?v=110.0.3" as="fetch" crossorigin>
 
   <!-- MapLibre GL CSS (Aceleración WebGL Nativa en GPU) -->
   <link rel="stylesheet" href="libs/maplibre-gl.css" />
 
   <!-- Estilos del Dashboard -->
-  <link rel="stylesheet" href="style.css?v=110.0.2">
+  <link rel="stylesheet" href="style.css?v=110.0.3">
 </head>
 <body>
 
@@ -483,7 +483,7 @@
 
   <!-- ===== SCRIPTS ===== -->
   <script src="libs/maplibre-gl.js"></script>
-  <script src="script.js?v=110.0.2"></script>
+  <script src="script.js?v=110.0.3"></script>
   <script>
     if ('serviceWorker' in navigator) {
       let refreshing = false;
@@ -505,7 +505,7 @@
             });
           });
         }
-        navigator.serviceWorker.register('/service-worker.js?v=110.0.2').then(reg => {
+        navigator.serviceWorker.register('/service-worker.js?v=110.0.3').then(reg => {
           if (!reg) return;
           if (reg.waiting) {
             reg.waiting.postMessage({ type: 'SKIP_WAITING' });
