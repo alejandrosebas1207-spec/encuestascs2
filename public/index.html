@@ -36,6 +36,43 @@
 </head>
 <body>
 
+  <!-- ===== STANDBY OVERLAY (ESTADO EN ESPERA / REPOSO) ===== -->
+  <div class="cs-standby" id="standbyOverlay" style="display:flex;">
+    <div class="cs-standby__card">
+      <div class="cs-standby__logo-wrap" id="standbyLogoBtn" role="button" tabindex="0" title="Clima Social · Toca 3 veces para inspeccionar cartografía">
+        <img src="assets/01_ClimaSocial_Horizontal_Transparente.png" onerror="this.onerror=null; this.src='assets/01_Logo_Clima_Social_Horizontal_Oficial.svg';" alt="Clima Social" class="cs-standby__logo">
+      </div>
+      <div class="cs-standby__status">
+        <span class="cs-standby__dot"></span>
+        <span class="cs-standby__status-text">SISTEMA EN ESPERA · STANDBY</span>
+      </div>
+      <h2 class="cs-standby__title">Terminal de Supervisión de Campo</h2>
+      <p class="cs-standby__desc">
+        Este enlace se encuentra en reposo institucional. La conectividad con KoboToolbox, la cartografía territorial y el directorio del equipo de campo han sido desactivados para proteger la confidencialidad de la información.
+      </p>
+      <div class="cs-standby__note">
+        <svg class="cs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12.01" y1="8" x2="12" y2="8"/></svg>
+        <span>Cuando inicie el próximo proyecto territorial, esta pantalla se actualizará automáticamente con la nueva cartografía y el equipo asignado.</span>
+      </div>
+      <div class="cs-standby__footer">
+        <span>Clima Social · Inteligencia Territorial & Percepción</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== BARRA FLOTANTE MODO INSPECCIÓN ===== -->
+  <div class="cs-inspect-bar" id="inspectBar" style="display:none;">
+    <div class="cs-inspect-bar__info">
+      <span class="cs-inspect-bar__pulse"></span>
+      <span class="cs-inspect-bar__title">Modo Inspección Cartográfica</span>
+      <span class="cs-inspect-bar__sub">Standby activo · Solo consulta</span>
+    </div>
+    <button type="button" class="cs-inspect-bar__btn" id="btnSalirInspeccion">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"/><line x1="12" y1="2" x2="12" y2="12"/></svg>
+      <span>Volver a Standby</span>
+    </button>
+  </div>
+
   <!-- ===== LOADING OVERLAY ===== -->
   <div class="cs-loading" id="cargaOverlay">
     <div class="cs-loading__spinner"></div>
@@ -483,7 +520,7 @@
 
   <!-- ===== SCRIPTS ===== -->
   <script src="libs/maplibre-gl.js"></script>
-  <script src="script.js?v=110.0.11"></script>
+  <script src="script.js?v=110.0.12"></script>
   <script>
     if ('serviceWorker' in navigator) {
       let refreshing = false;
@@ -499,13 +536,13 @@
         if ('caches' in window) {
           caches.keys().then(names => {
             names.forEach(name => {
-              if (name !== 'clima-social-v110-9-antonioante') {
+              if (name !== 'clima-social-v110-12-standby') {
                 caches.delete(name);
               }
             });
           });
         }
-        navigator.serviceWorker.register('/service-worker.js?v=110.0.9').then(reg => {
+        navigator.serviceWorker.register('/service-worker.js?v=110.0.12').then(reg => {
           if (!reg) return;
           if (reg.waiting) {
             reg.waiting.postMessage({ type: 'SKIP_WAITING' });
