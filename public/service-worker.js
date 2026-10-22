@@ -1,11 +1,14 @@
 /* Modo de contingencia Clima Social: conserva aplicación base y cartografía.
  * No almacena respuestas de Kobo ni coordenadas de encuestas en el teléfono. */
-const CACHE_NAME = 'clima-social-v110-0-13-purge';
+const CACHE_NAME = 'clima-social-v85-reset-clean';
 const APP_SHELL = [
   '/',
   '/index.html',
-  '/style.css?v=110.0.13',
-  '/script.js?v=110.0.13',
+  '/style.css?v=1.0.8',
+  '/js/tipologias.js?v=1.0.8',
+  '/js/kobo-parser.js?v=1.0.8',
+  '/js/auditoria.js?v=1.0.8',
+  '/script.js?v=1.0.8',
   '/libs/maplibre-gl.js',
   '/libs/maplibre-gl.css',
   '/assets/icono.png',

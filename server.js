@@ -70,24 +70,20 @@ function obtenerParametrosActivos() {
             ? koboTokenFromConfig
             : limpiarVar(process.env.API_TOKEN || process.env.KOBO_API_TOKEN || process.env.KOBO_TOKEN || ""));
 
-    const koboEncFromConfig = config.kobo && typeof config.kobo.campo_encuestador === "string" ? config.kobo.campo_encuestador.trim() : null;
-    const campoEnc = (koboEncFromConfig !== null && koboEncFromConfig !== "")
-        ? koboEncFromConfig
-        : limpiarVar(process.env.CAMPO_ENCUESTADOR || "codenc");
+    const campoEnc = limpiarVar(
+        process.env.CAMPO_ENCUESTADOR ||
+        (config.kobo && config.kobo.campo_encuestador) ||
+        "codenc"
+    );
 
-    const koboSupFromConfig = config.kobo && typeof config.kobo.campo_supervisor === "string" ? config.kobo.campo_supervisor.trim() : null;
-    const campoSup = (koboSupFromConfig !== null && koboSupFromConfig !== "")
-        ? koboSupFromConfig
-        : limpiarVar(process.env.CAMPO_SUPERVISOR || "codsup");
+    const campoSup = limpiarVar(
+        process.env.CAMPO_SUPERVISOR ||
+        (config.kobo && config.kobo.campo_supervisor) ||
+        "codsup"
+    );
 
     const choicesParroquias = (config.kobo && config.kobo.choices_parroquias) || {};
     const choicesCantones = (config.kobo && config.kobo.choices_cantones) || {};
-    const choicesProvincias = (config.kobo && config.kobo.choices_provincias) || {
-        "4": "Carchi",
-        "8": "Esmeraldas",
-        "10": "Imbabura",
-        "17": "Pichincha"
-    };
     const choicesTipologias = (config.kobo && config.kobo.choices_tipologias) || {
         "1": "A", "2": "B", "3": "C", "4": "D", "5": "E", "6": "F", "7": "G", "8": "H",
         "a": "A", "b": "B", "c": "C", "d": "D", "e": "E", "f": "F", "g": "G", "h": "H"
@@ -102,7 +98,6 @@ function obtenerParametrosActivos() {
         campoSup,
         choicesParroquias,
         choicesCantones,
-        choicesProvincias,
         choicesTipologias
     };
 }
@@ -159,41 +154,25 @@ let cache = {
     assetId: null
 };
 
-const RUTA_BACKUP = path.join(__dirname, ".cache_backup.json");
-try {
-    if (fs.existsSync(RUTA_BACKUP)) {
-        const rawBackup = fs.readFileSync(RUTA_BACKUP, "utf-8");
-        const parsed = JSON.parse(rawBackup);
-        if (parsed && Array.isArray(parsed.resultados)) {
-            cache.datos = parsed;
-            cache.timestamp = parsed.obtenidoEn || Date.now();
-            cache.assetId = parsed.assetId || null;
-            console.log(`[SUPERVISOR] 🛡️ Respaldo local de arranque cargado: ${parsed.resultados.length} encuestas.`);
-        }
-    }
-} catch (e) {
-    console.warn("[SUPERVISOR] No se pudo leer .cache_backup.json:", e.message);
-}
-
 function extraerValor(obj, claves) {
     if (!obj || typeof obj !== "object") return "";
     const valorTexto = value => value === undefined || value === null || typeof value === "object"
         ? "" : String(value).trim();
-    const keys = Object.keys(obj);
-    for (let j = 0; j < claves.length; j++) {
-        const k = claves[j];
-        const directo = valorTexto(obj[k]);
-        if (directo) return directo;
-        for (let i = 0; i < keys.length; i++) {
-            const key = keys[i];
-            if (key.endsWith("/" + k)) {
-                const valor = valorTexto(obj[key]);
-                if (valor) return valor;
-            }
-        }
+    for (let i = 0; i < claves.length; i++) {
+        const k = claves[i];
+        const valor = valorTexto(obj[k]);
+        if (valor) return valor;
     }
+    const keys = Object.keys(obj);
     for (let i = 0; i < keys.length; i++) {
         const key = keys[i];
+        for (let j = 0; j < claves.length; j++) {
+            const k = claves[j];
+            const valor = valorTexto(obj[key]);
+            if (key.endsWith("/" + k) && valor) {
+                return valor;
+            }
+        }
         if (typeof obj[key] === "object" && obj[key] !== null) {
             const nested = extraerValor(obj[key], claves);
             if (nested) return nested;
@@ -267,36 +246,14 @@ function normalizarEncuesta(raw, params) {
     const cantonDefecto = params.config.canton || "Territorio";
     const canton = params.choicesCantones[rawCanton] || (rawCanton ? String(rawCanton).trim() : cantonDefecto);
 
-    const rawProvincia = extraerValor(raw, ["provincia", "PROVINCIA", "nom_provincia", "prov"]) || "";
-    let provincia = params.choicesProvincias[rawProvincia] || (rawProvincia ? String(rawProvincia).trim() : "");
-    if (!provincia) {
-        const canNorm = String(canton || rawCanton).toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
-        if (["80", "81", "82", "ELOY ALFARO", "RIOVERDE", "SAN LORENZO"].some(k => canNorm.includes(k))) {
-            provincia = "Esmeraldas";
-        } else if (["40", "41", "42", "43", "44", "BOLIVAR", "ESPEJO", "MIRA", "MONTUFAR", "SAN PEDRO DE HUACA", "TULCAN", "HUACA"].some(k => canNorm.includes(k))) {
-            provincia = "Carchi";
-        } else if (["101", "102", "103", "104", "105", "106", "ANTONIO ANTE", "COTACACHI", "IBARRA", "OTAVALO", "PIMAMPIRO", "SAN MIGUEL DE URCUQUI", "URCUQUI"].some(k => canNorm.includes(k))) {
-            provincia = "Imbabura";
-        } else if (["171", "PEDRO MONCAYO", "QUITO", "MEJIA", "CAYAMBE", "RUMINAHUI"].some(k => canNorm.includes(k))) {
-            provincia = "Pichincha";
-        } else {
-            const parNorm = String(parroquia || rawParroquia).trim();
-            if (parNorm.startsWith("8")) provincia = "Esmeraldas";
-            else if (parNorm.startsWith("4")) provincia = "Carchi";
-            else if (parNorm.startsWith("10")) provincia = "Imbabura";
-            else if (parNorm.startsWith("17")) provincia = "Pichincha";
-        }
-    }
-
     const rawCirc = extraerValor(raw, ["circunscripcion", "circ", "CIRCUNSCRIPCION"]) || "";
     const CIRCUNSCRIPCIONES = { "1": "CIRCUNSCRIPCION URBANA 1", "2": "CIRCUNSCRIPCION URBANA 2", "3": "CIRCUNSCRIPCION RURAL" };
     const circunscripcion = CIRCUNSCRIPCIONES[rawCirc] || String(rawCirc).trim();
 
     const rawGen = extraerValor(raw, [
-        "p1", "p1_genero", "genero_resp",
+        "p1", "p1_1", "genero", "p_genero", "sexo", "gender",
         "1. ¿CUÁL ES SU GÉNERO?", "1._CU_L_ES_SU_G_NERO",
-        "genero", "p_genero", "sexo", "gender",
-        "p9", "_9_G_NERO", "9. GÉNERO", "p9_1"
+        "genero_resp", "p1_genero"
     ]) || "";
 
     let genero = rawGen;
@@ -306,20 +263,19 @@ function normalizarEncuesta(raw, params) {
         genero = "Mujer";
     } else if (rawGen === "3") {
         genero = "LGBTIQ+";
-    } else if (rawGen === "0" || rawGen === "4") {
+    } else if (rawGen === "0") {
         genero = "Otro";
     }
 
     const edadRaw = extraerValor(raw, [
-        "p2", "p2_edad",
+        "p2", "edad", "p_edad", "age",
         "2. ¿CUÁL ES SU EDAD? (edad cumplida en años)",
         "2._CU_L_ES_SU_EDAD_edad_cumplida_en_a_os",
         "2. ¿CUÁNTOS AÑOS TIENE?",
-        "edad", "p_edad", "age",
-        "p10", "10. ¿CUÁNTOS AÑOS TIENE? (Anota la edad en años cumplidos)"
+        "p2_edad"
     ]) || "";
     const edadNum = Number(edadRaw);
-    const edad = (!isNaN(edadNum) && edadNum >= 16 && edadNum <= 115) ? edadNum : null;
+    const edad = (!isNaN(edadNum) && edadNum > 0 && edadNum < 120) ? edadNum : null;
 
     return {
         _id: id,
@@ -340,7 +296,6 @@ function normalizarEncuesta(raw, params) {
         barrio,
         parroquia,
         canton,
-        provincia,
         circunscripcion,
         genero,
         edad,
@@ -421,16 +376,11 @@ async function obtenerDatosKobo() {
             throw new Error("Respuesta de Kobo incompleta: el conteo no coincide con las boletas recibidas.");
         }
 
-        const provinciaObjetivo = (params.config.provincia || "").trim().toUpperCase();
-
         const resultados = resultadosRaw
             .map(raw => normalizarEncuesta(raw, params))
             .filter(e => {
                 if (String(e.encuestador).trim() === "98" || String(e.supervisor).trim() === "98") return false;
                 if (e.consentimiento === "NO" || String(e.consen).trim() === "2") return false;
-                if (provinciaObjetivo && e.provincia && e.provincia.trim().toUpperCase() !== provinciaObjetivo) {
-                    return false;
-                }
                 return true;
             });
 
@@ -438,14 +388,10 @@ async function obtenerDatosKobo() {
             estado: "ACTIVO",
             total: resultados.length,
             resultados,
-            obtenidoEn: Date.now(),
-            assetId: params.assetId
+            obtenidoEn: Date.now()
         };
         cache.timestamp = Date.now();
         cache.assetId = params.assetId;
-        try {
-            fs.writeFileSync(RUTA_BACKUP, JSON.stringify(cache.datos), "utf-8");
-        } catch (_) {}
         return cache.datos;
     })();
 
@@ -517,18 +463,6 @@ app.get("/api/encuestas", async (req, res) => {
                 ? "Kobo tardó demasiado en responder"
                 : error.message;
         console.error(`[${new Date().toLocaleTimeString("es-EC")}] Error al consultar Kobo: ${mensaje}`);
-        
-        // Blindaje 1: Fallback a respaldo si Kobo falla temporalmente
-        const params = obtenerParametrosActivos();
-        if (cache.datos && Array.isArray(cache.datos.resultados) && (!cache.assetId || cache.assetId === params.assetId)) {
-            console.warn(`[SUPERVISOR] 🛡️ Kobo inaccesible (${mensaje}). Sirviendo respaldo local con ${cache.datos.resultados.length} encuestas.`);
-            res.set("X-Data-Fallback", "true");
-            return res.json({
-                ...cache.datos,
-                fallback: true,
-                mensajeAviso: "Servido desde respaldo local debido a intermitencia temporal en KoboToolbox."
-            });
-        }
         res.status(502).json({ error: "No fue posible acceder a Kobo.", detalle: mensaje });
     }
 });

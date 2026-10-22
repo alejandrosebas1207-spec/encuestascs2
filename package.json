@@ -1,11 +1,13 @@
 {
-  "name": "encuestascs2",
+  "name": "supervisor-campo-clima-social",
   "version": "1.0.0",
-  "description": "Panel de Supervisión de Campo 2 — Clima Social · Conectado a KoboToolbox",
+  "description": "Panel de Supervisión de Campo — Clima Social · Conectado a KoboToolbox",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "node --watch server.js"
+    "dev": "node --watch server.js",
+    "test": "node --test test/*.test.js",
+    "check": "node --test test/*.test.js && node -c server.js public/script.js public/js/*.js"
   },
   "dependencies": {
     "axios": "^1.7.0",

@@ -10,7 +10,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="format-detection" content="telephone=no">
   <meta name="description" content="Panel de Supervisión de Campo en tiempo real — Clima Social">
-  <title>Clima Social · Encuesta Cantonal Antonio Ante 2026</title>
+  <title>Clima Social · Supervisión Territorial</title>
   <link rel="icon" type="image/png" href="assets/icono.png">
   <link rel="manifest" href="manifest.webmanifest">
 
@@ -25,19 +25,19 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
 
   <!-- Preload Cartografía Clave (Caché optimizada para móviles) -->
-  <link rel="preload" href="assets/parroquias.geojson?v=110.0.9" as="fetch" crossorigin>
-  <link rel="preload" href="assets/sectores_censales.geojson?v=110.0.9" as="fetch" crossorigin>
+  <link rel="preload" href="assets/parroquias.geojson?v=80.0.0" as="fetch" crossorigin>
+  <link rel="preload" href="assets/sectores_censales.geojson?v=80.0.0" as="fetch" crossorigin>
 
   <!-- MapLibre GL CSS (Aceleración WebGL Nativa en GPU) -->
   <link rel="stylesheet" href="libs/maplibre-gl.css" />
 
   <!-- Estilos del Dashboard -->
-  <link rel="stylesheet" href="style.css?v=110.0.9">
+  <link rel="stylesheet" href="style.css?v=85.0.0">
 </head>
 <body>
 
-  <!-- ===== STANDBY OVERLAY (ESTADO EN ESPERA / REPOSO) ===== -->
-  <div class="cs-standby" id="standbyOverlay" style="display:flex;">
+    <!-- ===== STANDBY OVERLAY (ESTADO EN ESPERA / REPOSO) ===== -->
+  <div class="cs-standby" id="standbyOverlay" style="display:none;">
     <div class="cs-standby__card">
       <div class="cs-standby__logo-wrap" id="standbyLogoBtn" role="button" tabindex="0" title="Clima Social · Toca 3 veces para inspeccionar cartografía">
         <img src="assets/01_ClimaSocial_Horizontal_Transparente.png" onerror="this.onerror=null; this.src='assets/01_Logo_Clima_Social_Horizontal_Oficial.svg';" alt="Clima Social" class="cs-standby__logo">
@@ -95,7 +95,7 @@
         </a>
         <div class="cs-header__divider"></div>
         <div class="cs-header__title-group">
-          <h1 class="cs-header__title" id="tituloProyecto">Encuesta Cantonal Antonio Ante 2026</h1>
+          <h1 class="cs-header__title" id="tituloProyecto">Movilidad Movidelnor · Imbabura 2026</h1>
           <span class="cs-header__live-badge" id="badgeConexion">
             <span class="cs-header__live-dot"></span>
             <span id="badgeTexto">En vivo</span>
@@ -142,7 +142,7 @@
         </div>
         <div class="cs-kpi-bottom">
           <span class="cs-kpi-badge">Total Recolectadas</span>
-          <span class="cs-kpi-sub" id="kpiMeta">Meta: 310 (Carchi)</span>
+          <span class="cs-kpi-sub" id="kpiMeta">Meta: 1.900 (Imbabura)</span>
         </div>
         <div class="cs-progress-bar"><div class="cs-progress-bar__fill" id="barraAvance" style="width:0%"></div></div>
       </div>
@@ -188,7 +188,7 @@
         </div>
         <div class="cs-kpi-bottom">
           <span class="cs-kpi-badge" id="kpiTituloAvance">Avance General</span>
-          <span class="cs-kpi-sub" id="kpiSubAvance">Cumplimiento cantonal (300)</span>
+          <span class="cs-kpi-sub" id="kpiSubAvance">Cumplimiento cantonal (500)</span>
         </div>
       </div>
 
@@ -232,19 +232,6 @@
             <div class="cs-select-wrap">
               <select id="cantonFilter" class="cs-select">
                 <option value="Todos">Todos los cantones</option>
-              </select>
-            </div>
-          </div>
-
-          <!-- Circunscripción -->
-          <div class="cs-ribbon-field" id="wrapCircunscripcionFilter">
-            <label for="circunscripcionFilter" class="cs-field-label">
-              <svg class="cs-icon cs-icon--xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
-              <span>Circunscripción</span>
-            </label>
-            <div class="cs-select-wrap">
-              <select id="circunscripcionFilter" class="cs-select">
-                <option value="Todas">Todas las circunscripciones</option>
               </select>
             </div>
           </div>
@@ -334,13 +321,13 @@
             <div class="cs-map-top-row">
               <!-- Barra Flotante de Control de Capas (Prender y Apagar) -->
               <div class="cs-map-layer-toggles" id="mapLayerToggles" aria-label="Capas del Mapa">
-                <button type="button" class="cs-layer-pill active" id="toggleParroquias" data-layer-group="parroquias" title="Límites Parroquiales de Estudio (6)">
+                <button type="button" class="cs-layer-pill active" id="toggleParroquias" data-layer-group="parroquias" title="Límites Parroquiales de Estudio (9)">
                   <span class="cs-layer-pill__dot" style="background: #2563eb;"></span>
-                  <span id="lblToggleParroquias">Parroquias (6)</span>
+                  <span id="lblToggleParroquias">Parroquias (9)</span>
                 </button>
-                <button type="button" class="cs-layer-pill active" id="toggleSectores" data-layer-group="sectores" title="Sectores Censales Sorteados (30)">
+                <button type="button" class="cs-layer-pill active" id="toggleSectores" data-layer-group="sectores" title="Sectores Censales Sorteados (50)">
                   <span class="cs-layer-pill__dot" style="background: #3b82f6;"></span>
-                  <span id="lblToggleSectores">Sectores (30)</span>
+                  <span id="lblToggleSectores">Sectores (50)</span>
                 </button>
                 <button type="button" class="cs-layer-pill cs-layer-pill--pendientes" id="toggleSoloPendientes" title="Filtrar únicamente sectores pendientes de completar (<10 encuestas)">
                   <span class="cs-layer-pill__dot" style="background: #f59e0b;"></span>
@@ -520,7 +507,10 @@
 
   <!-- ===== SCRIPTS ===== -->
   <script src="libs/maplibre-gl.js"></script>
-  <script src="script.js?v=110.0.13"></script>
+  <script src="js/tipologias.js?v=1.0.8"></script>
+  <script src="js/kobo-parser.js?v=1.0.8"></script>
+  <script src="js/auditoria.js?v=1.0.8"></script>
+  <script src="script.js?v=1.0.8"></script>
   <script>
     if ('serviceWorker' in navigator) {
       let refreshing = false;
@@ -536,13 +526,13 @@
         if ('caches' in window) {
           caches.keys().then(names => {
             names.forEach(name => {
-              if (name !== 'clima-social-v110-0-13') {
+              if (name !== 'clima-social-ibarra-2026-v2') {
                 caches.delete(name);
               }
             });
           });
         }
-        navigator.serviceWorker.register('/service-worker.js?v=110.0.13').then(reg => {
+        navigator.serviceWorker.register('/service-worker.js?v=73.5.0').then(reg => {
           if (!reg) return;
           if (reg.waiting) {
             reg.waiting.postMessage({ type: 'SKIP_WAITING' });

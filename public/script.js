@@ -1141,8 +1141,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // Umbral estricto: encuestas completadas en menos de 4 minutos
-            const umbralMin = 4.0;
-            const esAtipica = (duracionMin !== null && duracionMin > 0 && duracionMin < umbralMin);
+            const umbralMin = (window.CS_Auditoria && window.CS_Auditoria.UMBRAL_DURACION_ATIPICA_MINUTOS) || 4.0;
+            const esAtipica = window.CS_Auditoria
+                ? window.CS_Auditoria.esDuracionAtipica(duracionMin)
+                : (duracionMin !== null && duracionMin > 0 && duracionMin < umbralMin);
             enc._duracionMin = duracionMin;
             enc._umbralMin = umbralMin;
             enc._esAtipica = esAtipica;
@@ -4938,7 +4940,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // =========================================================================
     // PIRÁMIDE POBLACIONAL (SEXO Y GRUPOS DE EDAD) - ULTRA LIGERA
     // =========================================================================
-    const COHORTES_PIRAMIDE = [
+    const COHORTES_PIRAMIDE = (window.CS_Tipologias && window.CS_Tipologias.COHORTES_PIRAMIDE) || [
         { id: '61+', label: '61 y más', min: 61, max: 125 },
         { id: '45-60', label: '45-60', min: 45, max: 60 },
         { id: '30-44', label: '30-44', min: 30, max: 44 },
@@ -4946,7 +4948,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { id: '16-19', label: '16-19', min: 16, max: 19 }
     ];
 
-    const CUOTAS_TIPOLOGIA = {
+    const CUOTAS_TIPOLOGIA = (window.CS_Tipologias && window.CS_Tipologias.CUOTAS_TIPOLOGIA) || {
         'A': { '16-19': { H: 0, M: 2 }, '20-29': { H: 1, M: 1 }, '30-44': { H: 2, M: 1 }, '45-60': { H: 1, M: 1 }, '61+': { H: 1, M: 0 } },
         'B': { '16-19': { H: 0, M: 2 }, '20-29': { H: 2, M: 0 }, '30-44': { H: 3, M: 0 }, '45-60': { H: 0, M: 2 }, '61+': { H: 0, M: 1 } },
         'C': { '16-19': { H: 2, M: 0 }, '20-29': { H: 1, M: 1 }, '30-44': { H: 1, M: 2 }, '45-60': { H: 1, M: 1 }, '61+': { H: 0, M: 1 } },
@@ -4959,6 +4961,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function extraerSexoYEdad(e) {
         if (!e) return { sexo: null, edad: null };
+        if (window.CS_KoboParser && typeof window.CS_KoboParser.extraerSexoYEdad === 'function') {
+            return window.CS_KoboParser.extraerSexoYEdad(e);
+        }
 
         // 1. Sexo / Género: P1 es "1. ¿CUÁL ES SU GÉNERO?" (1=Masculino/Hombre, 2=Femenino/Mujer)
         let sexo = null;
