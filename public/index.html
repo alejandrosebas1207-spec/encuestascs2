@@ -520,7 +520,7 @@
 
   <!-- ===== SCRIPTS ===== -->
   <script src="libs/maplibre-gl.js"></script>
-  <script src="script.js?v=110.0.12"></script>
+  <script src="script.js?v=110.0.13"></script>
   <script>
     if ('serviceWorker' in navigator) {
       let refreshing = false;
@@ -536,13 +536,13 @@
         if ('caches' in window) {
           caches.keys().then(names => {
             names.forEach(name => {
-              if (name !== 'clima-social-v110-12-standby') {
+              if (name !== 'clima-social-v110-0-13') {
                 caches.delete(name);
               }
             });
           });
         }
-        navigator.serviceWorker.register('/service-worker.js?v=110.0.12').then(reg => {
+        navigator.serviceWorker.register('/service-worker.js?v=110.0.13').then(reg => {
           if (!reg) return;
           if (reg.waiting) {
             reg.waiting.postMessage({ type: 'SKIP_WAITING' });
