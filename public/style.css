@@ -3776,3 +3776,56 @@ body.modo-oscuro .cs-alert-badge {
 .cs-standby__logo-wrap:active {
   transform: scale(0.96);
 }
+
+/* =========================================================================
+   CONTROLES DE ZOOM MAPLIBRE GL (PREMIUM & ACCESIBLE)
+   ========================================================================= */
+.maplibregl-ctrl-top-right {
+  top: 55px !important;
+  right: 12px !important;
+  z-index: 30 !important;
+}
+
+.maplibregl-ctrl-top-right .maplibregl-ctrl {
+  margin: 0 !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12) !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(226, 232, 240, 0.9) !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+}
+
+.maplibregl-ctrl-group button {
+  width: 38px !important;
+  height: 38px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  transition: background-color 0.15s ease !important;
+}
+
+.maplibregl-ctrl-group button:hover {
+  background-color: rgba(241, 245, 249, 1) !important;
+}
+
+.maplibregl-ctrl-group button:active {
+  background-color: rgba(226, 232, 240, 1) !important;
+}
+
+body.modo-oscuro .maplibregl-ctrl-top-right .maplibregl-ctrl {
+  background: rgba(30, 41, 59, 0.95) !important;
+  border-color: #334155 !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45) !important;
+}
+
+body.modo-oscuro .maplibregl-ctrl-group button {
+  color: #f1f5f9 !important;
+}
+
+body.modo-oscuro .maplibregl-ctrl-group button:hover {
+  background-color: rgba(51, 65, 85, 1) !important;
+}
+

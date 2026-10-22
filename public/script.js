@@ -2886,7 +2886,7 @@ document.addEventListener('DOMContentLoaded', () => {
             cooperativeGestures: false
         });
 
-        map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-left');
+        map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
         window.map = map;
 
         // Asegurar gestos de navegación y paneo activos en todos los dispositivos
@@ -2917,93 +2917,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         } catch (errWebGL) {
             console.warn('[WebGL Watchdog]', errWebGL);
-        }
-
-        // =====================================================================
-        // CONTROLADOR UNIVERSAL DE GESTOS TÁCTILES Y DE RATÓN
-        // Garantiza paneo y navegación 100% fluidos en iOS Safari, Android Chrome y PC
-        // =====================================================================
-        const mapContainer = document.getElementById('map');
-        if (mapContainer) {
-            let isTouching = false;
-            let lastTouchX = 0, lastTouchY = 0;
-            let pinchInitialDist = 0;
-            let isMouseDown = false;
-            let lastMouseX = 0, lastMouseY = 0;
-
-            // --- Soporte Táctil (Móvil / Tablet) ---
-            mapContainer.addEventListener('touchstart', (e) => {
-                if (e.touches.length === 1) {
-                    isTouching = true;
-                    lastTouchX = e.touches[0].clientX;
-                    lastTouchY = e.touches[0].clientY;
-                } else if (e.touches.length === 2) {
-                    isTouching = true;
-                    pinchInitialDist = Math.hypot(
-                        e.touches[0].clientX - e.touches[1].clientX,
-                        e.touches[0].clientY - e.touches[1].clientY
-                    );
-                }
-            }, { passive: true });
-
-            mapContainer.addEventListener('touchmove', (e) => {
-                if (!isTouching || !map) return;
-
-                // Bloquea estrictamente el scroll vertical del navegador para que MapLibre reciba el gesto
-                if (e.cancelable) {
-                    e.preventDefault();
-                }
-
-                if (e.touches.length === 1) {
-                    const curX = e.touches[0].clientX;
-                    const curY = e.touches[0].clientY;
-                    const dx = curX - lastTouchX;
-                    const dy = curY - lastTouchY;
-
-                    // Si el handler interno de MapLibre está pausado por el SO, forzamos paneo directo
-                    if (!map.dragPan.isActive()) {
-                        map.panBy([-dx, -dy], { duration: 0 });
-                    }
-                    lastTouchX = curX;
-                    lastTouchY = curY;
-                } else if (e.touches.length === 2 && pinchInitialDist > 0) {
-                    const curDist = Math.hypot(
-                        e.touches[0].clientX - e.touches[1].clientX,
-                        e.touches[0].clientY - e.touches[1].clientY
-                    );
-                    const zoomDelta = Math.log2(curDist / pinchInitialDist);
-                    if (Math.abs(zoomDelta) > 0.03 && !map.touchZoomRotate.isActive()) {
-                        map.setZoom(map.getZoom() + zoomDelta * 0.12);
-                        pinchInitialDist = curDist;
-                    }
-                }
-            }, { passive: false });
-
-            const endTouch = () => { isTouching = false; pinchInitialDist = 0; };
-            mapContainer.addEventListener('touchend', endTouch, { passive: true });
-            mapContainer.addEventListener('touchcancel', endTouch, { passive: true });
-
-            // --- Soporte Ratón / Trackpad (PC / Laptop) ---
-            mapContainer.addEventListener('mousedown', (e) => {
-                if (e.button === 0) {
-                    isMouseDown = true;
-                    lastMouseX = e.clientX;
-                    lastMouseY = e.clientY;
-                }
-            });
-
-            window.addEventListener('mousemove', (e) => {
-                if (!isMouseDown || !map) return;
-                const dx = e.clientX - lastMouseX;
-                const dy = e.clientY - lastMouseY;
-                if (!map.dragPan.isActive()) {
-                    map.panBy([-dx, -dy], { duration: 0 });
-                }
-                lastMouseX = e.clientX;
-                lastMouseY = e.clientY;
-            });
-
-            window.addEventListener('mouseup', () => { isMouseDown = false; });
         }
 
         map.on('error', (e) => {
@@ -3617,7 +3530,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const par = norm(p.parroquia || p.PARROQUIA || '');
                 const c = norm(p.canton || p.CANTON || '');
                 const parMatch = (par === target || par.includes(target) || target.includes(par));
-                const canMatch = !cantActivo || (c === cantActivo);
+                const canMatch = !cantActivo || !c || (c === cantActivo) || (c.includes(cantActivo)) || (cantActivo.includes(c));
                 if (parMatch && canMatch) {
                     const b = p.bbox || (f.geometry ? calcularBBOX(f.geometry) : null);
                     if (b) {
@@ -3648,7 +3561,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const n = norm(p.nombre || p.PARROQUIA || p.name || '');
                 const c = norm(p.canton || p.CANTON || '');
                 const parMatch = (n === target || n.includes(target) || target.includes(n));
-                const canMatch = !cantActivo || (c === cantActivo || c.includes(cantActivo) || cantActivo.includes(c));
+                const canMatch = !cantActivo || !c || (c === cantActivo || c.includes(cantActivo) || cantActivo.includes(c));
                 return parMatch && canMatch;
             });
             if (feat) {
@@ -4007,16 +3920,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         });
                     }
                 }
-            } else if (AppState.circunscripcionSeleccionada && AppState.circunscripcionSeleccionada !== 'Todas') {
-                // Nivel 2.5: Zoom a la Circunscripción seleccionada
-                const bboxCirc = obtenerBboxCircunscripcion(AppState.circunscripcionSeleccionada);
-                if (bboxCirc) {
-                    map.fitBounds(bboxCirc, {
-                        padding: { top: 45, bottom: 45, left: 45, right: 45 },
-                        maxZoom: 14.5,
-                        duration: 850
-                    });
-                }
             } else if (AppState.parroquiaSeleccionada && AppState.parroquiaSeleccionada !== 'Todas') {
                 // Nivel 2: Zoom a la Parroquia seleccionada (focalizado en sus sectores censales)
                 const bboxPar = obtenerBboxParroquia(AppState.parroquiaSeleccionada);
@@ -4024,6 +3927,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     map.fitBounds(bboxPar, {
                         padding: { top: 50, bottom: 45, left: 45, right: 45 },
                         maxZoom: 15.5,
+                        duration: 850
+                    });
+                }
+            } else if (AppState.circunscripcionSeleccionada && AppState.circunscripcionSeleccionada !== 'Todas') {
+                // Nivel 2.5: Zoom a la Circunscripción seleccionada
+                const bboxCirc = obtenerBboxCircunscripcion(AppState.circunscripcionSeleccionada);
+                if (bboxCirc) {
+                    map.fitBounds(bboxCirc, {
+                        padding: { top: 45, bottom: 45, left: 45, right: 45 },
+                        maxZoom: 14.5,
                         duration: 850
                     });
                 }
