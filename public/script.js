@@ -2098,8 +2098,26 @@ document.addEventListener('DOMContentLoaded', () => {
         // 3. Selector Parroquias (Filtrado en cascada por Cantón y Sector)
         if (UI.parroquiaFilter) {
             const actualPar = AppState.parroquiaSeleccionada || 'Todas';
-            UI.parroquiaFilter.innerHTML = '<option value="Todas">Todas las parroquias</option>';
             const normStr = (s) => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toUpperCase().trim();
+
+            // Mapeo preciso de cantidad de puntos/sectores de muestra por parroquia
+            const puntosPorParroquia = new Map();
+            let totalPuntosMuestra = 0;
+            if (AppState.sectoresGeojson && AppState.sectoresGeojson.features) {
+                AppState.sectoresGeojson.features.forEach(f => {
+                    const p = f.properties || {};
+                    const parNom = normStr(p.parroquia || p.PARROQUIA || '');
+                    if (parNom) {
+                        puntosPorParroquia.set(parNom, (puntosPorParroquia.get(parNom) || 0) + 1);
+                        totalPuntosMuestra++;
+                    }
+                });
+            }
+
+            const lblTodas = totalPuntosMuestra > 0 
+                ? `Todas las parroquias (${totalPuntosMuestra})` 
+                : 'Todas las parroquias';
+            UI.parroquiaFilter.innerHTML = `<option value="Todas">${lblTodas}</option>`;
             
             let parList = [];
             const cantActivo = AppState.cantonSeleccionado;
@@ -2138,13 +2156,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
+            // Si aún no hay parroquias en parList (o en caso de geometrías de muestra independientes), añadir las que tengan puntos de muestra
+            puntosPorParroquia.forEach((count, parNom) => {
+                if (!parList.some(item => normStr(item) === parNom)) {
+                    parList.push(parNom);
+                }
+            });
+
             parList.sort((a, b) => a.localeCompare(b, 'es'));
             const frag = document.createDocumentFragment();
             parList.forEach(p => {
                 const opt = document.createElement('option');
                 opt.value = p;
-                const count = parroquias.get(p) || 0;
-                opt.textContent = count > 0 ? `${p} (${count} enc.)` : p;
+                const normP = normStr(p);
+                const numPuntos = puntosPorParroquia.get(normP) || 0;
+                opt.textContent = numPuntos > 0 ? `${p} (${numPuntos})` : p;
                 frag.appendChild(opt);
             });
             UI.parroquiaFilter.appendChild(frag);
@@ -3547,9 +3573,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
             if (encontrados > 0 && minX !== Infinity) {
-                // Margen suave del 10%
-                const dx = (maxX - minX) * 0.10 || 0.003;
-                const dy = (maxY - minY) * 0.10 || 0.003;
+                const spanX = maxX - minX;
+                const spanY = maxY - minY;
+                const dx = Math.max(spanX * 0.20, 0.007);
+                const dy = Math.max(spanY * 0.20, 0.007);
                 return [[minX - dx, minY - dy], [maxX + dx, maxY + dy]];
             }
         }
@@ -3743,7 +3770,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // 1. Polígonos y Puntos de Muestreo de Sectores Censales
-        if (map.getLayer('sectores-puntos-circle') || map.getLayer('sectores-fill')) {
+        if (map.getLayer('sectores-point') || map.getLayer('sectores-fill')) {
             const barra = document.getElementById('barraSectorActivo');
             const titulo = document.getElementById('sectorActivoTitulo');
             const btnGmaps = document.getElementById('btnRutaGoogleMaps');
@@ -3764,7 +3791,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 filterPendientes = ['in', ['to-string', ['coalesce', ['get', 'sc_key'], '']], ['literal', keysPendientes]];
             }
 
-            // Filtro espacial base por Cantón o Parroquia
+            // Filtro espacial base por Cantón o Parroquia (Regla Inviolable de Aislamiento Parroquial)
             let baseTerritorialFilter = null;
             if (AppState.parroquiaSeleccionada && AppState.parroquiaSeleccionada !== 'Todas') {
                 const targetPar = String(AppState.parroquiaSeleccionada).trim().toUpperCase();
@@ -3772,14 +3799,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (targetPar.includes('YUNGANZA')) {
                     variantesPar.push('YUNGANZA / EL ROSARIO', 'YUNGANZA /EL ROSARIO');
                 }
-                const matchParExpr = [
+                baseTerritorialFilter = [
                     'in',
-                    ['upcase', ['coalesce', ['get', 'parroquia'], ['get', 'PARROQUIA'], '']],
+                    ['upcase', ['coalesce', ['get', 'parroquia'], ['get', 'PARROQUIA'], ['get', 'nombre'], '']],
                     ['literal', variantesPar]
                 ];
-                baseTerritorialFilter = (AppState.cantonSeleccionado && AppState.cantonSeleccionado !== 'Todos')
-                    ? ['all', ['==', ['upcase', ['coalesce', ['get', 'canton'], ['get', 'CANTON'], '']], AppState.cantonSeleccionado.toUpperCase()], matchParExpr]
-                    : matchParExpr;
             } else if (AppState.circunscripcionSeleccionada && AppState.circunscripcionSeleccionada !== 'Todas') {
                 const targetCirc = normCircunscripcion(AppState.circunscripcionSeleccionada);
                 const variantesCirc = obtenerVariantesCircunscripcion(AppState.circunscripcionSeleccionada);
@@ -3801,6 +3825,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const filterGeneral = (baseTerritorialFilter && filterPendientes)
                 ? ['all', baseTerritorialFilter, filterPendientes]
                 : (baseTerritorialFilter || filterPendientes || null);
+
+            const filterPoly = filterGeneral 
+                ? ['all', ['any', ['==', ['geometry-type'], 'Polygon'], ['==', ['geometry-type'], 'MultiPolygon']], filterGeneral] 
+                : ['any', ['==', ['geometry-type'], 'Polygon'], ['==', ['geometry-type'], 'MultiPolygon']];
+
+            const filterPoint = filterGeneral 
+                ? ['all', ['==', ['geometry-type'], 'Point'], filterGeneral] 
+                : ['==', ['geometry-type'], 'Point'];
 
             if (AppState.sectorSeleccionado !== 'Todos') {
                 // Nivel 1: Sector específico activo
@@ -3825,10 +3857,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 })();
 
                 if (map.getLayer('sectores-fill')) {
-                    map.setFilter('sectores-fill', filterGeneral);
+                    map.setFilter('sectores-fill', filterPoly);
                 }
                 if (map.getLayer('sectores-line')) {
-                    map.setFilter('sectores-line', filterGeneral);
+                    map.setFilter('sectores-line', filterPoly);
+                }
+                if (map.getLayer('sectores-point')) {
+                    map.setFilter('sectores-point', filterPoint);
                 }
                 if (map.getLayer('sectores-label')) {
                     map.setFilter('sectores-label', filterGeneral);
@@ -3868,13 +3903,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 if (map.getLayer('sectores-fill')) {
-                    map.setFilter('sectores-fill', filterGeneral);
+                    map.setFilter('sectores-fill', filterPoly);
                     map.setPaintProperty('sectores-fill', 'fill-color', EXPR_SECTORES_FILL);
                     map.setPaintProperty('sectores-fill', 'fill-opacity', 0.20);
                 }
 
                 if (map.getLayer('sectores-line')) {
-                    map.setFilter('sectores-line', filterGeneral);
+                    map.setFilter('sectores-line', filterPoly);
                     map.setPaintProperty('sectores-line', 'line-color', EXPR_SECTORES_LINE);
                     map.setPaintProperty('sectores-line', 'line-width', [
                         'interpolate', ['linear'], ['zoom'],
@@ -3885,12 +3920,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     map.setPaintProperty('sectores-line', 'line-opacity', 1.0);
                 }
 
+                if (map.getLayer('sectores-point')) {
+                    map.setFilter('sectores-point', filterPoint);
+                }
+
                 if (map.getLayer('sectores-label')) {
                     map.setFilter('sectores-label', filterGeneral);
                     map.setPaintProperty('sectores-label', 'text-color', EXPR_SECTORES_LABEL);
                 }
             }
         }
+        // =====================================================================
         // 2. ZOOM AUTOMÁTICO INTELIGENTE EN CASCADA SEGÚN FILTROS ACTIVOS
         // =====================================================================
         if (ajustarCamara && map) {
@@ -3925,8 +3965,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const bboxPar = obtenerBboxParroquia(AppState.parroquiaSeleccionada);
                 if (bboxPar) {
                     map.fitBounds(bboxPar, {
-                        padding: { top: 50, bottom: 45, left: 45, right: 45 },
-                        maxZoom: 15.5,
+                        padding: { top: 60, bottom: 55, left: 55, right: 55 },
+                        maxZoom: 16.0,
                         duration: 850
                     });
                 }
