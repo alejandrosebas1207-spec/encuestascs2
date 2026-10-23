@@ -15,12 +15,12 @@ services:
       - key: API_TOKEN
         sync: false
       - key: NOMBRE_PROYECTO
-        value: "Encuesta Cantonal Antonio Ante 2026"
+        value: "Encuesta Cantonal Lago Agrio"
       - key: CAMPO_ENCUESTADOR
         value: codencu
       - key: CAMPO_SUPERVISOR
         value: codsup
       - key: META_ENCUESTAS
-        value: "300"
+        value: "700"
       - key: CACHE_TTL_SEGUNDOS
-        value: 90
+        value: "30"

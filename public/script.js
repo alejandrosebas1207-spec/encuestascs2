@@ -649,7 +649,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (encuesta[nombreCorto] !== undefined) return encuesta[nombreCorto];
         
         // Fast paths directos para rendimiento instantáneo
-        if ((nombreCorto === 'sc' || nombreCorto === 'p_ref') && (encuesta.sc !== undefined || encuesta.p_ref !== undefined)) return encuesta.sc !== undefined ? encuesta.sc : encuesta.p_ref;
+        if ((nombreCorto === 'sc' || nombreCorto === 'p_ref' || nombreCorto === 'pr') && (encuesta.sc !== undefined || encuesta.p_ref !== undefined || encuesta.pr !== undefined)) return encuesta.sc !== undefined ? encuesta.sc : (encuesta.p_ref !== undefined ? encuesta.p_ref : encuesta.pr);
         if ((nombreCorto === 'tipologia' || nombreCorto === 'TIPOLOGIA') && encuesta.tipologia !== undefined) return encuesta.tipologia;
         if ((nombreCorto === 'parroquia' || nombreCorto === 'PARROQUIA' || nombreCorto === 'nom_parroquia') && encuesta.parroquia !== undefined) return encuesta.parroquia;
         if ((nombreCorto === 'barrio' || nombreCorto === 'BARRIO_O_SECTOR') && encuesta.barrio !== undefined) return encuesta.barrio;
@@ -702,6 +702,8 @@ document.addEventListener('DOMContentLoaded', () => {
             campo(encuesta, 'seccensal') ||
             campo(encuesta, 'sc') ||
             campo(encuesta, 'p_ref') ||
+            campo(encuesta, 'pr') ||
+            campo(encuesta, 'punto_ref') ||
             encuesta.sec_anm ||
             ''
         ).trim();

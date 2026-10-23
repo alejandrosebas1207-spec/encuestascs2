@@ -1,6 +1,6 @@
 /* Modo de contingencia Clima Social: conserva aplicación base y cartografía.
  * No almacena respuestas de Kobo ni coordenadas de encuestas en el teléfono. */
-const CACHE_NAME = 'clima-social-nueva-loja-1792690700';
+const CACHE_NAME = 'clima-social-lago-agrio-1792691400';
 const APP_SHELL = [
   '/',
   '/index.html',

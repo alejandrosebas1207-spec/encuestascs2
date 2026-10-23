@@ -1,7 +1,7 @@
 {
   "estado": "ACTIVO",
-  "version": "1.1.0",
-  "proyecto": "Encuesta Nueva Loja",
+  "version": "1.1.1",
+  "proyecto": "Encuesta Cantonal Lago Agrio",
   "canton": "Lago Agrio",
   "provincia": "Sucumbíos",
   "modalidad": "puntos",
@@ -17,12 +17,24 @@
     ]
   ],
   "kobo": {
-    "asset_id": "",
-    "campo_encuestador": "cenc",
-    "campo_supervisor": "csup",
+    "asset_id": "aMgqGNgav47fEVxPMMpw6L",
+    "campo_encuestador": "codencu",
+    "campo_supervisor": "codsup",
     "choices_parroquias": {
+      "1": "NUEVA LOJA",
+      "Nueva Loja (Urbana)": "NUEVA LOJA",
       "NUEVA LOJA": "NUEVA LOJA",
       "5710": "NUEVA LOJA"
+    },
+    "choices_tipologias": {
+      "a": "A",
+      "b": "B",
+      "c": "C",
+      "d": "D",
+      "e": "E",
+      "f": "F",
+      "g": "G",
+      "h": "H"
     }
   },
   "equipo": {

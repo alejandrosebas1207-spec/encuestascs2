@@ -234,7 +234,7 @@ function normalizarEncuesta(raw, params) {
     const noConsent = rawConsen === "2" || String(rawConsen).trim().toLowerCase() === "no" || String(rawConsen).trim().toLowerCase() === "rechaza";
     const consentimiento = noConsent ? "NO" : "SI";
 
-    const sc = extraerValor(raw, ["seccensal", "sc", "sectorcen", "p_ref", "codigo_sc", "sector_censal", "sector", "punto", "num_muestra"]);
+    const sc = extraerValor(raw, ["seccensal", "sc", "sectorcen", "p_ref", "pr", "punto_ref", "codigo_sc", "sector_censal", "sector", "punto", "num_muestra"]);
     const rawTipol = String(extraerValor(raw, ["tipol", "tipologia", "TIPOLOGIA", "tipo_sc"]) || "").trim().toLowerCase();
     const tipologia = params.choicesTipologias[rawTipol] || rawTipol.toUpperCase();
     const barrio = extraerValor(raw, ["barrio", "barr", "BARRIO_O_SECTOR", "sector", "barrio_sector"]);
