@@ -1,19 +1,19 @@
 {
   "estado": "ACTIVO",
-  "version": "1.0.9",
-  "proyecto": "Encuesta Cantonal Lago Agrio",
+  "version": "1.1.0",
+  "proyecto": "Encuesta Nueva Loja",
   "canton": "Lago Agrio",
   "provincia": "Sucumbíos",
-  "modalidad": "sectores",
-  "meta": 600,
+  "modalidad": "puntos",
+  "meta": 700,
   "bounds": [
     [
-      -77.23208,
-      -0.13263
+      -76.95686,
+      -0.01845
     ],
     [
-      -76.2492,
-      0.39052
+      -76.76864,
+      0.15947
     ]
   ],
   "kobo": {
@@ -21,20 +21,6 @@
     "campo_encuestador": "cenc",
     "campo_supervisor": "csup",
     "choices_parroquias": {
-      "DURENO": "DURENO",
-      "1045": "DURENO",
-      "GENERAL FARFAN": "GENERAL FARFAN",
-      "1330": "GENERAL FARFAN",
-      "EL ENO": "EL ENO",
-      "1285": "EL ENO",
-      "PACAYACU": "PACAYACU",
-      "1290": "PACAYACU",
-      "JAMBELI": "JAMBELI",
-      "1795": "JAMBELI",
-      "SANTA CECILIA": "SANTA CECILIA",
-      "1790": "SANTA CECILIA",
-      "10 DE AGOSTO": "10 DE AGOSTO",
-      "4625": "10 DE AGOSTO",
       "NUEVA LOJA": "NUEVA LOJA",
       "5710": "NUEVA LOJA"
     }
@@ -42,5 +28,6 @@
   "equipo": {
     "supervisores": {},
     "encuestadores": {}
-  }
+  },
+  "parroquia": "Nueva Loja"
 }

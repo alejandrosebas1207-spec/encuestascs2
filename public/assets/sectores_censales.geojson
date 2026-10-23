@@ -4,171 +4,43 @@
     {
       "type": "Feature",
       "geometry": {
-        "type": "Polygon",
+        "type": "Point",
         "coordinates": [
-          [
-            [
-              -76.87865,
-              0.1863
-            ],
-            [
-              -76.87807,
-              0.18648
-            ],
-            [
-              -76.87776,
-              0.1861
-            ],
-            [
-              -76.8775,
-              0.18634
-            ],
-            [
-              -76.87728,
-              0.18636
-            ],
-            [
-              -76.87698,
-              0.18602
-            ],
-            [
-              -76.87646,
-              0.18589
-            ],
-            [
-              -76.8762,
-              0.18486
-            ],
-            [
-              -76.87694,
-              0.18469
-            ],
-            [
-              -76.87696,
-              0.18455
-            ],
-            [
-              -76.87664,
-              0.18466
-            ],
-            [
-              -76.87655,
-              0.18458
-            ],
-            [
-              -76.87686,
-              0.18428
-            ],
-            [
-              -76.87698,
-              0.18381
-            ],
-            [
-              -76.87757,
-              0.18397
-            ],
-            [
-              -76.8786,
-              0.18349
-            ],
-            [
-              -76.87872,
-              0.18289
-            ],
-            [
-              -76.87894,
-              0.18266
-            ],
-            [
-              -76.87916,
-              0.18272
-            ],
-            [
-              -76.87931,
-              0.18306
-            ],
-            [
-              -76.8796,
-              0.18279
-            ],
-            [
-              -76.88139,
-              0.18283
-            ],
-            [
-              -76.88139,
-              0.18336
-            ],
-            [
-              -76.88193,
-              0.18398
-            ],
-            [
-              -76.88192,
-              0.18436
-            ],
-            [
-              -76.88221,
-              0.18435
-            ],
-            [
-              -76.88248,
-              0.18481
-            ],
-            [
-              -76.88248,
-              0.18531
-            ],
-            [
-              -76.88212,
-              0.1853
-            ],
-            [
-              -76.88221,
-              0.18577
-            ],
-            [
-              -76.87976,
-              0.18576
-            ],
-            [
-              -76.87902,
-              0.1866
-            ],
-            [
-              -76.87865,
-              0.1863
-            ]
-          ]
+          -76.93504,
+          0.08529
         ]
       },
       "properties": {
+        "CODIGO": 1,
+        "TIPOLOGIA": "A",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO LA JUVENTUD - PARQUE DE LA JUVENTUD Y VIA A QUITO",
+        "COD_ETIQUETA": "1 | A",
+        "ORDEN_RUTA": 1,
+        "SECTOR_INEC": "210150001001",
+        "LATITUD": 0.085285,
+        "LONGITUD": -76.935038,
+        "X_UTM": 952710.5,
+        "Y_UTM": 10009450.52,
         "num_muestra": 1,
-        "parroquia": "10 DE AGOSTO",
-        "circunscripcion": "CIRCUNSCRIPCION RURAL",
-        "tipologia": "A",
-        "casos": 10,
-        "etiqueta": "1 | A",
-        "orden_ruta": 1,
-        "sec_anm": "210160001001",
-        "cod_sector": "210160001001",
-        "pob_t": 234.0,
-        "v_pres": 71.0,
-        "area_km2": 0.1913,
-        "dens_viv": 371.14,
-        "dens_pob": 1223.21,
-        "ESTADO_CAMPO": "FACTIBLE",
         "sc": "1",
+        "etiqueta": "1 | A",
         "etiquetaSC": "1 | A",
+        "tipologia": "A",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
         "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO LA JUVENTUD - PARQUE DE LA JUVENTUD Y VIA A QUITO",
         "bbox": [
           [
-            -76.88248,
-            0.18266
+            -76.93504,
+            0.08529
           ],
           [
-            -76.8762,
-            0.1866
+            -76.93504,
+            0.08529
           ]
         ]
       }
@@ -176,211 +48,43 @@
     {
       "type": "Feature",
       "geometry": {
-        "type": "Polygon",
+        "type": "Point",
         "coordinates": [
-          [
-            [
-              -76.67859,
-              0.04716
-            ],
-            [
-              -76.67844,
-              0.04761
-            ],
-            [
-              -76.67742,
-              0.04817
-            ],
-            [
-              -76.67715,
-              0.04904
-            ],
-            [
-              -76.67844,
-              0.04971
-            ],
-            [
-              -76.67949,
-              0.05006
-            ],
-            [
-              -76.6797,
-              0.05045
-            ],
-            [
-              -76.68039,
-              0.05079
-            ],
-            [
-              -76.68041,
-              0.05103
-            ],
-            [
-              -76.67964,
-              0.05161
-            ],
-            [
-              -76.67963,
-              0.0527
-            ],
-            [
-              -76.67938,
-              0.05305
-            ],
-            [
-              -76.67876,
-              0.05342
-            ],
-            [
-              -76.67809,
-              0.05321
-            ],
-            [
-              -76.67776,
-              0.05357
-            ],
-            [
-              -76.67735,
-              0.05368
-            ],
-            [
-              -76.67742,
-              0.05388
-            ],
-            [
-              -76.67818,
-              0.05448
-            ],
-            [
-              -76.67817,
-              0.05478
-            ],
-            [
-              -76.67778,
-              0.05548
-            ],
-            [
-              -76.67794,
-              0.05588
-            ],
-            [
-              -76.67788,
-              0.05604
-            ],
-            [
-              -76.6777,
-              0.05596
-            ],
-            [
-              -76.67737,
-              0.05537
-            ],
-            [
-              -76.67701,
-              0.05527
-            ],
-            [
-              -76.67699,
-              0.05508
-            ],
-            [
-              -76.67659,
-              0.05478
-            ],
-            [
-              -76.67643,
-              0.05443
-            ],
-            [
-              -76.67622,
-              0.05443
-            ],
-            [
-              -76.67592,
-              0.05469
-            ],
-            [
-              -76.67572,
-              0.0555
-            ],
-            [
-              -76.67522,
-              0.05552
-            ],
-            [
-              -76.676,
-              0.05348
-            ],
-            [
-              -76.67629,
-              0.05359
-            ],
-            [
-              -76.6765,
-              0.05306
-            ],
-            [
-              -76.67719,
-              0.05335
-            ],
-            [
-              -76.6774,
-              0.05328
-            ],
-            [
-              -76.67816,
-              0.05149
-            ],
-            [
-              -76.67712,
-              0.051
-            ],
-            [
-              -76.67609,
-              0.04992
-            ],
-            [
-              -76.67695,
-              0.04983
-            ],
-            [
-              -76.67632,
-              0.04716
-            ],
-            [
-              -76.67859,
-              0.04716
-            ]
-          ]
+          -76.93086,
+          0.08132
         ]
       },
       "properties": {
+        "CODIGO": 2,
+        "TIPOLOGIA": "F",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO BELLAVISTA - PARQUE ECOLOGICO PERLA",
+        "COD_ETIQUETA": "2 | F",
+        "ORDEN_RUTA": 2,
+        "SECTOR_INEC": "210150001002",
+        "LATITUD": 0.081322,
+        "LONGITUD": -76.930856,
+        "X_UTM": 953177.12,
+        "Y_UTM": 10009011.34,
         "num_muestra": 2,
-        "parroquia": "DURENO",
-        "circunscripcion": "CIRCUNSCRIPCION RURAL",
-        "tipologia": "F",
-        "casos": 10,
-        "etiqueta": "2 | F",
-        "orden_ruta": 1,
-        "sec_anm": "210152001001",
-        "cod_sector": "210152001001",
-        "pob_t": 349.0,
-        "v_pres": 95.0,
-        "area_km2": 0.1891,
-        "dens_viv": 502.38,
-        "dens_pob": 1845.58,
-        "ESTADO_CAMPO": "FACTIBLE",
         "sc": "2",
+        "etiqueta": "2 | F",
         "etiquetaSC": "2 | F",
+        "tipologia": "F",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
         "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO BELLAVISTA - PARQUE ECOLOGICO PERLA",
         "bbox": [
           [
-            -76.68041,
-            0.04716
+            -76.93086,
+            0.08132
           ],
           [
-            -76.67522,
-            0.05604
+            -76.93086,
+            0.08132
           ]
         ]
       }
@@ -388,107 +92,43 @@
     {
       "type": "Feature",
       "geometry": {
-        "type": "Polygon",
+        "type": "Point",
         "coordinates": [
-          [
-            [
-              -76.6687,
-              0.04996
-            ],
-            [
-              -76.67632,
-              0.04716
-            ],
-            [
-              -76.67695,
-              0.04983
-            ],
-            [
-              -76.67609,
-              0.04992
-            ],
-            [
-              -76.67712,
-              0.051
-            ],
-            [
-              -76.67816,
-              0.05149
-            ],
-            [
-              -76.67743,
-              0.05325
-            ],
-            [
-              -76.67719,
-              0.05335
-            ],
-            [
-              -76.6765,
-              0.05306
-            ],
-            [
-              -76.67629,
-              0.05359
-            ],
-            [
-              -76.676,
-              0.05348
-            ],
-            [
-              -76.67522,
-              0.05552
-            ],
-            [
-              -76.67482,
-              0.05565
-            ],
-            [
-              -76.67468,
-              0.05552
-            ],
-            [
-              -76.67453,
-              0.05471
-            ],
-            [
-              -76.6687,
-              0.05049
-            ],
-            [
-              -76.6687,
-              0.04996
-            ]
-          ]
+          -76.93133,
+          0.07767
         ]
       },
       "properties": {
+        "CODIGO": 3,
+        "TIPOLOGIA": "C",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO LOS CEIBOS - CANCHA DEPORTIVA LOS CEIBOS",
+        "COD_ETIQUETA": "3 | C",
+        "ORDEN_RUTA": 3,
+        "SECTOR_INEC": "210150018003",
+        "LATITUD": 0.07767,
+        "LONGITUD": -76.93133,
+        "X_UTM": 953124.3,
+        "Y_UTM": 10008606.74,
         "num_muestra": 3,
-        "parroquia": "DURENO",
-        "circunscripcion": "CIRCUNSCRIPCION RURAL",
-        "tipologia": "C",
-        "casos": 10,
-        "etiqueta": "3 | C",
-        "orden_ruta": 2,
-        "sec_anm": "210152001002",
-        "cod_sector": "210152001002",
-        "pob_t": 400.0,
-        "v_pres": 124.0,
-        "area_km2": 0.4841,
-        "dens_viv": 256.15,
-        "dens_pob": 826.28,
-        "ESTADO_CAMPO": "FACTIBLE",
         "sc": "3",
+        "etiqueta": "3 | C",
         "etiquetaSC": "3 | C",
+        "tipologia": "C",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
         "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO LOS CEIBOS - CANCHA DEPORTIVA LOS CEIBOS",
         "bbox": [
           [
-            -76.67816,
-            0.04716
+            -76.93133,
+            0.07767
           ],
           [
-            -76.6687,
-            0.05565
+            -76.93133,
+            0.07767
           ]
         ]
       }
@@ -498,35 +138,41 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -76.87884,
-          -0.0666
+          -76.93221,
+          0.07208
         ]
       },
       "properties": {
+        "CODIGO": 4,
+        "TIPOLOGIA": "H",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO LOS CEIBOS - CALLE MANABI OCCIDENTAL",
+        "COD_ETIQUETA": "4 | H",
+        "ORDEN_RUTA": 4,
+        "SECTOR_INEC": "210150018001",
+        "LATITUD": 0.072078,
+        "LONGITUD": -76.932207,
+        "X_UTM": 953026.48,
+        "Y_UTM": 10007987.06,
         "num_muestra": 4,
-        "parroquia": "EL ENO",
-        "circunscripcion": "CIRCUNSCRIPCION RURAL",
-        "tipologia": "H",
-        "casos": 10,
-        "etiqueta": "4 | H",
-        "orden_ruta": 1,
-        "punto_referencial": "Parque Central y GAD Parroquial El Eno",
-        "x_utm": 958980.0,
-        "y_utm": 9992620.0,
-        "longitud": -76.878842,
-        "latitud": -0.066595,
         "sc": "4",
+        "etiqueta": "4 | H",
         "etiquetaSC": "4 | H",
+        "tipologia": "H",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
         "canton": "LAGO AGRIO",
-        "PUNTO_REFERENCIAL": "Parque Central y GAD Parroquial El Eno",
+        "punto_referencial": "BARRIO LOS CEIBOS - CALLE MANABI OCCIDENTAL",
         "bbox": [
           [
-            -76.87884,
-            -0.0666
+            -76.93221,
+            0.07208
           ],
           [
-            -76.87884,
-            -0.0666
+            -76.93221,
+            0.07208
           ]
         ]
       }
@@ -536,35 +182,41 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -76.88153,
-          -0.06768
+          -76.92234,
+          0.08012
         ]
       },
       "properties": {
+        "CODIGO": 5,
+        "TIPOLOGIA": "A",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO LOS CEIBOS - PLAZA COMUNAL",
+        "COD_ETIQUETA": "5 | A",
+        "ORDEN_RUTA": 5,
+        "SECTOR_INEC": "210150018004",
+        "LATITUD": 0.080118,
+        "LONGITUD": -76.922338,
+        "X_UTM": 954127.36,
+        "Y_UTM": 10008878.05,
         "num_muestra": 5,
-        "parroquia": "EL ENO",
-        "circunscripcion": "CIRCUNSCRIPCION RURAL",
-        "tipologia": "A",
-        "casos": 10,
-        "etiqueta": "5 | A",
-        "orden_ruta": 2,
-        "punto_referencial": "Eje Comercial y Vía Principal El Eno",
-        "x_utm": 958680.0,
-        "y_utm": 9992500.0,
-        "longitud": -76.881531,
-        "latitud": -0.067678,
         "sc": "5",
+        "etiqueta": "5 | A",
         "etiquetaSC": "5 | A",
+        "tipologia": "A",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
         "canton": "LAGO AGRIO",
-        "PUNTO_REFERENCIAL": "Eje Comercial y Vía Principal El Eno",
+        "punto_referencial": "BARRIO LOS CEIBOS - PLAZA COMUNAL",
         "bbox": [
           [
-            -76.88153,
-            -0.06768
+            -76.92234,
+            0.08012
           ],
           [
-            -76.88153,
-            -0.06768
+            -76.92234,
+            0.08012
           ]
         ]
       }
@@ -574,35 +226,41 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -76.87821,
-          -0.06389
+          -76.92101,
+          0.08372
         ]
       },
       "properties": {
+        "CODIGO": 6,
+        "TIPOLOGIA": "D",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO LA PRIMAVERA - CANCHA MULTIPLE Y CALLE MANABI",
+        "COD_ETIQUETA": "6 | D",
+        "ORDEN_RUTA": 6,
+        "SECTOR_INEC": "210150001004",
+        "LATITUD": 0.08372,
+        "LONGITUD": -76.921011,
+        "X_UTM": 954275.33,
+        "Y_UTM": 10009277.22,
         "num_muestra": 6,
-        "parroquia": "EL ENO",
-        "circunscripcion": "CIRCUNSCRIPCION RURAL",
-        "tipologia": "D",
-        "casos": 10,
-        "etiqueta": "6 | D",
-        "orden_ruta": 3,
-        "punto_referencial": "Barrio Norte - Canchas y Unidad Educativa",
-        "x_utm": 959050.0,
-        "y_utm": 9992920.0,
-        "longitud": -76.878215,
-        "latitud": -0.063888,
         "sc": "6",
+        "etiqueta": "6 | D",
         "etiquetaSC": "6 | D",
+        "tipologia": "D",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
         "canton": "LAGO AGRIO",
-        "PUNTO_REFERENCIAL": "Barrio Norte - Canchas y Unidad Educativa",
+        "punto_referencial": "BARRIO LA PRIMAVERA - CANCHA MULTIPLE Y CALLE MANABI",
         "bbox": [
           [
-            -76.87821,
-            -0.06389
+            -76.92101,
+            0.08372
           ],
           [
-            -76.87821,
-            -0.06389
+            -76.92101,
+            0.08372
           ]
         ]
       }
@@ -612,35 +270,41 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -76.87553,
-          -0.06876
+          -76.92539,
+          0.08409
         ]
       },
       "properties": {
+        "CODIGO": 7,
+        "TIPOLOGIA": "C",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO OCCIDENTAL - ENTRADA A PARQUE TURISTICO",
+        "COD_ETIQUETA": "7 | C",
+        "ORDEN_RUTA": 7,
+        "SECTOR_INEC": "210150001003",
+        "LATITUD": 0.08409,
+        "LONGITUD": -76.925392,
+        "X_UTM": 953786.66,
+        "Y_UTM": 10009318.15,
         "num_muestra": 7,
-        "parroquia": "EL ENO",
-        "circunscripcion": "CIRCUNSCRIPCION RURAL",
-        "tipologia": "C",
-        "casos": 10,
-        "etiqueta": "7 | C",
-        "orden_ruta": 4,
-        "punto_referencial": "Barrio Este - Centro de Salud y Plaza",
-        "x_utm": 959350.0,
-        "y_utm": 9992380.0,
-        "longitud": -76.875525,
-        "latitud": -0.068761,
         "sc": "7",
+        "etiqueta": "7 | C",
         "etiquetaSC": "7 | C",
+        "tipologia": "C",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
         "canton": "LAGO AGRIO",
-        "PUNTO_REFERENCIAL": "Barrio Este - Centro de Salud y Plaza",
+        "punto_referencial": "BARRIO OCCIDENTAL - ENTRADA A PARQUE TURISTICO",
         "bbox": [
           [
-            -76.87553,
-            -0.06876
+            -76.92539,
+            0.08409
           ],
           [
-            -76.87553,
-            -0.06876
+            -76.92539,
+            0.08409
           ]
         ]
       }
@@ -648,91 +312,43 @@
     {
       "type": "Feature",
       "geometry": {
-        "type": "Polygon",
+        "type": "Point",
         "coordinates": [
-          [
-            [
-              -76.84632,
-              0.22911
-            ],
-            [
-              -76.84713,
-              0.22956
-            ],
-            [
-              -76.84718,
-              0.22988
-            ],
-            [
-              -76.849,
-              0.23038
-            ],
-            [
-              -76.84981,
-              0.23149
-            ],
-            [
-              -76.85091,
-              0.23334
-            ],
-            [
-              -76.8511,
-              0.23373
-            ],
-            [
-              -76.84957,
-              0.23585
-            ],
-            [
-              -76.84902,
-              0.23607
-            ],
-            [
-              -76.84844,
-              0.23612
-            ],
-            [
-              -76.84608,
-              0.23584
-            ],
-            [
-              -76.84599,
-              0.23523
-            ],
-            [
-              -76.84632,
-              0.22911
-            ]
-          ]
+          -76.91837,
+          0.07966
         ]
       },
       "properties": {
+        "CODIGO": 8,
+        "TIPOLOGIA": "G",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO LOS CEIBOS SUR - PARQUE RECREATIVO CEIBOS",
+        "COD_ETIQUETA": "8 | G",
+        "ORDEN_RUTA": 8,
+        "SECTOR_INEC": "210150018005",
+        "LATITUD": 0.079664,
+        "LONGITUD": -76.918372,
+        "X_UTM": 954569.79,
+        "Y_UTM": 10008827.83,
         "num_muestra": 8,
-        "parroquia": "GENERAL FARFAN",
-        "circunscripcion": "CIRCUNSCRIPCION RURAL",
-        "tipologia": "G",
-        "casos": 10,
-        "etiqueta": "8 | G",
-        "orden_ruta": 1,
-        "sec_anm": "210153001003",
-        "cod_sector": "210153001003",
-        "pob_t": 341.0,
-        "v_pres": 101.0,
-        "area_km2": 0.3032,
-        "dens_viv": 333.11,
-        "dens_pob": 1124.67,
-        "ESTADO_CAMPO": "FACTIBLE",
         "sc": "8",
+        "etiqueta": "8 | G",
         "etiquetaSC": "8 | G",
+        "tipologia": "G",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
         "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO LOS CEIBOS SUR - PARQUE RECREATIVO CEIBOS",
         "bbox": [
           [
-            -76.8511,
-            0.22911
+            -76.91837,
+            0.07966
           ],
           [
-            -76.84599,
-            0.23612
+            -76.91837,
+            0.07966
           ]
         ]
       }
@@ -740,71 +356,43 @@
     {
       "type": "Feature",
       "geometry": {
-        "type": "Polygon",
+        "type": "Point",
         "coordinates": [
-          [
-            [
-              -76.84561,
-              0.18777
-            ],
-            [
-              -76.84772,
-              0.18782
-            ],
-            [
-              -76.8486,
-              0.18722
-            ],
-            [
-              -76.85,
-              0.18725
-            ],
-            [
-              -76.84998,
-              0.18935
-            ],
-            [
-              -76.84945,
-              0.1902
-            ],
-            [
-              -76.84559,
-              0.1902
-            ],
-            [
-              -76.84561,
-              0.18777
-            ]
-          ]
+          -76.91665,
+          0.08285
         ]
       },
       "properties": {
+        "CODIGO": 9,
+        "TIPOLOGIA": "H",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO 11 DE ABRIL - COLISEO MUNICIPAL 11 DE ABRIL",
+        "COD_ETIQUETA": "9 | H",
+        "ORDEN_RUTA": 9,
+        "SECTOR_INEC": "210150017001",
+        "LATITUD": 0.082851,
+        "LONGITUD": -76.916653,
+        "X_UTM": 954761.58,
+        "Y_UTM": 10009181.04,
         "num_muestra": 9,
-        "parroquia": "GENERAL FARFAN",
-        "circunscripcion": "CIRCUNSCRIPCION RURAL",
-        "tipologia": "H",
-        "casos": 10,
-        "etiqueta": "9 | H",
-        "orden_ruta": 2,
-        "sec_anm": "210153918001",
-        "cod_sector": "210153918001",
-        "pob_t": 268.0,
-        "v_pres": 83.0,
-        "area_km2": 0.1407,
-        "dens_viv": 589.91,
-        "dens_pob": 1904.76,
-        "ESTADO_CAMPO": "FACTIBLE",
         "sc": "9",
+        "etiqueta": "9 | H",
         "etiquetaSC": "9 | H",
+        "tipologia": "H",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
         "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO 11 DE ABRIL - COLISEO MUNICIPAL 11 DE ABRIL",
         "bbox": [
           [
-            -76.85,
-            0.18722
+            -76.91665,
+            0.08285
           ],
           [
-            -76.84559,
-            0.1902
+            -76.91665,
+            0.08285
           ]
         ]
       }
@@ -812,79 +400,43 @@
     {
       "type": "Feature",
       "geometry": {
-        "type": "Polygon",
+        "type": "Point",
         "coordinates": [
-          [
-            [
-              -76.809,
-              0.18904
-            ],
-            [
-              -76.81111,
-              0.18909
-            ],
-            [
-              -76.81147,
-              0.1888
-            ],
-            [
-              -76.81202,
-              0.1904
-            ],
-            [
-              -76.8113,
-              0.19175
-            ],
-            [
-              -76.80953,
-              0.19179
-            ],
-            [
-              -76.80953,
-              0.19219
-            ],
-            [
-              -76.80751,
-              0.19174
-            ],
-            [
-              -76.80754,
-              0.18956
-            ],
-            [
-              -76.809,
-              0.18904
-            ]
-          ]
+          -76.91302,
+          0.08082
         ]
       },
       "properties": {
+        "CODIGO": 10,
+        "TIPOLOGIA": "F",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO 11 DE ABRIL - AV. CIRCUNVALACION OESTE",
+        "COD_ETIQUETA": "10 | F",
+        "ORDEN_RUTA": 10,
+        "SECTOR_INEC": "210150017007",
+        "LATITUD": 0.080825,
+        "LONGITUD": -76.913023,
+        "X_UTM": 955166.53,
+        "Y_UTM": 10008956.47,
         "num_muestra": 10,
-        "parroquia": "GENERAL FARFAN",
-        "circunscripcion": "CIRCUNSCRIPCION RURAL",
-        "tipologia": "F",
-        "casos": 10,
-        "etiqueta": "10 | F",
-        "orden_ruta": 3,
-        "sec_anm": "210153920001",
-        "cod_sector": "210153920001",
-        "pob_t": 224.0,
-        "v_pres": 61.0,
-        "area_km2": 0.1405,
-        "dens_viv": 434.16,
-        "dens_pob": 1594.31,
-        "ESTADO_CAMPO": "FACTIBLE",
         "sc": "10",
+        "etiqueta": "10 | F",
         "etiquetaSC": "10 | F",
+        "tipologia": "F",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
         "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO 11 DE ABRIL - AV. CIRCUNVALACION OESTE",
         "bbox": [
           [
-            -76.81202,
-            0.1888
+            -76.91302,
+            0.08082
           ],
           [
-            -76.80751,
-            0.19219
+            -76.91302,
+            0.08082
           ]
         ]
       }
@@ -892,119 +444,43 @@
     {
       "type": "Feature",
       "geometry": {
-        "type": "Polygon",
+        "type": "Point",
         "coordinates": [
-          [
-            [
-              -77.0756,
-              0.08922
-            ],
-            [
-              -77.07523,
-              0.08921
-            ],
-            [
-              -77.07449,
-              0.08714
-            ],
-            [
-              -77.07477,
-              0.08701
-            ],
-            [
-              -77.07443,
-              0.08663
-            ],
-            [
-              -77.07476,
-              0.08652
-            ],
-            [
-              -77.07447,
-              0.08614
-            ],
-            [
-              -77.07467,
-              0.08578
-            ],
-            [
-              -77.07409,
-              0.08546
-            ],
-            [
-              -77.07402,
-              0.08526
-            ],
-            [
-              -77.07438,
-              0.0849
-            ],
-            [
-              -77.07435,
-              0.08449
-            ],
-            [
-              -77.07554,
-              0.08453
-            ],
-            [
-              -77.07554,
-              0.08334
-            ],
-            [
-              -77.07814,
-              0.08337
-            ],
-            [
-              -77.07807,
-              0.08463
-            ],
-            [
-              -77.07786,
-              0.08462
-            ],
-            [
-              -77.07789,
-              0.08963
-            ],
-            [
-              -77.07562,
-              0.08963
-            ],
-            [
-              -77.0756,
-              0.08922
-            ]
-          ]
+          -76.91082,
+          0.08573
         ]
       },
       "properties": {
+        "CODIGO": 11,
+        "TIPOLOGIA": "B",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO SIMON BOLIVAR - U.E. NAPO SEDE OCCIDENTAL",
+        "COD_ETIQUETA": "11 | B",
+        "ORDEN_RUTA": 11,
+        "SECTOR_INEC": "210150001008",
+        "LATITUD": 0.085726,
+        "LONGITUD": -76.910816,
+        "X_UTM": 955412.64,
+        "Y_UTM": 10009499.69,
         "num_muestra": 11,
-        "parroquia": "JAMBELI",
-        "circunscripcion": "CIRCUNSCRIPCION RURAL",
-        "tipologia": "B",
-        "casos": 10,
-        "etiqueta": "11 | B",
-        "orden_ruta": 1,
-        "sec_anm": "210157001001",
-        "cod_sector": "210157001001",
-        "pob_t": 407.0,
-        "v_pres": 106.0,
-        "area_km2": 0.2363,
-        "dens_viv": 448.58,
-        "dens_pob": 1722.39,
-        "ESTADO_CAMPO": "FACTIBLE",
         "sc": "11",
+        "etiqueta": "11 | B",
         "etiquetaSC": "11 | B",
+        "tipologia": "B",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
         "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO SIMON BOLIVAR - U.E. NAPO SEDE OCCIDENTAL",
         "bbox": [
           [
-            -77.07814,
-            0.08334
+            -76.91082,
+            0.08573
           ],
           [
-            -77.07402,
-            0.08963
+            -76.91082,
+            0.08573
           ]
         ]
       }
@@ -1012,151 +488,43 @@
     {
       "type": "Feature",
       "geometry": {
-        "type": "Polygon",
+        "type": "Point",
         "coordinates": [
-          [
-            [
-              -77.07826,
-              0.08191
-            ],
-            [
-              -77.07826,
-              0.08227
-            ],
-            [
-              -77.07815,
-              0.08225
-            ],
-            [
-              -77.07814,
-              0.08337
-            ],
-            [
-              -77.07554,
-              0.08334
-            ],
-            [
-              -77.07554,
-              0.08453
-            ],
-            [
-              -77.07435,
-              0.08449
-            ],
-            [
-              -77.07438,
-              0.0849
-            ],
-            [
-              -77.074,
-              0.08533
-            ],
-            [
-              -77.07467,
-              0.08578
-            ],
-            [
-              -77.07447,
-              0.08614
-            ],
-            [
-              -77.07476,
-              0.08652
-            ],
-            [
-              -77.07443,
-              0.08663
-            ],
-            [
-              -77.07477,
-              0.08701
-            ],
-            [
-              -77.07421,
-              0.08734
-            ],
-            [
-              -77.07418,
-              0.08779
-            ],
-            [
-              -77.0732,
-              0.0878
-            ],
-            [
-              -77.07322,
-              0.08701
-            ],
-            [
-              -77.07037,
-              0.08698
-            ],
-            [
-              -77.07035,
-              0.08454
-            ],
-            [
-              -77.07019,
-              0.08413
-            ],
-            [
-              -77.07182,
-              0.08306
-            ],
-            [
-              -77.07277,
-              0.08312
-            ],
-            [
-              -77.07313,
-              0.08214
-            ],
-            [
-              -77.07604,
-              0.0822
-            ],
-            [
-              -77.07665,
-              0.08173
-            ],
-            [
-              -77.07723,
-              0.08156
-            ],
-            [
-              -77.07826,
-              0.08191
-            ]
-          ]
+          -76.90792,
+          0.08368
         ]
       },
       "properties": {
+        "CODIGO": 12,
+        "TIPOLOGIA": "A",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO 11 DE ABRIL - CANCHA POLIDEPORTIVA",
+        "COD_ETIQUETA": "12 | A",
+        "ORDEN_RUTA": 12,
+        "SECTOR_INEC": "210150017003",
+        "LATITUD": 0.083679,
+        "LONGITUD": -76.907918,
+        "X_UTM": 955736.04,
+        "Y_UTM": 10009272.86,
         "num_muestra": 12,
-        "parroquia": "JAMBELI",
-        "circunscripcion": "CIRCUNSCRIPCION RURAL",
-        "tipologia": "A",
-        "casos": 10,
-        "etiqueta": "12 | A",
-        "orden_ruta": 2,
-        "sec_anm": "210157001002",
-        "cod_sector": "210157001002",
-        "pob_t": 358.0,
-        "v_pres": 97.0,
-        "area_km2": 0.2993,
-        "dens_viv": 324.09,
-        "dens_pob": 1196.12,
-        "ESTADO_CAMPO": "FACTIBLE",
         "sc": "12",
+        "etiqueta": "12 | A",
         "etiquetaSC": "12 | A",
+        "tipologia": "A",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
         "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO 11 DE ABRIL - CANCHA POLIDEPORTIVA",
         "bbox": [
           [
-            -77.07826,
-            0.08156
+            -76.90792,
+            0.08368
           ],
           [
-            -77.07019,
-            0.0878
+            -76.90792,
+            0.08368
           ]
         ]
       }
@@ -1164,115 +532,43 @@
     {
       "type": "Feature",
       "geometry": {
-        "type": "Polygon",
+        "type": "Point",
         "coordinates": [
-          [
-            [
-              -76.59248,
-              -0.03877
-            ],
-            [
-              -76.59281,
-              -0.03936
-            ],
-            [
-              -76.59171,
-              -0.04004
-            ],
-            [
-              -76.5932,
-              -0.04253
-            ],
-            [
-              -76.59377,
-              -0.04219
-            ],
-            [
-              -76.59385,
-              -0.04147
-            ],
-            [
-              -76.5937,
-              -0.04094
-            ],
-            [
-              -76.59518,
-              -0.04016
-            ],
-            [
-              -76.59526,
-              -0.03999
-            ],
-            [
-              -76.59508,
-              -0.03961
-            ],
-            [
-              -76.59628,
-              -0.03894
-            ],
-            [
-              -76.59605,
-              -0.03858
-            ],
-            [
-              -76.59898,
-              -0.03864
-            ],
-            [
-              -76.59854,
-              -0.03915
-            ],
-            [
-              -76.59919,
-              -0.03975
-            ],
-            [
-              -76.60034,
-              -0.03911
-            ],
-            [
-              -76.60123,
-              -0.03494
-            ],
-            [
-              -76.60064,
-              -0.03408
-            ],
-            [
-              -76.59248,
-              -0.03877
-            ]
-          ]
+          -76.90487,
+          0.07887
         ]
       },
       "properties": {
+        "CODIGO": 13,
+        "TIPOLOGIA": "E",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO JAIME ROLDOS - CANCHA MULTIPLE JAIME ROLDOS",
+        "COD_ETIQUETA": "13 | E",
+        "ORDEN_RUTA": 13,
+        "SECTOR_INEC": "210150016003",
+        "LATITUD": 0.078873,
+        "LONGITUD": -76.904869,
+        "X_UTM": 956076.24,
+        "Y_UTM": 10008740.36,
         "num_muestra": 13,
-        "parroquia": "PACAYACU",
-        "circunscripcion": "CIRCUNSCRIPCION RURAL",
-        "tipologia": "E",
-        "casos": 10,
-        "etiqueta": "13 | E",
-        "orden_ruta": 1,
-        "sec_anm": "210156001009",
-        "cod_sector": "210156001009",
-        "pob_t": 386.0,
-        "v_pres": 112.0,
-        "area_km2": 0.3498,
-        "dens_viv": 320.18,
-        "dens_pob": 1103.49,
-        "ESTADO_CAMPO": "FACTIBLE",
         "sc": "13",
+        "etiqueta": "13 | E",
         "etiquetaSC": "13 | E",
+        "tipologia": "E",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
         "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO JAIME ROLDOS - CANCHA MULTIPLE JAIME ROLDOS",
         "bbox": [
           [
-            -76.60123,
-            -0.04253
+            -76.90487,
+            0.07887
           ],
           [
-            -76.59171,
-            -0.03408
+            -76.90487,
+            0.07887
           ]
         ]
       }
@@ -1280,115 +576,43 @@
     {
       "type": "Feature",
       "geometry": {
-        "type": "Polygon",
+        "type": "Point",
         "coordinates": [
-          [
-            [
-              -76.58968,
-              -0.03756
-            ],
-            [
-              -76.58931,
-              -0.03702
-            ],
-            [
-              -76.58753,
-              -0.03816
-            ],
-            [
-              -76.58787,
-              -0.03872
-            ],
-            [
-              -76.58569,
-              -0.04012
-            ],
-            [
-              -76.58624,
-              -0.04108
-            ],
-            [
-              -76.5873,
-              -0.04044
-            ],
-            [
-              -76.58759,
-              -0.04094
-            ],
-            [
-              -76.58871,
-              -0.04027
-            ],
-            [
-              -76.58906,
-              -0.04083
-            ],
-            [
-              -76.60062,
-              -0.03409
-            ],
-            [
-              -76.601,
-              -0.03382
-            ],
-            [
-              -76.60084,
-              -0.03112
-            ],
-            [
-              -76.59996,
-              -0.03109
-            ],
-            [
-              -76.59923,
-              -0.03201
-            ],
-            [
-              -76.5991,
-              -0.03396
-            ],
-            [
-              -76.59128,
-              -0.03597
-            ],
-            [
-              -76.5897,
-              -0.03682
-            ],
-            [
-              -76.58968,
-              -0.03756
-            ]
-          ]
+          -76.90113,
+          0.08125
         ]
       },
       "properties": {
+        "CODIGO": 14,
+        "TIPOLOGIA": "D",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO JAIME ROLDOS - CENTRO EDUCATIVO BASICO",
+        "COD_ETIQUETA": "14 | D",
+        "ORDEN_RUTA": 14,
+        "SECTOR_INEC": "210150016006",
+        "LATITUD": 0.081249,
+        "LONGITUD": -76.901132,
+        "X_UTM": 956493.13,
+        "Y_UTM": 10009003.6,
         "num_muestra": 14,
-        "parroquia": "PACAYACU",
-        "circunscripcion": "CIRCUNSCRIPCION RURAL",
-        "tipologia": "D",
-        "casos": 10,
-        "etiqueta": "14 | D",
-        "orden_ruta": 2,
-        "sec_anm": "210156001001",
-        "cod_sector": "210156001001",
-        "pob_t": 584.0,
-        "v_pres": 165.0,
-        "area_km2": 0.4692,
-        "dens_viv": 351.66,
-        "dens_pob": 1244.67,
-        "ESTADO_CAMPO": "FACTIBLE",
         "sc": "14",
+        "etiqueta": "14 | D",
         "etiquetaSC": "14 | D",
+        "tipologia": "D",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
         "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO JAIME ROLDOS - CENTRO EDUCATIVO BASICO",
         "bbox": [
           [
-            -76.601,
-            -0.04108
+            -76.90113,
+            0.08125
           ],
           [
-            -76.58569,
-            -0.03109
+            -76.90113,
+            0.08125
           ]
         ]
       }
@@ -1396,83 +620,43 @@
     {
       "type": "Feature",
       "geometry": {
-        "type": "Polygon",
+        "type": "Point",
         "coordinates": [
-          [
-            [
-              -76.58691,
-              -0.04217
-            ],
-            [
-              -76.58754,
-              -0.0432
-            ],
-            [
-              -76.588,
-              -0.04294
-            ],
-            [
-              -76.58908,
-              -0.04469
-            ],
-            [
-              -76.59131,
-              -0.04305
-            ],
-            [
-              -76.59064,
-              -0.04306
-            ],
-            [
-              -76.59032,
-              -0.04287
-            ],
-            [
-              -76.58976,
-              -0.04188
-            ],
-            [
-              -76.58915,
-              -0.04227
-            ],
-            [
-              -76.58849,
-              -0.04119
-            ],
-            [
-              -76.58691,
-              -0.04217
-            ]
-          ]
+          -76.90108,
+          0.08555
         ]
       },
       "properties": {
+        "CODIGO": 15,
+        "TIPOLOGIA": "C",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO EL AEROPUERTO - TERMINAL AEREO Y AV. PETROLERA",
+        "COD_ETIQUETA": "15 | C",
+        "ORDEN_RUTA": 15,
+        "SECTOR_INEC": "210150002007",
+        "LATITUD": 0.085545,
+        "LONGITUD": -76.901081,
+        "X_UTM": 956498.72,
+        "Y_UTM": 10009479.72,
         "num_muestra": 15,
-        "parroquia": "PACAYACU",
-        "circunscripcion": "CIRCUNSCRIPCION RURAL",
-        "tipologia": "C",
-        "casos": 10,
-        "etiqueta": "15 | C",
-        "orden_ruta": 3,
-        "sec_anm": "210156001007",
-        "cod_sector": "210156001007",
-        "pob_t": 247.0,
-        "v_pres": 77.0,
-        "area_km2": 0.0808,
-        "dens_viv": 952.97,
-        "dens_pob": 3056.93,
-        "ESTADO_CAMPO": "FACTIBLE",
         "sc": "15",
+        "etiqueta": "15 | C",
         "etiquetaSC": "15 | C",
+        "tipologia": "C",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
         "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO EL AEROPUERTO - TERMINAL AEREO Y AV. PETROLERA",
         "bbox": [
           [
-            -76.59131,
-            -0.04469
+            -76.90108,
+            0.08555
           ],
           [
-            -76.58691,
-            -0.04119
+            -76.90108,
+            0.08555
           ]
         ]
       }
@@ -1480,99 +664,43 @@
     {
       "type": "Feature",
       "geometry": {
-        "type": "Polygon",
+        "type": "Point",
         "coordinates": [
-          [
-            [
-              -76.5857,
-              -0.04211
-            ],
-            [
-              -76.58537,
-              -0.04165
-            ],
-            [
-              -76.5841,
-              -0.04243
-            ],
-            [
-              -76.5844,
-              -0.04316
-            ],
-            [
-              -76.58074,
-              -0.04488
-            ],
-            [
-              -76.58039,
-              -0.04631
-            ],
-            [
-              -76.58437,
-              -0.04545
-            ],
-            [
-              -76.58778,
-              -0.04609
-            ],
-            [
-              -76.58963,
-              -0.045
-            ],
-            [
-              -76.58959,
-              -0.04439
-            ],
-            [
-              -76.58908,
-              -0.04469
-            ],
-            [
-              -76.588,
-              -0.04294
-            ],
-            [
-              -76.58754,
-              -0.0432
-            ],
-            [
-              -76.58652,
-              -0.04161
-            ],
-            [
-              -76.5857,
-              -0.04211
-            ]
-          ]
+          -76.90473,
+          0.08929
         ]
       },
       "properties": {
+        "CODIGO": 16,
+        "TIPOLOGIA": "E",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO AEROPUERTO NORTE - CALLE COLOMBIA",
+        "COD_ETIQUETA": "16 | E",
+        "ORDEN_RUTA": 16,
+        "SECTOR_INEC": "210150002003",
+        "LATITUD": 0.089295,
+        "LONGITUD": -76.904729,
+        "X_UTM": 956091.67,
+        "Y_UTM": 10009895.16,
         "num_muestra": 16,
-        "parroquia": "PACAYACU",
-        "circunscripcion": "CIRCUNSCRIPCION RURAL",
-        "tipologia": "E",
-        "casos": 10,
-        "etiqueta": "16 | E",
-        "orden_ruta": 4,
-        "sec_anm": "210156001005",
-        "cod_sector": "210156001005",
-        "pob_t": 396.0,
-        "v_pres": 122.0,
-        "area_km2": 0.2761,
-        "dens_viv": 441.87,
-        "dens_pob": 1434.26,
-        "ESTADO_CAMPO": "FACTIBLE",
         "sc": "16",
+        "etiqueta": "16 | E",
         "etiquetaSC": "16 | E",
+        "tipologia": "E",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
         "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO AEROPUERTO NORTE - CALLE COLOMBIA",
         "bbox": [
           [
-            -76.58963,
-            -0.04631
+            -76.90473,
+            0.08929
           ],
           [
-            -76.58039,
-            -0.04161
+            -76.90473,
+            0.08929
           ]
         ]
       }
@@ -1580,111 +708,43 @@
     {
       "type": "Feature",
       "geometry": {
-        "type": "Polygon",
+        "type": "Point",
         "coordinates": [
-          [
-            [
-              -76.58116,
-              -0.03561
-            ],
-            [
-              -76.57983,
-              -0.03571
-            ],
-            [
-              -76.5798,
-              -0.03757
-            ],
-            [
-              -76.57867,
-              -0.03757
-            ],
-            [
-              -76.57862,
-              -0.0407
-            ],
-            [
-              -76.58169,
-              -0.04072
-            ],
-            [
-              -76.58172,
-              -0.03817
-            ],
-            [
-              -76.58312,
-              -0.03817
-            ],
-            [
-              -76.58313,
-              -0.038
-            ],
-            [
-              -76.58376,
-              -0.03769
-            ],
-            [
-              -76.58404,
-              -0.03821
-            ],
-            [
-              -76.5853,
-              -0.03745
-            ],
-            [
-              -76.58557,
-              -0.03792
-            ],
-            [
-              -76.58639,
-              -0.03741
-            ],
-            [
-              -76.5861,
-              -0.03695
-            ],
-            [
-              -76.58325,
-              -0.03535
-            ],
-            [
-              -76.58182,
-              -0.03539
-            ],
-            [
-              -76.58116,
-              -0.03561
-            ]
-          ]
+          -76.90314,
+          0.09309
         ]
       },
       "properties": {
+        "CODIGO": 17,
+        "TIPOLOGIA": "B",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO LA LIBERTAD - CENTRO DEPORTIVO AEROPUERTO",
+        "COD_ETIQUETA": "17 | B",
+        "ORDEN_RUTA": 17,
+        "SECTOR_INEC": "210150002001",
+        "LATITUD": 0.093091,
+        "LONGITUD": -76.903144,
+        "X_UTM": 956268.52,
+        "Y_UTM": 10010315.9,
         "num_muestra": 17,
-        "parroquia": "PACAYACU",
-        "circunscripcion": "CIRCUNSCRIPCION RURAL",
-        "tipologia": "B",
-        "casos": 10,
-        "etiqueta": "17 | B",
-        "orden_ruta": 5,
-        "sec_anm": "210156001003",
-        "cod_sector": "210156001003",
-        "pob_t": 537.0,
-        "v_pres": 144.0,
-        "area_km2": 0.2776,
-        "dens_viv": 518.73,
-        "dens_pob": 1934.44,
-        "ESTADO_CAMPO": "FACTIBLE",
         "sc": "17",
+        "etiqueta": "17 | B",
         "etiquetaSC": "17 | B",
+        "tipologia": "B",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
         "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO LA LIBERTAD - CENTRO DEPORTIVO AEROPUERTO",
         "bbox": [
           [
-            -76.58639,
-            -0.04072
+            -76.90314,
+            0.09309
           ],
           [
-            -76.57862,
-            -0.03535
+            -76.90314,
+            0.09309
           ]
         ]
       }
@@ -1692,103 +752,43 @@
     {
       "type": "Feature",
       "geometry": {
-        "type": "Polygon",
+        "type": "Point",
         "coordinates": [
-          [
-            [
-              -76.99068,
-              0.07816
-            ],
-            [
-              -76.99107,
-              0.07772
-            ],
-            [
-              -76.99154,
-              0.07775
-            ],
-            [
-              -76.99172,
-              0.07765
-            ],
-            [
-              -76.99179,
-              0.0774
-            ],
-            [
-              -76.99166,
-              0.07717
-            ],
-            [
-              -76.9918,
-              0.07702
-            ],
-            [
-              -76.99267,
-              0.0769
-            ],
-            [
-              -76.99318,
-              0.07641
-            ],
-            [
-              -76.99326,
-              0.07594
-            ],
-            [
-              -76.99341,
-              0.07579
-            ],
-            [
-              -76.99414,
-              0.07608
-            ],
-            [
-              -76.99532,
-              0.08246
-            ],
-            [
-              -76.99355,
-              0.08269
-            ],
-            [
-              -76.99201,
-              0.08331
-            ],
-            [
-              -76.99068,
-              0.07816
-            ]
-          ]
+          -76.89901,
+          0.09217
         ]
       },
       "properties": {
+        "CODIGO": 18,
+        "TIPOLOGIA": "B",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO MARISCAL SUCRE - U.E. REPUBLICA DE CANADA",
+        "COD_ETIQUETA": "18 | B",
+        "ORDEN_RUTA": 18,
+        "SECTOR_INEC": "210150003007",
+        "LATITUD": 0.092168,
+        "LONGITUD": -76.89901,
+        "X_UTM": 956729.72,
+        "Y_UTM": 10010213.71,
         "num_muestra": 18,
-        "parroquia": "SANTA CECILIA",
-        "circunscripcion": "CIRCUNSCRIPCION RURAL",
-        "tipologia": "B",
-        "casos": 10,
-        "etiqueta": "18 | B",
-        "orden_ruta": 1,
-        "sec_anm": "210158001001",
-        "cod_sector": "210158001001",
-        "pob_t": 472.0,
-        "v_pres": 128.0,
-        "area_km2": 0.2656,
-        "dens_viv": 481.93,
-        "dens_pob": 1777.11,
-        "ESTADO_CAMPO": "FACTIBLE",
         "sc": "18",
+        "etiqueta": "18 | B",
         "etiquetaSC": "18 | B",
+        "tipologia": "B",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
         "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO MARISCAL SUCRE - U.E. REPUBLICA DE CANADA",
         "bbox": [
           [
-            -76.99532,
-            0.07579
+            -76.89901,
+            0.09217
           ],
           [
-            -76.99068,
-            0.08331
+            -76.89901,
+            0.09217
           ]
         ]
       }
@@ -1796,83 +796,43 @@
     {
       "type": "Feature",
       "geometry": {
-        "type": "Polygon",
+        "type": "Point",
         "coordinates": [
-          [
-            [
-              -76.9461,
-              0.09725
-            ],
-            [
-              -76.9461,
-              0.09671
-            ],
-            [
-              -76.9471,
-              0.0967
-            ],
-            [
-              -76.9471,
-              0.09562
-            ],
-            [
-              -76.94802,
-              0.09563
-            ],
-            [
-              -76.94802,
-              0.09617
-            ],
-            [
-              -76.95041,
-              0.09616
-            ],
-            [
-              -76.95043,
-              0.09263
-            ],
-            [
-              -76.95254,
-              0.09261
-            ],
-            [
-              -76.95252,
-              0.09731
-            ],
-            [
-              -76.9461,
-              0.09725
-            ]
-          ]
+          -76.89758,
+          0.09544
         ]
       },
       "properties": {
+        "CODIGO": 19,
+        "TIPOLOGIA": "G",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO MARISCAL SUCRE - AV. AMAZONAS Y CALLE COLOMBIA",
+        "COD_ETIQUETA": "19 | G",
+        "ORDEN_RUTA": 19,
+        "SECTOR_INEC": "210150003004",
+        "LATITUD": 0.095444,
+        "LONGITUD": -76.89758,
+        "X_UTM": 956889.2,
+        "Y_UTM": 10010576.73,
         "num_muestra": 19,
-        "parroquia": "SANTA CECILIA",
-        "circunscripcion": "CIRCUNSCRIPCION RURAL",
-        "tipologia": "G",
-        "casos": 10,
-        "etiqueta": "19 | G",
-        "orden_ruta": 2,
-        "sec_anm": "210158912002",
-        "cod_sector": "210158912002",
-        "pob_t": 351.0,
-        "v_pres": 98.0,
-        "area_km2": 0.1796,
-        "dens_viv": 545.66,
-        "dens_pob": 1954.34,
-        "ESTADO_CAMPO": "FACTIBLE",
         "sc": "19",
+        "etiqueta": "19 | G",
         "etiquetaSC": "19 | G",
+        "tipologia": "G",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
         "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO MARISCAL SUCRE - AV. AMAZONAS Y CALLE COLOMBIA",
         "bbox": [
           [
-            -76.95254,
-            0.09261
+            -76.89758,
+            0.09544
           ],
           [
-            -76.9461,
-            0.09731
+            -76.89758,
+            0.09544
           ]
         ]
       }
@@ -1880,71 +840,43 @@
     {
       "type": "Feature",
       "geometry": {
-        "type": "Polygon",
+        "type": "Point",
         "coordinates": [
-          [
-            [
-              -76.94283,
-              0.08123
-            ],
-            [
-              -76.94525,
-              0.08351
-            ],
-            [
-              -76.94618,
-              0.08388
-            ],
-            [
-              -76.94622,
-              0.08528
-            ],
-            [
-              -76.94537,
-              0.08548
-            ],
-            [
-              -76.94537,
-              0.08668
-            ],
-            [
-              -76.94283,
-              0.08676
-            ],
-            [
-              -76.94283,
-              0.08123
-            ]
-          ]
+          -76.89802,
+          0.09908
         ]
       },
       "properties": {
+        "CODIGO": 20,
+        "TIPOLOGIA": "D",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO MARISCAL SUCRE - PARQUE MARISCAL SUCRE",
+        "COD_ETIQUETA": "20 | D",
+        "ORDEN_RUTA": 20,
+        "SECTOR_INEC": "210150003002",
+        "LATITUD": 0.099075,
+        "LONGITUD": -76.898024,
+        "X_UTM": 956839.64,
+        "Y_UTM": 10010979.08,
         "num_muestra": 20,
-        "parroquia": "SANTA CECILIA",
-        "circunscripcion": "CIRCUNSCRIPCION RURAL",
-        "tipologia": "D",
-        "casos": 10,
-        "etiqueta": "20 | D",
-        "orden_ruta": 3,
-        "sec_anm": "210158911002",
-        "cod_sector": "210158911002",
-        "pob_t": 304.0,
-        "v_pres": 84.0,
-        "area_km2": 0.1514,
-        "dens_viv": 554.82,
-        "dens_pob": 2007.93,
-        "ESTADO_CAMPO": "FACTIBLE",
         "sc": "20",
+        "etiqueta": "20 | D",
         "etiquetaSC": "20 | D",
+        "tipologia": "D",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
         "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO MARISCAL SUCRE - PARQUE MARISCAL SUCRE",
         "bbox": [
           [
-            -76.94622,
-            0.08123
+            -76.89802,
+            0.09908
           ],
           [
-            -76.94283,
-            0.08676
+            -76.89802,
+            0.09908
           ]
         ]
       }
@@ -1952,79 +884,43 @@
     {
       "type": "Feature",
       "geometry": {
-        "type": "Polygon",
+        "type": "Point",
         "coordinates": [
-          [
-            [
-              -76.93398,
-              0.06992
-            ],
-            [
-              -76.93399,
-              0.07368
-            ],
-            [
-              -76.9327,
-              0.07368
-            ],
-            [
-              -76.93268,
-              0.07496
-            ],
-            [
-              -76.93153,
-              0.07496
-            ],
-            [
-              -76.93151,
-              0.07371
-            ],
-            [
-              -76.93043,
-              0.07371
-            ],
-            [
-              -76.93047,
-              0.07067
-            ],
-            [
-              -76.93079,
-              0.06991
-            ],
-            [
-              -76.93398,
-              0.06992
-            ]
-          ]
+          -76.89322,
+          0.09798
         ]
       },
       "properties": {
+        "CODIGO": 21,
+        "TIPOLOGIA": "A",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO CENTRAL - PARQUE CENTRAL SIMON BOLIVAR Y GAD MUNICIPAL",
+        "COD_ETIQUETA": "21 | A",
+        "ORDEN_RUTA": 21,
+        "SECTOR_INEC": "210150004003",
+        "LATITUD": 0.097981,
+        "LONGITUD": -76.89322,
+        "X_UTM": 957375.58,
+        "Y_UTM": 10010857.86,
         "num_muestra": 21,
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "tipologia": "A",
-        "casos": 10,
-        "etiqueta": "21 | A",
-        "orden_ruta": 1,
-        "sec_anm": "210150018001",
-        "cod_sector": "210150018001",
-        "pob_t": 308.0,
-        "v_pres": 93.0,
-        "area_km2": 0.1825,
-        "dens_viv": 509.59,
-        "dens_pob": 1687.67,
-        "ESTADO_CAMPO": "FACTIBLE",
         "sc": "21",
+        "etiqueta": "21 | A",
         "etiquetaSC": "21 | A",
+        "tipologia": "A",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
         "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO CENTRAL - PARQUE CENTRAL SIMON BOLIVAR Y GAD MUNICIPAL",
         "bbox": [
           [
-            -76.93399,
-            0.06991
+            -76.89322,
+            0.09798
           ],
           [
-            -76.93043,
-            0.07496
+            -76.89322,
+            0.09798
           ]
         ]
       }
@@ -2032,2103 +928,43 @@
     {
       "type": "Feature",
       "geometry": {
-        "type": "Polygon",
+        "type": "Point",
         "coordinates": [
-          [
-            [
-              -76.93247,
-              0.08407
-            ],
-            [
-              -76.9293,
-              0.08406
-            ],
-            [
-              -76.92931,
-              0.08292
-            ],
-            [
-              -76.92716,
-              0.08293
-            ],
-            [
-              -76.92712,
-              0.08037
-            ],
-            [
-              -76.92852,
-              0.07954
-            ],
-            [
-              -76.92962,
-              0.07869
-            ],
-            [
-              -76.93049,
-              0.07833
-            ],
-            [
-              -76.93395,
-              0.07896
-            ],
-            [
-              -76.93384,
-              0.08417
-            ],
-            [
-              -76.93277,
-              0.08417
-            ],
-            [
-              -76.93247,
-              0.08407
-            ]
-          ]
+          -76.88959,
+          0.09894
         ]
       },
       "properties": {
+        "CODIGO": 22,
+        "TIPOLOGIA": "C",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO LAS PALMERAS - PARQUE LAS PALMERAS Y CANCHA",
+        "COD_ETIQUETA": "22 | C",
+        "ORDEN_RUTA": 22,
+        "SECTOR_INEC": "210150008002",
+        "LATITUD": 0.09894,
+        "LONGITUD": -76.88959,
+        "X_UTM": 957780.55,
+        "Y_UTM": 10010964.28,
         "num_muestra": 22,
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "tipologia": "C",
-        "casos": 10,
-        "etiqueta": "22 | C",
-        "orden_ruta": 2,
-        "sec_anm": "210150001002",
-        "cod_sector": "210150001002",
-        "pob_t": 359.0,
-        "v_pres": 117.0,
-        "area_km2": 0.3958,
-        "dens_viv": 295.6,
-        "dens_pob": 907.02,
-        "ESTADO_CAMPO": "FACTIBLE",
         "sc": "22",
+        "etiqueta": "22 | C",
         "etiquetaSC": "22 | C",
-        "canton": "LAGO AGRIO",
-        "bbox": [
-          [
-            -76.93395,
-            0.07833
-          ],
-          [
-            -76.92712,
-            0.08417
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              -76.92262,
-              0.08444
-            ],
-            [
-              -76.92077,
-              0.08441
-            ],
-            [
-              -76.92078,
-              0.08563
-            ],
-            [
-              -76.92024,
-              0.08563
-            ],
-            [
-              -76.92024,
-              0.08441
-            ],
-            [
-              -76.91922,
-              0.0844
-            ],
-            [
-              -76.91922,
-              0.08501
-            ],
-            [
-              -76.917,
-              0.08501
-            ],
-            [
-              -76.91697,
-              0.08385
-            ],
-            [
-              -76.92365,
-              0.0814
-            ],
-            [
-              -76.92371,
-              0.08562
-            ],
-            [
-              -76.92262,
-              0.08565
-            ],
-            [
-              -76.92262,
-              0.08444
-            ]
-          ]
-        ]
-      },
-      "properties": {
-        "num_muestra": 23,
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "tipologia": "G",
-        "casos": 10,
-        "etiqueta": "23 | G",
-        "orden_ruta": 3,
-        "sec_anm": "210150001004",
-        "cod_sector": "210150001004",
-        "pob_t": 394.0,
-        "v_pres": 125.0,
-        "area_km2": 0.1874,
-        "dens_viv": 667.02,
-        "dens_pob": 2102.45,
-        "ESTADO_CAMPO": "FACTIBLE",
-        "sc": "23",
-        "etiquetaSC": "23 | G",
-        "canton": "LAGO AGRIO",
-        "bbox": [
-          [
-            -76.92371,
-            0.0814
-          ],
-          [
-            -76.91697,
-            0.08565
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              -76.91913,
-              0.07803
-            ],
-            [
-              -76.91799,
-              0.07805
-            ],
-            [
-              -76.91802,
-              0.07985
-            ],
-            [
-              -76.91718,
-              0.07986
-            ],
-            [
-              -76.91719,
-              0.08091
-            ],
-            [
-              -76.91661,
-              0.0809
-            ],
-            [
-              -76.9166,
-              0.07708
-            ],
-            [
-              -76.91798,
-              0.07707
-            ],
-            [
-              -76.91798,
-              0.07404
-            ],
-            [
-              -76.91912,
-              0.074
-            ],
-            [
-              -76.91913,
-              0.07803
-            ]
-          ]
-        ]
-      },
-      "properties": {
-        "num_muestra": 24,
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "tipologia": "A",
-        "casos": 10,
-        "etiqueta": "24 | A",
-        "orden_ruta": 4,
-        "sec_anm": "210150018006",
-        "cod_sector": "210150018006",
-        "pob_t": 373.0,
-        "v_pres": 113.0,
-        "area_km2": 0.1121,
-        "dens_viv": 1008.03,
-        "dens_pob": 3327.39,
-        "ESTADO_CAMPO": "FACTIBLE",
-        "sc": "24",
-        "etiquetaSC": "24 | A",
-        "canton": "LAGO AGRIO",
-        "bbox": [
-          [
-            -76.91913,
-            0.074
-          ],
-          [
-            -76.9166,
-            0.08091
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              -76.91242,
-              0.06621
-            ],
-            [
-              -76.91317,
-              0.06622
-            ],
-            [
-              -76.914,
-              0.06647
-            ],
-            [
-              -76.91513,
-              0.06618
-            ],
-            [
-              -76.91797,
-              0.06619
-            ],
-            [
-              -76.91797,
-              0.07313
-            ],
-            [
-              -76.91469,
-              0.07308
-            ],
-            [
-              -76.9147,
-              0.07373
-            ],
-            [
-              -76.91335,
-              0.07373
-            ],
-            [
-              -76.91243,
-              0.07372
-            ],
-            [
-              -76.91242,
-              0.06621
-            ]
-          ]
-        ]
-      },
-      "properties": {
-        "num_muestra": 25,
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "tipologia": "H",
-        "casos": 10,
-        "etiqueta": "25 | H",
-        "orden_ruta": 5,
-        "sec_anm": "210150018008",
-        "cod_sector": "210150018008",
-        "pob_t": 420.0,
-        "v_pres": 124.0,
-        "area_km2": 0.4882,
-        "dens_viv": 253.99,
-        "dens_pob": 860.3,
-        "ESTADO_CAMPO": "FACTIBLE",
-        "sc": "25",
-        "etiquetaSC": "25 | H",
-        "canton": "LAGO AGRIO",
-        "bbox": [
-          [
-            -76.91797,
-            0.06618
-          ],
-          [
-            -76.91242,
-            0.07373
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              -76.9101,
-              0.07433
-            ],
-            [
-              -76.91007,
-              0.07754
-            ],
-            [
-              -76.90724,
-              0.07749
-            ],
-            [
-              -76.90725,
-              0.0765
-            ],
-            [
-              -76.90596,
-              0.07648
-            ],
-            [
-              -76.90597,
-              0.07539
-            ],
-            [
-              -76.90663,
-              0.07513
-            ],
-            [
-              -76.90664,
-              0.07469
-            ],
-            [
-              -76.90666,
-              0.07178
-            ],
-            [
-              -76.90609,
-              0.07177
-            ],
-            [
-              -76.90609,
-              0.07126
-            ],
-            [
-              -76.90665,
-              0.07126
-            ],
-            [
-              -76.90665,
-              0.07073
-            ],
-            [
-              -76.90731,
-              0.07074
-            ],
-            [
-              -76.90731,
-              0.07297
-            ],
-            [
-              -76.90789,
-              0.07297
-            ],
-            [
-              -76.90786,
-              0.07405
-            ],
-            [
-              -76.90932,
-              0.07382
-            ],
-            [
-              -76.90993,
-              0.07396
-            ],
-            [
-              -76.91011,
-              0.0738
-            ],
-            [
-              -76.91022,
-              0.07421
-            ],
-            [
-              -76.9101,
-              0.07433
-            ]
-          ]
-        ]
-      },
-      "properties": {
-        "num_muestra": 26,
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "tipologia": "D",
-        "casos": 10,
-        "etiqueta": "26 | D",
-        "orden_ruta": 6,
-        "sec_anm": "210150016002",
-        "cod_sector": "210150016002",
-        "pob_t": 436.0,
-        "v_pres": 129.0,
-        "area_km2": 0.1914,
-        "dens_viv": 673.98,
-        "dens_pob": 2277.95,
-        "ESTADO_CAMPO": "FACTIBLE",
-        "sc": "26",
-        "etiquetaSC": "26 | D",
-        "canton": "LAGO AGRIO",
-        "bbox": [
-          [
-            -76.91022,
-            0.07073
-          ],
-          [
-            -76.90596,
-            0.07754
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              -76.90781,
-              0.08325
-            ],
-            [
-              -76.90783,
-              0.08145
-            ],
-            [
-              -76.90656,
-              0.08143
-            ],
-            [
-              -76.90657,
-              0.08042
-            ],
-            [
-              -76.9078,
-              0.08044
-            ],
-            [
-              -76.90782,
-              0.07943
-            ],
-            [
-              -76.90848,
-              0.07945
-            ],
-            [
-              -76.90848,
-              0.08043
-            ],
-            [
-              -76.91013,
-              0.08045
-            ],
-            [
-              -76.91013,
-              0.08084
-            ],
-            [
-              -76.91113,
-              0.08085
-            ],
-            [
-              -76.91115,
-              0.08242
-            ],
-            [
-              -76.90911,
-              0.08242
-            ],
-            [
-              -76.90908,
-              0.08325
-            ],
-            [
-              -76.90781,
-              0.08325
-            ]
-          ]
-        ]
-      },
-      "properties": {
-        "num_muestra": 27,
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "tipologia": "A",
-        "casos": 10,
-        "etiqueta": "27 | A",
-        "orden_ruta": 7,
-        "sec_anm": "210150017006",
-        "cod_sector": "210150017006",
-        "pob_t": 286.0,
-        "v_pres": 83.0,
-        "area_km2": 0.1135,
-        "dens_viv": 731.28,
-        "dens_pob": 2519.82,
-        "ESTADO_CAMPO": "FACTIBLE",
-        "sc": "27",
-        "etiquetaSC": "27 | A",
-        "canton": "LAGO AGRIO",
-        "bbox": [
-          [
-            -76.91115,
-            0.07943
-          ],
-          [
-            -76.90656,
-            0.08325
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              -76.90644,
-              0.0888
-            ],
-            [
-              -76.90643,
-              0.08688
-            ],
-            [
-              -76.90419,
-              0.08694
-            ],
-            [
-              -76.9042,
-              0.08475
-            ],
-            [
-              -76.90477,
-              0.0848
-            ],
-            [
-              -76.90667,
-              0.08425
-            ],
-            [
-              -76.90854,
-              0.08433
-            ],
-            [
-              -76.90849,
-              0.0877
-            ],
-            [
-              -76.90787,
-              0.08771
-            ],
-            [
-              -76.90786,
-              0.08876
-            ],
-            [
-              -76.90644,
-              0.0888
-            ]
-          ]
-        ]
-      },
-      "properties": {
-        "num_muestra": 28,
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "tipologia": "F",
-        "casos": 10,
-        "etiqueta": "28 | F",
-        "orden_ruta": 8,
-        "sec_anm": "210150002005",
-        "cod_sector": "210150002005",
-        "pob_t": 370.0,
-        "v_pres": 139.0,
-        "area_km2": 0.1712,
-        "dens_viv": 811.92,
-        "dens_pob": 2161.21,
-        "ESTADO_CAMPO": "FACTIBLE",
-        "sc": "28",
-        "etiquetaSC": "28 | F",
-        "canton": "LAGO AGRIO",
-        "bbox": [
-          [
-            -76.90854,
-            0.08425
-          ],
-          [
-            -76.90419,
-            0.0888
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              -76.90252,
-              0.07824
-            ],
-            [
-              -76.90332,
-              0.0779
-            ],
-            [
-              -76.90332,
-              0.07948
-            ],
-            [
-              -76.9042,
-              0.07935
-            ],
-            [
-              -76.90415,
-              0.08139
-            ],
-            [
-              -76.90512,
-              0.0814
-            ],
-            [
-              -76.90511,
-              0.08238
-            ],
-            [
-              -76.90252,
-              0.08215
-            ],
-            [
-              -76.90252,
-              0.07824
-            ]
-          ]
-        ]
-      },
-      "properties": {
-        "num_muestra": 29,
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "tipologia": "E",
-        "casos": 10,
-        "etiqueta": "29 | E",
-        "orden_ruta": 9,
-        "sec_anm": "210150016004",
-        "cod_sector": "210150016004",
-        "pob_t": 332.0,
-        "v_pres": 102.0,
-        "area_km2": 0.0826,
-        "dens_viv": 1234.87,
-        "dens_pob": 4019.37,
-        "ESTADO_CAMPO": "FACTIBLE",
-        "sc": "29",
-        "etiquetaSC": "29 | E",
-        "canton": "LAGO AGRIO",
-        "bbox": [
-          [
-            -76.90512,
-            0.0779
-          ],
-          [
-            -76.90252,
-            0.08238
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              -76.89757,
-              0.08064
-            ],
-            [
-              -76.8975,
-              0.08011
-            ],
-            [
-              -76.89983,
-              0.0801
-            ],
-            [
-              -76.89984,
-              0.08179
-            ],
-            [
-              -76.89878,
-              0.0818
-            ],
-            [
-              -76.89879,
-              0.0829
-            ],
-            [
-              -76.89861,
-              0.08294
-            ],
-            [
-              -76.89724,
-              0.08119
-            ],
-            [
-              -76.89757,
-              0.08064
-            ]
-          ]
-        ]
-      },
-      "properties": {
-        "num_muestra": 30,
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
         "tipologia": "C",
-        "casos": 10,
-        "etiqueta": "30 | C",
-        "orden_ruta": 10,
-        "sec_anm": "210150016008",
-        "cod_sector": "210150016008",
-        "pob_t": 270.0,
-        "v_pres": 84.0,
-        "area_km2": 0.0579,
-        "dens_viv": 1450.78,
-        "dens_pob": 4663.21,
-        "ESTADO_CAMPO": "FACTIBLE",
-        "sc": "30",
-        "etiquetaSC": "30 | C",
-        "canton": "LAGO AGRIO",
-        "bbox": [
-          [
-            -76.89984,
-            0.0801
-          ],
-          [
-            -76.89724,
-            0.08294
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              -76.90083,
-              0.0764
-            ],
-            [
-              -76.90088,
-              0.07751
-            ],
-            [
-              -76.89984,
-              0.07753
-            ],
-            [
-              -76.89985,
-              0.07696
-            ],
-            [
-              -76.8978,
-              0.07695
-            ],
-            [
-              -76.8978,
-              0.07734
-            ],
-            [
-              -76.89719,
-              0.07744
-            ],
-            [
-              -76.89735,
-              0.07879
-            ],
-            [
-              -76.89685,
-              0.07882
-            ],
-            [
-              -76.89667,
-              0.07754
-            ],
-            [
-              -76.89526,
-              0.07679
-            ],
-            [
-              -76.89527,
-              0.07618
-            ],
-            [
-              -76.8964,
-              0.07662
-            ],
-            [
-              -76.89639,
-              0.07547
-            ],
-            [
-              -76.89691,
-              0.07546
-            ],
-            [
-              -76.8978,
-              0.07644
-            ],
-            [
-              -76.90083,
-              0.0764
-            ]
-          ]
-        ]
-      },
-      "properties": {
-        "num_muestra": 31,
         "parroquia": "NUEVA LOJA",
         "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "tipologia": "B",
-        "casos": 10,
-        "etiqueta": "31 | B",
-        "orden_ruta": 11,
-        "sec_anm": "210150015009",
-        "cod_sector": "210150015009",
-        "pob_t": 360.0,
-        "v_pres": 109.0,
-        "area_km2": 0.0749,
-        "dens_viv": 1455.27,
-        "dens_pob": 4806.41,
-        "ESTADO_CAMPO": "FACTIBLE",
-        "sc": "31",
-        "etiquetaSC": "31 | B",
         "canton": "LAGO AGRIO",
-        "bbox": [
-          [
-            -76.90088,
-            0.07546
-          ],
-          [
-            -76.89526,
-            0.07882
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              -76.88961,
-              0.0713
-            ],
-            [
-              -76.88895,
-              0.07058
-            ],
-            [
-              -76.88944,
-              0.07014
-            ],
-            [
-              -76.89009,
-              0.07041
-            ],
-            [
-              -76.89115,
-              0.07017
-            ],
-            [
-              -76.89141,
-              0.07025
-            ],
-            [
-              -76.89157,
-              0.07044
-            ],
-            [
-              -76.89157,
-              0.07068
-            ],
-            [
-              -76.89119,
-              0.07169
-            ],
-            [
-              -76.893,
-              0.0716
-            ],
-            [
-              -76.89359,
-              0.07182
-            ],
-            [
-              -76.89459,
-              0.07146
-            ],
-            [
-              -76.89479,
-              0.07203
-            ],
-            [
-              -76.89315,
-              0.07304
-            ],
-            [
-              -76.89023,
-              0.07545
-            ],
-            [
-              -76.8893,
-              0.07374
-            ],
-            [
-              -76.88829,
-              0.07238
-            ],
-            [
-              -76.88961,
-              0.0713
-            ]
-          ]
-        ]
-      },
-      "properties": {
-        "num_muestra": 32,
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "tipologia": "H",
-        "casos": 10,
-        "etiqueta": "32 | H",
-        "orden_ruta": 12,
-        "sec_anm": "210150014004",
-        "cod_sector": "210150014004",
-        "pob_t": 426.0,
-        "v_pres": 117.0,
-        "area_km2": 0.1928,
-        "dens_viv": 606.85,
-        "dens_pob": 2209.54,
-        "ESTADO_CAMPO": "FACTIBLE",
-        "sc": "32",
-        "etiquetaSC": "32 | H",
-        "canton": "LAGO AGRIO",
-        "bbox": [
-          [
-            -76.89479,
-            0.07014
-          ],
-          [
-            -76.88829,
-            0.07545
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              -76.88662,
-              0.06801
-            ],
-            [
-              -76.88753,
-              0.069
-            ],
-            [
-              -76.8858,
-              0.0704
-            ],
-            [
-              -76.88652,
-              0.07134
-            ],
-            [
-              -76.88535,
-              0.07227
-            ],
-            [
-              -76.88387,
-              0.07037
-            ],
-            [
-              -76.88492,
-              0.06961
-            ],
-            [
-              -76.8855,
-              0.06954
-            ],
-            [
-              -76.88662,
-              0.06801
-            ]
-          ]
-        ]
-      },
-      "properties": {
-        "num_muestra": 33,
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "tipologia": "A",
-        "casos": 10,
-        "etiqueta": "33 | A",
-        "orden_ruta": 13,
-        "sec_anm": "210150014011",
-        "cod_sector": "210150014011",
-        "pob_t": 320.0,
-        "v_pres": 94.0,
-        "area_km2": 0.0729,
-        "dens_viv": 1289.44,
-        "dens_pob": 4389.57,
-        "ESTADO_CAMPO": "FACTIBLE",
-        "sc": "33",
-        "etiquetaSC": "33 | A",
-        "canton": "LAGO AGRIO",
-        "bbox": [
-          [
-            -76.88753,
-            0.06801
-          ],
-          [
-            -76.88387,
-            0.07227
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              -76.88373,
-              0.07539
-            ],
-            [
-              -76.88306,
-              0.07507
-            ],
-            [
-              -76.88268,
-              0.07527
-            ],
-            [
-              -76.88231,
-              0.07479
-            ],
-            [
-              -76.8814,
-              0.0749
-            ],
-            [
-              -76.88132,
-              0.07425
-            ],
-            [
-              -76.88256,
-              0.07326
-            ],
-            [
-              -76.88334,
-              0.07431
-            ],
-            [
-              -76.88372,
-              0.0746
-            ],
-            [
-              -76.88472,
-              0.07391
-            ],
-            [
-              -76.88525,
-              0.0746
-            ],
-            [
-              -76.88475,
-              0.07503
-            ],
-            [
-              -76.8853,
-              0.07572
-            ],
-            [
-              -76.88459,
-              0.07623
-            ],
-            [
-              -76.88373,
-              0.07539
-            ]
-          ]
-        ]
-      },
-      "properties": {
-        "num_muestra": 34,
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "tipologia": "D",
-        "casos": 10,
-        "etiqueta": "34 | D",
-        "orden_ruta": 14,
-        "sec_anm": "210150014008",
-        "cod_sector": "210150014008",
-        "pob_t": 201.0,
-        "v_pres": 63.0,
-        "area_km2": 0.0612,
-        "dens_viv": 1029.41,
-        "dens_pob": 3284.31,
-        "ESTADO_CAMPO": "FACTIBLE",
-        "sc": "34",
-        "etiquetaSC": "34 | D",
-        "canton": "LAGO AGRIO",
-        "bbox": [
-          [
-            -76.8853,
-            0.07326
-          ],
-          [
-            -76.88132,
-            0.07623
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              -76.88493,
-              0.07805
-            ],
-            [
-              -76.88538,
-              0.07888
-            ],
-            [
-              -76.88474,
-              0.07921
-            ],
-            [
-              -76.88364,
-              0.08009
-            ],
-            [
-              -76.88306,
-              0.07936
-            ],
-            [
-              -76.88493,
-              0.07805
-            ]
-          ]
-        ]
-      },
-      "properties": {
-        "num_muestra": 35,
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "tipologia": "G",
-        "casos": 10,
-        "etiqueta": "35 | G",
-        "orden_ruta": 15,
-        "sec_anm": "210150012008",
-        "cod_sector": "210150012008",
-        "pob_t": 228.0,
-        "v_pres": 85.0,
-        "area_km2": 0.0251,
-        "dens_viv": 3386.45,
-        "dens_pob": 9083.67,
-        "ESTADO_CAMPO": "FACTIBLE",
-        "sc": "35",
-        "etiquetaSC": "35 | G",
-        "canton": "LAGO AGRIO",
-        "bbox": [
-          [
-            -76.88538,
-            0.07805
-          ],
-          [
-            -76.88306,
-            0.08009
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              -76.88546,
-              0.08331
-            ],
-            [
-              -76.88546,
-              0.08393
-            ],
-            [
-              -76.88304,
-              0.08395
-            ],
-            [
-              -76.88303,
-              0.08333
-            ],
-            [
-              -76.88546,
-              0.08331
-            ]
-          ]
-        ]
-      },
-      "properties": {
-        "num_muestra": 36,
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "tipologia": "F",
-        "casos": 10,
-        "etiqueta": "36 | F",
-        "orden_ruta": 16,
-        "sec_anm": "210150011008",
-        "cod_sector": "210150011008",
-        "pob_t": 153.0,
-        "v_pres": 67.0,
-        "area_km2": 0.0187,
-        "dens_viv": 3582.89,
-        "dens_pob": 8181.82,
-        "ESTADO_CAMPO": "FACTIBLE",
-        "sc": "36",
-        "etiquetaSC": "36 | F",
-        "canton": "LAGO AGRIO",
-        "bbox": [
-          [
-            -76.88546,
-            0.08331
-          ],
-          [
-            -76.88303,
-            0.08395
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              -76.88553,
-              0.0896
-            ],
-            [
-              -76.88551,
-              0.08811
-            ],
-            [
-              -76.88715,
-              0.08808
-            ],
-            [
-              -76.88718,
-              0.09028
-            ],
-            [
-              -76.88652,
-              0.0903
-            ],
-            [
-              -76.88651,
-              0.08958
-            ],
-            [
-              -76.88553,
-              0.0896
-            ]
-          ]
-        ]
-      },
-      "properties": {
-        "num_muestra": 37,
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "tipologia": "C",
-        "casos": 10,
-        "etiqueta": "37 | C",
-        "orden_ruta": 17,
-        "sec_anm": "210150007007",
-        "cod_sector": "210150007007",
-        "pob_t": 318.0,
-        "v_pres": 96.0,
-        "area_km2": 0.0359,
-        "dens_viv": 2674.09,
-        "dens_pob": 8857.94,
-        "ESTADO_CAMPO": "FACTIBLE",
-        "sc": "37",
-        "etiquetaSC": "37 | C",
-        "canton": "LAGO AGRIO",
-        "bbox": [
-          [
-            -76.88718,
-            0.08808
-          ],
-          [
-            -76.88551,
-            0.0903
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              -76.88035,
-              0.09072
-            ],
-            [
-              -76.88046,
-              0.08924
-            ],
-            [
-              -76.88351,
-              0.0892
-            ],
-            [
-              -76.88351,
-              0.09035
-            ],
-            [
-              -76.88265,
-              0.09035
-            ],
-            [
-              -76.88266,
-              0.09069
-            ],
-            [
-              -76.88035,
-              0.09072
-            ]
-          ]
-        ]
-      },
-      "properties": {
-        "num_muestra": 38,
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "tipologia": "E",
-        "casos": 10,
-        "etiqueta": "38 | E",
-        "orden_ruta": 18,
-        "sec_anm": "210150010002",
-        "cod_sector": "210150010002",
-        "pob_t": 359.0,
-        "v_pres": 115.0,
-        "area_km2": 0.053,
-        "dens_viv": 2169.81,
-        "dens_pob": 6773.58,
-        "ESTADO_CAMPO": "FACTIBLE",
-        "sc": "38",
-        "etiquetaSC": "38 | E",
-        "canton": "LAGO AGRIO",
-        "bbox": [
-          [
-            -76.88351,
-            0.0892
-          ],
-          [
-            -76.88035,
-            0.09072
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              -76.87551,
-              0.09156
-            ],
-            [
-              -76.87725,
-              0.09011
-            ],
-            [
-              -76.87658,
-              0.08914
-            ],
-            [
-              -76.87782,
-              0.0882
-            ],
-            [
-              -76.87789,
-              0.08799
-            ],
-            [
-              -76.87893,
-              0.08781
-            ],
-            [
-              -76.87894,
-              0.08897
-            ],
-            [
-              -76.87797,
-              0.0896
-            ],
-            [
-              -76.87823,
-              0.0916
-            ],
-            [
-              -76.87697,
-              0.09201
-            ],
-            [
-              -76.87682,
-              0.0916
-            ],
-            [
-              -76.87574,
-              0.09209
-            ],
-            [
-              -76.87551,
-              0.09156
-            ]
-          ]
-        ]
-      },
-      "properties": {
-        "num_muestra": 39,
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "tipologia": "B",
-        "casos": 10,
-        "etiqueta": "39 | B",
-        "orden_ruta": 19,
-        "sec_anm": "210150010007",
-        "cod_sector": "210150010007",
-        "pob_t": 427.0,
-        "v_pres": 125.0,
-        "area_km2": 0.0796,
-        "dens_viv": 1570.35,
-        "dens_pob": 5364.32,
-        "ESTADO_CAMPO": "FACTIBLE",
-        "sc": "39",
-        "etiquetaSC": "39 | B",
-        "canton": "LAGO AGRIO",
-        "bbox": [
-          [
-            -76.87894,
-            0.08781
-          ],
-          [
-            -76.87551,
-            0.09209
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              -76.86695,
-              0.09212
-            ],
-            [
-              -76.86678,
-              0.09152
-            ],
-            [
-              -76.8664,
-              0.09143
-            ],
-            [
-              -76.86616,
-              0.09045
-            ],
-            [
-              -76.8663,
-              0.09006
-            ],
-            [
-              -76.86677,
-              0.08966
-            ],
-            [
-              -76.86688,
-              0.08928
-            ],
-            [
-              -76.8666,
-              0.08649
-            ],
-            [
-              -76.86667,
-              0.085
-            ],
-            [
-              -76.86659,
-              0.08362
-            ],
-            [
-              -76.86675,
-              0.08315
-            ],
-            [
-              -76.86967,
-              0.08311
-            ],
-            [
-              -76.87171,
-              0.08282
-            ],
-            [
-              -76.87308,
-              0.0831
-            ],
-            [
-              -76.87955,
-              0.08306
-            ],
-            [
-              -76.87974,
-              0.08309
-            ],
-            [
-              -76.88057,
-              0.08412
-            ],
-            [
-              -76.88067,
-              0.08532
-            ],
-            [
-              -76.88057,
-              0.08745
-            ],
-            [
-              -76.8785,
-              0.0874
-            ],
-            [
-              -76.87817,
-              0.08728
-            ],
-            [
-              -76.87835,
-              0.08712
-            ],
-            [
-              -76.87759,
-              0.08602
-            ],
-            [
-              -76.86887,
-              0.09253
-            ],
-            [
-              -76.86872,
-              0.09249
-            ],
-            [
-              -76.86817,
-              0.09173
-            ],
-            [
-              -76.8676,
-              0.09216
-            ],
-            [
-              -76.86746,
-              0.09195
-            ],
-            [
-              -76.86695,
-              0.09212
-            ]
-          ]
-        ]
-      },
-      "properties": {
-        "num_muestra": 40,
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "tipologia": "D",
-        "casos": 10,
-        "etiqueta": "40 | D",
-        "orden_ruta": 20,
-        "sec_anm": "210150011010",
-        "cod_sector": "210150011010",
-        "pob_t": 203.0,
-        "v_pres": 70.0,
-        "area_km2": 1.0685,
-        "dens_viv": 65.51,
-        "dens_pob": 189.99,
-        "ESTADO_CAMPO": "FACTIBLE",
-        "sc": "40",
-        "etiquetaSC": "40 | D",
-        "canton": "LAGO AGRIO",
-        "bbox": [
-          [
-            -76.88067,
-            0.08282
-          ],
-          [
-            -76.86616,
-            0.09253
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              -76.87127,
-              0.09475
-            ],
-            [
-              -76.87179,
-              0.09438
-            ],
-            [
-              -76.87239,
-              0.09531
-            ],
-            [
-              -76.87461,
-              0.09385
-            ],
-            [
-              -76.87504,
-              0.0954
-            ],
-            [
-              -76.87446,
-              0.09588
-            ],
-            [
-              -76.87373,
-              0.09594
-            ],
-            [
-              -76.87375,
-              0.09656
-            ],
-            [
-              -76.87264,
-              0.09659
-            ],
-            [
-              -76.87127,
-              0.09475
-            ]
-          ]
-        ]
-      },
-      "properties": {
-        "num_muestra": 41,
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "tipologia": "A",
-        "casos": 10,
-        "etiqueta": "41 | A",
-        "orden_ruta": 21,
-        "sec_anm": "210150009009",
-        "cod_sector": "210150009009",
-        "pob_t": 259.0,
-        "v_pres": 80.0,
-        "area_km2": 0.0629,
-        "dens_viv": 1271.86,
-        "dens_pob": 4117.65,
-        "ESTADO_CAMPO": "FACTIBLE",
-        "sc": "41",
-        "etiquetaSC": "41 | A",
-        "canton": "LAGO AGRIO",
-        "bbox": [
-          [
-            -76.87504,
-            0.09385
-          ],
-          [
-            -76.87127,
-            0.09659
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              -76.87733,
-              0.10104
-            ],
-            [
-              -76.87686,
-              0.09672
-            ],
-            [
-              -76.8778,
-              0.09675
-            ],
-            [
-              -76.87865,
-              0.0964
-            ],
-            [
-              -76.88102,
-              0.09625
-            ],
-            [
-              -76.88097,
-              0.0993
-            ],
-            [
-              -76.8789,
-              0.0993
-            ],
-            [
-              -76.87864,
-              0.09945
-            ],
-            [
-              -76.87802,
-              0.09944
-            ],
-            [
-              -76.878,
-              0.10556
-            ],
-            [
-              -76.87829,
-              0.10685
-            ],
-            [
-              -76.87624,
-              0.10836
-            ],
-            [
-              -76.87613,
-              0.10688
-            ],
-            [
-              -76.87578,
-              0.10584
-            ],
-            [
-              -76.87581,
-              0.10362
-            ],
-            [
-              -76.87733,
-              0.10104
-            ]
-          ]
-        ]
-      },
-      "properties": {
-        "num_muestra": 42,
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "tipologia": "A",
-        "casos": 10,
-        "etiqueta": "42 | A",
-        "orden_ruta": 22,
-        "sec_anm": "210150008007",
-        "cod_sector": "210150008007",
-        "pob_t": 298.0,
-        "v_pres": 93.0,
-        "area_km2": 0.312,
-        "dens_viv": 298.08,
-        "dens_pob": 955.13,
-        "ESTADO_CAMPO": "FACTIBLE",
-        "sc": "42",
-        "etiquetaSC": "42 | A",
-        "canton": "LAGO AGRIO",
-        "bbox": [
-          [
-            -76.88102,
-            0.09625
-          ],
-          [
-            -76.87578,
-            0.10836
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              -76.88352,
-              0.10043
-            ],
-            [
-              -76.88352,
-              0.09928
-            ],
-            [
-              -76.8858,
-              0.09926
-            ],
-            [
-              -76.88582,
-              0.10042
-            ],
-            [
-              -76.88352,
-              0.10043
-            ]
-          ]
-        ]
-      },
-      "properties": {
-        "num_muestra": 43,
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "tipologia": "D",
-        "casos": 10,
-        "etiqueta": "43 | D",
-        "orden_ruta": 23,
-        "sec_anm": "210150008005",
-        "cod_sector": "210150008005",
-        "pob_t": 239.0,
-        "v_pres": 72.0,
-        "area_km2": 0.0326,
-        "dens_viv": 2208.59,
-        "dens_pob": 7331.29,
-        "ESTADO_CAMPO": "FACTIBLE",
-        "sc": "43",
-        "etiquetaSC": "43 | D",
-        "canton": "LAGO AGRIO",
-        "bbox": [
-          [
-            -76.88582,
-            0.09926
-          ],
-          [
-            -76.88352,
-            0.10043
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              -76.89045,
-              0.09779
-            ],
-            [
-              -76.89045,
-              0.09997
-            ],
-            [
-              -76.88958,
-              0.09997
-            ],
-            [
-              -76.88958,
-              0.10016
-            ],
-            [
-              -76.88874,
-              0.10017
-            ],
-            [
-              -76.88878,
-              0.09784
-            ],
-            [
-              -76.89045,
-              0.09779
-            ]
-          ]
-        ]
-      },
-      "properties": {
-        "num_muestra": 44,
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "tipologia": "F",
-        "casos": 10,
-        "etiqueta": "44 | F",
-        "orden_ruta": 24,
-        "sec_anm": "210150008002",
-        "cod_sector": "210150008002",
-        "pob_t": 255.0,
-        "v_pres": 79.0,
-        "area_km2": 0.0475,
-        "dens_viv": 1663.16,
-        "dens_pob": 5368.42,
-        "ESTADO_CAMPO": "FACTIBLE",
-        "sc": "44",
-        "etiquetaSC": "44 | F",
-        "canton": "LAGO AGRIO",
-        "bbox": [
-          [
-            -76.89045,
-            0.09779
-          ],
-          [
-            -76.88874,
-            0.10017
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              -76.88872,
-              0.09311
-            ],
-            [
-              -76.888,
-              0.09312
-            ],
-            [
-              -76.88801,
-              0.09454
-            ],
-            [
-              -76.88725,
-              0.09454
-            ],
-            [
-              -76.88722,
-              0.09237
-            ],
-            [
-              -76.88958,
-              0.09233
-            ],
-            [
-              -76.88959,
-              0.0946
-            ],
-            [
-              -76.88873,
-              0.09461
-            ],
-            [
-              -76.88872,
-              0.09311
-            ]
-          ]
-        ]
-      },
-      "properties": {
-        "num_muestra": 45,
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "tipologia": "G",
-        "casos": 10,
-        "etiqueta": "45 | G",
-        "orden_ruta": 25,
-        "sec_anm": "210150008012",
-        "cod_sector": "210150008012",
-        "pob_t": 245.0,
-        "v_pres": 74.0,
-        "area_km2": 0.0515,
-        "dens_viv": 1436.89,
-        "dens_pob": 4757.28,
-        "ESTADO_CAMPO": "FACTIBLE",
-        "sc": "45",
-        "etiquetaSC": "45 | G",
-        "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO LAS PALMERAS - PARQUE LAS PALMERAS Y CANCHA",
         "bbox": [
           [
             -76.88959,
-            0.09233
+            0.09894
           ],
           [
-            -76.88722,
-            0.09461
+            -76.88959,
+            0.09894
           ]
         ]
       }
@@ -4136,987 +972,43 @@
     {
       "type": "Feature",
       "geometry": {
-        "type": "Polygon",
+        "type": "Point",
         "coordinates": [
-          [
-            [
-              -76.89115,
-              0.09195
-            ],
-            [
-              -76.89114,
-              0.09075
-            ],
-            [
-              -76.89037,
-              0.09076
-            ],
-            [
-              -76.89037,
-              0.08956
-            ],
-            [
-              -76.89266,
-              0.08955
-            ],
-            [
-              -76.89265,
-              0.09074
-            ],
-            [
-              -76.89346,
-              0.09074
-            ],
-            [
-              -76.89346,
-              0.09195
-            ],
-            [
-              -76.89115,
-              0.09195
-            ]
-          ]
+          -76.88738,
+          0.10229
         ]
       },
       "properties": {
-        "num_muestra": 46,
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "tipologia": "B",
-        "casos": 10,
-        "etiqueta": "46 | B",
-        "orden_ruta": 26,
-        "sec_anm": "210150005003",
-        "cod_sector": "210150005003",
-        "pob_t": 270.0,
-        "v_pres": 90.0,
-        "area_km2": 0.0684,
-        "dens_viv": 1315.79,
-        "dens_pob": 3947.37,
-        "ESTADO_CAMPO": "FACTIBLE",
-        "sc": "46",
-        "etiquetaSC": "46 | B",
-        "canton": "LAGO AGRIO",
-        "bbox": [
-          [
-            -76.89346,
-            0.08955
-          ],
-          [
-            -76.89037,
-            0.09195
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              -76.89585,
-              0.09434
-            ],
-            [
-              -76.89584,
-              0.08954
-            ],
-            [
-              -76.89662,
-              0.08953
-            ],
-            [
-              -76.89662,
-              0.09147
-            ],
-            [
-              -76.89823,
-              0.09301
-            ],
-            [
-              -76.89823,
-              0.09316
-            ],
-            [
-              -76.89744,
-              0.09314
-            ],
-            [
-              -76.89743,
-              0.09434
-            ],
-            [
-              -76.89585,
-              0.09434
-            ]
-          ]
-        ]
-      },
-      "properties": {
-        "num_muestra": 47,
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "tipologia": "E",
-        "casos": 10,
-        "etiqueta": "47 | E",
-        "orden_ruta": 27,
-        "sec_anm": "210150003006",
-        "cod_sector": "210150003006",
-        "pob_t": 453.0,
-        "v_pres": 130.0,
-        "area_km2": 0.0754,
-        "dens_viv": 1724.14,
-        "dens_pob": 6007.96,
-        "ESTADO_CAMPO": "FACTIBLE",
-        "sc": "47",
-        "etiquetaSC": "47 | E",
-        "canton": "LAGO AGRIO",
-        "bbox": [
-          [
-            -76.89823,
-            0.08953
-          ],
-          [
-            -76.89584,
-            0.09434
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              -76.90003,
-              0.087
-            ],
-            [
-              -76.90106,
-              0.08699
-            ],
-            [
-              -76.90112,
-              0.09014
-            ],
-            [
-              -76.90002,
-              0.09016
-            ],
-            [
-              -76.90002,
-              0.08961
-            ],
-            [
-              -76.89742,
-              0.08952
-            ],
-            [
-              -76.89741,
-              0.08882
-            ],
-            [
-              -76.89887,
-              0.08881
-            ],
-            [
-              -76.89888,
-              0.08904
-            ],
-            [
-              -76.90002,
-              0.08901
-            ],
-            [
-              -76.90003,
-              0.087
-            ]
-          ]
-        ]
-      },
-      "properties": {
-        "num_muestra": 48,
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "tipologia": "D",
-        "casos": 10,
-        "etiqueta": "48 | D",
-        "orden_ruta": 28,
-        "sec_anm": "210150003009",
-        "cod_sector": "210150003009",
-        "pob_t": 318.0,
-        "v_pres": 88.0,
-        "area_km2": 0.0626,
-        "dens_viv": 1405.75,
-        "dens_pob": 5079.87,
-        "ESTADO_CAMPO": "FACTIBLE",
-        "sc": "48",
-        "etiquetaSC": "48 | D",
-        "canton": "LAGO AGRIO",
-        "bbox": [
-          [
-            -76.90112,
-            0.08699
-          ],
-          [
-            -76.89741,
-            0.09016
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              -76.90117,
-              0.09583
-            ],
-            [
-              -76.90118,
-              0.09507
-            ],
-            [
-              -76.90032,
-              0.09502
-            ],
-            [
-              -76.90001,
-              0.09474
-            ],
-            [
-              -76.90002,
-              0.09307
-            ],
-            [
-              -76.90117,
-              0.09312
-            ],
-            [
-              -76.90116,
-              0.09136
-            ],
-            [
-              -76.90218,
-              0.09135
-            ],
-            [
-              -76.90218,
-              0.09073
-            ],
-            [
-              -76.90646,
-              0.09071
-            ],
-            [
-              -76.90646,
-              0.09305
-            ],
-            [
-              -76.90417,
-              0.09306
-            ],
-            [
-              -76.90423,
-              0.09599
-            ],
-            [
-              -76.90317,
-              0.0961
-            ],
-            [
-              -76.90284,
-              0.09544
-            ],
-            [
-              -76.90225,
-              0.09521
-            ],
-            [
-              -76.90214,
-              0.09538
-            ],
-            [
-              -76.90225,
-              0.09564
-            ],
-            [
-              -76.90159,
-              0.09594
-            ],
-            [
-              -76.90149,
-              0.09613
-            ],
-            [
-              -76.90117,
-              0.09583
-            ]
-          ]
-        ]
-      },
-      "properties": {
-        "num_muestra": 49,
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "tipologia": "B",
-        "casos": 10,
-        "etiqueta": "49 | B",
-        "orden_ruta": 29,
-        "sec_anm": "210150002001",
-        "cod_sector": "210150002001",
-        "pob_t": 451.0,
-        "v_pres": 137.0,
-        "area_km2": 0.2755,
-        "dens_viv": 497.28,
-        "dens_pob": 1637.02,
-        "ESTADO_CAMPO": "FACTIBLE",
-        "sc": "49",
-        "etiquetaSC": "49 | B",
-        "canton": "LAGO AGRIO",
-        "bbox": [
-          [
-            -76.90646,
-            0.09071
-          ],
-          [
-            -76.90001,
-            0.09613
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              -76.89585,
-              0.09913
-            ],
-            [
-              -76.89585,
-              0.09673
-            ],
-            [
-              -76.899,
-              0.09671
-            ],
-            [
-              -76.89902,
-              0.098
-            ],
-            [
-              -76.89706,
-              0.09799
-            ],
-            [
-              -76.89707,
-              0.09913
-            ],
-            [
-              -76.89585,
-              0.09913
-            ]
-          ]
-        ]
-      },
-      "properties": {
-        "num_muestra": 50,
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "tipologia": "H",
-        "casos": 10,
-        "etiqueta": "50 | H",
-        "orden_ruta": 30,
-        "sec_anm": "210150003003",
-        "cod_sector": "210150003003",
-        "pob_t": 343.0,
-        "v_pres": 95.0,
-        "area_km2": 0.0669,
-        "dens_viv": 1420.03,
-        "dens_pob": 5127.06,
-        "ESTADO_CAMPO": "FACTIBLE",
-        "sc": "50",
-        "etiquetaSC": "50 | H",
-        "canton": "LAGO AGRIO",
-        "bbox": [
-          [
-            -76.89902,
-            0.09671
-          ],
-          [
-            -76.89585,
-            0.09913
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              -76.89752,
-              0.10544
-            ],
-            [
-              -76.89118,
-              0.10535
-            ],
-            [
-              -76.8912,
-              0.10482
-            ],
-            [
-              -76.89049,
-              0.10482
-            ],
-            [
-              -76.89044,
-              0.10413
-            ],
-            [
-              -76.89377,
-              0.10412
-            ],
-            [
-              -76.89376,
-              0.10298
-            ],
-            [
-              -76.8935,
-              0.10058
-            ],
-            [
-              -76.89658,
-              0.10049
-            ],
-            [
-              -76.89657,
-              0.0998
-            ],
-            [
-              -76.89747,
-              0.0998
-            ],
-            [
-              -76.89748,
-              0.10044
-            ],
-            [
-              -76.89883,
-              0.10044
-            ],
-            [
-              -76.89884,
-              0.10076
-            ],
-            [
-              -76.89915,
-              0.10113
-            ],
-            [
-              -76.89881,
-              0.10238
-            ],
-            [
-              -76.89884,
-              0.10292
-            ],
-            [
-              -76.89807,
-              0.10342
-            ],
-            [
-              -76.89782,
-              0.10374
-            ],
-            [
-              -76.89778,
-              0.10394
-            ],
-            [
-              -76.89799,
-              0.10419
-            ],
-            [
-              -76.89746,
-              0.10496
-            ],
-            [
-              -76.89766,
-              0.10536
-            ],
-            [
-              -76.89752,
-              0.10544
-            ]
-          ]
-        ]
-      },
-      "properties": {
-        "num_muestra": 51,
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "tipologia": "C",
-        "casos": 10,
-        "etiqueta": "51 | C",
-        "orden_ruta": 31,
-        "sec_anm": "210150003001",
-        "cod_sector": "210150003001",
-        "pob_t": 417.0,
-        "v_pres": 118.0,
-        "area_km2": 0.3398,
-        "dens_viv": 347.26,
-        "dens_pob": 1227.19,
-        "ESTADO_CAMPO": "FACTIBLE",
-        "sc": "51",
-        "etiquetaSC": "51 | C",
-        "canton": "LAGO AGRIO",
-        "bbox": [
-          [
-            -76.89915,
-            0.0998
-          ],
-          [
-            -76.89044,
-            0.10544
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              -76.88345,
-              0.09379
-            ],
-            [
-              -76.88353,
-              0.09566
-            ],
-            [
-              -76.88204,
-              0.09561
-            ],
-            [
-              -76.88205,
-              0.09408
-            ],
-            [
-              -76.88345,
-              0.09379
-            ]
-          ]
-        ]
-      },
-      "properties": {
-        "num_muestra": 52,
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "tipologia": "B",
-        "casos": 10,
-        "etiqueta": "52 | B",
-        "orden_ruta": 32,
-        "sec_anm": "210150009002",
-        "cod_sector": "210150009002",
-        "pob_t": 225.0,
-        "v_pres": 76.0,
-        "area_km2": 0.0313,
-        "dens_viv": 2428.12,
-        "dens_pob": 7188.5,
-        "ESTADO_CAMPO": "FACTIBLE",
-        "sc": "52",
-        "etiquetaSC": "52 | B",
-        "canton": "LAGO AGRIO",
-        "bbox": [
-          [
-            -76.88353,
-            0.09379
-          ],
-          [
-            -76.88204,
-            0.09566
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              -76.87519,
-              0.11157
-            ],
-            [
-              -76.87522,
-              0.11169
-            ],
-            [
-              -76.87463,
-              0.11258
-            ],
-            [
-              -76.87425,
-              0.11259
-            ],
-            [
-              -76.87407,
-              0.11273
-            ],
-            [
-              -76.87376,
-              0.11341
-            ],
-            [
-              -76.8735,
-              0.11362
-            ],
-            [
-              -76.87347,
-              0.11449
-            ],
-            [
-              -76.87367,
-              0.11465
-            ],
-            [
-              -76.87385,
-              0.11505
-            ],
-            [
-              -76.87352,
-              0.11566
-            ],
-            [
-              -76.87292,
-              0.11565
-            ],
-            [
-              -76.8727,
-              0.11464
-            ],
-            [
-              -76.87146,
-              0.11467
-            ],
-            [
-              -76.87132,
-              0.11522
-            ],
-            [
-              -76.87036,
-              0.11523
-            ],
-            [
-              -76.87036,
-              0.11414
-            ],
-            [
-              -76.86961,
-              0.11421
-            ],
-            [
-              -76.86958,
-              0.1137
-            ],
-            [
-              -76.86979,
-              0.11336
-            ],
-            [
-              -76.8698,
-              0.11308
-            ],
-            [
-              -76.87017,
-              0.11267
-            ],
-            [
-              -76.87048,
-              0.11257
-            ],
-            [
-              -76.87055,
-              0.11234
-            ],
-            [
-              -76.87086,
-              0.11208
-            ],
-            [
-              -76.87085,
-              0.1119
-            ],
-            [
-              -76.871,
-              0.11184
-            ],
-            [
-              -76.87097,
-              0.11166
-            ],
-            [
-              -76.87127,
-              0.11143
-            ],
-            [
-              -76.87135,
-              0.11153
-            ],
-            [
-              -76.87204,
-              0.11155
-            ],
-            [
-              -76.87519,
-              0.11157
-            ]
-          ]
-        ]
-      },
-      "properties": {
-        "num_muestra": 53,
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "tipologia": "F",
-        "casos": 10,
-        "etiqueta": "53 | F",
-        "orden_ruta": 33,
-        "sec_anm": "210150911001",
-        "cod_sector": "210150911001",
-        "pob_t": 327.0,
-        "v_pres": 96.0,
-        "area_km2": 0.1683,
-        "dens_viv": 570.41,
-        "dens_pob": 1942.96,
-        "ESTADO_CAMPO": "FACTIBLE",
-        "sc": "53",
-        "etiquetaSC": "53 | F",
-        "canton": "LAGO AGRIO",
-        "bbox": [
-          [
-            -76.87522,
-            0.11143
-          ],
-          [
-            -76.86958,
-            0.11566
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              -76.85465,
-              0.09471
-            ],
-            [
-              -76.85526,
-              0.09513
-            ],
-            [
-              -76.85534,
-              0.09554
-            ],
-            [
-              -76.85657,
-              0.09525
-            ],
-            [
-              -76.85682,
-              0.09565
-            ],
-            [
-              -76.85544,
-              0.09667
-            ],
-            [
-              -76.85593,
-              0.09738
-            ],
-            [
-              -76.85732,
-              0.09638
-            ],
-            [
-              -76.85831,
-              0.09774
-            ],
-            [
-              -76.85808,
-              0.09771
-            ],
-            [
-              -76.85607,
-              0.09891
-            ],
-            [
-              -76.85514,
-              0.09776
-            ],
-            [
-              -76.85383,
-              0.09735
-            ],
-            [
-              -76.85455,
-              0.09569
-            ],
-            [
-              -76.85465,
-              0.09471
-            ]
-          ]
-        ]
-      },
-      "properties": {
-        "num_muestra": 54,
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "tipologia": "D",
-        "casos": 10,
-        "etiqueta": "54 | D",
-        "orden_ruta": 34,
-        "sec_anm": "210150915002",
-        "cod_sector": "210150915002",
-        "pob_t": 362.0,
-        "v_pres": 99.0,
-        "area_km2": 0.0999,
-        "dens_viv": 990.99,
-        "dens_pob": 3623.62,
-        "ESTADO_CAMPO": "FACTIBLE",
-        "sc": "54",
-        "etiquetaSC": "54 | D",
-        "canton": "LAGO AGRIO",
-        "bbox": [
-          [
-            -76.85831,
-            0.09471
-          ],
-          [
-            -76.85383,
-            0.09891
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              -76.87662,
-              0.07089
-            ],
-            [
-              -76.87015,
-              0.0726
-            ],
-            [
-              -76.87008,
-              0.07128
-            ],
-            [
-              -76.87047,
-              0.0699
-            ],
-            [
-              -76.87056,
-              0.06872
-            ],
-            [
-              -76.87201,
-              0.0687
-            ],
-            [
-              -76.87336,
-              0.06831
-            ],
-            [
-              -76.8776,
-              0.06836
-            ],
-            [
-              -76.87819,
-              0.06913
-            ],
-            [
-              -76.87838,
-              0.06905
-            ],
-            [
-              -76.87881,
-              0.06947
-            ],
-            [
-              -76.87887,
-              0.06984
-            ],
-            [
-              -76.87863,
-              0.07051
-            ],
-            [
-              -76.87662,
-              0.07089
-            ]
-          ]
-        ]
-      },
-      "properties": {
-        "num_muestra": 55,
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "CODIGO": 23,
+        "TIPOLOGIA": "G",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO LAS PALMERAS - CENTRO MEDICO Y CALLE ORELLANA",
+        "COD_ETIQUETA": "23 | G",
+        "ORDEN_RUTA": 23,
+        "SECTOR_INEC": "210150008001",
+        "LATITUD": 0.10229,
+        "LONGITUD": -76.887375,
+        "X_UTM": 958027.59,
+        "Y_UTM": 10011335.49,
+        "num_muestra": 23,
+        "sc": "23",
+        "etiqueta": "23 | G",
+        "etiquetaSC": "23 | G",
         "tipologia": "G",
-        "casos": 10,
-        "etiqueta": "55 | G",
-        "orden_ruta": 35,
-        "sec_anm": "210150013003",
-        "cod_sector": "210150013003",
-        "pob_t": 475.0,
-        "v_pres": 125.0,
-        "area_km2": 0.3085,
-        "dens_viv": 405.19,
-        "dens_pob": 1539.71,
-        "ESTADO_CAMPO": "FACTIBLE",
-        "sc": "55",
-        "etiquetaSC": "55 | G",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
         "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO LAS PALMERAS - CENTRO MEDICO Y CALLE ORELLANA",
         "bbox": [
           [
-            -76.87887,
-            0.06831
+            -76.88738,
+            0.10229
           ],
           [
-            -76.87008,
-            0.0726
+            -76.88738,
+            0.10229
           ]
         ]
       }
@@ -5124,79 +1016,43 @@
     {
       "type": "Feature",
       "geometry": {
-        "type": "Polygon",
+        "type": "Point",
         "coordinates": [
-          [
-            [
-              -76.87981,
-              0.06713
-            ],
-            [
-              -76.88018,
-              0.0672
-            ],
-            [
-              -76.88035,
-              0.06655
-            ],
-            [
-              -76.88191,
-              0.06701
-            ],
-            [
-              -76.88138,
-              0.06934
-            ],
-            [
-              -76.88236,
-              0.07074
-            ],
-            [
-              -76.88127,
-              0.07163
-            ],
-            [
-              -76.87958,
-              0.06952
-            ],
-            [
-              -76.87949,
-              0.06891
-            ],
-            [
-              -76.87981,
-              0.06713
-            ]
-          ]
+          -76.89249,
+          0.10186
         ]
       },
       "properties": {
-        "num_muestra": 56,
+        "CODIGO": 24,
+        "TIPOLOGIA": "A",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO EL CISNE - CATEDRAL NUESTRA SEÑORA DEL CISNE",
+        "COD_ETIQUETA": "24 | A",
+        "ORDEN_RUTA": 24,
+        "SECTOR_INEC": "210150004001",
+        "LATITUD": 0.101862,
+        "LONGITUD": -76.892485,
+        "X_UTM": 957457.5,
+        "Y_UTM": 10011287.97,
+        "num_muestra": 24,
+        "sc": "24",
+        "etiqueta": "24 | A",
+        "etiquetaSC": "24 | A",
+        "tipologia": "A",
         "parroquia": "NUEVA LOJA",
         "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "tipologia": "E",
-        "casos": 10,
-        "etiqueta": "56 | E",
-        "orden_ruta": 36,
-        "sec_anm": "210150013005",
-        "cod_sector": "210150013005",
-        "pob_t": 430.0,
-        "v_pres": 123.0,
-        "area_km2": 0.1054,
-        "dens_viv": 1166.98,
-        "dens_pob": 4079.7,
-        "ESTADO_CAMPO": "FACTIBLE",
-        "sc": "56",
-        "etiquetaSC": "56 | E",
         "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO EL CISNE - CATEDRAL NUESTRA SEÑORA DEL CISNE",
         "bbox": [
           [
-            -76.88236,
-            0.06655
+            -76.89249,
+            0.10186
           ],
           [
-            -76.87949,
-            0.07163
+            -76.89249,
+            0.10186
           ]
         ]
       }
@@ -5204,347 +1060,43 @@
     {
       "type": "Feature",
       "geometry": {
-        "type": "Polygon",
+        "type": "Point",
         "coordinates": [
-          [
-            [
-              -76.86891,
-              0.05925
-            ],
-            [
-              -76.87167,
-              0.05957
-            ],
-            [
-              -76.87799,
-              0.06122
-            ],
-            [
-              -76.88019,
-              0.06103
-            ],
-            [
-              -76.88128,
-              0.06037
-            ],
-            [
-              -76.88358,
-              0.05745
-            ],
-            [
-              -76.88388,
-              0.05679
-            ],
-            [
-              -76.88527,
-              0.05485
-            ],
-            [
-              -76.88607,
-              0.05522
-            ],
-            [
-              -76.88614,
-              0.05541
-            ],
-            [
-              -76.88622,
-              0.05592
-            ],
-            [
-              -76.88555,
-              0.05658
-            ],
-            [
-              -76.88444,
-              0.059
-            ],
-            [
-              -76.88208,
-              0.06128
-            ],
-            [
-              -76.88089,
-              0.06271
-            ],
-            [
-              -76.88033,
-              0.06306
-            ],
-            [
-              -76.87979,
-              0.0632
-            ],
-            [
-              -76.87794,
-              0.06311
-            ],
-            [
-              -76.87794,
-              0.06425
-            ],
-            [
-              -76.87622,
-              0.06445
-            ],
-            [
-              -76.87629,
-              0.06553
-            ],
-            [
-              -76.87502,
-              0.06565
-            ],
-            [
-              -76.87493,
-              0.0646
-            ],
-            [
-              -76.87418,
-              0.0647
-            ],
-            [
-              -76.87432,
-              0.06572
-            ],
-            [
-              -76.8736,
-              0.06577
-            ],
-            [
-              -76.87314,
-              0.0638
-            ],
-            [
-              -76.87323,
-              0.06314
-            ],
-            [
-              -76.87304,
-              0.06317
-            ],
-            [
-              -76.87291,
-              0.06338
-            ],
-            [
-              -76.87277,
-              0.06331
-            ],
-            [
-              -76.87249,
-              0.06346
-            ],
-            [
-              -76.87205,
-              0.06334
-            ],
-            [
-              -76.87143,
-              0.06363
-            ],
-            [
-              -76.87128,
-              0.06352
-            ],
-            [
-              -76.87131,
-              0.06304
-            ],
-            [
-              -76.87102,
-              0.06292
-            ],
-            [
-              -76.87096,
-              0.06332
-            ],
-            [
-              -76.8705,
-              0.0642
-            ],
-            [
-              -76.86979,
-              0.06444
-            ],
-            [
-              -76.86923,
-              0.06369
-            ],
-            [
-              -76.86892,
-              0.06368
-            ],
-            [
-              -76.86855,
-              0.06221
-            ],
-            [
-              -76.86833,
-              0.06188
-            ],
-            [
-              -76.86818,
-              0.06105
-            ],
-            [
-              -76.86864,
-              0.06065
-            ],
-            [
-              -76.86891,
-              0.05925
-            ]
-          ]
+          -76.89415,
+          0.09354
         ]
       },
       "properties": {
-        "num_muestra": 57,
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "tipologia": "C",
-        "casos": 10,
-        "etiqueta": "57 | C",
-        "orden_ruta": 37,
-        "sec_anm": "210150013007",
-        "cod_sector": "210150013007",
-        "pob_t": 551.0,
-        "v_pres": 164.0,
-        "area_km2": 0.711,
-        "dens_viv": 230.66,
-        "dens_pob": 774.96,
-        "ESTADO_CAMPO": "FACTIBLE",
-        "sc": "57",
-        "etiquetaSC": "57 | C",
-        "canton": "LAGO AGRIO",
-        "bbox": [
-          [
-            -76.88622,
-            0.05485
-          ],
-          [
-            -76.86818,
-            0.06577
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              -76.87484,
-              0.05565
-            ],
-            [
-              -76.87563,
-              0.05419
-            ],
-            [
-              -76.88157,
-              0.05329
-            ],
-            [
-              -76.88148,
-              0.05473
-            ],
-            [
-              -76.88163,
-              0.05556
-            ],
-            [
-              -76.88146,
-              0.05624
-            ],
-            [
-              -76.8805,
-              0.05602
-            ],
-            [
-              -76.87986,
-              0.05606
-            ],
-            [
-              -76.87912,
-              0.05732
-            ],
-            [
-              -76.87824,
-              0.05663
-            ],
-            [
-              -76.87788,
-              0.05708
-            ],
-            [
-              -76.8769,
-              0.05632
-            ],
-            [
-              -76.87585,
-              0.05757
-            ],
-            [
-              -76.87405,
-              0.05816
-            ],
-            [
-              -76.87353,
-              0.05902
-            ],
-            [
-              -76.87263,
-              0.05875
-            ],
-            [
-              -76.87255,
-              0.0583
-            ],
-            [
-              -76.87238,
-              0.05811
-            ],
-            [
-              -76.87128,
-              0.05747
-            ],
-            [
-              -76.87484,
-              0.05565
-            ]
-          ]
-        ]
-      },
-      "properties": {
-        "num_muestra": 58,
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "CODIGO": 25,
+        "TIPOLOGIA": "H",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO 9 DE OCTUBRE - COLEGIO LAGO AGRIO CENTRAL",
+        "COD_ETIQUETA": "25 | H",
+        "ORDEN_RUTA": 25,
+        "SECTOR_INEC": "210150004005",
+        "LATITUD": 0.093542,
+        "LONGITUD": -76.894153,
+        "X_UTM": 957271.51,
+        "Y_UTM": 10010366.03,
+        "num_muestra": 25,
+        "sc": "25",
+        "etiqueta": "25 | H",
+        "etiquetaSC": "25 | H",
         "tipologia": "H",
-        "casos": 10,
-        "etiqueta": "58 | H",
-        "orden_ruta": 38,
-        "sec_anm": "210150013009",
-        "cod_sector": "210150013009",
-        "pob_t": 344.0,
-        "v_pres": 103.0,
-        "area_km2": 0.3184,
-        "dens_viv": 323.49,
-        "dens_pob": 1080.4,
-        "ESTADO_CAMPO": "FACTIBLE",
-        "sc": "58",
-        "etiquetaSC": "58 | H",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
         "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO 9 DE OCTUBRE - COLEGIO LAGO AGRIO CENTRAL",
         "bbox": [
           [
-            -76.88163,
-            0.05329
+            -76.89415,
+            0.09354
           ],
           [
-            -76.87128,
-            0.05902
+            -76.89415,
+            0.09354
           ]
         ]
       }
@@ -5552,107 +1104,43 @@
     {
       "type": "Feature",
       "geometry": {
-        "type": "Polygon",
+        "type": "Point",
         "coordinates": [
-          [
-            [
-              -76.89881,
-              0.06894
-            ],
-            [
-              -76.89655,
-              0.0707
-            ],
-            [
-              -76.89572,
-              0.06959
-            ],
-            [
-              -76.89568,
-              0.06896
-            ],
-            [
-              -76.89512,
-              0.06916
-            ],
-            [
-              -76.89481,
-              0.06824
-            ],
-            [
-              -76.89571,
-              0.06801
-            ],
-            [
-              -76.89573,
-              0.06617
-            ],
-            [
-              -76.89672,
-              0.06619
-            ],
-            [
-              -76.89683,
-              0.06628
-            ],
-            [
-              -76.89681,
-              0.06715
-            ],
-            [
-              -76.89743,
-              0.06716
-            ],
-            [
-              -76.89741,
-              0.06822
-            ],
-            [
-              -76.89796,
-              0.06824
-            ],
-            [
-              -76.89797,
-              0.06767
-            ],
-            [
-              -76.89881,
-              0.06772
-            ],
-            [
-              -76.89881,
-              0.06894
-            ]
-          ]
+          -76.89191,
+          0.09075
         ]
       },
       "properties": {
-        "num_muestra": 59,
+        "CODIGO": 26,
+        "TIPOLOGIA": "D",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO CENTRAL - MERCADO CENTRAL MUNICIPAL",
+        "COD_ETIQUETA": "26 | D",
+        "ORDEN_RUTA": 26,
+        "SECTOR_INEC": "210150005003",
+        "LATITUD": 0.090754,
+        "LONGITUD": -76.891913,
+        "X_UTM": 957521.49,
+        "Y_UTM": 10010057.03,
+        "num_muestra": 26,
+        "sc": "26",
+        "etiqueta": "26 | D",
+        "etiquetaSC": "26 | D",
+        "tipologia": "D",
         "parroquia": "NUEVA LOJA",
         "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "tipologia": "B",
-        "casos": 10,
-        "etiqueta": "59 | B",
-        "orden_ruta": 39,
-        "sec_anm": "210150014001",
-        "cod_sector": "210150014001",
-        "pob_t": 352.0,
-        "v_pres": 90.0,
-        "area_km2": 0.1153,
-        "dens_viv": 780.57,
-        "dens_pob": 3052.91,
-        "ESTADO_CAMPO": "FACTIBLE",
-        "sc": "59",
-        "etiquetaSC": "59 | B",
         "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO CENTRAL - MERCADO CENTRAL MUNICIPAL",
         "bbox": [
           [
-            -76.89881,
-            0.06617
+            -76.89191,
+            0.09075
           ],
           [
-            -76.89481,
-            0.0707
+            -76.89191,
+            0.09075
           ]
         ]
       }
@@ -5660,71 +1148,1935 @@
     {
       "type": "Feature",
       "geometry": {
-        "type": "Polygon",
+        "type": "Point",
         "coordinates": [
-          [
-            [
-              -76.91614,
-              0.08685
-            ],
-            [
-              -76.91474,
-              0.08676
-            ],
-            [
-              -76.91474,
-              0.08802
-            ],
-            [
-              -76.91242,
-              0.08806
-            ],
-            [
-              -76.9124,
-              0.08454
-            ],
-            [
-              -76.9138,
-              0.08455
-            ],
-            [
-              -76.91612,
-              0.0841
-            ],
-            [
-              -76.91614,
-              0.08685
-            ]
-          ]
+          -76.88819,
+          0.09125
         ]
       },
       "properties": {
-        "num_muestra": 60,
+        "CODIGO": 27,
+        "TIPOLOGIA": "A",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO EL DORADO - AV. MONSEÑOR GONZALO LOPEZ MARAÑON",
+        "COD_ETIQUETA": "27 | A",
+        "ORDEN_RUTA": 27,
+        "SECTOR_INEC": "210150007006",
+        "LATITUD": 0.091245,
+        "LONGITUD": -76.888193,
+        "X_UTM": 957936.5,
+        "Y_UTM": 10010111.55,
+        "num_muestra": 27,
+        "sc": "27",
+        "etiqueta": "27 | A",
+        "etiquetaSC": "27 | A",
+        "tipologia": "A",
         "parroquia": "NUEVA LOJA",
         "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO EL DORADO - AV. MONSEÑOR GONZALO LOPEZ MARAÑON",
+        "bbox": [
+          [
+            -76.88819,
+            0.09125
+          ],
+          [
+            -76.88819,
+            0.09125
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.88604,
+          0.09522
+        ]
+      },
+      "properties": {
+        "CODIGO": 28,
+        "TIPOLOGIA": "F",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO EL DORADO - IGLESIA SAN FRANCISCO Y PLAZA",
+        "COD_ETIQUETA": "28 | F",
+        "ORDEN_RUTA": 28,
+        "SECTOR_INEC": "210150007001",
+        "LATITUD": 0.095224,
+        "LONGITUD": -76.88604,
+        "X_UTM": 958176.63,
+        "Y_UTM": 10010552.52,
+        "num_muestra": 28,
+        "sc": "28",
+        "etiqueta": "28 | F",
+        "etiquetaSC": "28 | F",
+        "tipologia": "F",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO EL DORADO - IGLESIA SAN FRANCISCO Y PLAZA",
+        "bbox": [
+          [
+            -76.88604,
+            0.09522
+          ],
+          [
+            -76.88604,
+            0.09522
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.88248,
+          0.09335
+        ]
+      },
+      "properties": {
+        "CODIGO": 29,
+        "TIPOLOGIA": "E",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO EL CISNE SUR - CAPILLA DEL CISNE Y POLIDEPORTIVO",
+        "COD_ETIQUETA": "29 | E",
+        "ORDEN_RUTA": 29,
+        "SECTOR_INEC": "210150009003",
+        "LATITUD": 0.093355,
+        "LONGITUD": -76.882481,
+        "X_UTM": 958573.69,
+        "Y_UTM": 10010345.38,
+        "num_muestra": 29,
+        "sc": "29",
+        "etiqueta": "29 | E",
+        "etiquetaSC": "29 | E",
+        "tipologia": "E",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO EL CISNE SUR - CAPILLA DEL CISNE Y POLIDEPORTIVO",
+        "bbox": [
+          [
+            -76.88248,
+            0.09335
+          ],
+          [
+            -76.88248,
+            0.09335
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.87888,
+          0.09431
+        ]
+      },
+      "properties": {
+        "CODIGO": 30,
+        "TIPOLOGIA": "C",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO EL CISNE - SUBESTACION PETROLERA Y AV. AMAZONAS",
+        "COD_ETIQUETA": "30 | C",
+        "ORDEN_RUTA": 30,
+        "SECTOR_INEC": "210150009007",
+        "LATITUD": 0.094307,
+        "LONGITUD": -76.878877,
+        "X_UTM": 958975.83,
+        "Y_UTM": 10010450.94,
+        "num_muestra": 30,
+        "sc": "30",
+        "etiqueta": "30 | C",
+        "etiquetaSC": "30 | C",
         "tipologia": "C",
-        "casos": 10,
-        "etiqueta": "60 | C",
-        "orden_ruta": 40,
-        "sec_anm": "210150001006",
-        "cod_sector": "210150001006",
-        "pob_t": 286.0,
-        "v_pres": 101.0,
-        "area_km2": 0.1467,
-        "dens_viv": 688.48,
-        "dens_pob": 1949.56,
-        "ESTADO_CAMPO": "FACTIBLE",
-        "sc": "60",
-        "etiquetaSC": "60 | C",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
         "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO EL CISNE - SUBESTACION PETROLERA Y AV. AMAZONAS",
         "bbox": [
           [
-            -76.91614,
-            0.0841
+            -76.87888,
+            0.09431
           ],
           [
-            -76.9124,
-            0.08806
+            -76.87888,
+            0.09431
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.87748,
+          0.09007
+        ]
+      },
+      "properties": {
+        "CODIGO": 31,
+        "TIPOLOGIA": "B",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO AGUARICO MIRADOR - MALECON DEL RIO AGUARICO",
+        "COD_ETIQUETA": "31 | B",
+        "ORDEN_RUTA": 31,
+        "SECTOR_INEC": "210150010007",
+        "LATITUD": 0.090071,
+        "LONGITUD": -76.877475,
+        "X_UTM": 959132.25,
+        "Y_UTM": 10009981.52,
+        "num_muestra": 31,
+        "sc": "31",
+        "etiqueta": "31 | B",
+        "etiquetaSC": "31 | B",
+        "tipologia": "B",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO AGUARICO MIRADOR - MALECON DEL RIO AGUARICO",
+        "bbox": [
+          [
+            -76.87748,
+            0.09007
+          ],
+          [
+            -76.87748,
+            0.09007
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.88366,
+          0.08948
+        ]
+      },
+      "properties": {
+        "CODIGO": 32,
+        "TIPOLOGIA": "H",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO MIRADOR - PARQUE INFANTIL Y CANCHA",
+        "COD_ETIQUETA": "32 | H",
+        "ORDEN_RUTA": 32,
+        "SECTOR_INEC": "210150010001",
+        "LATITUD": 0.08948,
+        "LONGITUD": -76.883664,
+        "X_UTM": 958441.74,
+        "Y_UTM": 10009915.94,
+        "num_muestra": 32,
+        "sc": "32",
+        "etiqueta": "32 | H",
+        "etiquetaSC": "32 | H",
+        "tipologia": "H",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO MIRADOR - PARQUE INFANTIL Y CANCHA",
+        "bbox": [
+          [
+            -76.88366,
+            0.08948
+          ],
+          [
+            -76.88366,
+            0.08948
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.88713,
+          0.08655
+        ]
+      },
+      "properties": {
+        "CODIGO": 33,
+        "TIPOLOGIA": "A",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO AMAZONAS - AV. AMAZONAS Y U.E. NAPO CENTRAL",
+        "COD_ETIQUETA": "33 | A",
+        "ORDEN_RUTA": 33,
+        "SECTOR_INEC": "210150006008",
+        "LATITUD": 0.086551,
+        "LONGITUD": -76.887128,
+        "X_UTM": 958055.32,
+        "Y_UTM": 10009591.31,
+        "num_muestra": 33,
+        "sc": "33",
+        "etiqueta": "33 | A",
+        "etiquetaSC": "33 | A",
+        "tipologia": "A",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO AMAZONAS - AV. AMAZONAS Y U.E. NAPO CENTRAL",
+        "bbox": [
+          [
+            -76.88713,
+            0.08655
+          ],
+          [
+            -76.88713,
+            0.08655
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.8907,
+          0.08717
+        ]
+      },
+      "properties": {
+        "CODIGO": 34,
+        "TIPOLOGIA": "D",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO AMAZONAS - COMPLEJO DEPORTIVO UEN",
+        "COD_ETIQUETA": "34 | D",
+        "ORDEN_RUTA": 34,
+        "SECTOR_INEC": "210150006003",
+        "LATITUD": 0.08717,
+        "LONGITUD": -76.890697,
+        "X_UTM": 957657.19,
+        "Y_UTM": 10009659.94,
+        "num_muestra": 34,
+        "sc": "34",
+        "etiqueta": "34 | D",
+        "etiquetaSC": "34 | D",
+        "tipologia": "D",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO AMAZONAS - COMPLEJO DEPORTIVO UEN",
+        "bbox": [
+          [
+            -76.8907,
+            0.08717
+          ],
+          [
+            -76.8907,
+            0.08717
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.89557,
+          0.08871
+        ]
+      },
+      "properties": {
+        "CODIGO": 35,
+        "TIPOLOGIA": "G",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO 9 DE OCTUBRE - AV. QUITO Y CALLE 18 DE NOVIEMBRE",
+        "COD_ETIQUETA": "35 | G",
+        "ORDEN_RUTA": 35,
+        "SECTOR_INEC": "210150004009",
+        "LATITUD": 0.088715,
+        "LONGITUD": -76.895566,
+        "X_UTM": 957113.97,
+        "Y_UTM": 10009831.04,
+        "num_muestra": 35,
+        "sc": "35",
+        "etiqueta": "35 | G",
+        "etiquetaSC": "35 | G",
+        "tipologia": "G",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO 9 DE OCTUBRE - AV. QUITO Y CALLE 18 DE NOVIEMBRE",
+        "bbox": [
+          [
+            -76.89557,
+            0.08871
+          ],
+          [
+            -76.89557,
+            0.08871
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.8954,
+          0.08408
+        ]
+      },
+      "properties": {
+        "CODIGO": 36,
+        "TIPOLOGIA": "F",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO 24 DE MAYO - CANCHA CUBIERTA",
+        "COD_ETIQUETA": "36 | F",
+        "ORDEN_RUTA": 36,
+        "SECTOR_INEC": "210150003012",
+        "LATITUD": 0.084082,
+        "LONGITUD": -76.895405,
+        "X_UTM": 957132.01,
+        "Y_UTM": 10009317.64,
+        "num_muestra": 36,
+        "sc": "36",
+        "etiqueta": "36 | F",
+        "etiquetaSC": "36 | F",
+        "tipologia": "F",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO 24 DE MAYO - CANCHA CUBIERTA",
+        "bbox": [
+          [
+            -76.8954,
+            0.08408
+          ],
+          [
+            -76.8954,
+            0.08408
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.89501,
+          0.0806
+        ]
+      },
+      "properties": {
+        "CODIGO": 37,
+        "TIPOLOGIA": "C",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO JULIO MARIN - CANCHAS SINTETICAS Y PLAZA",
+        "COD_ETIQUETA": "37 | C",
+        "ORDEN_RUTA": 37,
+        "SECTOR_INEC": "210150015002",
+        "LATITUD": 0.080601,
+        "LONGITUD": -76.895011,
+        "X_UTM": 957175.97,
+        "Y_UTM": 10008931.85,
+        "num_muestra": 37,
+        "sc": "37",
+        "etiqueta": "37 | C",
+        "etiquetaSC": "37 | C",
+        "tipologia": "C",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO JULIO MARIN - CANCHAS SINTETICAS Y PLAZA",
+        "bbox": [
+          [
+            -76.89501,
+            0.0806
+          ],
+          [
+            -76.89501,
+            0.0806
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.89782,
+          0.07687
+        ]
+      },
+      "properties": {
+        "CODIGO": 38,
+        "TIPOLOGIA": "E",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO JULIO MARIN - CALLE LOS RIOS Y AV. QUITO SUR",
+        "COD_ETIQUETA": "38 | E",
+        "ORDEN_RUTA": 38,
+        "SECTOR_INEC": "210150015009",
+        "LATITUD": 0.076868,
+        "LONGITUD": -76.897817,
+        "X_UTM": 956863.02,
+        "Y_UTM": 10008518.18,
+        "num_muestra": 38,
+        "sc": "38",
+        "etiqueta": "38 | E",
+        "etiquetaSC": "38 | E",
+        "tipologia": "E",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO JULIO MARIN - CALLE LOS RIOS Y AV. QUITO SUR",
+        "bbox": [
+          [
+            -76.89782,
+            0.07687
+          ],
+          [
+            -76.89782,
+            0.07687
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.89426,
+          0.07517
+        ]
+      },
+      "properties": {
+        "CODIGO": 39,
+        "TIPOLOGIA": "B",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO JULIO MARIN - MERCADO SAN CARLOS",
+        "COD_ETIQUETA": "39 | B",
+        "ORDEN_RUTA": 39,
+        "SECTOR_INEC": "210150015010",
+        "LATITUD": 0.075172,
+        "LONGITUD": -76.894258,
+        "X_UTM": 957260.05,
+        "Y_UTM": 10008330.27,
+        "num_muestra": 39,
+        "sc": "39",
+        "etiqueta": "39 | B",
+        "etiquetaSC": "39 | B",
+        "tipologia": "B",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO JULIO MARIN - MERCADO SAN CARLOS",
+        "bbox": [
+          [
+            -76.89426,
+            0.07517
+          ],
+          [
+            -76.89426,
+            0.07517
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.89623,
+          0.07211
+        ]
+      },
+      "properties": {
+        "CODIGO": 40,
+        "TIPOLOGIA": "D",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO JULIO MARIN - U.E. LAGO AGRIO SUR",
+        "COD_ETIQUETA": "40 | D",
+        "ORDEN_RUTA": 40,
+        "SECTOR_INEC": "210150015011",
+        "LATITUD": 0.072108,
+        "LONGITUD": -76.896231,
+        "X_UTM": 957040.01,
+        "Y_UTM": 10007990.77,
+        "num_muestra": 40,
+        "sc": "40",
+        "etiqueta": "40 | D",
+        "etiquetaSC": "40 | D",
+        "tipologia": "D",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO JULIO MARIN - U.E. LAGO AGRIO SUR",
+        "bbox": [
+          [
+            -76.89623,
+            0.07211
+          ],
+          [
+            -76.89623,
+            0.07211
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.8968,
+          0.06847
+        ]
+      },
+      "properties": {
+        "CODIGO": 41,
+        "TIPOLOGIA": "A",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO 25 DE DICIEMBRE - ESCUELA FISCAL 25 DE DICIEMBRE",
+        "COD_ETIQUETA": "41 | A",
+        "ORDEN_RUTA": 41,
+        "SECTOR_INEC": "210150014001",
+        "LATITUD": 0.068471,
+        "LONGITUD": -76.896801,
+        "X_UTM": 956976.37,
+        "Y_UTM": 10007587.63,
+        "num_muestra": 41,
+        "sc": "41",
+        "etiqueta": "41 | A",
+        "etiquetaSC": "41 | A",
+        "tipologia": "A",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO 25 DE DICIEMBRE - ESCUELA FISCAL 25 DE DICIEMBRE",
+        "bbox": [
+          [
+            -76.8968,
+            0.06847
+          ],
+          [
+            -76.8968,
+            0.06847
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.893,
+          0.06875
+        ]
+      },
+      "properties": {
+        "CODIGO": 42,
+        "TIPOLOGIA": "A",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO 25 DE DICIEMBRE - CENTRO DE SALUD BARRIAL",
+        "COD_ETIQUETA": "42 | A",
+        "ORDEN_RUTA": 42,
+        "SECTOR_INEC": "210150014003",
+        "LATITUD": 0.068747,
+        "LONGITUD": -76.892996,
+        "X_UTM": 957400.93,
+        "Y_UTM": 10007618.35,
+        "num_muestra": 42,
+        "sc": "42",
+        "etiqueta": "42 | A",
+        "etiquetaSC": "42 | A",
+        "tipologia": "A",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO 25 DE DICIEMBRE - CENTRO DE SALUD BARRIAL",
+        "bbox": [
+          [
+            -76.893,
+            0.06875
+          ],
+          [
+            -76.893,
+            0.06875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.89102,
+          0.07254
+        ]
+      },
+      "properties": {
+        "CODIGO": 43,
+        "TIPOLOGIA": "D",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO 25 DE DICIEMBRE - PARQUE RECREATIVO",
+        "COD_ETIQUETA": "43 | D",
+        "ORDEN_RUTA": 43,
+        "SECTOR_INEC": "210150014004",
+        "LATITUD": 0.072535,
+        "LONGITUD": -76.89102,
+        "X_UTM": 957621.32,
+        "Y_UTM": 10008038.1,
+        "num_muestra": 43,
+        "sc": "43",
+        "etiqueta": "43 | D",
+        "etiquetaSC": "43 | D",
+        "tipologia": "D",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO 25 DE DICIEMBRE - PARQUE RECREATIVO",
+        "bbox": [
+          [
+            -76.89102,
+            0.07254
+          ],
+          [
+            -76.89102,
+            0.07254
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.88568,
+          0.07022
+        ]
+      },
+      "properties": {
+        "CODIGO": 44,
+        "TIPOLOGIA": "F",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO 25 DE DICIEMBRE - POLIDEPORTIVO",
+        "COD_ETIQUETA": "44 | F",
+        "ORDEN_RUTA": 44,
+        "SECTOR_INEC": "210150014011",
+        "LATITUD": 0.070222,
+        "LONGITUD": -76.885675,
+        "X_UTM": 958217.61,
+        "Y_UTM": 10007781.87,
+        "num_muestra": 44,
+        "sc": "44",
+        "etiqueta": "44 | F",
+        "etiquetaSC": "44 | F",
+        "tipologia": "F",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO 25 DE DICIEMBRE - POLIDEPORTIVO",
+        "bbox": [
+          [
+            -76.88568,
+            0.07022
+          ],
+          [
+            -76.88568,
+            0.07022
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.88342,
+          0.07472
+        ]
+      },
+      "properties": {
+        "CODIGO": 45,
+        "TIPOLOGIA": "G",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO 25 DE DICIEMBRE - ESCUELA FISCAL 25 DE DICIEMBRE",
+        "COD_ETIQUETA": "45 | G",
+        "ORDEN_RUTA": 45,
+        "SECTOR_INEC": "210150014008",
+        "LATITUD": 0.07472,
+        "LONGITUD": -76.883425,
+        "X_UTM": 958468.65,
+        "Y_UTM": 10008280.3,
+        "num_muestra": 45,
+        "sc": "45",
+        "etiqueta": "45 | G",
+        "etiquetaSC": "45 | G",
+        "tipologia": "G",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO 25 DE DICIEMBRE - ESCUELA FISCAL 25 DE DICIEMBRE",
+        "bbox": [
+          [
+            -76.88342,
+            0.07472
+          ],
+          [
+            -76.88342,
+            0.07472
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.88656,
+          0.0765
+        ]
+      },
+      "properties": {
+        "CODIGO": 46,
+        "TIPOLOGIA": "B",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO 25 DE DICIEMBRE - CENTRO DE SALUD BARRIAL",
+        "COD_ETIQUETA": "46 | B",
+        "ORDEN_RUTA": 46,
+        "SECTOR_INEC": "210150014007",
+        "LATITUD": 0.076495,
+        "LONGITUD": -76.886555,
+        "X_UTM": 958119.38,
+        "Y_UTM": 10008477.0,
+        "num_muestra": 46,
+        "sc": "46",
+        "etiqueta": "46 | B",
+        "etiquetaSC": "46 | B",
+        "tipologia": "B",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO 25 DE DICIEMBRE - CENTRO DE SALUD BARRIAL",
+        "bbox": [
+          [
+            -76.88656,
+            0.0765
+          ],
+          [
+            -76.88656,
+            0.0765
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.88422,
+          0.07907
+        ]
+      },
+      "properties": {
+        "CODIGO": 47,
+        "TIPOLOGIA": "E",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO PUERTO AGUARICO - VIA A PUERTO AGUARICO",
+        "COD_ETIQUETA": "47 | E",
+        "ORDEN_RUTA": 47,
+        "SECTOR_INEC": "210150012008",
+        "LATITUD": 0.079067,
+        "LONGITUD": -76.884215,
+        "X_UTM": 958380.43,
+        "Y_UTM": 10008761.99,
+        "num_muestra": 47,
+        "sc": "47",
+        "etiqueta": "47 | E",
+        "etiquetaSC": "47 | E",
+        "tipologia": "E",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO PUERTO AGUARICO - VIA A PUERTO AGUARICO",
+        "bbox": [
+          [
+            -76.88422,
+            0.07907
+          ],
+          [
+            -76.88422,
+            0.07907
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.88112,
+          0.08144
+        ]
+      },
+      "properties": {
+        "CODIGO": 48,
+        "TIPOLOGIA": "D",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO PUERTO AGUARICO - ESCUELA CIUDAD DE LAGO AGRIO",
+        "COD_ETIQUETA": "48 | D",
+        "ORDEN_RUTA": 48,
+        "SECTOR_INEC": "210150012007",
+        "LATITUD": 0.081437,
+        "LONGITUD": -76.881121,
+        "X_UTM": 958725.54,
+        "Y_UTM": 10009024.69,
+        "num_muestra": 48,
+        "sc": "48",
+        "etiqueta": "48 | D",
+        "etiquetaSC": "48 | D",
+        "tipologia": "D",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO PUERTO AGUARICO - ESCUELA CIUDAD DE LAGO AGRIO",
+        "bbox": [
+          [
+            -76.88112,
+            0.08144
+          ],
+          [
+            -76.88112,
+            0.08144
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.88425,
+          0.08363
+        ]
+      },
+      "properties": {
+        "CODIGO": 49,
+        "TIPOLOGIA": "B",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO SAN VALENTIN - CASA COMUNAL SAN VALENTIN",
+        "COD_ETIQUETA": "49 | B",
+        "ORDEN_RUTA": 49,
+        "SECTOR_INEC": "210150011008",
+        "LATITUD": 0.083629,
+        "LONGITUD": -76.884255,
+        "X_UTM": 958375.95,
+        "Y_UTM": 10009267.54,
+        "num_muestra": 49,
+        "sc": "49",
+        "etiqueta": "49 | B",
+        "etiquetaSC": "49 | B",
+        "tipologia": "B",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO SAN VALENTIN - CASA COMUNAL SAN VALENTIN",
+        "bbox": [
+          [
+            -76.88425,
+            0.08363
+          ],
+          [
+            -76.88425,
+            0.08363
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.88833,
+          0.08226
+        ]
+      },
+      "properties": {
+        "CODIGO": 50,
+        "TIPOLOGIA": "H",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO JULIO MARIN - CANCHAS SINTETICAS Y PLAZA",
+        "COD_ETIQUETA": "50 | H",
+        "ORDEN_RUTA": 50,
+        "SECTOR_INEC": "210150015004",
+        "LATITUD": 0.08226,
+        "LONGITUD": -76.888333,
+        "X_UTM": 957920.94,
+        "Y_UTM": 10009115.81,
+        "num_muestra": 50,
+        "sc": "50",
+        "etiqueta": "50 | H",
+        "etiquetaSC": "50 | H",
+        "tipologia": "H",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO JULIO MARIN - CANCHAS SINTETICAS Y PLAZA",
+        "bbox": [
+          [
+            -76.88833,
+            0.08226
+          ],
+          [
+            -76.88833,
+            0.08226
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.88974,
+          0.07853
+        ]
+      },
+      "properties": {
+        "CODIGO": 51,
+        "TIPOLOGIA": "C",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO JULIO MARIN - CALLE LOS RIOS Y AV. QUITO SUR",
+        "COD_ETIQUETA": "51 | C",
+        "ORDEN_RUTA": 51,
+        "SECTOR_INEC": "210150015005",
+        "LATITUD": 0.07853,
+        "LONGITUD": -76.889737,
+        "X_UTM": 957764.35,
+        "Y_UTM": 10008702.41,
+        "num_muestra": 51,
+        "sc": "51",
+        "etiqueta": "51 | C",
+        "etiquetaSC": "51 | C",
+        "tipologia": "C",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO JULIO MARIN - CALLE LOS RIOS Y AV. QUITO SUR",
+        "bbox": [
+          [
+            -76.88974,
+            0.07853
+          ],
+          [
+            -76.88974,
+            0.07853
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.8802,
+          0.07295
+        ]
+      },
+      "properties": {
+        "CODIGO": 52,
+        "TIPOLOGIA": "B",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO NUEVA ESPERANZA - U.E. 26 DE SEPTIEMBRE",
+        "COD_ETIQUETA": "52 | B",
+        "ORDEN_RUTA": 52,
+        "SECTOR_INEC": "210150013002",
+        "LATITUD": 0.072947,
+        "LONGITUD": -76.880204,
+        "X_UTM": 958827.98,
+        "Y_UTM": 10008083.88,
+        "num_muestra": 52,
+        "sc": "52",
+        "etiqueta": "52 | B",
+        "etiquetaSC": "52 | B",
+        "tipologia": "B",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO NUEVA ESPERANZA - U.E. 26 DE SEPTIEMBRE",
+        "bbox": [
+          [
+            -76.8802,
+            0.07295
+          ],
+          [
+            -76.8802,
+            0.07295
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.88082,
+          0.06897
+        ]
+      },
+      "properties": {
+        "CODIGO": 53,
+        "TIPOLOGIA": "F",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO NUEVA ESPERANZA - PARQUE NUEVA ESPERANZA",
+        "COD_ETIQUETA": "53 | F",
+        "ORDEN_RUTA": 53,
+        "SECTOR_INEC": "210150013005",
+        "LATITUD": 0.068966,
+        "LONGITUD": -76.880818,
+        "X_UTM": 958759.56,
+        "Y_UTM": 10007642.64,
+        "num_muestra": 53,
+        "sc": "53",
+        "etiqueta": "53 | F",
+        "etiquetaSC": "53 | F",
+        "tipologia": "F",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO NUEVA ESPERANZA - PARQUE NUEVA ESPERANZA",
+        "bbox": [
+          [
+            -76.88082,
+            0.06897
+          ],
+          [
+            -76.88082,
+            0.06897
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.87762,
+          0.06584
+        ]
+      },
+      "properties": {
+        "CODIGO": 54,
+        "TIPOLOGIA": "D",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO NUEVA ESPERANZA - TERMINAL TERRESTRE DE LAGO AGRIO",
+        "COD_ETIQUETA": "54 | D",
+        "ORDEN_RUTA": 54,
+        "SECTOR_INEC": "210150013004",
+        "LATITUD": 0.065839,
+        "LONGITUD": -76.87762,
+        "X_UTM": 959116.37,
+        "Y_UTM": 10007296.19,
+        "num_muestra": 54,
+        "sc": "54",
+        "etiqueta": "54 | D",
+        "etiquetaSC": "54 | D",
+        "tipologia": "D",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO NUEVA ESPERANZA - TERMINAL TERRESTRE DE LAGO AGRIO",
+        "bbox": [
+          [
+            -76.87762,
+            0.06584
+          ],
+          [
+            -76.87762,
+            0.06584
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.87589,
+          0.06147
+        ]
+      },
+      "properties": {
+        "CODIGO": 55,
+        "TIPOLOGIA": "G",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO NUEVA ESPERANZA SUR - CENTRO MEDICO BARRIAL",
+        "COD_ETIQUETA": "55 | G",
+        "ORDEN_RUTA": 55,
+        "SECTOR_INEC": "210150013007",
+        "LATITUD": 0.061473,
+        "LONGITUD": -76.875895,
+        "X_UTM": 959308.87,
+        "Y_UTM": 10006812.38,
+        "num_muestra": 55,
+        "sc": "55",
+        "etiqueta": "55 | G",
+        "etiquetaSC": "55 | G",
+        "tipologia": "G",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO NUEVA ESPERANZA SUR - CENTRO MEDICO BARRIAL",
+        "bbox": [
+          [
+            -76.87589,
+            0.06147
+          ],
+          [
+            -76.87589,
+            0.06147
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.87704,
+          0.05584
+        ]
+      },
+      "properties": {
+        "CODIGO": 56,
+        "TIPOLOGIA": "E",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO NUEVA ESPERANZA ESTE - AV. DEL MAESTRO ESTE",
+        "COD_ETIQUETA": "56 | E",
+        "ORDEN_RUTA": 56,
+        "SECTOR_INEC": "210150013009",
+        "LATITUD": 0.055845,
+        "LONGITUD": -76.877036,
+        "X_UTM": 959181.57,
+        "Y_UTM": 10006188.66,
+        "num_muestra": 56,
+        "sc": "56",
+        "etiqueta": "56 | E",
+        "etiquetaSC": "56 | E",
+        "tipologia": "E",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO NUEVA ESPERANZA ESTE - AV. DEL MAESTRO ESTE",
+        "bbox": [
+          [
+            -76.87704,
+            0.05584
+          ],
+          [
+            -76.87704,
+            0.05584
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.88431,
+          0.06495
+        ]
+      },
+      "properties": {
+        "CODIGO": 57,
+        "TIPOLOGIA": "C",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO NUEVA ESPERANZA - U.E. 26 DE SEPTIEMBRE",
+        "COD_ETIQUETA": "57 | C",
+        "ORDEN_RUTA": 57,
+        "SECTOR_INEC": "210150013006",
+        "LATITUD": 0.064954,
+        "LONGITUD": -76.884314,
+        "X_UTM": 958369.5,
+        "Y_UTM": 10007198.11,
+        "num_muestra": 57,
+        "sc": "57",
+        "etiqueta": "57 | C",
+        "etiquetaSC": "57 | C",
+        "tipologia": "C",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO NUEVA ESPERANZA - U.E. 26 DE SEPTIEMBRE",
+        "bbox": [
+          [
+            -76.88431,
+            0.06495
+          ],
+          [
+            -76.88431,
+            0.06495
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.87402,
+          0.07007
+        ]
+      },
+      "properties": {
+        "CODIGO": 58,
+        "TIPOLOGIA": "H",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO NUEVA ESPERANZA - PARQUE NUEVA ESPERANZA",
+        "COD_ETIQUETA": "58 | H",
+        "ORDEN_RUTA": 58,
+        "SECTOR_INEC": "210150013003",
+        "LATITUD": 0.070065,
+        "LONGITUD": -76.874016,
+        "X_UTM": 959518.43,
+        "Y_UTM": 10007764.57,
+        "num_muestra": 58,
+        "sc": "58",
+        "etiqueta": "58 | H",
+        "etiquetaSC": "58 | H",
+        "tipologia": "H",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO NUEVA ESPERANZA - PARQUE NUEVA ESPERANZA",
+        "bbox": [
+          [
+            -76.87402,
+            0.07007
+          ],
+          [
+            -76.87402,
+            0.07007
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.87528,
+          0.07956
+        ]
+      },
+      "properties": {
+        "CODIGO": 59,
+        "TIPOLOGIA": "B",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO PUERTO AGUARICO - ENTRADA AL PUERTO FLUVIAL",
+        "COD_ETIQUETA": "59 | B",
+        "ORDEN_RUTA": 59,
+        "SECTOR_INEC": "210150012010",
+        "LATITUD": 0.079562,
+        "LONGITUD": -76.875279,
+        "X_UTM": 959377.38,
+        "Y_UTM": 10008816.99,
+        "num_muestra": 59,
+        "sc": "59",
+        "etiqueta": "59 | B",
+        "etiquetaSC": "59 | B",
+        "tipologia": "B",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO PUERTO AGUARICO - ENTRADA AL PUERTO FLUVIAL",
+        "bbox": [
+          [
+            -76.87528,
+            0.07956
+          ],
+          [
+            -76.87528,
+            0.07956
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.87231,
+          0.08655
+        ]
+      },
+      "properties": {
+        "CODIGO": 60,
+        "TIPOLOGIA": "H",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO SAN VALENTIN - AV. CIRCUNVALACION SUR",
+        "COD_ETIQUETA": "60 | H",
+        "ORDEN_RUTA": 60,
+        "SECTOR_INEC": "210150011010",
+        "LATITUD": 0.086552,
+        "LONGITUD": -76.872307,
+        "X_UTM": 959708.92,
+        "Y_UTM": 10009591.69,
+        "num_muestra": 60,
+        "sc": "60",
+        "etiqueta": "60 | H",
+        "etiquetaSC": "60 | H",
+        "tipologia": "H",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO SAN VALENTIN - AV. CIRCUNVALACION SUR",
+        "bbox": [
+          [
+            -76.87231,
+            0.08655
+          ],
+          [
+            -76.87231,
+            0.08655
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.87337,
+          0.09534
+        ]
+      },
+      "properties": {
+        "CODIGO": 61,
+        "TIPOLOGIA": "E",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO EL CISNE - CANCHA SINTETICA Y CALLE TULCAN",
+        "COD_ETIQUETA": "61 | E",
+        "ORDEN_RUTA": 61,
+        "SECTOR_INEC": "210150009009",
+        "LATITUD": 0.095341,
+        "LONGITUD": -76.873372,
+        "X_UTM": 959589.99,
+        "Y_UTM": 10010565.65,
+        "num_muestra": 61,
+        "sc": "61",
+        "etiqueta": "61 | E",
+        "etiquetaSC": "61 | E",
+        "tipologia": "E",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO EL CISNE - CANCHA SINTETICA Y CALLE TULCAN",
+        "bbox": [
+          [
+            -76.87337,
+            0.09534
+          ],
+          [
+            -76.87337,
+            0.09534
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.87797,
+          0.10139
+        ]
+      },
+      "properties": {
+        "CODIGO": 62,
+        "TIPOLOGIA": "F",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO LAS PALMERAS NORTE - ACCESO VIA A COLOMBIA",
+        "COD_ETIQUETA": "62 | F",
+        "ORDEN_RUTA": 62,
+        "SECTOR_INEC": "210150008007",
+        "LATITUD": 0.101388,
+        "LONGITUD": -76.87797,
+        "X_UTM": 959076.82,
+        "Y_UTM": 10011235.66,
+        "num_muestra": 62,
+        "sc": "62",
+        "etiqueta": "62 | F",
+        "etiquetaSC": "62 | F",
+        "tipologia": "F",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO LAS PALMERAS NORTE - ACCESO VIA A COLOMBIA",
+        "bbox": [
+          [
+            -76.87797,
+            0.10139
+          ],
+          [
+            -76.87797,
+            0.10139
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.88206,
+          0.09783
+        ]
+      },
+      "properties": {
+        "CODIGO": 63,
+        "TIPOLOGIA": "E",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO 25 DE FEBRERO - CANCHA MULTIPLE",
+        "COD_ETIQUETA": "63 | E",
+        "ORDEN_RUTA": 63,
+        "SECTOR_INEC": "210150008008",
+        "LATITUD": 0.097829,
+        "LONGITUD": -76.882058,
+        "X_UTM": 958620.89,
+        "Y_UTM": 10010841.21,
+        "num_muestra": 63,
+        "sc": "63",
+        "etiqueta": "63 | E",
+        "etiquetaSC": "63 | E",
+        "tipologia": "E",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO 25 DE FEBRERO - CANCHA MULTIPLE",
+        "bbox": [
+          [
+            -76.88206,
+            0.09783
+          ],
+          [
+            -76.88206,
+            0.09783
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.8722,
+          0.11325
+        ]
+      },
+      "properties": {
+        "CODIGO": 64,
+        "TIPOLOGIA": "G",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO LOS ALAMOS - ACCESO NORTE Y VIA A COLOMBIA",
+        "COD_ETIQUETA": "64 | G",
+        "ORDEN_RUTA": 64,
+        "SECTOR_INEC": "210150911001",
+        "LATITUD": 0.113252,
+        "LONGITUD": -76.872195,
+        "X_UTM": 959720.98,
+        "Y_UTM": 10012550.58,
+        "num_muestra": 64,
+        "sc": "64",
+        "etiqueta": "64 | G",
+        "etiquetaSC": "64 | G",
+        "tipologia": "G",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO LOS ALAMOS - ACCESO NORTE Y VIA A COLOMBIA",
+        "bbox": [
+          [
+            -76.8722,
+            0.11325
+          ],
+          [
+            -76.8722,
+            0.11325
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.8574,
+          0.09952
+        ]
+      },
+      "properties": {
+        "CODIGO": 65,
+        "TIPOLOGIA": "B",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO DEL EJERCITO - AV. CIRCUNVALACION NORTE",
+        "COD_ETIQUETA": "65 | B",
+        "ORDEN_RUTA": 65,
+        "SECTOR_INEC": "210150915001",
+        "LATITUD": 0.099517,
+        "LONGITUD": -76.857396,
+        "X_UTM": 961372.24,
+        "Y_UTM": 10011028.64,
+        "num_muestra": 65,
+        "sc": "65",
+        "etiqueta": "65 | B",
+        "etiquetaSC": "65 | B",
+        "tipologia": "B",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO DEL EJERCITO - AV. CIRCUNVALACION NORTE",
+        "bbox": [
+          [
+            -76.8574,
+            0.09952
+          ],
+          [
+            -76.8574,
+            0.09952
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.9111,
+          0.08969
+        ]
+      },
+      "properties": {
+        "CODIGO": 66,
+        "TIPOLOGIA": "D",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO LA ALBORADA - CALLE ESMERALDAS Y VIA A QUITO",
+        "COD_ETIQUETA": "66 | D",
+        "ORDEN_RUTA": 66,
+        "SECTOR_INEC": "210150001007",
+        "LATITUD": 0.089692,
+        "LONGITUD": -76.9111,
+        "X_UTM": 955380.92,
+        "Y_UTM": 10009939.14,
+        "num_muestra": 66,
+        "sc": "66",
+        "etiqueta": "66 | D",
+        "etiquetaSC": "66 | D",
+        "tipologia": "D",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO LA ALBORADA - CALLE ESMERALDAS Y VIA A QUITO",
+        "bbox": [
+          [
+            -76.9111,
+            0.08969
+          ],
+          [
+            -76.9111,
+            0.08969
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.91708,
+          0.08781
+        ]
+      },
+      "properties": {
+        "CODIGO": 67,
+        "TIPOLOGIA": "F",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO MIRAFLORES - CANCHA SINTETICA",
+        "COD_ETIQUETA": "67 | F",
+        "ORDEN_RUTA": 67,
+        "SECTOR_INEC": "210150001005",
+        "LATITUD": 0.087812,
+        "LONGITUD": -76.917076,
+        "X_UTM": 954714.26,
+        "Y_UTM": 10009730.78,
+        "num_muestra": 67,
+        "sc": "67",
+        "etiqueta": "67 | F",
+        "etiquetaSC": "67 | F",
+        "tipologia": "F",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO MIRAFLORES - CANCHA SINTETICA",
+        "bbox": [
+          [
+            -76.91708,
+            0.08781
+          ],
+          [
+            -76.91708,
+            0.08781
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.91606,
+          0.0759
+        ]
+      },
+      "properties": {
+        "CODIGO": 68,
+        "TIPOLOGIA": "C",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO LOS CEIBOS - CANCHA DEPORTIVA LOS CEIBOS",
+        "COD_ETIQUETA": "68 | C",
+        "ORDEN_RUTA": 68,
+        "SECTOR_INEC": "210150018007",
+        "LATITUD": 0.075903,
+        "LONGITUD": -76.916062,
+        "X_UTM": 954827.51,
+        "Y_UTM": 10008411.04,
+        "num_muestra": 68,
+        "sc": "68",
+        "etiqueta": "68 | C",
+        "etiquetaSC": "68 | C",
+        "tipologia": "C",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO LOS CEIBOS - CANCHA DEPORTIVA LOS CEIBOS",
+        "bbox": [
+          [
+            -76.91606,
+            0.0759
+          ],
+          [
+            -76.91606,
+            0.0759
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.91514,
+          0.06981
+        ]
+      },
+      "properties": {
+        "CODIGO": 69,
+        "TIPOLOGIA": "H",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO LOS CEIBOS - CALLE MANABI OCCIDENTAL",
+        "COD_ETIQUETA": "69 | H",
+        "ORDEN_RUTA": 69,
+        "SECTOR_INEC": "210150018008",
+        "LATITUD": 0.069809,
+        "LONGITUD": -76.915143,
+        "X_UTM": 954930.17,
+        "Y_UTM": 10007735.82,
+        "num_muestra": 69,
+        "sc": "69",
+        "etiqueta": "69 | H",
+        "etiquetaSC": "69 | H",
+        "tipologia": "H",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO LOS CEIBOS - CALLE MANABI OCCIDENTAL",
+        "bbox": [
+          [
+            -76.91514,
+            0.06981
+          ],
+          [
+            -76.91514,
+            0.06981
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.90808,
+          0.07506
+        ]
+      },
+      "properties": {
+        "CODIGO": 70,
+        "TIPOLOGIA": "G",
+        "PARROQUIA": "NUEVA LOJA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
+        "CASOS": 10,
+        "PUNTO_REFERENCIAL": "BARRIO JAIME ROLDOS - AV. CIRCUNVALACION OCCIDENTAL",
+        "COD_ETIQUETA": "70 | G",
+        "ORDEN_RUTA": 70,
+        "SECTOR_INEC": "210150016002",
+        "LATITUD": 0.075062,
+        "LONGITUD": -76.908076,
+        "X_UTM": 955718.53,
+        "Y_UTM": 10008317.92,
+        "num_muestra": 70,
+        "sc": "70",
+        "etiqueta": "70 | G",
+        "etiquetaSC": "70 | G",
+        "tipologia": "G",
+        "parroquia": "NUEVA LOJA",
+        "circunscripcion": "CIRCUNSCRIPCION URBANA",
+        "canton": "LAGO AGRIO",
+        "punto_referencial": "BARRIO JAIME ROLDOS - AV. CIRCUNVALACION OCCIDENTAL",
+        "bbox": [
+          [
+            -76.90808,
+            0.07506
+          ],
+          [
+            -76.90808,
+            0.07506
           ]
         ]
       }
