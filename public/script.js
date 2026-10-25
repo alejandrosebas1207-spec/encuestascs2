@@ -1142,8 +1142,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            // Umbral estricto: encuestas completadas en menos de 4 minutos
-            const umbralMin = (window.CS_Auditoria && window.CS_Auditoria.UMBRAL_DURACION_ATIPICA_MINUTOS) || 4.0;
+            // Umbral estricto: encuestas completadas en menos de 2 minutos
+            const umbralMin = (window.CS_Auditoria && window.CS_Auditoria.UMBRAL_DURACION_ATIPICA_MINUTOS) || 2.0;
             const esAtipica = window.CS_Auditoria
                 ? window.CS_Auditoria.esDuracionAtipica(duracionMin)
                 : (duracionMin !== null && duracionMin > 0 && duracionMin < umbralMin);
@@ -3199,8 +3199,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (esAtipica) {
                 bannerAlerta = `
                     <div style="background:#fee2e2;border:1.5px solid #dc2626;color:#991b1b;padding:6px 8px;border-radius:6px;margin:6px 0 8px 0;font-size:0.75rem;line-height:1.3;">
-                        <strong style="display:block;margin-bottom:2px;font-size:0.76rem;color:#dc2626;">⏱️ Alerta: Encuesta Atípica (&lt; 4 min)</strong>
-                        <span>Duración registrada: <strong>${p.duracionMin || 'Menos de 4 min'}</strong></span>
+                        <strong style="display:block;margin-bottom:2px;font-size:0.76rem;color:#dc2626;">⏱️ Alerta: Encuesta Atípica (&lt; 2 min)</strong>
+                        <span>Duración registrada: <strong>${p.duracionMin || 'Menos de 2 min'}</strong></span>
                     </div>
                 `;
             } else if (tieneAlerta) {
@@ -4077,7 +4077,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     sexo: demogSexo || 'No especificado',
                     edad: demogEdad !== null && demogEdad !== undefined ? `${demogEdad} años` : 'No especificada',
                     tieneAlerta: Boolean(enc._tieneAlerta || esAtipica),
-                    alertaMensaje: enc._alertaMensaje || (esAtipica ? `Duración atípica: ${duracionMin} min (< 4 min)` : '')
+                    alertaMensaje: enc._alertaMensaje || (esAtipica ? `Duración atípica: ${duracionMin} min (< 2 min)` : '')
                 }
             });
         }
@@ -4561,7 +4561,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <span class="cs-time-tag cs-time-tag--avg" title="Tiempo promedio por encuesta">⏱️ ${grupo.promStr}</span>
                             <span class="cs-time-tag cs-time-tag--min" title="Tiempo mínimo registrado">⬇️ ${grupo.minStr}</span>
                             <span class="cs-time-tag cs-time-tag--max" title="Tiempo máximo registrado">⬆️ ${grupo.maxStr}</span>
-                            ${grupo.numAtipicas > 0 ? `<span class="cs-time-tag" style="background:#fee2e2;color:#dc2626;font-weight:700;border:1px solid #fca5a5;" title="${grupo.numAtipicas} encuestas con duración < 4 min">⚠️ ${grupo.numAtipicas} atípicas</span>` : ''}
+                            ${grupo.numAtipicas > 0 ? `<span class="cs-time-tag" style="background:#fee2e2;color:#dc2626;font-weight:700;border:1px solid #fca5a5;" title="${grupo.numAtipicas} encuestas con duración < 2 min">⚠️ ${grupo.numAtipicas} atípicas</span>` : ''}
                         </div>
                     </div>
                 </div>

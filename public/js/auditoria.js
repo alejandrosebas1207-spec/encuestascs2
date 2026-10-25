@@ -3,7 +3,7 @@
  * CLIMA SOCIAL · MOTOR DE AUDITORÍA Y CONTROL DE CALIDAD DE CAMPO
  * =========================================================================
  * Reglas de calidad:
- * - Duración atípica: entrevista menor a 4 minutos (< 4.0 min)
+ * - Duración atípica: entrevista menor a 2 minutos (< 2.0 min)
  * - Consentimiento: exclusión de encuestas no consentidas
  * =========================================================================
  */
@@ -16,7 +16,7 @@
 })(typeof self !== 'undefined' ? self : this, function () {
     'use strict';
 
-    const UMBRAL_DURACION_ATIPICA_MINUTOS = 4.0;
+    const UMBRAL_DURACION_ATIPICA_MINUTOS = 2.0;
 
     function esDuracionAtipica(duracionMinutos) {
         if (duracionMinutos === null || duracionMinutos === undefined || isNaN(duracionMinutos)) return false;
