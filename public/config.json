@@ -1,7 +1,7 @@
 {
-  "estado": "ACTIVO",
-  "version": "1.1.1",
-  "proyecto": "Encuesta Cantonal Lago Agrio",
+  "estado": "STANDBY",
+  "version": "1.1.2",
+  "proyecto": "Terminal de Supervisión en Espera",
   "canton": "Lago Agrio",
   "provincia": "Sucumbíos",
   "modalidad": "puntos",
