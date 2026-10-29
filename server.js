@@ -185,19 +185,26 @@ function extraerValor(obj, claves) {
         ? "" : String(value).trim();
     for (let i = 0; i < claves.length; i++) {
         const k = claves[i];
+        if (!k) continue;
         const valor = valorTexto(obj[k]);
         if (valor) return valor;
     }
     const keys = Object.keys(obj);
-    for (let i = 0; i < keys.length; i++) {
-        const key = keys[i];
-        for (let j = 0; j < claves.length; j++) {
-            const k = claves[j];
-            const valor = valorTexto(obj[key]);
-            if (key.endsWith("/" + k) && valor) {
-                return valor;
+    for (let j = 0; j < claves.length; j++) {
+        const k = claves[j];
+        if (!k) continue;
+        const kLower = k.toLowerCase();
+        for (let i = 0; i < keys.length; i++) {
+            const key = keys[i];
+            const keyLower = key.toLowerCase();
+            if (keyLower === kLower || keyLower.endsWith("/" + kLower)) {
+                const valor = valorTexto(obj[key]);
+                if (valor) return valor;
             }
         }
+    }
+    for (let i = 0; i < keys.length; i++) {
+        const key = keys[i];
         if (typeof obj[key] === "object" && obj[key] !== null) {
             const nested = extraerValor(obj[key], claves);
             if (nested) return nested;
@@ -229,7 +236,7 @@ function normalizarEncuesta(raw, params, cantonOverride = "") {
     let geo = normalizarCoordenadas(raw._geolocation);
     if (!geo) {
         const gps = extraerValor(raw, [
-            "ya_registrado", "gps", "ubicacion_gps", "coordenadas",
+            "UBICACI_N_GPS_Autom_tico", "ya_registrado", "gps", "ubicacion_gps", "coordenadas",
             "geopoint", "punto_gps", "punto", "ubicacion"
         ]);
         if (gps) geo = normalizarCoordenadas(gps.split(/\s+/));
@@ -252,14 +259,14 @@ function normalizarEncuesta(raw, params, cantonOverride = "") {
     const campoEnc = params.campoEnc;
     const campoSup = params.campoSup;
 
-    let encuestador = extraerValor(raw, [campoEnc, "cenc", "codenc", "codencu", "cod_encu", "cod_enc", "C_digo_encuestador", "encuestador", "cod_encuestador"]);
-    let supervisor = extraerValor(raw, [campoSup, "csup", "codsup", "cod_sup", "C_digo_Supervisor", "supervisor", "cod_supervisor"]);
+    let encuestador = extraerValor(raw, [campoEnc, "C_DIGO_DE_ENCUESTADOR", "cenc", "codenc", "codencu", "cod_encu", "cod_enc", "C_digo_encuestador", "encuestador", "cod_encuestador"]);
+    let supervisor = extraerValor(raw, [campoSup, "C_DIGO_DE_SUPERVISOR", "csup", "codsup", "cod_sup", "C_digo_Supervisor", "supervisor", "cod_supervisor"]);
 
-    const rawConsen = extraerValor(raw, ["consent", "consen", "consentimiento", "acepta"]);
+    const rawConsen = extraerValor(raw, ["_EST_DE_ACUERDO_EN_DE_FORMA_VOLUNTARIA", "consent", "consen", "consentimiento", "acepta"]);
     const noConsent = rawConsen === "2" || String(rawConsen).trim().toLowerCase() === "no" || String(rawConsen).trim().toLowerCase() === "rechaza";
     const consentimiento = noConsent ? "NO" : "SI";
 
-    const sc = extraerValor(raw, ["seccensal", "sc", "sectorcen", "p_ref", "pr", "punto_ref", "codigo_sc", "sector_censal", "sector", "punto", "num_muestra"]);
+    const sc = extraerValor(raw, ["SECTOR_CENSAL", "seccensal", "sc", "sectorcen", "p_ref", "pr", "punto_ref", "codigo_sc", "sector_censal", "sector", "punto", "num_muestra"]);
     const rawTipol = String(extraerValor(raw, ["tipol", "tipologia", "TIPOLOGIA", "tipo_sc"]) || "").trim().toLowerCase();
     const tipologia = params.choicesTipologias[rawTipol] || rawTipol.toUpperCase();
     const barrio = extraerValor(raw, ["barrio", "barr", "BARRIO_O_SECTOR", "sector", "barrio_sector"]);
