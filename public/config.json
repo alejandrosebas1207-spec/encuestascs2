@@ -1,32 +1,61 @@
 {
-  "estado": "STANDBY",
-  "version": "1.1.2",
-  "proyecto": "Terminal de Supervisión en Espera",
-  "canton": "Lago Agrio",
-  "provincia": "Sucumbíos",
+  "estado": "ACTIVO",
+  "version": "1.2.0",
+  "proyecto": "Encuesta Urcuquí y Pimampiro 2026",
+  "canton": "",
+  "provincia": "Imbabura",
   "modalidad": "puntos",
-  "meta": 700,
+  "meta": 400,
   "bounds": [
     [
-      -76.95686,
-      -0.01845
+      -78.33300,
+      0.29137
     ],
     [
-      -76.76864,
-      0.15947
+      -77.81062,
+      0.59164
     ]
   ],
   "kobo": {
-    "asset_id": "aMgqGNgav47fEVxPMMpw6L",
+    "formularios": [
+      {
+        "canton": "URCUQUÍ",
+        "asset_id": "atnSSYdMirzRop3cztMTNc"
+      },
+      {
+        "canton": "PIMAMPIRO",
+        "asset_id": "akBGYahUKZw43qenuP6HMG"
+      }
+    ],
+    "asset_id": "atnSSYdMirzRop3cztMTNc,akBGYahUKZw43qenuP6HMG",
+    "api_token": "07cf361cc0dcfc56f489d599435c8e0ed6ce9387",
     "campo_encuestador": "codencu",
     "campo_supervisor": "codsup",
     "choices_parroquias": {
-      "1": "NUEVA LOJA",
-      "Nueva Loja (Urbana)": "NUEVA LOJA",
-      "NUEVA LOJA": "NUEVA LOJA",
-      "5710": "NUEVA LOJA"
+      "URCUQUI": "URCUQUI",
+      "Urcuquí": "URCUQUI",
+      "SAN BLAS": "SAN BLAS",
+      "San Blas": "SAN BLAS",
+      "TUMBABIRO": "TUMBABIRO",
+      "Tumbabiro": "TUMBABIRO",
+      "PABLO ARENAS": "PABLO ARENAS",
+      "Pablo Arenas": "PABLO ARENAS",
+      "CAHUASQUI": "CAHUASQUI",
+      "Cahuasquí": "CAHUASQUI",
+      "PIMAMPIRO": "PIMAMPIRO",
+      "Pimampiro": "PIMAMPIRO",
+      "CHUGA": "CHUGA",
+      "Chugá": "CHUGA"
     },
     "choices_tipologias": {
+      "1": "A",
+      "2": "B",
+      "3": "C",
+      "4": "D",
+      "5": "E",
+      "6": "F",
+      "7": "G",
+      "8": "H",
       "a": "A",
       "b": "B",
       "c": "C",
@@ -40,6 +69,5 @@
   "equipo": {
     "supervisores": {},
     "encuestadores": {}
-  },
-  "parroquia": "Nueva Loja"
+  }
 }

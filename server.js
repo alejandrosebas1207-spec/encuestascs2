@@ -89,10 +89,34 @@ function obtenerParametrosActivos() {
         "a": "A", "b": "B", "c": "C", "d": "D", "e": "E", "f": "F", "g": "G", "h": "H"
     };
 
+    // Soporte para uno o múltiples formularios Kobo (ej. Urcuquí + Pimampiro)
+    let formularios = [];
+    if (!esStandby) {
+        if (config.kobo && Array.isArray(config.kobo.formularios) && config.kobo.formularios.length > 0) {
+            formularios = config.kobo.formularios.map(f => ({
+                assetId: String(f.asset_id || f.assetId || "").trim(),
+                canton: String(f.canton || "").trim().toUpperCase()
+            })).filter(f => f.assetId);
+        } else if (config.kobo && Array.isArray(config.kobo.assets) && config.kobo.assets.length > 0) {
+            formularios = config.kobo.assets.map(item => {
+                if (typeof item === "string") return { assetId: item.trim(), canton: "" };
+                return { assetId: String(item.asset_id || item.assetId || "").trim(), canton: String(item.canton || "").trim().toUpperCase() };
+            }).filter(f => f.assetId);
+        } else if (assetId) {
+            const ids = assetId.split(",").map(s => s.trim()).filter(Boolean);
+            formularios = ids.map(id => ({ assetId: id, canton: String(config.canton || "").trim().toUpperCase() }));
+        }
+    }
+
+    const effectiveAssetId = formularios.length === 1 
+        ? formularios[0].assetId 
+        : (formularios.length > 1 ? formularios.map(f => f.assetId).join(",") : assetId);
+
     return {
         config,
         esStandby,
-        assetId,
+        assetId: effectiveAssetId,
+        formularios,
         apiToken,
         campoEnc,
         campoSup,
@@ -151,7 +175,8 @@ let cache = {
     datos: null,
     timestamp: 0,
     enProceso: null,
-    assetId: null
+    assetId: null,
+    cacheKey: null
 };
 
 function extraerValor(obj, claves) {
@@ -195,7 +220,7 @@ function normalizarCoordenadas(valores, validarEcuador = false) {
     return [lat, lng];
 }
 
-function normalizarEncuesta(raw, params) {
+function normalizarEncuesta(raw, params, cantonOverride = "") {
     const id = raw._id || "";
     const submissionTime = raw._submission_time || "";
     const start = raw.start || extraerValor(raw, ["start", "inicio"]) || "";
@@ -243,7 +268,7 @@ function normalizarEncuesta(raw, params) {
     const parroquia = params.choicesParroquias[rawParroquia] || String(rawParroquia).trim().toUpperCase();
 
     const rawCanton = extraerValor(raw, ["canton", "CANTON", "canton_nombre", "nom_can", "nom_canton"]) || "";
-    const cantonDefecto = params.config.canton || "Territorio";
+    const cantonDefecto = cantonOverride || params.config.canton || "Territorio";
     const canton = params.choicesCantones[rawCanton] || (rawCanton ? String(rawCanton).trim() : cantonDefecto);
 
     const rawCirc = extraerValor(raw, ["circunscripcion", "circ", "CIRCUNSCRIPCION"]) || "";
@@ -277,6 +302,8 @@ function normalizarEncuesta(raw, params) {
     const edadNum = Number(edadRaw);
     const edad = (!isNaN(edadNum) && edadNum > 0 && edadNum < 120) ? edadNum : null;
 
+    const scKey = (canton && sc) ? `${String(canton).toUpperCase().trim()}_${sc}` : (sc || "");
+
     return {
         _id: id,
         _submission_time: submissionTime,
@@ -292,6 +319,7 @@ function normalizarEncuesta(raw, params) {
         encuestador,
         supervisor,
         sc,
+        sc_key: scKey,
         tipologia,
         barrio,
         parroquia,
@@ -320,9 +348,55 @@ async function fetchConReintento(url, opciones, maxReintentos = 2) {
     }
 }
 
+async function descargarFormularioKobo(formItem, params) {
+    const assetId = formItem.assetId;
+    const cantonForm = formItem.canton || "";
+    const origenKobo = new URL(`https://kf.kobotoolbox.org/api/v2/assets/${encodeURIComponent(assetId)}/data/`);
+    let url = `${origenKobo.href}?limit=${LIMITE_POR_PAGINA}`;
+    const resultadosRaw = [];
+    const paginasVisitadas = new Set();
+    let total = null;
+
+    while (url) {
+        const pagina = new URL(url, origenKobo);
+        if (pagina.origin !== origenKobo.origin || pagina.pathname !== origenKobo.pathname || pagina.username || pagina.password || paginasVisitadas.has(pagina.href)) {
+            throw new Error(`Paginación de Kobo inválida para asset ${assetId}: destino ajeno al formulario o página repetida.`);
+        }
+        paginasVisitadas.add(pagina.href);
+        url = pagina.href;
+        const respuesta = await fetchConReintento(url, {
+            headers: { Authorization: `Token ${params.apiToken}` },
+            timeout: TIMEOUT_MS,
+            maxRedirects: 0
+        });
+
+        const data = respuesta.data;
+        if (!data || !Array.isArray(data.results) || !Number.isInteger(data.count) || data.count < 0 ||
+            (data.next !== null && data.next !== undefined && typeof data.next !== "string")) {
+            throw new Error(`Respuesta de Kobo inválida para asset ${assetId}: estructura de paginación no reconocida.`);
+        }
+        total = data.count;
+        resultadosRaw.push(...data.results);
+        url = data.next;
+    }
+    if (resultadosRaw.length !== total) {
+        throw new Error(`Respuesta de Kobo incompleta para asset ${assetId}: el conteo no coincide con las boletas recibidas.`);
+    }
+
+    return resultadosRaw.map(raw => {
+        const norm = normalizarEncuesta(raw, params, cantonForm);
+        norm._kobo_asset = assetId;
+        return norm;
+    });
+}
+
 async function obtenerDatosKobo() {
     const params = obtenerParametrosActivos();
-    if (params.esStandby || !params.assetId || !params.apiToken) {
+    const listaFormularios = (params.formularios && params.formularios.length > 0)
+        ? params.formularios
+        : (params.assetId ? [{ assetId: params.assetId, canton: params.config.canton || "" }] : []);
+
+    if (params.esStandby || listaFormularios.length === 0 || !params.apiToken) {
         return {
             estado: params.esStandby ? "STANDBY" : "CONFIG_PENDIENTE",
             total: 0,
@@ -334,8 +408,9 @@ async function obtenerDatosKobo() {
         };
     }
 
+    const cacheKey = listaFormularios.map(f => `${f.assetId}:${f.canton || ""}`).sort().join("|");
     const ahora = Date.now();
-    if (cache.datos && cache.assetId === params.assetId && ahora - cache.timestamp < CACHE_TTL_MS) {
+    if (cache.datos && cache.cacheKey === cacheKey && ahora - cache.timestamp < CACHE_TTL_MS) {
         return cache.datos;
     }
 
@@ -344,45 +419,16 @@ async function obtenerDatosKobo() {
     }
 
     cache.enProceso = (async () => {
-        const origenKobo = new URL(`https://kf.kobotoolbox.org/api/v2/assets/${encodeURIComponent(params.assetId)}/data/`);
-        let url = `${origenKobo.href}?limit=${LIMITE_POR_PAGINA}`;
-        const resultadosRaw = [];
-        const paginasVisitadas = new Set();
-        let total = null;
+        const descargas = await Promise.all(
+            listaFormularios.map(f => descargarFormularioKobo(f, params))
+        );
+        const resultadosCombinados = descargas.flat();
 
-        while (url) {
-            const pagina = new URL(url, origenKobo);
-            if (pagina.origin !== origenKobo.origin || pagina.pathname !== origenKobo.pathname || pagina.username || pagina.password || paginasVisitadas.has(pagina.href)) {
-                throw new Error("Paginación de Kobo inválida: destino ajeno al formulario o página repetida.");
-            }
-            paginasVisitadas.add(pagina.href);
-            url = pagina.href;
-            const respuesta = await fetchConReintento(url, {
-                headers: { Authorization: `Token ${params.apiToken}` },
-                timeout: TIMEOUT_MS,
-                maxRedirects: 0
-            });
-
-            const data = respuesta.data;
-            if (!data || !Array.isArray(data.results) || !Number.isInteger(data.count) || data.count < 0 ||
-                (data.next !== null && data.next !== undefined && typeof data.next !== "string")) {
-                throw new Error("Respuesta de Kobo inválida: estructura de paginación no reconocida.");
-            }
-            total = data.count;
-            resultadosRaw.push(...data.results);
-            url = data.next;
-        }
-        if (resultadosRaw.length !== total) {
-            throw new Error("Respuesta de Kobo incompleta: el conteo no coincide con las boletas recibidas.");
-        }
-
-        const resultados = resultadosRaw
-            .map(raw => normalizarEncuesta(raw, params))
-            .filter(e => {
-                if (String(e.encuestador).trim() === "98" || String(e.supervisor).trim() === "98") return false;
-                if (e.consentimiento === "NO" || String(e.consen).trim() === "2") return false;
-                return true;
-            });
+        const resultados = resultadosCombinados.filter(e => {
+            if (String(e.encuestador).trim() === "98" || String(e.supervisor).trim() === "98") return false;
+            if (e.consentimiento === "NO" || String(e.consen).trim() === "2") return false;
+            return true;
+        });
 
         cache.datos = {
             estado: "ACTIVO",
@@ -391,6 +437,7 @@ async function obtenerDatosKobo() {
             obtenidoEn: Date.now()
         };
         cache.timestamp = Date.now();
+        cache.cacheKey = cacheKey;
         cache.assetId = params.assetId;
         return cache.datos;
     })();

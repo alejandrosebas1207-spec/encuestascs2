@@ -6,41 +6,35 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -76.91808,
-          0.085
+          -77.93918,
+          0.39074
         ]
       },
       "properties": {
         "CODIGO": 1,
-        "TIPOLOGIA": "A",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN CALLE 2 Y CALLE N",
-        "COD_ETIQUETA": "1 | A",
-        "ORDEN_RUTA": 1,
-        "LATITUD": 0.084997,
-        "LONGITUD": -76.918081,
-        "X_UTM": 954602.24,
-        "Y_UTM": 10009418.72,
         "num_muestra": 1,
         "sc": "1",
-        "etiqueta": "1 | A",
-        "etiquetaSC": "1 | A",
-        "tipologia": "A",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN CALLE 2 Y CALLE N",
+        "sc_key": "PIMAMPIRO_1",
+        "etiqueta": "1 | B",
+        "etiquetaSC": "1 | B",
+        "tipologia": "B",
+        "parroquia": "PIMAMPIRO",
+        "PARROQUIA": "PIMAMPIRO",
+        "canton": "PIMAMPIRO",
+        "CANTON": "PIMAMPIRO",
+        "circunscripcion": "CIRCUNSCRIPCIÓN URBANA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCIÓN URBANA",
+        "punto_referencial": "PARQUE 24 DE MAYO / GAD MUNICIPAL DE PIMAMPIRO",
+        "PUNTO_REFERENCIAL": "PARQUE 24 DE MAYO / GAD MUNICIPAL DE PIMAMPIRO",
         "casos": 10,
         "bbox": [
           [
-            -76.91808,
-            0.085
+            -77.93918,
+            0.39074
           ],
           [
-            -76.91808,
-            0.085
+            -77.93918,
+            0.39074
           ]
         ]
       }
@@ -50,41 +44,35 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -76.90646,
-          0.08643
+          -77.94004,
+          0.39375
         ]
       },
       "properties": {
         "CODIGO": 2,
-        "TIPOLOGIA": "F",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN ARNULFO ORELLANA Y CALLE 2",
-        "COD_ETIQUETA": "2 | F",
-        "ORDEN_RUTA": 2,
-        "LATITUD": 0.086428,
-        "LONGITUD": -76.906459,
-        "X_UTM": 955898.7,
-        "Y_UTM": 10009577.47,
         "num_muestra": 2,
         "sc": "2",
-        "etiqueta": "2 | F",
-        "etiquetaSC": "2 | F",
-        "tipologia": "F",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN ARNULFO ORELLANA Y CALLE 2",
+        "sc_key": "PIMAMPIRO_2",
+        "etiqueta": "2 | G",
+        "etiquetaSC": "2 | G",
+        "tipologia": "G",
+        "parroquia": "PIMAMPIRO",
+        "PARROQUIA": "PIMAMPIRO",
+        "canton": "PIMAMPIRO",
+        "CANTON": "PIMAMPIRO",
+        "circunscripcion": "CIRCUNSCRIPCIÓN URBANA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCIÓN URBANA",
+        "punto_referencial": "IGLESIA MATRIZ SAN PEDRO DE PIMAMPIRO / PLAZOLETA",
+        "PUNTO_REFERENCIAL": "IGLESIA MATRIZ SAN PEDRO DE PIMAMPIRO / PLAZOLETA",
         "casos": 10,
         "bbox": [
           [
-            -76.90646,
-            0.08643
+            -77.94004,
+            0.39375
           ],
           [
-            -76.90646,
-            0.08643
+            -77.94004,
+            0.39375
           ]
         ]
       }
@@ -94,41 +82,35 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -76.90422,
-          0.08812
+          -77.94183,
+          0.39001
         ]
       },
       "properties": {
         "CODIGO": 3,
-        "TIPOLOGIA": "C",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN CALLE 3 Y CONDOR MIRADOR",
-        "COD_ETIQUETA": "3 | C",
-        "ORDEN_RUTA": 3,
-        "LATITUD": 0.088118,
-        "LONGITUD": -76.904222,
-        "X_UTM": 956148.26,
-        "Y_UTM": 10009764.75,
         "num_muestra": 3,
         "sc": "3",
-        "etiqueta": "3 | C",
-        "etiquetaSC": "3 | C",
-        "tipologia": "C",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN CALLE 3 Y CONDOR MIRADOR",
+        "sc_key": "PIMAMPIRO_3",
+        "etiqueta": "3 | H",
+        "etiquetaSC": "3 | H",
+        "tipologia": "H",
+        "parroquia": "PIMAMPIRO",
+        "PARROQUIA": "PIMAMPIRO",
+        "canton": "PIMAMPIRO",
+        "CANTON": "PIMAMPIRO",
+        "circunscripcion": "CIRCUNSCRIPCIÓN URBANA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCIÓN URBANA",
+        "punto_referencial": "TERMINAL TERRESTRE DE PIMAMPIRO / CALLE PAQUISHA",
+        "PUNTO_REFERENCIAL": "TERMINAL TERRESTRE DE PIMAMPIRO / CALLE PAQUISHA",
         "casos": 10,
         "bbox": [
           [
-            -76.90422,
-            0.08812
+            -77.94183,
+            0.39001
           ],
           [
-            -76.90422,
-            0.08812
+            -77.94183,
+            0.39001
           ]
         ]
       }
@@ -138,41 +120,35 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -76.90554,
-          0.09072
+          -77.93625,
+          0.38553
         ]
       },
       "properties": {
         "CODIGO": 4,
-        "TIPOLOGIA": "H",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN AVENIDA LA PRENSA Y TUNGURAHUA",
-        "COD_ETIQUETA": "4 | H",
-        "ORDEN_RUTA": 4,
-        "LATITUD": 0.09072,
-        "LONGITUD": -76.905542,
-        "X_UTM": 956001.01,
-        "Y_UTM": 10010053.16,
         "num_muestra": 4,
         "sc": "4",
-        "etiqueta": "4 | H",
-        "etiquetaSC": "4 | H",
-        "tipologia": "H",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN AVENIDA LA PRENSA Y TUNGURAHUA",
+        "sc_key": "PIMAMPIRO_4",
+        "etiqueta": "4 | D",
+        "etiquetaSC": "4 | D",
+        "tipologia": "D",
+        "parroquia": "PIMAMPIRO",
+        "PARROQUIA": "PIMAMPIRO",
+        "canton": "PIMAMPIRO",
+        "CANTON": "PIMAMPIRO",
+        "circunscripcion": "CIRCUNSCRIPCIÓN URBANA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCIÓN URBANA",
+        "punto_referencial": "ESTADIO MUNICIPAL DE PIMAMPIRO / CALLE QUITO",
+        "PUNTO_REFERENCIAL": "ESTADIO MUNICIPAL DE PIMAMPIRO / CALLE QUITO",
         "casos": 10,
         "bbox": [
           [
-            -76.90554,
-            0.09072
+            -77.93625,
+            0.38553
           ],
           [
-            -76.90554,
-            0.09072
+            -77.93625,
+            0.38553
           ]
         ]
       }
@@ -182,41 +158,35 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -76.90112,
-          0.09014
+          -77.9419,
+          0.39145
         ]
       },
       "properties": {
         "CODIGO": 5,
-        "TIPOLOGIA": "A",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN EL CHACO Y PEDRO FERMIN CEVALLOS",
-        "COD_ETIQUETA": "5 | A",
-        "ORDEN_RUTA": 5,
-        "LATITUD": 0.09014,
-        "LONGITUD": -76.901124,
-        "X_UTM": 956493.83,
-        "Y_UTM": 10009988.9,
         "num_muestra": 5,
         "sc": "5",
+        "sc_key": "PIMAMPIRO_5",
         "etiqueta": "5 | A",
         "etiquetaSC": "5 | A",
         "tipologia": "A",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN EL CHACO Y PEDRO FERMIN CEVALLOS",
+        "parroquia": "PIMAMPIRO",
+        "PARROQUIA": "PIMAMPIRO",
+        "canton": "PIMAMPIRO",
+        "CANTON": "PIMAMPIRO",
+        "circunscripcion": "CIRCUNSCRIPCIÓN URBANA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCIÓN URBANA",
+        "punto_referencial": "COLISEO MUNICIPAL PIMAMPIRO / POLIDEPORTIVO",
+        "PUNTO_REFERENCIAL": "COLISEO MUNICIPAL PIMAMPIRO / POLIDEPORTIVO",
         "casos": 10,
         "bbox": [
           [
-            -76.90112,
-            0.09014
+            -77.9419,
+            0.39145
           ],
           [
-            -76.90112,
-            0.09014
+            -77.9419,
+            0.39145
           ]
         ]
       }
@@ -226,41 +196,35 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -76.8989,
-          0.09311
+          -77.93992,
+          0.38864
         ]
       },
       "properties": {
         "CODIGO": 6,
-        "TIPOLOGIA": "D",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN CALLE CAYAMBE Y LOS LLANGANATES",
-        "COD_ETIQUETA": "6 | D",
-        "ORDEN_RUTA": 6,
-        "LATITUD": 0.093106,
-        "LONGITUD": -76.898903,
-        "X_UTM": 956741.59,
-        "Y_UTM": 10010317.63,
         "num_muestra": 6,
         "sc": "6",
-        "etiqueta": "6 | D",
-        "etiquetaSC": "6 | D",
-        "tipologia": "D",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN CALLE CAYAMBE Y LOS LLANGANATES",
+        "sc_key": "PIMAMPIRO_6",
+        "etiqueta": "6 | B",
+        "etiquetaSC": "6 | B",
+        "tipologia": "B",
+        "parroquia": "PIMAMPIRO",
+        "PARROQUIA": "PIMAMPIRO",
+        "canton": "PIMAMPIRO",
+        "CANTON": "PIMAMPIRO",
+        "circunscripcion": "CIRCUNSCRIPCIÓN URBANA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCIÓN URBANA",
+        "punto_referencial": "SUBCENTRO DE SALUD PIMAMPIRO / BARRIO SAN NICOLÁS",
+        "PUNTO_REFERENCIAL": "SUBCENTRO DE SALUD PIMAMPIRO / BARRIO SAN NICOLÁS",
         "casos": 10,
         "bbox": [
           [
-            -76.8989,
-            0.09311
+            -77.93992,
+            0.38864
           ],
           [
-            -76.8989,
-            0.09311
+            -77.93992,
+            0.38864
           ]
         ]
       }
@@ -270,41 +234,35 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -76.89742,
-          0.09554
+          -77.93736,
+          0.39022
         ]
       },
       "properties": {
         "CODIGO": 7,
-        "TIPOLOGIA": "C",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN BENJAMIN CARRION Y LATACUNGA",
-        "COD_ETIQUETA": "7 | C",
-        "ORDEN_RUTA": 7,
-        "LATITUD": 0.095543,
-        "LONGITUD": -76.897417,
-        "X_UTM": 956907.38,
-        "Y_UTM": 10010587.69,
         "num_muestra": 7,
         "sc": "7",
-        "etiqueta": "7 | C",
-        "etiquetaSC": "7 | C",
-        "tipologia": "C",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN BENJAMIN CARRION Y LATACUNGA",
+        "sc_key": "PIMAMPIRO_7",
+        "etiqueta": "7 | G",
+        "etiquetaSC": "7 | G",
+        "tipologia": "G",
+        "parroquia": "PIMAMPIRO",
+        "PARROQUIA": "PIMAMPIRO",
+        "canton": "PIMAMPIRO",
+        "CANTON": "PIMAMPIRO",
+        "circunscripcion": "CIRCUNSCRIPCIÓN URBANA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCIÓN URBANA",
+        "punto_referencial": "AVENIDA CAPITÁN JORGE ALEXANDER ANDRADE / ENTRADA A PIMAMPIRO",
+        "PUNTO_REFERENCIAL": "AVENIDA CAPITÁN JORGE ALEXANDER ANDRADE / ENTRADA A PIMAMPIRO",
         "casos": 10,
         "bbox": [
           [
-            -76.89742,
-            0.09554
+            -77.93736,
+            0.39022
           ],
           [
-            -76.89742,
-            0.09554
+            -77.93736,
+            0.39022
           ]
         ]
       }
@@ -314,41 +272,35 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -76.89583,
-          0.09315
+          -77.94082,
+          0.38668
         ]
       },
       "properties": {
         "CODIGO": 8,
-        "TIPOLOGIA": "G",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN IMBABURA Y LEONIDAS PROAÑO (REF. IGLESIA EVANGÉLICA APOSTÓLICA DEL NOMBRE DE JESÚS - LA MIRAFLORES)",
-        "COD_ETIQUETA": "8 | G",
-        "ORDEN_RUTA": 8,
-        "LATITUD": 0.093148,
-        "LONGITUD": -76.895831,
-        "X_UTM": 957084.34,
-        "Y_UTM": 10010322.36,
         "num_muestra": 8,
         "sc": "8",
-        "etiqueta": "8 | G",
-        "etiquetaSC": "8 | G",
-        "tipologia": "G",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN IMBABURA Y LEONIDAS PROAÑO (REF. IGLESIA EVANGÉLICA APOSTÓLICA DEL NOMBRE DE JESÚS - LA MIRAFLORES)",
+        "sc_key": "PIMAMPIRO_8",
+        "etiqueta": "8 | D",
+        "etiquetaSC": "8 | D",
+        "tipologia": "D",
+        "parroquia": "PIMAMPIRO",
+        "PARROQUIA": "PIMAMPIRO",
+        "canton": "PIMAMPIRO",
+        "CANTON": "PIMAMPIRO",
+        "circunscripcion": "CIRCUNSCRIPCIÓN URBANA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCIÓN URBANA",
+        "punto_referencial": "BARRIO SAN JUAN / CALLE CERRO DE LOS PICACHOS",
+        "PUNTO_REFERENCIAL": "BARRIO SAN JUAN / CALLE CERRO DE LOS PICACHOS",
         "casos": 10,
         "bbox": [
           [
-            -76.89583,
-            0.09315
+            -77.94082,
+            0.38668
           ],
           [
-            -76.89583,
-            0.09315
+            -77.94082,
+            0.38668
           ]
         ]
       }
@@ -358,41 +310,35 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -76.89655,
-          0.08952
+          -77.9398,
+          0.38699
         ]
       },
       "properties": {
         "CODIGO": 9,
-        "TIPOLOGIA": "H",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN AV. DEL MAESTRO Y CHIMBORAZO",
-        "COD_ETIQUETA": "9 | H",
-        "ORDEN_RUTA": 9,
-        "LATITUD": 0.089525,
-        "LONGITUD": -76.896552,
-        "X_UTM": 957004.01,
-        "Y_UTM": 10009920.76,
         "num_muestra": 9,
         "sc": "9",
-        "etiqueta": "9 | H",
-        "etiquetaSC": "9 | H",
-        "tipologia": "H",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN AV. DEL MAESTRO Y CHIMBORAZO",
+        "sc_key": "PIMAMPIRO_9",
+        "etiqueta": "9 | C",
+        "etiquetaSC": "9 | C",
+        "tipologia": "C",
+        "parroquia": "PIMAMPIRO",
+        "PARROQUIA": "PIMAMPIRO",
+        "canton": "PIMAMPIRO",
+        "CANTON": "PIMAMPIRO",
+        "circunscripcion": "CIRCUNSCRIPCIÓN URBANA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCIÓN URBANA",
+        "punto_referencial": "BARRIO SANTA CLARA / CALLE VENTANA GRANDE",
+        "PUNTO_REFERENCIAL": "BARRIO SANTA CLARA / CALLE VENTANA GRANDE",
         "casos": 10,
         "bbox": [
           [
-            -76.89655,
-            0.08952
+            -77.9398,
+            0.38699
           ],
           [
-            -76.89655,
-            0.08952
+            -77.9398,
+            0.38699
           ]
         ]
       }
@@ -402,41 +348,35 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -76.89422,
-          0.08772
+          -77.93828,
+          0.38658
         ]
       },
       "properties": {
         "CODIGO": 10,
-        "TIPOLOGIA": "F",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN CIRCUNVALACIÓN Y LOS RIOS (REF. PARQUE SIMÓN BOLÍVAR)",
-        "COD_ETIQUETA": "10 | F",
-        "ORDEN_RUTA": 10,
-        "LATITUD": 0.087724,
-        "LONGITUD": -76.894222,
-        "X_UTM": 957263.96,
-        "Y_UTM": 10009721.28,
         "num_muestra": 10,
         "sc": "10",
-        "etiqueta": "10 | F",
-        "etiquetaSC": "10 | F",
-        "tipologia": "F",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN CIRCUNVALACIÓN Y LOS RIOS (REF. PARQUE SIMÓN BOLÍVAR)",
+        "sc_key": "PIMAMPIRO_10",
+        "etiqueta": "10 | D",
+        "etiquetaSC": "10 | D",
+        "tipologia": "D",
+        "parroquia": "PIMAMPIRO",
+        "PARROQUIA": "PIMAMPIRO",
+        "canton": "PIMAMPIRO",
+        "CANTON": "PIMAMPIRO",
+        "circunscripcion": "CIRCUNSCRIPCIÓN URBANA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCIÓN URBANA",
+        "punto_referencial": "BARRIO EL ROSAL / CALLE ELOY ALFARO",
+        "PUNTO_REFERENCIAL": "BARRIO EL ROSAL / CALLE ELOY ALFARO",
         "casos": 10,
         "bbox": [
           [
-            -76.89422,
-            0.08772
+            -77.93828,
+            0.38658
           ],
           [
-            -76.89422,
-            0.08772
+            -77.93828,
+            0.38658
           ]
         ]
       }
@@ -446,41 +386,35 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -76.89215,
-          0.08561
+          -77.94021,
+          0.38383
         ]
       },
       "properties": {
         "CODIGO": 11,
-        "TIPOLOGIA": "B",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN CUYABENO Y OÑA",
-        "COD_ETIQUETA": "11 | B",
-        "ORDEN_RUTA": 11,
-        "LATITUD": 0.085613,
-        "LONGITUD": -76.892148,
-        "X_UTM": 957495.3,
-        "Y_UTM": 10009487.39,
         "num_muestra": 11,
         "sc": "11",
-        "etiqueta": "11 | B",
-        "etiquetaSC": "11 | B",
-        "tipologia": "B",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN CUYABENO Y OÑA",
+        "sc_key": "PIMAMPIRO_11",
+        "etiqueta": "11 | A",
+        "etiquetaSC": "11 | A",
+        "tipologia": "A",
+        "parroquia": "PIMAMPIRO",
+        "PARROQUIA": "PIMAMPIRO",
+        "canton": "PIMAMPIRO",
+        "CANTON": "PIMAMPIRO",
+        "circunscripcion": "CIRCUNSCRIPCIÓN URBANA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCIÓN URBANA",
+        "punto_referencial": "SECTOR SUR PIMAMPIRO / CALLE LUISA TOTA",
+        "PUNTO_REFERENCIAL": "SECTOR SUR PIMAMPIRO / CALLE LUISA TOTA",
         "casos": 10,
         "bbox": [
           [
-            -76.89215,
-            0.08561
+            -77.94021,
+            0.38383
           ],
           [
-            -76.89215,
-            0.08561
+            -77.94021,
+            0.38383
           ]
         ]
       }
@@ -490,41 +424,35 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -76.89111,
-          0.08837
+          -77.94176,
+          0.38575
         ]
       },
       "properties": {
         "CODIGO": 12,
-        "TIPOLOGIA": "A",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN CAÑAR Y GUAYAS",
-        "COD_ETIQUETA": "12 | A",
-        "ORDEN_RUTA": 12,
-        "LATITUD": 0.088368,
-        "LONGITUD": -76.891109,
-        "X_UTM": 957611.26,
-        "Y_UTM": 10009792.66,
         "num_muestra": 12,
         "sc": "12",
-        "etiqueta": "12 | A",
-        "etiquetaSC": "12 | A",
-        "tipologia": "A",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN CAÑAR Y GUAYAS",
+        "sc_key": "PIMAMPIRO_12",
+        "etiqueta": "12 | F",
+        "etiquetaSC": "12 | F",
+        "tipologia": "F",
+        "parroquia": "PIMAMPIRO",
+        "PARROQUIA": "PIMAMPIRO",
+        "canton": "PIMAMPIRO",
+        "CANTON": "PIMAMPIRO",
+        "circunscripcion": "CIRCUNSCRIPCIÓN URBANA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCIÓN URBANA",
+        "punto_referencial": "BARRIO SAN PEDRO / CALLE ELÍAS BORJA",
+        "PUNTO_REFERENCIAL": "BARRIO SAN PEDRO / CALLE ELÍAS BORJA",
         "casos": 10,
         "bbox": [
           [
-            -76.89111,
-            0.08837
+            -77.94176,
+            0.38575
           ],
           [
-            -76.89111,
-            0.08837
+            -77.94176,
+            0.38575
           ]
         ]
       }
@@ -534,41 +462,35 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -76.89188,
-          0.09196
+          -77.94271,
+          0.38749
         ]
       },
       "properties": {
         "CODIGO": 13,
-        "TIPOLOGIA": "E",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN COTOPAXI Y EL ORO (REF. CANCHA SINTÉTICA DEL GOBIERNO PROVINCIAL)",
-        "COD_ETIQUETA": "13 | E",
-        "ORDEN_RUTA": 13,
-        "LATITUD": 0.091964,
-        "LONGITUD": -76.891885,
-        "X_UTM": 957524.6,
-        "Y_UTM": 10010191.09,
         "num_muestra": 13,
         "sc": "13",
-        "etiqueta": "13 | E",
-        "etiquetaSC": "13 | E",
-        "tipologia": "E",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN COTOPAXI Y EL ORO (REF. CANCHA SINTÉTICA DEL GOBIERNO PROVINCIAL)",
+        "sc_key": "PIMAMPIRO_13",
+        "etiqueta": "13 | H",
+        "etiquetaSC": "13 | H",
+        "tipologia": "H",
+        "parroquia": "PIMAMPIRO",
+        "PARROQUIA": "PIMAMPIRO",
+        "canton": "PIMAMPIRO",
+        "CANTON": "PIMAMPIRO",
+        "circunscripcion": "CIRCUNSCRIPCIÓN URBANA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCIÓN URBANA",
+        "punto_referencial": "BARRIO MIRAFLORES / CALLE PURUHANTA",
+        "PUNTO_REFERENCIAL": "BARRIO MIRAFLORES / CALLE PURUHANTA",
         "casos": 10,
         "bbox": [
           [
-            -76.89188,
-            0.09196
+            -77.94271,
+            0.38749
           ],
           [
-            -76.89188,
-            0.09196
+            -77.94271,
+            0.38749
           ]
         ]
       }
@@ -578,41 +500,35 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -76.89191,
-          0.0956
+          -77.94126,
+          0.39333
         ]
       },
       "properties": {
         "CODIGO": 14,
-        "TIPOLOGIA": "D",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN EL ORO Y LATACUNGA",
-        "COD_ETIQUETA": "14 | D",
-        "ORDEN_RUTA": 14,
-        "LATITUD": 0.095599,
-        "LONGITUD": -76.891908,
-        "X_UTM": 957521.95,
-        "Y_UTM": 10010594.0,
         "num_muestra": 14,
         "sc": "14",
-        "etiqueta": "14 | D",
-        "etiquetaSC": "14 | D",
-        "tipologia": "D",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN EL ORO Y LATACUNGA",
+        "sc_key": "PIMAMPIRO_14",
+        "etiqueta": "14 | E",
+        "etiquetaSC": "14 | E",
+        "tipologia": "E",
+        "parroquia": "PIMAMPIRO",
+        "PARROQUIA": "PIMAMPIRO",
+        "canton": "PIMAMPIRO",
+        "CANTON": "PIMAMPIRO",
+        "circunscripcion": "CIRCUNSCRIPCIÓN URBANA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCIÓN URBANA",
+        "punto_referencial": "UNIDAD EDUCATIVA PUEBLOS SIN FRONTERAS / CALLE GONZÁLEZ SUÁREZ",
+        "PUNTO_REFERENCIAL": "UNIDAD EDUCATIVA PUEBLOS SIN FRONTERAS / CALLE GONZÁLEZ SUÁREZ",
         "casos": 10,
         "bbox": [
           [
-            -76.89191,
-            0.0956
+            -77.94126,
+            0.39333
           ],
           [
-            -76.89191,
-            0.0956
+            -77.94126,
+            0.39333
           ]
         ]
       }
@@ -622,41 +538,35 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -76.88958,
-          0.09779
+          -77.93934,
+          0.39542
         ]
       },
       "properties": {
         "CODIGO": 15,
-        "TIPOLOGIA": "C",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN AVENIDA 20 DE JUNIO Y RUMIÑAHUI",
-        "COD_ETIQUETA": "15 | C",
-        "ORDEN_RUTA": 15,
-        "LATITUD": 0.097789,
-        "LONGITUD": -76.88958,
-        "X_UTM": 957781.71,
-        "Y_UTM": 10010836.72,
         "num_muestra": 15,
         "sc": "15",
-        "etiqueta": "15 | C",
-        "etiquetaSC": "15 | C",
-        "tipologia": "C",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN AVENIDA 20 DE JUNIO Y RUMIÑAHUI",
+        "sc_key": "PIMAMPIRO_15",
+        "etiqueta": "15 | F",
+        "etiquetaSC": "15 | F",
+        "tipologia": "F",
+        "parroquia": "PIMAMPIRO",
+        "PARROQUIA": "PIMAMPIRO",
+        "canton": "PIMAMPIRO",
+        "CANTON": "PIMAMPIRO",
+        "circunscripcion": "CIRCUNSCRIPCIÓN URBANA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCIÓN URBANA",
+        "punto_referencial": "SECTOR NORTE / CALLE CAPITÁN RAÚL AGUIRRE",
+        "PUNTO_REFERENCIAL": "SECTOR NORTE / CALLE CAPITÁN RAÚL AGUIRRE",
         "casos": 10,
         "bbox": [
           [
-            -76.88958,
-            0.09779
+            -77.93934,
+            0.39542
           ],
           [
-            -76.88958,
-            0.09779
+            -77.93934,
+            0.39542
           ]
         ]
       }
@@ -666,41 +576,35 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -76.88801,
-          0.1002
+          -77.94475,
+          0.38883
         ]
       },
       "properties": {
         "CODIGO": 16,
-        "TIPOLOGIA": "E",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN 25 DE SEPTIEMBRE Y TUPAC YUPANQUI",
-        "COD_ETIQUETA": "16 | E",
-        "ORDEN_RUTA": 16,
-        "LATITUD": 0.100205,
-        "LONGITUD": -76.888008,
-        "X_UTM": 957957.01,
-        "Y_UTM": 10011104.44,
         "num_muestra": 16,
         "sc": "16",
-        "etiqueta": "16 | E",
-        "etiquetaSC": "16 | E",
-        "tipologia": "E",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN 25 DE SEPTIEMBRE Y TUPAC YUPANQUI",
+        "sc_key": "PIMAMPIRO_16",
+        "etiqueta": "16 | C",
+        "etiquetaSC": "16 | C",
+        "tipologia": "C",
+        "parroquia": "PIMAMPIRO",
+        "PARROQUIA": "PIMAMPIRO",
+        "canton": "PIMAMPIRO",
+        "CANTON": "PIMAMPIRO",
+        "circunscripcion": "CIRCUNSCRIPCIÓN URBANA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCIÓN URBANA",
+        "punto_referencial": "UNIDAD EDUCATIVA PIMAMPIRO (ESCUELA CIUDAD DE PIMAMPIRO)",
+        "PUNTO_REFERENCIAL": "UNIDAD EDUCATIVA PIMAMPIRO (ESCUELA CIUDAD DE PIMAMPIRO)",
         "casos": 10,
         "bbox": [
           [
-            -76.88801,
-            0.1002
+            -77.94475,
+            0.38883
           ],
           [
-            -76.88801,
-            0.1002
+            -77.94475,
+            0.38883
           ]
         ]
       }
@@ -710,41 +614,35 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -76.88563,
-          0.09867
+          -77.94193,
+          0.39193
         ]
       },
       "properties": {
         "CODIGO": 17,
-        "TIPOLOGIA": "B",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN MANUELA CAÑIZARES Y TAHUANTINSUYO (REF. PLAZA CÍVICA DEL SECTOR NORTE)",
-        "COD_ETIQUETA": "17 | B",
-        "ORDEN_RUTA": 17,
-        "LATITUD": 0.09867,
-        "LONGITUD": -76.885627,
-        "X_UTM": 958222.7,
-        "Y_UTM": 10010934.41,
         "num_muestra": 17,
         "sc": "17",
+        "sc_key": "PIMAMPIRO_17",
         "etiqueta": "17 | B",
         "etiquetaSC": "17 | B",
         "tipologia": "B",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN MANUELA CAÑIZARES Y TAHUANTINSUYO (REF. PLAZA CÍVICA DEL SECTOR NORTE)",
+        "parroquia": "PIMAMPIRO",
+        "PARROQUIA": "PIMAMPIRO",
+        "canton": "PIMAMPIRO",
+        "CANTON": "PIMAMPIRO",
+        "circunscripcion": "CIRCUNSCRIPCIÓN URBANA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCIÓN URBANA",
+        "punto_referencial": "ZONA COMERCIAL GARCÍA MORENO / CALLE GARCÍA MORENO Y ROCAFUERTE",
+        "PUNTO_REFERENCIAL": "ZONA COMERCIAL GARCÍA MORENO / CALLE GARCÍA MORENO Y ROCAFUERTE",
         "casos": 10,
         "bbox": [
           [
-            -76.88563,
-            0.09867
+            -77.94193,
+            0.39193
           ],
           [
-            -76.88563,
-            0.09867
+            -77.94193,
+            0.39193
           ]
         ]
       }
@@ -754,41 +652,35 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -76.88292,
-          0.09768
+          -77.96339,
+          0.42528
         ]
       },
       "properties": {
         "CODIGO": 18,
-        "TIPOLOGIA": "B",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN NAPO Y RUMIÑAHUI (REF. IGLESIA CATÓLICA JESÚS RESUCITADO - LAGO AGRIO)",
-        "COD_ETIQUETA": "18 | B",
-        "ORDEN_RUTA": 18,
-        "LATITUD": 0.097683,
-        "LONGITUD": -76.882918,
-        "X_UTM": 958524.87,
-        "Y_UTM": 10010825.06,
         "num_muestra": 18,
         "sc": "18",
-        "etiqueta": "18 | B",
-        "etiquetaSC": "18 | B",
-        "tipologia": "B",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN NAPO Y RUMIÑAHUI (REF. IGLESIA CATÓLICA JESÚS RESUCITADO - LAGO AGRIO)",
+        "sc_key": "PIMAMPIRO_18",
+        "etiqueta": "18 | E",
+        "etiquetaSC": "18 | E",
+        "tipologia": "E",
+        "parroquia": "PIMAMPIRO",
+        "PARROQUIA": "PIMAMPIRO",
+        "canton": "PIMAMPIRO",
+        "CANTON": "PIMAMPIRO",
+        "circunscripcion": "CIRCUNSCRIPCIÓN URBANA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCIÓN URBANA",
+        "punto_referencial": "PARQUE CENTRAL DE CHALGUAYACU / COMUNIDAD CHALGUAYACU",
+        "PUNTO_REFERENCIAL": "PARQUE CENTRAL DE CHALGUAYACU / COMUNIDAD CHALGUAYACU",
         "casos": 10,
         "bbox": [
           [
-            -76.88292,
-            0.09768
+            -77.96339,
+            0.42528
           ],
           [
-            -76.88292,
-            0.09768
+            -77.96339,
+            0.42528
           ]
         ]
       }
@@ -798,41 +690,35 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -76.88182,
-          0.10034
+          -77.90518,
+          0.37486
         ]
       },
       "properties": {
         "CODIGO": 19,
-        "TIPOLOGIA": "G",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN MANABÍ Y TUPAC YUPANQUI",
-        "COD_ETIQUETA": "19 | G",
-        "ORDEN_RUTA": 19,
-        "LATITUD": 0.10034,
-        "LONGITUD": -76.881821,
-        "X_UTM": 958647.22,
-        "Y_UTM": 10011119.49,
         "num_muestra": 19,
         "sc": "19",
-        "etiqueta": "19 | G",
-        "etiquetaSC": "19 | G",
-        "tipologia": "G",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN MANABÍ Y TUPAC YUPANQUI",
+        "sc_key": "PIMAMPIRO_19",
+        "etiqueta": "19 | C",
+        "etiquetaSC": "19 | C",
+        "tipologia": "C",
+        "parroquia": "CHUGA",
+        "PARROQUIA": "CHUGA",
+        "canton": "PIMAMPIRO",
+        "CANTON": "PIMAMPIRO",
+        "circunscripcion": "CIRCUNSCRIPCIÓN RURAL",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCIÓN RURAL",
+        "punto_referencial": "PARQUE CENTRAL DE CHUGÁ / GAD PARROQUIAL DE CHUGÁ",
+        "PUNTO_REFERENCIAL": "PARQUE CENTRAL DE CHUGÁ / GAD PARROQUIAL DE CHUGÁ",
         "casos": 10,
         "bbox": [
           [
-            -76.88182,
-            0.10034
+            -77.90518,
+            0.37486
           ],
           [
-            -76.88182,
-            0.10034
+            -77.90518,
+            0.37486
           ]
         ]
       }
@@ -842,85 +728,35 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -76.88351,
-          0.10423
+          -77.9042,
+          0.3755
         ]
       },
       "properties": {
         "CODIGO": 20,
-        "TIPOLOGIA": "D",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN 12 DE FEBRERO Y AV. JORGE AGUILERA",
-        "COD_ETIQUETA": "20 | D",
-        "ORDEN_RUTA": 20,
-        "LATITUD": 0.10423,
-        "LONGITUD": -76.883509,
-        "X_UTM": 958458.89,
-        "Y_UTM": 10011550.55,
         "num_muestra": 20,
         "sc": "20",
-        "etiqueta": "20 | D",
-        "etiquetaSC": "20 | D",
-        "tipologia": "D",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN 12 DE FEBRERO Y AV. JORGE AGUILERA",
-        "casos": 10,
-        "bbox": [
-          [
-            -76.88351,
-            0.10423
-          ],
-          [
-            -76.88351,
-            0.10423
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -76.892,
-          0.10062
-        ]
-      },
-      "properties": {
-        "CODIGO": 21,
-        "TIPOLOGIA": "A",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN EL ORO Y PUYO",
-        "COD_ETIQUETA": "21 | A",
-        "ORDEN_RUTA": 21,
-        "LATITUD": 0.100616,
-        "LONGITUD": -76.891996,
-        "X_UTM": 957512.06,
-        "Y_UTM": 10011149.96,
-        "num_muestra": 21,
-        "sc": "21",
-        "etiqueta": "21 | A",
-        "etiquetaSC": "21 | A",
+        "sc_key": "PIMAMPIRO_20",
+        "etiqueta": "20 | A",
+        "etiquetaSC": "20 | A",
         "tipologia": "A",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN EL ORO Y PUYO",
+        "parroquia": "CHUGA",
+        "PARROQUIA": "CHUGA",
+        "canton": "PIMAMPIRO",
+        "CANTON": "PIMAMPIRO",
+        "circunscripcion": "CIRCUNSCRIPCIÓN RURAL",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCIÓN RURAL",
+        "punto_referencial": "IGLESIA SAN JUAN BAUTISTA DE CHUGÁ / CANCHAS DEPORTIVAS",
+        "PUNTO_REFERENCIAL": "IGLESIA SAN JUAN BAUTISTA DE CHUGÁ / CANCHAS DEPORTIVAS",
         "casos": 10,
         "bbox": [
           [
-            -76.892,
-            0.10062
+            -77.9042,
+            0.3755
           ],
           [
-            -76.892,
-            0.10062
+            -77.9042,
+            0.3755
           ]
         ]
       }
@@ -930,85 +766,35 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -76.89373,
-          0.10418
+          -78.21477,
+          0.5146
         ]
       },
       "properties": {
-        "CODIGO": 22,
-        "TIPOLOGIA": "C",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN AV. JORGE AGUILERA Y MIGUEL ITURRALDE",
-        "COD_ETIQUETA": "22 | C",
-        "ORDEN_RUTA": 22,
-        "LATITUD": 0.104181,
-        "LONGITUD": -76.893725,
-        "X_UTM": 957319.12,
-        "Y_UTM": 10011545.02,
-        "num_muestra": 22,
-        "sc": "22",
-        "etiqueta": "22 | C",
-        "etiquetaSC": "22 | C",
-        "tipologia": "C",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN AV. JORGE AGUILERA Y MIGUEL ITURRALDE",
-        "casos": 10,
-        "bbox": [
-          [
-            -76.89373,
-            0.10418
-          ],
-          [
-            -76.89373,
-            0.10418
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -76.89579,
-          0.09917
-        ]
-      },
-      "properties": {
-        "CODIGO": 23,
-        "TIPOLOGIA": "G",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN LEONIDAS PROAÑO Y TENA",
-        "COD_ETIQUETA": "23 | G",
-        "ORDEN_RUTA": 23,
-        "LATITUD": 0.099165,
-        "LONGITUD": -76.895794,
-        "X_UTM": 957088.37,
-        "Y_UTM": 10010989.12,
-        "num_muestra": 23,
-        "sc": "23",
-        "etiqueta": "23 | G",
-        "etiquetaSC": "23 | G",
+        "CODIGO": 1,
+        "num_muestra": 1,
+        "sc": "1",
+        "sc_key": "URCUQUÍ_1",
+        "etiqueta": "1 | G",
+        "etiquetaSC": "1 | G",
         "tipologia": "G",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN LEONIDAS PROAÑO Y TENA",
+        "parroquia": "CAHUASQUI",
+        "PARROQUIA": "CAHUASQUI",
+        "canton": "URCUQUÍ",
+        "CANTON": "URCUQUÍ",
+        "circunscripcion": "CIRCUNSCRIPCIÓN RURAL",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCIÓN RURAL",
+        "punto_referencial": "PARQUE CENTRAL DE CAHUASQUÍ / IGLESIA MATRIZ",
+        "PUNTO_REFERENCIAL": "PARQUE CENTRAL DE CAHUASQUÍ / IGLESIA MATRIZ",
         "casos": 10,
         "bbox": [
           [
-            -76.89579,
-            0.09917
+            -78.21477,
+            0.5146
           ],
           [
-            -76.89579,
-            0.09917
+            -78.21477,
+            0.5146
           ]
         ]
       }
@@ -1018,41 +804,149 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -76.90227,
-          0.09446
+          -78.21927,
+          0.51169
         ]
       },
       "properties": {
-        "CODIGO": 24,
-        "TIPOLOGIA": "A",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN ALTAR Y JOSÉ MARÍA URBINA (REF. HOSPITAL DEL IESS - LAGO AGRIO)",
-        "COD_ETIQUETA": "24 | A",
-        "ORDEN_RUTA": 24,
-        "LATITUD": 0.094464,
-        "LONGITUD": -76.902267,
-        "X_UTM": 956366.3,
-        "Y_UTM": 10010468.1,
-        "num_muestra": 24,
-        "sc": "24",
-        "etiqueta": "24 | A",
-        "etiquetaSC": "24 | A",
+        "CODIGO": 2,
+        "num_muestra": 2,
+        "sc": "2",
+        "sc_key": "URCUQUÍ_2",
+        "etiqueta": "2 | H",
+        "etiquetaSC": "2 | H",
+        "tipologia": "H",
+        "parroquia": "CAHUASQUI",
+        "PARROQUIA": "CAHUASQUI",
+        "canton": "URCUQUÍ",
+        "CANTON": "URCUQUÍ",
+        "circunscripcion": "CIRCUNSCRIPCIÓN RURAL",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCIÓN RURAL",
+        "punto_referencial": "SUBCENTRO DE SALUD CAHUASQUÍ / CANCHAS DE CAHUASQUÍ",
+        "PUNTO_REFERENCIAL": "SUBCENTRO DE SALUD CAHUASQUÍ / CANCHAS DE CAHUASQUÍ",
+        "casos": 10,
+        "bbox": [
+          [
+            -78.21927,
+            0.51169
+          ],
+          [
+            -78.21927,
+            0.51169
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.19123,
+          0.5033
+        ]
+      },
+      "properties": {
+        "CODIGO": 3,
+        "num_muestra": 3,
+        "sc": "3",
+        "sc_key": "URCUQUÍ_3",
+        "etiqueta": "3 | E",
+        "etiquetaSC": "3 | E",
+        "tipologia": "E",
+        "parroquia": "PABLO ARENAS",
+        "PARROQUIA": "PABLO ARENAS",
+        "canton": "URCUQUÍ",
+        "CANTON": "URCUQUÍ",
+        "circunscripcion": "CIRCUNSCRIPCIÓN RURAL",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCIÓN RURAL",
+        "punto_referencial": "PARQUE CENTRAL DE PABLO ARENAS / JUNTA PARROQUIAL",
+        "PUNTO_REFERENCIAL": "PARQUE CENTRAL DE PABLO ARENAS / JUNTA PARROQUIAL",
+        "casos": 10,
+        "bbox": [
+          [
+            -78.19123,
+            0.5033
+          ],
+          [
+            -78.19123,
+            0.5033
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.19504,
+          0.49772
+        ]
+      },
+      "properties": {
+        "CODIGO": 4,
+        "num_muestra": 4,
+        "sc": "4",
+        "sc_key": "URCUQUÍ_4",
+        "etiqueta": "4 | F",
+        "etiquetaSC": "4 | F",
+        "tipologia": "F",
+        "parroquia": "PABLO ARENAS",
+        "PARROQUIA": "PABLO ARENAS",
+        "canton": "URCUQUÍ",
+        "CANTON": "URCUQUÍ",
+        "circunscripcion": "CIRCUNSCRIPCIÓN RURAL",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCIÓN RURAL",
+        "punto_referencial": "SUBCENTRO DE SALUD PABLO ARENAS / CALLE ELOY GORDILLO",
+        "PUNTO_REFERENCIAL": "SUBCENTRO DE SALUD PABLO ARENAS / CALLE ELOY GORDILLO",
+        "casos": 10,
+        "bbox": [
+          [
+            -78.19504,
+            0.49772
+          ],
+          [
+            -78.19504,
+            0.49772
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.21488,
+          0.41283
+        ]
+      },
+      "properties": {
+        "CODIGO": 5,
+        "num_muestra": 5,
+        "sc": "5",
+        "sc_key": "URCUQUÍ_5",
+        "etiqueta": "5 | A",
+        "etiquetaSC": "5 | A",
         "tipologia": "A",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN ALTAR Y JOSÉ MARÍA URBINA (REF. HOSPITAL DEL IESS - LAGO AGRIO)",
+        "parroquia": "SAN BLAS",
+        "PARROQUIA": "SAN BLAS",
+        "canton": "URCUQUÍ",
+        "CANTON": "URCUQUÍ",
+        "circunscripcion": "CIRCUNSCRIPCIÓN RURAL",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCIÓN RURAL",
+        "punto_referencial": "PARQUE CENTRAL DE SAN BLAS / IGLESIA MATRIZ DE SAN BLAS",
+        "PUNTO_REFERENCIAL": "PARQUE CENTRAL DE SAN BLAS / IGLESIA MATRIZ DE SAN BLAS",
         "casos": 10,
         "bbox": [
           [
-            -76.90227,
-            0.09446
+            -78.21488,
+            0.41283
           ],
           [
-            -76.90227,
-            0.09446
+            -78.21488,
+            0.41283
           ]
         ]
       }
@@ -1062,85 +956,35 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -76.90634,
-          0.10076
+          -78.2167,
+          0.41144
         ]
       },
       "properties": {
-        "CODIGO": 25,
-        "TIPOLOGIA": "H",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN AV. JORGE AGUILERA Y AVENIDA LA LAGUNA",
-        "COD_ETIQUETA": "25 | H",
-        "ORDEN_RUTA": 25,
-        "LATITUD": 0.10076,
-        "LONGITUD": -76.906341,
-        "X_UTM": 955911.76,
-        "Y_UTM": 10011165.66,
-        "num_muestra": 25,
-        "sc": "25",
-        "etiqueta": "25 | H",
-        "etiquetaSC": "25 | H",
-        "tipologia": "H",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN AV. JORGE AGUILERA Y AVENIDA LA LAGUNA",
-        "casos": 10,
-        "bbox": [
-          [
-            -76.90634,
-            0.10076
-          ],
-          [
-            -76.90634,
-            0.10076
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -76.90004,
-          0.08644
-        ]
-      },
-      "properties": {
-        "CODIGO": 26,
-        "TIPOLOGIA": "D",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN LOS ANDES Y PALUPA",
-        "COD_ETIQUETA": "26 | D",
-        "ORDEN_RUTA": 26,
-        "LATITUD": 0.086444,
-        "LONGITUD": -76.900043,
-        "X_UTM": 956614.55,
-        "Y_UTM": 10009579.34,
-        "num_muestra": 26,
-        "sc": "26",
-        "etiqueta": "26 | D",
-        "etiquetaSC": "26 | D",
+        "CODIGO": 6,
+        "num_muestra": 6,
+        "sc": "6",
+        "sc_key": "URCUQUÍ_6",
+        "etiqueta": "6 | D",
+        "etiquetaSC": "6 | D",
         "tipologia": "D",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN LOS ANDES Y PALUPA",
+        "parroquia": "SAN BLAS",
+        "PARROQUIA": "SAN BLAS",
+        "canton": "URCUQUÍ",
+        "CANTON": "URCUQUÍ",
+        "circunscripcion": "CIRCUNSCRIPCIÓN RURAL",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCIÓN RURAL",
+        "punto_referencial": "ESCUELA GENERAL RUMIÑAHUI / CANCHAS CENTRALES DE SAN BLAS",
+        "PUNTO_REFERENCIAL": "ESCUELA GENERAL RUMIÑAHUI / CANCHAS CENTRALES DE SAN BLAS",
         "casos": 10,
         "bbox": [
           [
-            -76.90004,
-            0.08644
+            -78.2167,
+            0.41144
           ],
           [
-            -76.90004,
-            0.08644
+            -78.2167,
+            0.41144
           ]
         ]
       }
@@ -1150,41 +994,187 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -76.90249,
-          0.08334
+          -78.20664,
+          0.41224
         ]
       },
       "properties": {
-        "CODIGO": 27,
-        "TIPOLOGIA": "A",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN JOSÉ MARÍA URBINA Y VICENTE LUCIO",
-        "COD_ETIQUETA": "27 | A",
-        "ORDEN_RUTA": 27,
-        "LATITUD": 0.083342,
-        "LONGITUD": -76.902493,
-        "X_UTM": 956341.2,
-        "Y_UTM": 10009235.56,
-        "num_muestra": 27,
-        "sc": "27",
-        "etiqueta": "27 | A",
-        "etiquetaSC": "27 | A",
+        "CODIGO": 7,
+        "num_muestra": 7,
+        "sc": "7",
+        "sc_key": "URCUQUÍ_7",
+        "etiqueta": "7 | B",
+        "etiquetaSC": "7 | B",
+        "tipologia": "B",
+        "parroquia": "SAN BLAS",
+        "PARROQUIA": "SAN BLAS",
+        "canton": "URCUQUÍ",
+        "CANTON": "URCUQUÍ",
+        "circunscripcion": "CIRCUNSCRIPCIÓN RURAL",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCIÓN RURAL",
+        "punto_referencial": "COMUNIDAD IRUGUINCHO / CASA COMUNAL DE IRUGUINCHO (SAN BLAS)",
+        "PUNTO_REFERENCIAL": "COMUNIDAD IRUGUINCHO / CASA COMUNAL DE IRUGUINCHO (SAN BLAS)",
+        "casos": 10,
+        "bbox": [
+          [
+            -78.20664,
+            0.41224
+          ],
+          [
+            -78.20664,
+            0.41224
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.212,
+          0.4135
+        ]
+      },
+      "properties": {
+        "CODIGO": 8,
+        "num_muestra": 8,
+        "sc": "8",
+        "sc_key": "URCUQUÍ_8",
+        "etiqueta": "8 | C",
+        "etiquetaSC": "8 | C",
+        "tipologia": "C",
+        "parroquia": "SAN BLAS",
+        "PARROQUIA": "SAN BLAS",
+        "canton": "URCUQUÍ",
+        "CANTON": "URCUQUÍ",
+        "circunscripcion": "CIRCUNSCRIPCIÓN RURAL",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCIÓN RURAL",
+        "punto_referencial": "SECTOR LA MERCED DE SAN BLAS / VÍA PRINCIPAL",
+        "PUNTO_REFERENCIAL": "SECTOR LA MERCED DE SAN BLAS / VÍA PRINCIPAL",
+        "casos": 10,
+        "bbox": [
+          [
+            -78.212,
+            0.4135
+          ],
+          [
+            -78.212,
+            0.4135
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.18774,
+          0.46242
+        ]
+      },
+      "properties": {
+        "CODIGO": 9,
+        "num_muestra": 9,
+        "sc": "9",
+        "sc_key": "URCUQUÍ_9",
+        "etiqueta": "9 | E",
+        "etiquetaSC": "9 | E",
+        "tipologia": "E",
+        "parroquia": "TUMBABIRO",
+        "PARROQUIA": "TUMBABIRO",
+        "canton": "URCUQUÍ",
+        "CANTON": "URCUQUÍ",
+        "circunscripcion": "CIRCUNSCRIPCIÓN RURAL",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCIÓN RURAL",
+        "punto_referencial": "PARQUE CENTRAL DE TUMBABIRO / IGLESIA PARROQUIAL DE TUMBABIRO",
+        "PUNTO_REFERENCIAL": "PARQUE CENTRAL DE TUMBABIRO / IGLESIA PARROQUIAL DE TUMBABIRO",
+        "casos": 10,
+        "bbox": [
+          [
+            -78.18774,
+            0.46242
+          ],
+          [
+            -78.18774,
+            0.46242
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.1925,
+          0.45948
+        ]
+      },
+      "properties": {
+        "CODIGO": 10,
+        "num_muestra": 10,
+        "sc": "10",
+        "sc_key": "URCUQUÍ_10",
+        "etiqueta": "10 | F",
+        "etiquetaSC": "10 | F",
+        "tipologia": "F",
+        "parroquia": "TUMBABIRO",
+        "PARROQUIA": "TUMBABIRO",
+        "canton": "URCUQUÍ",
+        "CANTON": "URCUQUÍ",
+        "circunscripcion": "CIRCUNSCRIPCIÓN RURAL",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCIÓN RURAL",
+        "punto_referencial": "COMPLEJO TERMAL CHACHIMBIRO / VÍA A LAS TERMAS (TUMBABIRO)",
+        "PUNTO_REFERENCIAL": "COMPLEJO TERMAL CHACHIMBIRO / VÍA A LAS TERMAS (TUMBABIRO)",
+        "casos": 10,
+        "bbox": [
+          [
+            -78.1925,
+            0.45948
+          ],
+          [
+            -78.1925,
+            0.45948
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.19406,
+          0.41784
+        ]
+      },
+      "properties": {
+        "CODIGO": 11,
+        "num_muestra": 11,
+        "sc": "11",
+        "sc_key": "URCUQUÍ_11",
+        "etiqueta": "11 | A",
+        "etiquetaSC": "11 | A",
         "tipologia": "A",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN JOSÉ MARÍA URBINA Y VICENTE LUCIO",
+        "parroquia": "URCUQUI",
+        "PARROQUIA": "URCUQUI",
+        "canton": "URCUQUÍ",
+        "CANTON": "URCUQUÍ",
+        "circunscripcion": "CIRCUNSCRIPCIÓN URBANA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCIÓN URBANA",
+        "punto_referencial": "PARQUE CENTRAL DE URCUQUÍ / GAD MUNICIPAL DE URCUQUÍ",
+        "PUNTO_REFERENCIAL": "PARQUE CENTRAL DE URCUQUÍ / GAD MUNICIPAL DE URCUQUÍ",
         "casos": 10,
         "bbox": [
           [
-            -76.90249,
-            0.08334
+            -78.19406,
+            0.41784
           ],
           [
-            -76.90249,
-            0.08334
+            -78.19406,
+            0.41784
           ]
         ]
       }
@@ -1194,217 +1184,35 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -76.8998,
-          0.08177
+          -78.19388,
+          0.42048
         ]
       },
       "properties": {
-        "CODIGO": 28,
-        "TIPOLOGIA": "F",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN JUAN MONTUFAR R. Y PUERTO LOPEZ",
-        "COD_ETIQUETA": "28 | F",
-        "ORDEN_RUTA": 28,
-        "LATITUD": 0.08177,
-        "LONGITUD": -76.899804,
-        "X_UTM": 956641.28,
-        "Y_UTM": 10009061.38,
-        "num_muestra": 28,
-        "sc": "28",
-        "etiqueta": "28 | F",
-        "etiquetaSC": "28 | F",
-        "tipologia": "F",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN JUAN MONTUFAR R. Y PUERTO LOPEZ",
-        "casos": 10,
-        "bbox": [
-          [
-            -76.8998,
-            0.08177
-          ],
-          [
-            -76.8998,
-            0.08177
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -76.89985,
-          0.07751
-        ]
-      },
-      "properties": {
-        "CODIGO": 29,
-        "TIPOLOGIA": "E",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN GONZÁLES SUAREZ Y JIPIJAPA (REF. ESCUELA JAIME ROLDÓS)",
-        "COD_ETIQUETA": "29 | E",
-        "ORDEN_RUTA": 29,
-        "LATITUD": 0.077507,
-        "LONGITUD": -76.899846,
-        "X_UTM": 956636.55,
-        "Y_UTM": 10008588.96,
-        "num_muestra": 29,
-        "sc": "29",
-        "etiqueta": "29 | E",
-        "etiquetaSC": "29 | E",
-        "tipologia": "E",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN GONZÁLES SUAREZ Y JIPIJAPA (REF. ESCUELA JAIME ROLDÓS)",
-        "casos": 10,
-        "bbox": [
-          [
-            -76.89985,
-            0.07751
-          ],
-          [
-            -76.89985,
-            0.07751
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -76.89609,
-          0.0788
-        ]
-      },
-      "properties": {
-        "CODIGO": 30,
-        "TIPOLOGIA": "C",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN CUBA Y PUERTO RICO (REF. ESTADIO OLIMPICO NUEVA LOJA)",
-        "COD_ETIQUETA": "30 | C",
-        "ORDEN_RUTA": 30,
-        "LATITUD": 0.078798,
-        "LONGITUD": -76.896092,
-        "X_UTM": 957055.43,
-        "Y_UTM": 10008732.13,
-        "num_muestra": 30,
-        "sc": "30",
-        "etiqueta": "30 | C",
-        "etiquetaSC": "30 | C",
-        "tipologia": "C",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN CUBA Y PUERTO RICO (REF. ESTADIO OLIMPICO NUEVA LOJA)",
-        "casos": 10,
-        "bbox": [
-          [
-            -76.89609,
-            0.0788
-          ],
-          [
-            -76.89609,
-            0.0788
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -76.89411,
-          0.08141
-        ]
-      },
-      "properties": {
-        "CODIGO": 31,
-        "TIPOLOGIA": "B",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN CIRCUNVALACIÓN Y PINZÓN (REF. PARQUE TRANSPORTISTA)",
-        "COD_ETIQUETA": "31 | B",
-        "ORDEN_RUTA": 31,
-        "LATITUD": 0.081407,
-        "LONGITUD": -76.894113,
-        "X_UTM": 957276.15,
-        "Y_UTM": 10009021.26,
-        "num_muestra": 31,
-        "sc": "31",
-        "etiqueta": "31 | B",
-        "etiquetaSC": "31 | B",
-        "tipologia": "B",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN CIRCUNVALACIÓN Y PINZÓN (REF. PARQUE TRANSPORTISTA)",
-        "casos": 10,
-        "bbox": [
-          [
-            -76.89411,
-            0.08141
-          ],
-          [
-            -76.89411,
-            0.08141
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -76.89244,
-          0.07845
-        ]
-      },
-      "properties": {
-        "CODIGO": 32,
-        "TIPOLOGIA": "H",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN FLOREANA Y LA PINTA (REF. GUSTAVO ANDRADE)",
-        "COD_ETIQUETA": "32 | H",
-        "ORDEN_RUTA": 32,
-        "LATITUD": 0.078454,
-        "LONGITUD": -76.892443,
-        "X_UTM": 957462.55,
-        "Y_UTM": 10008693.96,
-        "num_muestra": 32,
-        "sc": "32",
-        "etiqueta": "32 | H",
-        "etiquetaSC": "32 | H",
+        "CODIGO": 12,
+        "num_muestra": 12,
+        "sc": "12",
+        "sc_key": "URCUQUÍ_12",
+        "etiqueta": "12 | H",
+        "etiquetaSC": "12 | H",
         "tipologia": "H",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN FLOREANA Y LA PINTA (REF. GUSTAVO ANDRADE)",
+        "parroquia": "URCUQUI",
+        "PARROQUIA": "URCUQUI",
+        "canton": "URCUQUÍ",
+        "CANTON": "URCUQUÍ",
+        "circunscripcion": "CIRCUNSCRIPCIÓN URBANA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCIÓN URBANA",
+        "punto_referencial": "IGLESIA MATRIZ SAN MIGUEL DE URCUQUÍ / CALLE GONZÁLEZ SUÁREZ",
+        "PUNTO_REFERENCIAL": "IGLESIA MATRIZ SAN MIGUEL DE URCUQUÍ / CALLE GONZÁLEZ SUÁREZ",
         "casos": 10,
         "bbox": [
           [
-            -76.89244,
-            0.07845
+            -78.19388,
+            0.42048
           ],
           [
-            -76.89244,
-            0.07845
+            -78.19388,
+            0.42048
           ]
         ]
       }
@@ -1414,41 +1222,35 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -76.89027,
-          0.07546
+          -78.19283,
+          0.41989
         ]
       },
       "properties": {
-        "CODIGO": 33,
-        "TIPOLOGIA": "A",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN AVENIDA AMAZONAS Y QUINTA",
-        "COD_ETIQUETA": "33 | A",
-        "ORDEN_RUTA": 33,
-        "LATITUD": 0.075464,
-        "LONGITUD": -76.890271,
-        "X_UTM": 957704.83,
-        "Y_UTM": 10008362.71,
-        "num_muestra": 33,
-        "sc": "33",
-        "etiqueta": "33 | A",
-        "etiquetaSC": "33 | A",
+        "CODIGO": 13,
+        "num_muestra": 13,
+        "sc": "13",
+        "sc_key": "URCUQUÍ_13",
+        "etiqueta": "13 | A",
+        "etiquetaSC": "13 | A",
         "tipologia": "A",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN AVENIDA AMAZONAS Y QUINTA",
+        "parroquia": "URCUQUI",
+        "PARROQUIA": "URCUQUI",
+        "canton": "URCUQUÍ",
+        "CANTON": "URCUQUÍ",
+        "circunscripcion": "CIRCUNSCRIPCIÓN URBANA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCIÓN URBANA",
+        "punto_referencial": "ESTADIO MUNICIPAL DE URCUQUÍ / BARRIO SANTA ROSA (CALLE 11)",
+        "PUNTO_REFERENCIAL": "ESTADIO MUNICIPAL DE URCUQUÍ / BARRIO SANTA ROSA (CALLE 11)",
         "casos": 10,
         "bbox": [
           [
-            -76.89027,
-            0.07546
+            -78.19283,
+            0.41989
           ],
           [
-            -76.89027,
-            0.07546
+            -78.19283,
+            0.41989
           ]
         ]
       }
@@ -1458,745 +1260,35 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -76.88703,
-          0.07439
+          -78.1932,
+          0.41852
         ]
       },
       "properties": {
-        "CODIGO": 34,
-        "TIPOLOGIA": "D",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN EFRÉN MONTESDEOCA G. Y SEGUNDA",
-        "COD_ETIQUETA": "34 | D",
-        "ORDEN_RUTA": 34,
-        "LATITUD": 0.074391,
-        "LONGITUD": -76.887025,
-        "X_UTM": 958066.94,
-        "Y_UTM": 10008243.78,
-        "num_muestra": 34,
-        "sc": "34",
-        "etiqueta": "34 | D",
-        "etiquetaSC": "34 | D",
-        "tipologia": "D",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN EFRÉN MONTESDEOCA G. Y SEGUNDA",
-        "casos": 10,
-        "bbox": [
-          [
-            -76.88703,
-            0.07439
-          ],
-          [
-            -76.88703,
-            0.07439
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -76.88891,
-          0.07191
-        ]
-      },
-      "properties": {
-        "CODIGO": 35,
-        "TIPOLOGIA": "G",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN CÉSAR VILLACÍS MADRIL Y SEXTA (REF. COLEGIO SIMÓN BOLÍVAR)",
-        "COD_ETIQUETA": "35 | G",
-        "ORDEN_RUTA": 35,
-        "LATITUD": 0.071912,
-        "LONGITUD": -76.888908,
-        "X_UTM": 957856.99,
-        "Y_UTM": 10007969.06,
-        "num_muestra": 35,
-        "sc": "35",
-        "etiqueta": "35 | G",
-        "etiquetaSC": "35 | G",
-        "tipologia": "G",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN CÉSAR VILLACÍS MADRIL Y SEXTA (REF. COLEGIO SIMÓN BOLÍVAR)",
-        "casos": 10,
-        "bbox": [
-          [
-            -76.88891,
-            0.07191
-          ],
-          [
-            -76.88891,
-            0.07191
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -76.88627,
-          0.0685
-        ]
-      },
-      "properties": {
-        "CODIGO": 36,
-        "TIPOLOGIA": "F",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN DEL COLISEO Y SEXTA (REF. UNIDAD EDUCATIVA PACIFICO CEMBRANOS)",
-        "COD_ETIQUETA": "36 | F",
-        "ORDEN_RUTA": 36,
-        "LATITUD": 0.068495,
-        "LONGITUD": -76.886274,
-        "X_UTM": 958150.86,
-        "Y_UTM": 10007590.49,
-        "num_muestra": 36,
-        "sc": "36",
-        "etiqueta": "36 | F",
-        "etiquetaSC": "36 | F",
-        "tipologia": "F",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN DEL COLISEO Y SEXTA (REF. UNIDAD EDUCATIVA PACIFICO CEMBRANOS)",
-        "casos": 10,
-        "bbox": [
-          [
-            -76.88627,
-            0.0685
-          ],
-          [
-            -76.88627,
-            0.0685
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -76.88335,
-          0.06973
-        ]
-      },
-      "properties": {
-        "CODIGO": 37,
-        "TIPOLOGIA": "C",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN DEL COLISEO Y SEGUNDA",
-        "COD_ETIQUETA": "37 | C",
-        "ORDEN_RUTA": 37,
-        "LATITUD": 0.069731,
-        "LONGITUD": -76.883353,
-        "X_UTM": 958476.69,
-        "Y_UTM": 10007727.49,
-        "num_muestra": 37,
-        "sc": "37",
-        "etiqueta": "37 | C",
-        "etiquetaSC": "37 | C",
-        "tipologia": "C",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN DEL COLISEO Y SEGUNDA",
-        "casos": 10,
-        "bbox": [
-          [
-            -76.88335,
-            0.06973
-          ],
-          [
-            -76.88335,
-            0.06973
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -76.88048,
-          0.06972
-        ]
-      },
-      "properties": {
-        "CODIGO": 38,
-        "TIPOLOGIA": "E",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN SARAYACU Y TUNCAY",
-        "COD_ETIQUETA": "38 | E",
-        "ORDEN_RUTA": 38,
-        "LATITUD": 0.069722,
-        "LONGITUD": -76.880485,
-        "X_UTM": 958796.69,
-        "Y_UTM": 10007726.45,
-        "num_muestra": 38,
-        "sc": "38",
-        "etiqueta": "38 | E",
-        "etiquetaSC": "38 | E",
-        "tipologia": "E",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN SARAYACU Y TUNCAY",
-        "casos": 10,
-        "bbox": [
-          [
-            -76.88048,
-            0.06972
-          ],
-          [
-            -76.88048,
-            0.06972
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -76.87873,
-          0.07226
-        ]
-      },
-      "properties": {
-        "CODIGO": 39,
-        "TIPOLOGIA": "B",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN JUMANDY Y PUYUPUNGO",
-        "COD_ETIQUETA": "39 | B",
-        "ORDEN_RUTA": 39,
-        "LATITUD": 0.072257,
-        "LONGITUD": -76.878734,
-        "X_UTM": 958991.99,
-        "Y_UTM": 10008007.46,
-        "num_muestra": 39,
-        "sc": "39",
-        "etiqueta": "39 | B",
-        "etiquetaSC": "39 | B",
-        "tipologia": "B",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN JUMANDY Y PUYUPUNGO",
-        "casos": 10,
-        "bbox": [
-          [
-            -76.87873,
-            0.07226
-          ],
-          [
-            -76.87873,
-            0.07226
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -76.88404,
-          0.07302
-        ]
-      },
-      "properties": {
-        "CODIGO": 40,
-        "TIPOLOGIA": "D",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN LA UNIÓN Y SANTA CECILIA",
-        "COD_ETIQUETA": "40 | D",
-        "ORDEN_RUTA": 40,
-        "LATITUD": 0.073023,
-        "LONGITUD": -76.884038,
-        "X_UTM": 958400.23,
-        "Y_UTM": 10008092.26,
-        "num_muestra": 40,
-        "sc": "40",
-        "etiqueta": "40 | D",
-        "etiquetaSC": "40 | D",
-        "tipologia": "D",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN LA UNIÓN Y SANTA CECILIA",
-        "casos": 10,
-        "bbox": [
-          [
-            -76.88404,
-            0.07302
-          ],
-          [
-            -76.88404,
-            0.07302
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -76.88643,
-          0.07842
-        ]
-      },
-      "properties": {
-        "CODIGO": 41,
-        "TIPOLOGIA": "A",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN AVENIDA AMAZONAS Y ORIENTE",
-        "COD_ETIQUETA": "41 | A",
-        "ORDEN_RUTA": 41,
-        "LATITUD": 0.07842,
-        "LONGITUD": -76.886426,
-        "X_UTM": 958133.79,
-        "Y_UTM": 10008690.27,
-        "num_muestra": 41,
-        "sc": "41",
-        "etiqueta": "41 | A",
-        "etiquetaSC": "41 | A",
-        "tipologia": "A",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN AVENIDA AMAZONAS Y ORIENTE",
-        "casos": 10,
-        "bbox": [
-          [
-            -76.88643,
-            0.07842
-          ],
-          [
-            -76.88643,
-            0.07842
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -76.88951,
-          0.08152
-        ]
-      },
-      "properties": {
-        "CODIGO": 42,
-        "TIPOLOGIA": "A",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN 20 DE JUNIO Y AVENIDA PETROLERA",
-        "COD_ETIQUETA": "42 | A",
-        "ORDEN_RUTA": 42,
-        "LATITUD": 0.081521,
-        "LONGITUD": -76.889511,
-        "X_UTM": 957789.52,
-        "Y_UTM": 10009033.93,
-        "num_muestra": 42,
-        "sc": "42",
-        "etiqueta": "42 | A",
-        "etiquetaSC": "42 | A",
-        "tipologia": "A",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN 20 DE JUNIO Y AVENIDA PETROLERA",
-        "casos": 10,
-        "bbox": [
-          [
-            -76.88951,
-            0.08152
-          ],
-          [
-            -76.88951,
-            0.08152
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -76.88602,
-          0.08394
-        ]
-      },
-      "properties": {
-        "CODIGO": 43,
-        "TIPOLOGIA": "D",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN 24 DE MAYO Y ELOY ALFARO (REF. PARQUE PICAPIEDRA)",
-        "COD_ETIQUETA": "43 | D",
-        "ORDEN_RUTA": 43,
-        "LATITUD": 0.083938,
-        "LONGITUD": -76.886016,
-        "X_UTM": 958179.4,
-        "Y_UTM": 10009301.83,
-        "num_muestra": 43,
-        "sc": "43",
-        "etiqueta": "43 | D",
-        "etiquetaSC": "43 | D",
-        "tipologia": "D",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN 24 DE MAYO Y ELOY ALFARO (REF. PARQUE PICAPIEDRA)",
-        "casos": 10,
-        "bbox": [
-          [
-            -76.88602,
-            0.08394
-          ],
-          [
-            -76.88602,
-            0.08394
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -76.88671,
-          0.08667
-        ]
-      },
-      "properties": {
-        "CODIGO": 44,
-        "TIPOLOGIA": "F",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN 10 DE AGOSTO Y VILCABAMBA (REF. PARQUE DE LA MADRE)",
-        "COD_ETIQUETA": "44 | F",
-        "ORDEN_RUTA": 44,
-        "LATITUD": 0.086675,
-        "LONGITUD": -76.886711,
-        "X_UTM": 958101.92,
-        "Y_UTM": 10009605.06,
-        "num_muestra": 44,
-        "sc": "44",
-        "etiqueta": "44 | F",
-        "etiquetaSC": "44 | F",
-        "tipologia": "F",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN 10 DE AGOSTO Y VILCABAMBA (REF. PARQUE DE LA MADRE)",
-        "casos": 10,
-        "bbox": [
-          [
-            -76.88671,
-            0.08667
-          ],
-          [
-            -76.88671,
-            0.08667
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -76.8865,
-          0.0896
-        ]
-      },
-      "properties": {
-        "CODIGO": 45,
-        "TIPOLOGIA": "G",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN GENERAL SUBÍA Y PROGRESO (REF. IGLESIA JESÚS RESUCITADO)",
-        "COD_ETIQUETA": "45 | G",
-        "ORDEN_RUTA": 45,
-        "LATITUD": 0.089599,
-        "LONGITUD": -76.8865,
-        "X_UTM": 958125.38,
-        "Y_UTM": 10009929.12,
-        "num_muestra": 45,
-        "sc": "45",
-        "etiqueta": "45 | G",
-        "etiquetaSC": "45 | G",
-        "tipologia": "G",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN GENERAL SUBÍA Y PROGRESO (REF. IGLESIA JESÚS RESUCITADO)",
-        "casos": 10,
-        "bbox": [
-          [
-            -76.8865,
-            0.0896
-          ],
-          [
-            -76.8865,
-            0.0896
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -76.88549,
-          0.09223
-        ]
-      },
-      "properties": {
-        "CODIGO": 46,
-        "TIPOLOGIA": "B",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN MARTHA ROLDOS Y PASAJE CELICA (REF. UNIDAD EDUCATIVA DR. CAMILO GALLEGOS DOMÍNGUEZ)",
-        "COD_ETIQUETA": "46 | B",
-        "ORDEN_RUTA": 46,
-        "LATITUD": 0.092232,
-        "LONGITUD": -76.885492,
-        "X_UTM": 958237.82,
-        "Y_UTM": 10010220.89,
-        "num_muestra": 46,
-        "sc": "46",
-        "etiqueta": "46 | B",
-        "etiquetaSC": "46 | B",
-        "tipologia": "B",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN MARTHA ROLDOS Y PASAJE CELICA (REF. UNIDAD EDUCATIVA DR. CAMILO GALLEGOS DOMÍNGUEZ)",
-        "casos": 10,
-        "bbox": [
-          [
-            -76.88549,
-            0.09223
-          ],
-          [
-            -76.88549,
-            0.09223
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -76.88728,
-          0.09458
-        ]
-      },
-      "properties": {
-        "CODIGO": 47,
-        "TIPOLOGIA": "E",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN PEDRO VICENTE MALDONADO Y PROGRESO",
-        "COD_ETIQUETA": "47 | E",
-        "ORDEN_RUTA": 47,
-        "LATITUD": 0.094576,
-        "LONGITUD": -76.887284,
-        "X_UTM": 958037.86,
-        "Y_UTM": 10010480.68,
-        "num_muestra": 47,
-        "sc": "47",
-        "etiqueta": "47 | E",
-        "etiquetaSC": "47 | E",
-        "tipologia": "E",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN PEDRO VICENTE MALDONADO Y PROGRESO",
-        "casos": 10,
-        "bbox": [
-          [
-            -76.88728,
-            0.09458
-          ],
-          [
-            -76.88728,
-            0.09458
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -76.88352,
-          0.0946
-        ]
-      },
-      "properties": {
-        "CODIGO": 48,
-        "TIPOLOGIA": "D",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN 12 DE FEBRERO Y PEDRO VICENTE MALDONADO",
-        "COD_ETIQUETA": "48 | D",
-        "ORDEN_RUTA": 48,
-        "LATITUD": 0.094601,
-        "LONGITUD": -76.883521,
-        "X_UTM": 958457.63,
-        "Y_UTM": 10010483.5,
-        "num_muestra": 48,
-        "sc": "48",
-        "etiqueta": "48 | D",
-        "etiquetaSC": "48 | D",
-        "tipologia": "D",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN 12 DE FEBRERO Y PEDRO VICENTE MALDONADO",
-        "casos": 10,
-        "bbox": [
-          [
-            -76.88352,
-            0.0946
-          ],
-          [
-            -76.88352,
-            0.0946
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -76.88349,
-          0.08916
-        ]
-      },
-      "properties": {
-        "CODIGO": 49,
-        "TIPOLOGIA": "B",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN 12 DE FEBRERO Y VELASCO IBARRA (REF. MUNICIPIO DE LAGO AGRIO)",
-        "COD_ETIQUETA": "49 | B",
-        "ORDEN_RUTA": 49,
-        "LATITUD": 0.089161,
-        "LONGITUD": -76.883491,
-        "X_UTM": 958461.08,
-        "Y_UTM": 10009880.68,
-        "num_muestra": 49,
-        "sc": "49",
-        "etiqueta": "49 | B",
-        "etiquetaSC": "49 | B",
-        "tipologia": "B",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN 12 DE FEBRERO Y VELASCO IBARRA (REF. MUNICIPIO DE LAGO AGRIO)",
-        "casos": 10,
-        "bbox": [
-          [
-            -76.88349,
-            0.08916
-          ],
-          [
-            -76.88349,
-            0.08916
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -76.88196,
-          0.08674
-        ]
-      },
-      "properties": {
-        "CODIGO": 50,
-        "TIPOLOGIA": "H",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN 10 DE AGOSTO Y MANABÍ (REF. MUNICIPIO DE LAGO AGRIO)",
-        "COD_ETIQUETA": "50 | H",
-        "ORDEN_RUTA": 50,
-        "LATITUD": 0.086737,
-        "LONGITUD": -76.881964,
-        "X_UTM": 958631.42,
-        "Y_UTM": 10009612.08,
-        "num_muestra": 50,
-        "sc": "50",
-        "etiqueta": "50 | H",
-        "etiquetaSC": "50 | H",
+        "CODIGO": 14,
+        "num_muestra": 14,
+        "sc": "14",
+        "sc_key": "URCUQUÍ_14",
+        "etiqueta": "14 | H",
+        "etiquetaSC": "14 | H",
         "tipologia": "H",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN 10 DE AGOSTO Y MANABÍ (REF. MUNICIPIO DE LAGO AGRIO)",
+        "parroquia": "URCUQUI",
+        "PARROQUIA": "URCUQUI",
+        "canton": "URCUQUÍ",
+        "CANTON": "URCUQUÍ",
+        "circunscripcion": "CIRCUNSCRIPCIÓN URBANA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCIÓN URBANA",
+        "punto_referencial": "COLEGIO TÉCNICO URCUQUÍ / CALLE GUZMÁN",
+        "PUNTO_REFERENCIAL": "COLEGIO TÉCNICO URCUQUÍ / CALLE GUZMÁN",
         "casos": 10,
         "bbox": [
           [
-            -76.88196,
-            0.08674
+            -78.1932,
+            0.41852
           ],
           [
-            -76.88196,
-            0.08674
+            -78.1932,
+            0.41852
           ]
         ]
       }
@@ -2206,173 +1298,35 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -76.87893,
-          0.08741
+          -78.19624,
+          0.4219
         ]
       },
       "properties": {
-        "CODIGO": 51,
-        "TIPOLOGIA": "C",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN BABAHOYO Y VENEZUELA (REF. ESCUELA LEOPOLDO LUCERO)",
-        "COD_ETIQUETA": "51 | C",
-        "ORDEN_RUTA": 51,
-        "LATITUD": 0.087406,
-        "LONGITUD": -76.878933,
-        "X_UTM": 958969.66,
-        "Y_UTM": 10009686.26,
-        "num_muestra": 51,
-        "sc": "51",
-        "etiqueta": "51 | C",
-        "etiquetaSC": "51 | C",
-        "tipologia": "C",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN BABAHOYO Y VENEZUELA (REF. ESCUELA LEOPOLDO LUCERO)",
-        "casos": 10,
-        "bbox": [
-          [
-            -76.87893,
-            0.08741
-          ],
-          [
-            -76.87893,
-            0.08741
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -76.88034,
-          0.09002
-        ]
-      },
-      "properties": {
-        "CODIGO": 52,
-        "TIPOLOGIA": "B",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN ARENILLAS Y AVENIDA COLOMBIA",
-        "COD_ETIQUETA": "52 | B",
-        "ORDEN_RUTA": 52,
-        "LATITUD": 0.090024,
-        "LONGITUD": -76.880344,
-        "X_UTM": 958812.21,
-        "Y_UTM": 10009976.32,
-        "num_muestra": 52,
-        "sc": "52",
-        "etiqueta": "52 | B",
-        "etiquetaSC": "52 | B",
-        "tipologia": "B",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN ARENILLAS Y AVENIDA COLOMBIA",
-        "casos": 10,
-        "bbox": [
-          [
-            -76.88034,
-            0.09002
-          ],
-          [
-            -76.88034,
-            0.09002
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -76.87693,
-          0.09204
-        ]
-      },
-      "properties": {
-        "CODIGO": 53,
-        "TIPOLOGIA": "F",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN BALSAS Y EL GUABO",
-        "COD_ETIQUETA": "53 | F",
-        "ORDEN_RUTA": 53,
-        "LATITUD": 0.092037,
-        "LONGITUD": -76.876933,
-        "X_UTM": 959192.65,
-        "Y_UTM": 10010199.41,
-        "num_muestra": 53,
-        "sc": "53",
-        "etiqueta": "53 | F",
-        "etiquetaSC": "53 | F",
-        "tipologia": "F",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN BALSAS Y EL GUABO",
-        "casos": 10,
-        "bbox": [
-          [
-            -76.87693,
-            0.09204
-          ],
-          [
-            -76.87693,
-            0.09204
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -76.87459,
-          0.09384
-        ]
-      },
-      "properties": {
-        "CODIGO": 54,
-        "TIPOLOGIA": "D",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN SAN VALENTÍN Y SANTA ROSA (REF. PARQUE COFANES)",
-        "COD_ETIQUETA": "54 | D",
-        "ORDEN_RUTA": 54,
-        "LATITUD": 0.09384,
-        "LONGITUD": -76.874589,
-        "X_UTM": 959454.19,
-        "Y_UTM": 10010399.24,
-        "num_muestra": 54,
-        "sc": "54",
-        "etiqueta": "54 | D",
-        "etiquetaSC": "54 | D",
+        "CODIGO": 15,
+        "num_muestra": 15,
+        "sc": "15",
+        "sc_key": "URCUQUÍ_15",
+        "etiqueta": "15 | D",
+        "etiquetaSC": "15 | D",
         "tipologia": "D",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN SAN VALENTÍN Y SANTA ROSA (REF. PARQUE COFANES)",
+        "parroquia": "URCUQUI",
+        "PARROQUIA": "URCUQUI",
+        "canton": "URCUQUÍ",
+        "CANTON": "URCUQUÍ",
+        "circunscripcion": "CIRCUNSCRIPCIÓN URBANA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCIÓN URBANA",
+        "punto_referencial": "CENTRO DE SALUD TIPO B URCUQUÍ / AV. ANTONIO ANTE",
+        "PUNTO_REFERENCIAL": "CENTRO DE SALUD TIPO B URCUQUÍ / AV. ANTONIO ANTE",
         "casos": 10,
         "bbox": [
           [
-            -76.87459,
-            0.09384
+            -78.19624,
+            0.4219
           ],
           [
-            -76.87459,
-            0.09384
+            -78.19624,
+            0.4219
           ]
         ]
       }
@@ -2382,85 +1336,35 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -76.87997,
-          0.08337
+          -78.20064,
+          0.42014
         ]
       },
       "properties": {
-        "CODIGO": 55,
-        "TIPOLOGIA": "G",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN AVENIDA COLOMBIA Y JORGE AÑAZCO",
-        "COD_ETIQUETA": "55 | G",
-        "ORDEN_RUTA": 55,
-        "LATITUD": 0.083371,
-        "LONGITUD": -76.879972,
-        "X_UTM": 958853.79,
-        "Y_UTM": 10009239.06,
-        "num_muestra": 55,
-        "sc": "55",
-        "etiqueta": "55 | G",
-        "etiquetaSC": "55 | G",
-        "tipologia": "G",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN AVENIDA COLOMBIA Y JORGE AÑAZCO",
-        "casos": 10,
-        "bbox": [
-          [
-            -76.87997,
-            0.08337
-          ],
-          [
-            -76.87997,
-            0.08337
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -76.88305,
-          0.08148
-        ]
-      },
-      "properties": {
-        "CODIGO": 56,
-        "TIPOLOGIA": "E",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN 12 DE FEBRERO Y MARISCAL SUCRE (REF. MERCADO CENTRAL)",
-        "COD_ETIQUETA": "56 | E",
-        "ORDEN_RUTA": 56,
-        "LATITUD": 0.08148,
-        "LONGITUD": -76.883054,
-        "X_UTM": 958509.91,
-        "Y_UTM": 10009029.45,
-        "num_muestra": 56,
-        "sc": "56",
-        "etiqueta": "56 | E",
-        "etiquetaSC": "56 | E",
+        "CODIGO": 16,
+        "num_muestra": 16,
+        "sc": "16",
+        "sc_key": "URCUQUÍ_16",
+        "etiqueta": "16 | E",
+        "etiquetaSC": "16 | E",
         "tipologia": "E",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN 12 DE FEBRERO Y MARISCAL SUCRE (REF. MERCADO CENTRAL)",
+        "parroquia": "URCUQUI",
+        "PARROQUIA": "URCUQUI",
+        "canton": "URCUQUÍ",
+        "CANTON": "URCUQUÍ",
+        "circunscripcion": "CIRCUNSCRIPCIÓN URBANA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCIÓN URBANA",
+        "punto_referencial": "MERCADO MUNICIPAL DE URCUQUÍ / CALLE SUCRE",
+        "PUNTO_REFERENCIAL": "MERCADO MUNICIPAL DE URCUQUÍ / CALLE SUCRE",
         "casos": 10,
         "bbox": [
           [
-            -76.88305,
-            0.08148
+            -78.20064,
+            0.42014
           ],
           [
-            -76.88305,
-            0.08148
+            -78.20064,
+            0.42014
           ]
         ]
       }
@@ -2470,41 +1374,35 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -76.89577,
-          0.08498
+          -78.19657,
+          0.41704
         ]
       },
       "properties": {
-        "CODIGO": 57,
-        "TIPOLOGIA": "C",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN LEONIDAS PROAÑO Y TULCAN",
-        "COD_ETIQUETA": "57 | C",
-        "ORDEN_RUTA": 57,
-        "LATITUD": 0.084979,
-        "LONGITUD": -76.895767,
-        "X_UTM": 957091.63,
-        "Y_UTM": 10009417.03,
-        "num_muestra": 57,
-        "sc": "57",
-        "etiqueta": "57 | C",
-        "etiquetaSC": "57 | C",
-        "tipologia": "C",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN LEONIDAS PROAÑO Y TULCAN",
+        "CODIGO": 17,
+        "num_muestra": 17,
+        "sc": "17",
+        "sc_key": "URCUQUÍ_17",
+        "etiqueta": "17 | G",
+        "etiquetaSC": "17 | G",
+        "tipologia": "G",
+        "parroquia": "URCUQUI",
+        "PARROQUIA": "URCUQUI",
+        "canton": "URCUQUÍ",
+        "CANTON": "URCUQUÍ",
+        "circunscripcion": "CIRCUNSCRIPCIÓN URBANA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCIÓN URBANA",
+        "punto_referencial": "BARRIO SAN VICENTE / CAPILLA DE SAN VICENTE",
+        "PUNTO_REFERENCIAL": "BARRIO SAN VICENTE / CAPILLA DE SAN VICENTE",
         "casos": 10,
         "bbox": [
           [
-            -76.89577,
-            0.08498
+            -78.19657,
+            0.41704
           ],
           [
-            -76.89577,
-            0.08498
+            -78.19657,
+            0.41704
           ]
         ]
       }
@@ -2514,85 +1412,35 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -76.89527,
-          0.07554
+          -78.19873,
+          0.41336
         ]
       },
       "properties": {
-        "CODIGO": 58,
-        "TIPOLOGIA": "H",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN ECUADOR Y PERÚ",
-        "COD_ETIQUETA": "58 | H",
-        "ORDEN_RUTA": 58,
-        "LATITUD": 0.075542,
-        "LONGITUD": -76.895273,
-        "X_UTM": 957146.77,
-        "Y_UTM": 10008371.31,
-        "num_muestra": 58,
-        "sc": "58",
-        "etiqueta": "58 | H",
-        "etiquetaSC": "58 | H",
-        "tipologia": "H",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN ECUADOR Y PERÚ",
-        "casos": 10,
-        "bbox": [
-          [
-            -76.89527,
-            0.07554
-          ],
-          [
-            -76.89527,
-            0.07554
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -76.89652,
-          0.07069
-        ]
-      },
-      "properties": {
-        "CODIGO": 59,
-        "TIPOLOGIA": "B",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN AVENIDA AMAZONAS Y VICTORIA (REF. CANCHA DEL BARRIO)",
-        "COD_ETIQUETA": "59 | B",
-        "ORDEN_RUTA": 59,
-        "LATITUD": 0.070692,
-        "LONGITUD": -76.896524,
-        "X_UTM": 957007.29,
-        "Y_UTM": 10007833.83,
-        "num_muestra": 59,
-        "sc": "59",
-        "etiqueta": "59 | B",
-        "etiquetaSC": "59 | B",
+        "CODIGO": 18,
+        "num_muestra": 18,
+        "sc": "18",
+        "sc_key": "URCUQUÍ_18",
+        "etiqueta": "18 | B",
+        "etiquetaSC": "18 | B",
         "tipologia": "B",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN AVENIDA AMAZONAS Y VICTORIA (REF. CANCHA DEL BARRIO)",
+        "parroquia": "URCUQUI",
+        "PARROQUIA": "URCUQUI",
+        "canton": "URCUQUÍ",
+        "CANTON": "URCUQUÍ",
+        "circunscripcion": "CIRCUNSCRIPCIÓN URBANA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCIÓN URBANA",
+        "punto_referencial": "BARRIO SAN JOSÉ / POLIDEPORTIVO DE URCUQUÍ",
+        "PUNTO_REFERENCIAL": "BARRIO SAN JOSÉ / POLIDEPORTIVO DE URCUQUÍ",
         "casos": 10,
         "bbox": [
           [
-            -76.89652,
-            0.07069
+            -78.19873,
+            0.41336
           ],
           [
-            -76.89652,
-            0.07069
+            -78.19873,
+            0.41336
           ]
         ]
       }
@@ -2602,393 +1450,35 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -76.89274,
-          0.06826
+          -78.17513,
+          0.40445
         ]
       },
       "properties": {
-        "CODIGO": 60,
-        "TIPOLOGIA": "H",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN BRASILIA Y GAVIOTA",
-        "COD_ETIQUETA": "60 | H",
-        "ORDEN_RUTA": 60,
-        "LATITUD": 0.068259,
-        "LONGITUD": -76.892741,
-        "X_UTM": 957429.36,
-        "Y_UTM": 10007564.2,
-        "num_muestra": 60,
-        "sc": "60",
-        "etiqueta": "60 | H",
-        "etiquetaSC": "60 | H",
-        "tipologia": "H",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN BRASILIA Y GAVIOTA",
-        "casos": 10,
-        "bbox": [
-          [
-            -76.89274,
-            0.06826
-          ],
-          [
-            -76.89274,
-            0.06826
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -76.90422,
-          0.07754
-        ]
-      },
-      "properties": {
-        "CODIGO": 61,
-        "TIPOLOGIA": "E",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN LAURO GERRERO Y PAJÁN",
-        "COD_ETIQUETA": "61 | E",
-        "ORDEN_RUTA": 61,
-        "LATITUD": 0.077542,
-        "LONGITUD": -76.904218,
-        "X_UTM": 956148.82,
-        "Y_UTM": 10008592.8,
-        "num_muestra": 61,
-        "sc": "61",
-        "etiqueta": "61 | E",
-        "etiquetaSC": "61 | E",
-        "tipologia": "E",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN LAURO GERRERO Y PAJÁN",
-        "casos": 10,
-        "bbox": [
-          [
-            -76.90422,
-            0.07754
-          ],
-          [
-            -76.90422,
-            0.07754
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -76.90726,
-          0.07554
-        ]
-      },
-      "properties": {
-        "CODIGO": 62,
-        "TIPOLOGIA": "F",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN ERNESTO CHE GUEVARA Y PÍO JARAMILLO ALVARADO",
-        "COD_ETIQUETA": "62 | F",
-        "ORDEN_RUTA": 62,
-        "LATITUD": 0.075545,
-        "LONGITUD": -76.907264,
-        "X_UTM": 955809.03,
-        "Y_UTM": 10008371.47,
-        "num_muestra": 62,
-        "sc": "62",
-        "etiqueta": "62 | F",
-        "etiquetaSC": "62 | F",
-        "tipologia": "F",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN ERNESTO CHE GUEVARA Y PÍO JARAMILLO ALVARADO",
-        "casos": 10,
-        "bbox": [
-          [
-            -76.90726,
-            0.07554
-          ],
-          [
-            -76.90726,
-            0.07554
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -76.90781,
-          0.07849
-        ]
-      },
-      "properties": {
-        "CODIGO": 63,
-        "TIPOLOGIA": "E",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN ERNESTO CHE GUEVARA Y GERMAN LIMA SOTO",
-        "COD_ETIQUETA": "63 | E",
-        "ORDEN_RUTA": 63,
-        "LATITUD": 0.07849,
-        "LONGITUD": -76.907807,
-        "X_UTM": 955748.47,
-        "Y_UTM": 10008697.84,
-        "num_muestra": 63,
-        "sc": "63",
-        "etiqueta": "63 | E",
-        "etiquetaSC": "63 | E",
-        "tipologia": "E",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN ERNESTO CHE GUEVARA Y GERMAN LIMA SOTO",
-        "casos": 10,
-        "bbox": [
-          [
-            -76.90781,
-            0.07849
-          ],
-          [
-            -76.90781,
-            0.07849
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -76.90591,
-          0.0824
-        ]
-      },
-      "properties": {
-        "CODIGO": 64,
-        "TIPOLOGIA": "G",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN ABDON CALDERON Y PÍO JARAMILLO ALVARADO",
-        "COD_ETIQUETA": "64 | G",
-        "ORDEN_RUTA": 64,
-        "LATITUD": 0.082398,
-        "LONGITUD": -76.905905,
-        "X_UTM": 955960.57,
-        "Y_UTM": 10009130.95,
-        "num_muestra": 64,
-        "sc": "64",
-        "etiqueta": "64 | G",
-        "etiquetaSC": "64 | G",
-        "tipologia": "G",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN ABDON CALDERON Y PÍO JARAMILLO ALVARADO",
-        "casos": 10,
-        "bbox": [
-          [
-            -76.90591,
-            0.0824
-          ],
-          [
-            -76.90591,
-            0.0824
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -76.87781,
-          0.06536
-        ]
-      },
-      "properties": {
-        "CODIGO": 65,
-        "TIPOLOGIA": "B",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN ING. CARLOS FLORES Y PUTUMAYO",
-        "COD_ETIQUETA": "65 | B",
-        "ORDEN_RUTA": 65,
-        "LATITUD": 0.065359,
-        "LONGITUD": -76.877811,
-        "X_UTM": 959094.99,
-        "Y_UTM": 10007243.04,
-        "num_muestra": 65,
-        "sc": "65",
-        "etiqueta": "65 | B",
-        "etiquetaSC": "65 | B",
-        "tipologia": "B",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN ING. CARLOS FLORES Y PUTUMAYO",
-        "casos": 10,
-        "bbox": [
-          [
-            -76.87781,
-            0.06536
-          ],
-          [
-            -76.87781,
-            0.06536
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -76.87422,
-          0.0652
-        ]
-      },
-      "properties": {
-        "CODIGO": 66,
-        "TIPOLOGIA": "D",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN CONONACO Y TIPUTINI",
-        "COD_ETIQUETA": "66 | D",
-        "ORDEN_RUTA": 66,
-        "LATITUD": 0.065198,
-        "LONGITUD": -76.874218,
-        "X_UTM": 959495.85,
-        "Y_UTM": 10007225.14,
-        "num_muestra": 66,
-        "sc": "66",
-        "etiqueta": "66 | D",
-        "etiquetaSC": "66 | D",
-        "tipologia": "D",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN CONONACO Y TIPUTINI",
-        "casos": 10,
-        "bbox": [
-          [
-            -76.87422,
-            0.0652
-          ],
-          [
-            -76.87422,
-            0.0652
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -76.87018,
-          0.07084
-        ]
-      },
-      "properties": {
-        "CODIGO": 67,
-        "TIPOLOGIA": "F",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN 27 DE FEBRERO Y VÍA AGUARICO",
-        "COD_ETIQUETA": "67 | F",
-        "ORDEN_RUTA": 67,
-        "LATITUD": 0.070838,
-        "LONGITUD": -76.870176,
-        "X_UTM": 959946.74,
-        "Y_UTM": 10007850.27,
-        "num_muestra": 67,
-        "sc": "67",
-        "etiqueta": "67 | F",
-        "etiquetaSC": "67 | F",
-        "tipologia": "F",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN 27 DE FEBRERO Y VÍA AGUARICO",
-        "casos": 10,
-        "bbox": [
-          [
-            -76.87018,
-            0.07084
-          ],
-          [
-            -76.87018,
-            0.07084
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -76.85648,
-          0.09591
-        ]
-      },
-      "properties": {
-        "CODIGO": 68,
-        "TIPOLOGIA": "C",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN CALLE EL BOSQUE Y LOS CLAVELES",
-        "COD_ETIQUETA": "68 | C",
-        "ORDEN_RUTA": 68,
-        "LATITUD": 0.095909,
-        "LONGITUD": -76.856479,
-        "X_UTM": 961474.59,
-        "Y_UTM": 10010628.81,
-        "num_muestra": 68,
-        "sc": "68",
-        "etiqueta": "68 | C",
-        "etiquetaSC": "68 | C",
+        "CODIGO": 19,
+        "num_muestra": 19,
+        "sc": "19",
+        "sc_key": "URCUQUÍ_19",
+        "etiqueta": "19 | C",
+        "etiquetaSC": "19 | C",
         "tipologia": "C",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN CALLE EL BOSQUE Y LOS CLAVELES",
+        "parroquia": "URCUQUI",
+        "PARROQUIA": "URCUQUI",
+        "canton": "URCUQUÍ",
+        "CANTON": "URCUQUÍ",
+        "circunscripcion": "CIRCUNSCRIPCIÓN URBANA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCIÓN URBANA",
+        "punto_referencial": "CAMPUS UNIVERSITARIO YACHAY TECH / ENTRADA PRINCIPAL",
+        "PUNTO_REFERENCIAL": "CAMPUS UNIVERSITARIO YACHAY TECH / ENTRADA PRINCIPAL",
         "casos": 10,
         "bbox": [
           [
-            -76.85648,
-            0.09591
+            -78.17513,
+            0.40445
           ],
           [
-            -76.85648,
-            0.09591
+            -78.17513,
+            0.40445
           ]
         ]
       }
@@ -2998,85 +1488,35 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -76.85568,
-          0.09865
+          -78.19791,
+          0.4096
         ]
       },
       "properties": {
-        "CODIGO": 69,
-        "TIPOLOGIA": "H",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN JARDÍNES DE GETZEMANI Y MONTE DE LOS OLIVOS",
-        "COD_ETIQUETA": "69 | H",
-        "ORDEN_RUTA": 69,
-        "LATITUD": 0.098646,
-        "LONGITUD": -76.855685,
-        "X_UTM": 961563.22,
-        "Y_UTM": 10010932.15,
-        "num_muestra": 69,
-        "sc": "69",
-        "etiqueta": "69 | H",
-        "etiquetaSC": "69 | H",
-        "tipologia": "H",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN JARDÍNES DE GETZEMANI Y MONTE DE LOS OLIVOS",
+        "CODIGO": 20,
+        "num_muestra": 20,
+        "sc": "20",
+        "sc_key": "URCUQUÍ_20",
+        "etiqueta": "20 | C",
+        "etiquetaSC": "20 | C",
+        "tipologia": "C",
+        "parroquia": "URCUQUI",
+        "PARROQUIA": "URCUQUI",
+        "canton": "URCUQUÍ",
+        "CANTON": "URCUQUÍ",
+        "circunscripcion": "CIRCUNSCRIPCIÓN URBANA",
+        "CIRCUNSCRIPCION": "CIRCUNSCRIPCIÓN URBANA",
+        "punto_referencial": "SECTOR SUR DE URCUQUÍ / BARRIO LA MERCED",
+        "PUNTO_REFERENCIAL": "SECTOR SUR DE URCUQUÍ / BARRIO LA MERCED",
         "casos": 10,
         "bbox": [
           [
-            -76.85568,
-            0.09865
+            -78.19791,
+            0.4096
           ],
           [
-            -76.85568,
-            0.09865
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -76.85905,
-          0.098
-        ]
-      },
-      "properties": {
-        "CODIGO": 70,
-        "TIPOLOGIA": "G",
-        "PARROQUIA": "NUEVA LOJA",
-        "CIRCUNSCRIPCION": "CIRCUNSCRIPCION URBANA",
-        "CASOS": 10,
-        "PUNTO_REFERENCIAL": "INTERSECCIÓN CALLE LOS SAUCES Y COMMUNIDADES UNIDAS",
-        "COD_ETIQUETA": "70 | G",
-        "ORDEN_RUTA": 70,
-        "LATITUD": 0.098001,
-        "LONGITUD": -76.85905,
-        "X_UTM": 961187.76,
-        "Y_UTM": 10010860.55,
-        "num_muestra": 70,
-        "sc": "70",
-        "etiqueta": "70 | G",
-        "etiquetaSC": "70 | G",
-        "tipologia": "G",
-        "parroquia": "NUEVA LOJA",
-        "circunscripcion": "CIRCUNSCRIPCION URBANA",
-        "canton": "LAGO AGRIO",
-        "punto_referencial": "INTERSECCIÓN CALLE LOS SAUCES Y COMMUNIDADES UNIDAS",
-        "casos": 10,
-        "bbox": [
-          [
-            -76.85905,
-            0.098
-          ],
-          [
-            -76.85905,
-            0.098
+            -78.19791,
+            0.4096
           ]
         ]
       }

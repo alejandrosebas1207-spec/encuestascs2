@@ -728,14 +728,31 @@ document.addEventListener('DOMContentLoaded', () => {
         const numId = numMatch ? String(parseInt(numMatch[0], 10)) : '';
 
         if (numId) {
+            const canEnc = cantonDeclarado(encuesta) || cantonPorParroquia(parroquiaDeclarada(encuesta));
+            if (canEnc && AppState.sectoresMap) {
+                const secPorCanNum = AppState.sectoresMap.get(`${normTexto(canEnc).toUpperCase()}_${numId}`)
+                    || AppState.sectoresMap.get(`${canEnc}_${numId}`);
+                if (secPorCanNum) {
+                    encuesta._sectorResuelto = secPorCanNum;
+                    return secPorCanNum;
+                }
+            }
+
             if (AppState.sectoresCandidatos) {
                 const candNum = AppState.sectoresCandidatos.get(numId);
                 if (candNum && candNum.length === 1) {
                     encuesta._sectorResuelto = candNum[0];
                     return candNum[0];
                 }
+                if (candNum && candNum.length > 1 && canEnc) {
+                    const match = candNum.find(s => normTexto(s.canton) === normTexto(canEnc));
+                    if (match) {
+                        encuesta._sectorResuelto = match;
+                        return match;
+                    }
+                }
             }
-            if (AppState.sectoresMap) {
+            if (AppState.sectoresMap && !canEnc) {
                 const secPorNum = AppState.sectoresMap.get(numId);
                 if (secPorNum) {
                     encuesta._sectorResuelto = secPorNum;
@@ -2160,6 +2177,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Si aún no hay parroquias en parList (o en caso de geometrías de muestra independientes), añadir las que tengan puntos de muestra
             puntosPorParroquia.forEach((count, parNom) => {
+                if (permitidasCanton && !permitidasCanton.includes(normStr(parNom))) return;
                 if (!parList.some(item => normStr(item) === parNom)) {
                     parList.push(parNom);
                 }
