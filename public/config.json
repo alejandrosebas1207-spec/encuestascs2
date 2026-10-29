@@ -32,6 +32,8 @@
     "campo_encuestador": "codencu",
     "campo_supervisor": "codsup",
     "choices_parroquias": {
+      "1": "PIMAMPIRO",
+      "2": "CHUGA",
       "URCUQUI": "URCUQUI",
       "Urcuquí": "URCUQUI",
       "SAN BLAS": "SAN BLAS",
