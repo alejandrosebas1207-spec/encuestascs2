@@ -5134,7 +5134,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const hColor = nH === cuota.H ? '#10B981' : (nH > cuota.H ? '#F59E0B' : 'inherit');
                 const mColor = nM === cuota.M ? '#10B981' : (nM > cuota.M ? '#F59E0B' : 'inherit');
                 labelH = `<span style="color:${hColor}; font-weight:700;">${nH}</span><span class="cs-piramide-pct" style="opacity:0.75;">/${cuota.H}</span>`;
-                labelM = `<span class="cs-piramide-pct" style="opacity:0.75;">${cuota.M}/</span><span style="color:${mColor}; font-weight:700;">${nM}</span>`;
+                labelM = `<span style="color:${mColor}; font-weight:700;">${nM}</span><span class="cs-piramide-pct" style="opacity:0.75;">/${cuota.M}</span>`;
             }
 
             html += `
