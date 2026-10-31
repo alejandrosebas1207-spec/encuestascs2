@@ -95,7 +95,10 @@ function obtenerParametrosActivos() {
         if (config.kobo && Array.isArray(config.kobo.formularios) && config.kobo.formularios.length > 0) {
             formularios = config.kobo.formularios.map(f => ({
                 assetId: String(f.asset_id || f.assetId || "").trim(),
-                canton: String(f.canton || "").trim().toUpperCase()
+                canton: String(f.canton || "").trim().toUpperCase(),
+                campoEnc: String(f.campo_encuestador || f.campoEnc || "").trim(),
+                campoSup: String(f.campo_supervisor || f.campoSup || "").trim(),
+                choicesParroquias: f.choices_parroquias || f.choicesParroquias || null
             })).filter(f => f.assetId);
         } else if (config.kobo && Array.isArray(config.kobo.assets) && config.kobo.assets.length > 0) {
             formularios = config.kobo.assets.map(item => {
@@ -227,7 +230,7 @@ function normalizarCoordenadas(valores, validarEcuador = false) {
     return [lat, lng];
 }
 
-function normalizarEncuesta(raw, params, cantonOverride = "") {
+function normalizarEncuesta(raw, params, cantonOverride = "", formItem = null) {
     const id = raw._id || "";
     const submissionTime = raw._submission_time || "";
     const start = raw.start || extraerValor(raw, ["start", "inicio"]) || "";
@@ -256,11 +259,11 @@ function normalizarEncuesta(raw, params, cantonOverride = "") {
         }
     }
 
-    const campoEnc = params.campoEnc;
-    const campoSup = params.campoSup;
+    const campoEnc = (formItem && formItem.campoEnc) || params.campoEnc;
+    const campoSup = (formItem && formItem.campoSup) || params.campoSup;
 
-    let encuestador = extraerValor(raw, [campoEnc, "C_DIGO_DE_ENCUESTADOR", "cenc", "codenc", "codencu", "cod_encu", "cod_enc", "C_digo_encuestador", "encuestador", "cod_encuestador"]);
-    let supervisor = extraerValor(raw, [campoSup, "C_DIGO_DE_SUPERVISOR", "csup", "codsup", "cod_sup", "C_digo_Supervisor", "supervisor", "cod_supervisor"]);
+    let encuestador = extraerValor(raw, [campoEnc, "cencu", "C_DIGO_DE_ENCUESTADOR", "cenc", "codenc", "codencu", "cod_encu", "cod_enc", "C_digo_encuestador", "encuestador", "cod_encuestador"]);
+    let supervisor = extraerValor(raw, [campoSup, "csup", "C_DIGO_DE_SUPERVISOR", "codsup", "cod_sup", "C_digo_Supervisor", "supervisor", "cod_supervisor"]);
 
     const rawConsen = extraerValor(raw, ["_EST_DE_ACUERDO_EN_DE_FORMA_VOLUNTARIA", "consent", "consen", "consentimiento", "acepta"]);
     const noConsent = rawConsen === "2" || String(rawConsen).trim().toLowerCase() === "no" || String(rawConsen).trim().toLowerCase() === "rechaza";
@@ -271,8 +274,15 @@ function normalizarEncuesta(raw, params, cantonOverride = "") {
     const tipologia = params.choicesTipologias[rawTipol] || rawTipol.toUpperCase();
     const barrio = extraerValor(raw, ["barrio", "barr", "BARRIO_O_SECTOR", "sector", "barrio_sector"]);
 
+    const PARROQUIAS_POR_DEFECTO = {
+        "URCUQUI": { "1": "CAHUASQUI", "2": "PABLO ARENAS", "3": "SAN BLAS", "4": "TUMBABIRO", "5": "URCUQUI" },
+        "URCUQUÍ": { "1": "CAHUASQUI", "2": "PABLO ARENAS", "3": "SAN BLAS", "4": "TUMBABIRO", "5": "URCUQUI" },
+        "PIMAMPIRO": { "1": "PIMAMPIRO", "2": "CHUGA" }
+    };
+    const cOverrideNorm = String(cantonOverride || "").normalize('NFD').replace(/[̀-ͯ]/g, '').toUpperCase().trim();
+    const formChoicesParr = (formItem && formItem.choicesParroquias) || PARROQUIAS_POR_DEFECTO[cantonOverride] || PARROQUIAS_POR_DEFECTO[cOverrideNorm] || {};
     const rawParroquia = extraerValor(raw, ["parroquia", "PARROQUIA", "nom_parroquia", "parr"]) || "";
-    const parroquia = params.choicesParroquias[rawParroquia] || String(rawParroquia).trim().toUpperCase();
+    const parroquia = formChoicesParr[rawParroquia] || params.choicesParroquias[rawParroquia] || String(rawParroquia).trim().toUpperCase();
 
     const rawCanton = extraerValor(raw, ["canton", "CANTON", "canton_nombre", "nom_can", "nom_canton"]) || "";
     const cantonDefecto = cantonOverride || params.config.canton || "Territorio";
@@ -391,7 +401,7 @@ async function descargarFormularioKobo(formItem, params) {
     }
 
     return resultadosRaw.map(raw => {
-        const norm = normalizarEncuesta(raw, params, cantonForm);
+        const norm = normalizarEncuesta(raw, params, cantonForm, formItem);
         norm._kobo_asset = assetId;
         return norm;
     });

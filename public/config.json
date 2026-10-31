@@ -8,7 +8,7 @@
   "meta": 400,
   "bounds": [
     [
-      -78.33300,
+      -78.333,
       0.29137
     ],
     [
@@ -20,11 +20,26 @@
     "formularios": [
       {
         "canton": "URCUQUÍ",
-        "asset_id": "atnSSYdMirzRop3cztMTNc"
+        "asset_id": "atnSSYdMirzRop3cztMTNc",
+        "campo_encuestador": "cencu",
+        "campo_supervisor": "csup",
+        "choices_parroquias": {
+          "1": "CAHUASQUI",
+          "2": "PABLO ARENAS",
+          "3": "SAN BLAS",
+          "4": "TUMBABIRO",
+          "5": "URCUQUI"
+        }
       },
       {
         "canton": "PIMAMPIRO",
-        "asset_id": "akBGYahUKZw43qenuP6HMG"
+        "asset_id": "akBGYahUKZw43qenuP6HMG",
+        "campo_encuestador": "C_DIGO_DE_ENCUESTADOR",
+        "campo_supervisor": "C_DIGO_DE_SUPERVISOR",
+        "choices_parroquias": {
+          "1": "PIMAMPIRO",
+          "2": "CHUGA"
+        }
       }
     ],
     "asset_id": "atnSSYdMirzRop3cztMTNc,akBGYahUKZw43qenuP6HMG",

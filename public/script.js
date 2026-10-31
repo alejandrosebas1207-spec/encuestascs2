@@ -653,8 +653,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if ((nombreCorto === 'tipologia' || nombreCorto === 'TIPOLOGIA') && encuesta.tipologia !== undefined) return encuesta.tipologia;
         if ((nombreCorto === 'parroquia' || nombreCorto === 'PARROQUIA' || nombreCorto === 'nom_parroquia') && encuesta.parroquia !== undefined) return encuesta.parroquia;
         if ((nombreCorto === 'barrio' || nombreCorto === 'BARRIO_O_SECTOR') && encuesta.barrio !== undefined) return encuesta.barrio;
-        if ((nombreCorto === 'C_digo_encuestador' || nombreCorto === 'codencu') && encuesta.encuestador !== undefined) return encuesta.encuestador;
-        if ((nombreCorto === 'C_digo_Supervisor' || nombreCorto === 'codsup') && encuesta.supervisor !== undefined) return encuesta.supervisor;
+        if ((nombreCorto === 'C_digo_encuestador' || nombreCorto === 'codencu' || nombreCorto === 'cencu' || nombreCorto === 'cenc') && encuesta.encuestador !== undefined) return encuesta.encuestador;
+        if ((nombreCorto === 'C_digo_Supervisor' || nombreCorto === 'codsup' || nombreCorto === 'csup') && encuesta.supervisor !== undefined) return encuesta.supervisor;
 
         const keys = Object.keys(encuesta);
         for (let i = 0; i < keys.length; i++) {
@@ -893,8 +893,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function normalizarSupervisorEncuesta(e) {
         if (!e) return e;
-        let sup = String(e.supervisor || e.C_digo_Supervisor || campo(e, AppState.config.campoSupervisor) || '').trim();
-        let enc = String(e.encuestador || e.C_digo_encuestador || campo(e, AppState.config.campoEncuestador) || '').trim();
+        let sup = String(e.supervisor || e.C_digo_Supervisor || e.csup || campo(e, AppState.config.campoSupervisor) || campo(e, 'csup') || '').trim();
+        let enc = String(e.encuestador || e.C_digo_encuestador || e.cencu || campo(e, AppState.config.campoEncuestador) || campo(e, 'cencu') || '').trim();
 
         // Mapeo oficial estricto: a cada encuestador le corresponde su supervisor oficial
         const supOficial = ENCUESTADOR_A_SUPERVISOR[enc];
