@@ -713,87 +713,78 @@ document.addEventListener('DOMContentLoaded', () => {
             return null;
         }
 
-        // 1. Coincidencia directa en AppState.sectoresMap
-        if (AppState.sectoresMap) {
-            const secMeta = AppState.sectoresMap.get(raw);
-            if (secMeta) {
-                encuesta._sectorResuelto = secMeta;
-                return secMeta;
-            }
-        }
-
-        // 2. Extracción de número entero de muestra (1..266)
-        // En Morona Santiago los números de punto de muestra 1 a 266 son globalmente únicos en toda la provincia.
+        const canEnc = encuesta.canton || cantonDeclarado(encuesta) || cantonPorParroquia(parroquiaDeclarada(encuesta));
+        const canNorm = canEnc ? normTexto(canEnc).toUpperCase() : '';
         const numMatch = raw.match(/\d+/);
         const numId = numMatch ? String(parseInt(numMatch[0], 10)) : '';
 
-        if (numId) {
-            const canEnc = cantonDeclarado(encuesta) || cantonPorParroquia(parroquiaDeclarada(encuesta));
-            if (canEnc && AppState.sectoresMap) {
-                const secPorCanNum = AppState.sectoresMap.get(`${normTexto(canEnc).toUpperCase()}_${numId}`)
-                    || AppState.sectoresMap.get(`${canEnc}_${numId}`);
-                if (secPorCanNum) {
-                    encuesta._sectorResuelto = secPorCanNum;
-                    return secPorCanNum;
+        // 1. Coincidencia scoped por Cantón (Imprescindible para multi-cantón Urcuquí + Pimampiro)
+        if (canNorm && AppState.sectoresMap) {
+            const secPorCan = AppState.sectoresMap.get(`${canNorm}_${raw}`)
+                || AppState.sectoresMap.get(`${canEnc}_${raw}`)
+                || (numId ? (AppState.sectoresMap.get(`${canNorm}_${numId}`) || AppState.sectoresMap.get(`${canEnc}_${numId}`)) : null);
+            if (secPorCan) {
+                encuesta._sectorResuelto = secPorCan;
+                return secPorCan;
+            }
+        }
+
+        // 2. Coincidencia directa por clave única global (ej. URCUQUÍ_1, PIMAMPIRO_1, sec_anm)
+        if (AppState.sectoresMap) {
+            const secMeta = AppState.sectoresMap.get(raw) || AppState.sectoresMap.get(normTexto(raw).toUpperCase());
+            if (secMeta) {
+                // Si la encuesta tiene cantón declarado, solo aceptar si coincide con el sector
+                if (!canNorm || normTexto(secMeta.canton).toUpperCase() === canNorm) {
+                    encuesta._sectorResuelto = secMeta;
+                    return secMeta;
                 }
             }
+        }
 
-            if (AppState.sectoresCandidatos) {
-                const candNum = AppState.sectoresCandidatos.get(numId);
-                if (candNum && candNum.length === 1) {
-                    encuesta._sectorResuelto = candNum[0];
-                    return candNum[0];
+        // 3. Coincidencia en candidatos por número filtrando por cantón
+        if (numId && AppState.sectoresCandidatos) {
+            const cands = AppState.sectoresCandidatos.get(numId) || [];
+            if (cands.length === 1 && (!canNorm || normTexto(cands[0].canton).toUpperCase() === canNorm)) {
+                encuesta._sectorResuelto = cands[0];
+                return cands[0];
+            }
+            if (cands.length > 1 && canNorm) {
+                const match = cands.find(s => normTexto(s.canton).toUpperCase() === canNorm);
+                if (match) {
+                    encuesta._sectorResuelto = match;
+                    return match;
                 }
-                if (candNum && candNum.length > 1 && canEnc) {
-                    const match = candNum.find(s => normTexto(s.canton) === normTexto(canEnc));
+            }
+        }
+
+        // 4. Búsqueda por alias normalizado
+        const alias = normalizarAliasSector(raw);
+        if (alias && AppState.sectoresCandidatos) {
+            const candidatos = AppState.sectoresCandidatos.get(alias) || [];
+            if (candidatos.length > 0) {
+                if (canNorm) {
+                    const match = candidatos.find(s => normTexto(s.canton).toUpperCase() === canNorm);
                     if (match) {
                         encuesta._sectorResuelto = match;
                         return match;
                     }
                 }
-            }
-            if (AppState.sectoresMap && !canEnc) {
-                const secPorNum = AppState.sectoresMap.get(numId);
-                if (secPorNum) {
-                    encuesta._sectorResuelto = secPorNum;
-                    return secPorNum;
+                if (!canNorm && candidatos.length === 1) {
+                    encuesta._sectorResuelto = candidatos[0];
+                    return candidatos[0];
                 }
             }
         }
 
-        // 3. Búsqueda por alias normalizado
-        const alias = normalizarAliasSector(raw);
-        if (alias && AppState.sectoresCandidatos) {
-            const candidatos = AppState.sectoresCandidatos.get(alias) || [];
-            if (candidatos.length === 1) {
-                encuesta._sectorResuelto = candidatos[0];
-                return candidatos[0];
-            }
-            if (candidatos.length > 1) {
-                const canton = cantonDeclarado(encuesta) || cantonPorParroquia(parroquiaDeclarada(encuesta));
-                const tipRaw = String(campo(encuesta, 'tipologia') || campo(encuesta, 'TIPOLOGIA') || '').trim().toUpperCase();
-                const tip = /^[1-8]$/.test(tipRaw) ? String.fromCharCode(64 + Number(tipRaw)) : tipRaw;
-                const filtrados = candidatos.filter(s => {
-                    const matchCanton = !canton || normTexto(s.canton) === normTexto(canton);
-                    const matchTip = !tip || s.props.tipologia === tip;
-                    return matchCanton && matchTip;
-                });
-                if (filtrados.length >= 1) {
-                    encuesta._sectorResuelto = filtrados[0];
-                    return filtrados[0];
-                }
-                encuesta._sectorResuelto = candidatos[0];
-                return candidatos[0];
-            }
-        }
-
-        // 4. Búsqueda de rescate en la colección GeoJSON por num_muestra o sc
+        // 5. Búsqueda de rescate en la colección GeoJSON por num_muestra o sc
         if (AppState.sectoresGeojson && Array.isArray(AppState.sectoresGeojson.features)) {
             const numVal = parseInt(numId || raw, 10);
             if (!isNaN(numVal)) {
                 const feat = AppState.sectoresGeojson.features.find(f => {
                     const p = f.properties || {};
-                    return Number(p.num_muestra) === numVal || Number(p.sc) === numVal;
+                    const matchNum = Number(p.num_muestra) === numVal || Number(p.sc) === numVal;
+                    const matchCan = !canNorm || normTexto(p.canton || p.CANTON || '').toUpperCase() === canNorm;
+                    return matchNum && matchCan;
                 });
                 if (feat) {
                     const res = {
@@ -837,13 +828,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const sector = resolverSectorEncuesta(encuesta);
         if (!sector || !sector.props) return false;
         const p = sector.props;
-        const claveNorm = normTexto(clave);
+        const claveNorm = normTexto(clave).toUpperCase();
+        const scKeyNorm = normTexto(p.sc_key || '').toUpperCase();
+        const canNorm = normTexto(p.canton || sector.canton || '').toUpperCase();
         return p.sc_key === clave ||
-               String(p.sc) === clave ||
-               String(p.num_muestra) === clave ||
+               scKeyNorm === claveNorm ||
+               (canNorm && `${canNorm}_${p.sc}` === claveNorm) ||
                p.etiquetaSC === clave ||
-               normTexto(p.sc_key) === claveNorm ||
-               normTexto(p.etiquetaSC) === claveNorm;
+               normTexto(p.etiquetaSC).toUpperCase() === claveNorm;
     }
 
     function recalcularConteosSectores() {
@@ -852,14 +844,26 @@ document.addEventListener('DOMContentLoaded', () => {
         for (let i = 0; i < encuestas.length; i++) {
             const sec = resolverSectorEncuesta(encuestas[i]);
             if (sec && sec.props) {
-                const k1 = sec.props.sc_key;
-                const k2 = String(sec.props.sc || '');
-                const k3 = String(sec.props.num_muestra || '');
-                const k4 = sec.props.etiquetaSC;
-                if (k1) conteo.set(k1, (conteo.get(k1) || 0) + 1);
-                if (k2 && k2 !== k1) conteo.set(k2, (conteo.get(k2) || 0) + 1);
-                if (k3 && k3 !== k1 && k3 !== k2) conteo.set(k3, (conteo.get(k3) || 0) + 1);
-                if (k4 && k4 !== k1) conteo.set(k4, (conteo.get(k4) || 0) + 1);
+                const p = sec.props;
+                const k1 = p.sc_key;
+                const can = p.canton || sec.canton || '';
+                const sc = p.sc || p.num_muestra || '';
+                const canNorm = can ? normTexto(can).toUpperCase() : '';
+
+                if (k1) {
+                    conteo.set(k1, (conteo.get(k1) || 0) + 1);
+                    conteo.set(normTexto(k1).toUpperCase(), (conteo.get(normTexto(k1).toUpperCase()) || 0) + 1);
+                }
+                if (can && sc) {
+                    conteo.set(`${can}_${sc}`, (conteo.get(`${can}_${sc}`) || 0) + 1);
+                }
+                if (canNorm && sc) {
+                    const kn = `${canNorm}_${sc}`;
+                    if (kn !== k1) conteo.set(kn, (conteo.get(kn) || 0) + 1);
+                }
+                if (p.sec_anm) {
+                    conteo.set(p.sec_anm, (conteo.get(p.sec_anm) || 0) + 1);
+                }
             }
         }
         AppState.conteoPorSector = conteo;
@@ -1830,14 +1834,25 @@ document.addEventListener('DOMContentLoaded', () => {
             // 2. Puntos de Muestreo disponibles (Número + Tipología)
             if (matchSup && matchPar && matchFec && matchEnc) {
                 if (sector && sector.props) {
-                    const k1 = sector.props.sc_key;
-                    const k2 = String(sector.props.sc || '');
-                    const k3 = String(sector.props.num_muestra || '');
-                    const k4 = sector.props.etiquetaSC;
-                    if (k1) sectores.set(k1, (sectores.get(k1) || 0) + 1);
-                    if (k2 && k2 !== k1) sectores.set(k2, (sectores.get(k2) || 0) + 1);
-                    if (k3 && k3 !== k1 && k3 !== k2) sectores.set(k3, (sectores.get(k3) || 0) + 1);
-                    if (k4 && k4 !== k1) sectores.set(k4, (sectores.get(k4) || 0) + 1);
+                    const p = sector.props;
+                    const k1 = p.sc_key;
+                    const can = p.canton || sector.canton || '';
+                    const sc = p.sc || p.num_muestra || '';
+                    const canNorm = can ? normTexto(can).toUpperCase() : '';
+                    if (k1) {
+                        sectores.set(k1, (sectores.get(k1) || 0) + 1);
+                        sectores.set(normTexto(k1).toUpperCase(), (sectores.get(normTexto(k1).toUpperCase()) || 0) + 1);
+                    }
+                    if (can && sc) {
+                        sectores.set(`${can}_${sc}`, (sectores.get(`${can}_${sc}`) || 0) + 1);
+                    }
+                    if (canNorm && sc) {
+                        const kn = `${canNorm}_${sc}`;
+                        if (kn !== k1) sectores.set(kn, (sectores.get(kn) || 0) + 1);
+                    }
+                    if (p.sec_anm) {
+                        sectores.set(p.sec_anm, (sectores.get(p.sec_anm) || 0) + 1);
+                    }
                 } else if (etiq) {
                     sectores.set(etiq, (sectores.get(etiq) || 0) + 1);
                 }
@@ -2036,12 +2051,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 return (parseInt(a.sc, 10) || 0) - (parseInt(b.sc, 10) || 0);
             });
 
+            // Helper para obtener conteo exacto de un sector (scoped estrictamente por cantón para evitar colisión Urcuquí/Pimampiro)
+            const obtenerConteoItem = (item) => {
+                const canNorm = normTexto(item.canton || '').toUpperCase();
+                const kNorm = canNorm ? `${canNorm}_${item.sc}` : '';
+                const count = sectores.get(item.scKey) || (kNorm ? sectores.get(kNorm) : 0) || 0;
+                const totalGlobal = (AppState.conteoPorSector && (
+                    AppState.conteoPorSector.get(item.scKey) || 
+                    (kNorm ? AppState.conteoPorSector.get(kNorm) : 0)
+                )) || count;
+                return Math.max(count, totalGlobal);
+            };
+
             // Conteo total y conteo de pendientes en el ámbito territorial seleccionado
             let countPendientesEnLista = 0;
             listaSectores.forEach(item => {
-                const count = sectores.get(item.scKey) || sectores.get(item.sc) || 0;
-                const totalGlobal = (AppState.conteoPorSector && (AppState.conteoPorSector.get(item.scKey) || AppState.conteoPorSector.get(item.sc))) || count;
-                const esCompleto = totalGlobal >= 10 || count >= 10;
+                const displayCount = obtenerConteoItem(item);
+                const esCompleto = displayCount >= 10;
                 if (!esCompleto) countPendientesEnLista++;
             });
 
@@ -2049,9 +2075,8 @@ document.addEventListener('DOMContentLoaded', () => {
             let listaParaMostrar = listaSectores;
             if (AppState.filtroSoloPendientes) {
                 listaParaMostrar = listaSectores.filter(item => {
-                    const count = sectores.get(item.scKey) || sectores.get(item.sc) || 0;
-                    const totalGlobal = (AppState.conteoPorSector && (AppState.conteoPorSector.get(item.scKey) || AppState.conteoPorSector.get(item.sc))) || count;
-                    return totalGlobal < 10 && count < 10;
+                    const displayCount = obtenerConteoItem(item);
+                    return displayCount < 10;
                 });
             }
 
@@ -2079,9 +2104,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const sectoresValidos = new Set();
 
             listaParaMostrar.forEach(item => {
-                const count = sectores.get(item.scKey) || sectores.get(item.sc) || 0;
-                const totalGlobal = (AppState.conteoPorSector && (AppState.conteoPorSector.get(item.scKey) || AppState.conteoPorSector.get(item.sc))) || count;
-                const displayCount = Math.max(count, totalGlobal);
+                const displayCount = obtenerConteoItem(item);
                 const esCompleto = displayCount >= 10;
                 sectoresValidos.add(item.scKey);
 
@@ -2509,6 +2532,16 @@ document.addEventListener('DOMContentLoaded', () => {
         AppState.sectoresMap = new Map();
         AppState.sectoresCandidatos = new Map();
 
+        // Detectar si el proyecto integra múltiples cantones en simultáneo
+        const cantonesDetectados = new Set();
+        if (sectoresData.features) {
+            sectoresData.features.forEach(f => {
+                const c = f.properties && (f.properties.canton || f.properties.CANTON);
+                if (c) cantonesDetectados.add(normTexto(c).toUpperCase());
+            });
+        }
+        const esMultiCanton = cantonesDetectados.size > 1;
+
         // Indexar Sectores Censales (266 puntos de muestra de Morona Santiago)
         if (sectoresData.features) {
             sectoresData.features.forEach(f => {
@@ -2571,18 +2604,34 @@ document.addEventListener('DOMContentLoaded', () => {
                         AppState.sectoresCandidatos.set(numStr, candidatosNum);
                     }
                 }
+
+                const canNorm = normTexto(can).toUpperCase();
+                const parNorm = normTexto(par).toUpperCase();
+
                 if (secAnm) AppState.sectoresMap.set(secAnm, meta);
-                if (p.sc_key) AppState.sectoresMap.set(p.sc_key, meta);
+                if (p.sc_key) {
+                    AppState.sectoresMap.set(p.sc_key, meta);
+                    AppState.sectoresMap.set(normTexto(p.sc_key).toUpperCase(), meta);
+                }
                 if (can && cod) {
                     AppState.sectoresMap.set(`${can}_${cod}`, meta);
                     AppState.sectoresMap.set(`${can.toUpperCase()}_${cod}`, meta);
+                    AppState.sectoresMap.set(`${canNorm}_${cod}`, meta);
                     AppState.sectoresMap.set(`${can}_${etiq}`, meta);
+                    AppState.sectoresMap.set(`${canNorm}_${etiq}`, meta);
+                    if (numStr) {
+                        AppState.sectoresMap.set(`${canNorm}_${numStr}`, meta);
+                    }
                 }
                 if (par && cod) {
                     AppState.sectoresMap.set(`${par}_${cod}`, meta);
+                    AppState.sectoresMap.set(`${parNorm}_${cod}`, meta);
                     AppState.sectoresMap.set(`${par}_${etiq}`, meta);
+                    AppState.sectoresMap.set(`${parNorm}_${etiq}`, meta);
                 }
-                if (cod) {
+                // Si hay un solo cantón en el proyecto, se permite indexación directa por código simple.
+                // En proyectos multi-cantón (ej. Urcuquí + Pimampiro), los códigos simples colisionan entre sí.
+                if (!esMultiCanton && cod) {
                     if (!AppState.sectoresMap.has(cod)) AppState.sectoresMap.set(cod, meta);
                     if (!AppState.sectoresMap.has(etiq)) AppState.sectoresMap.set(etiq, meta);
                     if (tip && !AppState.sectoresMap.has(`${cod}${tip}`)) AppState.sectoresMap.set(`${cod}${tip}`, meta);
@@ -3803,8 +3852,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     AppState.sectoresGeojson.features.forEach(f => {
                         const p = f.properties || {};
                         const k = p.sc_key || `${p.canton}_${p.sc}`;
-                        if (k && (conteos.get(k) || 0) < 10) {
+                        const canNorm = normTexto(p.canton || p.CANTON || '').toUpperCase();
+                        const kNorm = canNorm ? `${canNorm}_${p.sc || p.num_muestra}` : '';
+                        const c = conteos.get(k) || (kNorm ? conteos.get(kNorm) : 0) || 0;
+                        if (c < 10) {
                             keysPendientes.push(k);
+                            if (p.sc_key && p.sc_key !== k) keysPendientes.push(p.sc_key);
+                            if (kNorm && kNorm !== k) keysPendientes.push(kNorm);
                         }
                     });
                 }
