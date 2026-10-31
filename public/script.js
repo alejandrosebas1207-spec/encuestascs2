@@ -850,19 +850,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 const sc = p.sc || p.num_muestra || '';
                 const canNorm = can ? normTexto(can).toUpperCase() : '';
 
-                if (k1) {
-                    conteo.set(k1, (conteo.get(k1) || 0) + 1);
-                    conteo.set(normTexto(k1).toUpperCase(), (conteo.get(normTexto(k1).toUpperCase()) || 0) + 1);
-                }
-                if (can && sc) {
-                    conteo.set(`${can}_${sc}`, (conteo.get(`${can}_${sc}`) || 0) + 1);
-                }
-                if (canNorm && sc) {
-                    const kn = `${canNorm}_${sc}`;
-                    if (kn !== k1) conteo.set(kn, (conteo.get(kn) || 0) + 1);
-                }
-                if (p.sec_anm) {
-                    conteo.set(p.sec_anm, (conteo.get(p.sec_anm) || 0) + 1);
+                const keys = new Set();
+                if (k1) keys.add(k1);
+                if (k1) keys.add(normTexto(k1).toUpperCase());
+                if (can && sc) keys.add(`${can}_${sc}`);
+                if (canNorm && sc) keys.add(`${canNorm}_${sc}`);
+                if (p.sec_anm) keys.add(String(p.sec_anm));
+
+                for (const k of keys) {
+                    conteo.set(k, (conteo.get(k) || 0) + 1);
                 }
             }
         }
@@ -1839,19 +1835,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     const can = p.canton || sector.canton || '';
                     const sc = p.sc || p.num_muestra || '';
                     const canNorm = can ? normTexto(can).toUpperCase() : '';
-                    if (k1) {
-                        sectores.set(k1, (sectores.get(k1) || 0) + 1);
-                        sectores.set(normTexto(k1).toUpperCase(), (sectores.get(normTexto(k1).toUpperCase()) || 0) + 1);
-                    }
-                    if (can && sc) {
-                        sectores.set(`${can}_${sc}`, (sectores.get(`${can}_${sc}`) || 0) + 1);
-                    }
-                    if (canNorm && sc) {
-                        const kn = `${canNorm}_${sc}`;
-                        if (kn !== k1) sectores.set(kn, (sectores.get(kn) || 0) + 1);
-                    }
-                    if (p.sec_anm) {
-                        sectores.set(p.sec_anm, (sectores.get(p.sec_anm) || 0) + 1);
+                    const keys = new Set();
+                    if (k1) keys.add(k1);
+                    if (k1) keys.add(normTexto(k1).toUpperCase());
+                    if (can && sc) keys.add(`${can}_${sc}`);
+                    if (canNorm && sc) keys.add(`${canNorm}_${sc}`);
+                    if (p.sec_anm) keys.add(String(p.sec_anm));
+
+                    for (const k of keys) {
+                        sectores.set(k, (sectores.get(k) || 0) + 1);
                     }
                 } else if (etiq) {
                     sectores.set(etiq, (sectores.get(etiq) || 0) + 1);

@@ -507,10 +507,10 @@
 
   <!-- ===== SCRIPTS ===== -->
   <script src="libs/maplibre-gl.js"></script>
-  <script src="js/tipologias.js?v=1.2.3"></script>
-  <script src="js/kobo-parser.js?v=1.2.3"></script>
-  <script src="js/auditoria.js?v=1.2.3"></script>
-  <script src="script.js?v=1.2.3"></script>
+  <script src="js/tipologias.js?v=1.2.4"></script>
+  <script src="js/kobo-parser.js?v=1.2.4"></script>
+  <script src="js/auditoria.js?v=1.2.4"></script>
+  <script src="script.js?v=1.2.4"></script>
   <script>
     if ('serviceWorker' in navigator) {
       let refreshing = false;
@@ -526,13 +526,13 @@
         if ('caches' in window) {
           caches.keys().then(names => {
             names.forEach(name => {
-              if (name !== 'clima-social-urcuqui-pimampiro-v1.2.3') {
+              if (name !== 'clima-social-urcuqui-pimampiro-v1.2.4') {
                 caches.delete(name);
               }
             });
           });
         }
-        navigator.serviceWorker.register('/service-worker.js?v=1.2.3').then(reg => {
+        navigator.serviceWorker.register('/service-worker.js?v=1.2.4').then(reg => {
           if (!reg) return;
           if (reg.waiting) {
             reg.waiting.postMessage({ type: 'SKIP_WAITING' });
