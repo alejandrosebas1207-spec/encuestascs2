@@ -1,7 +1,7 @@
 {
-  "name": "Clima Social · Encuesta Nueva Loja",
-  "short_name": "CS Nueva Loja",
-  "description": "Supervisión de campo para Encuesta Nueva Loja 2026.",
+  "name": "Clima Social · Encuesta Cantonal Cayambe 2026",
+  "short_name": "CS Cayambe",
+  "description": "Supervisión de campo en tiempo real para Encuesta Cantonal Cayambe 2026.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#f8fafc",

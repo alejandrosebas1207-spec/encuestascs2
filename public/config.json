@@ -1,23 +1,98 @@
 {
-  "estado": "STANDBY",
-  "version": "1.3.0",
-  "proyecto": "Clima Social · Terminal en Reposo",
-  "canton": "",
-  "provincia": "",
-  "modalidad": "sectores",
-  "meta": 0,
-  "bounds": null,
+  "estado": "ACTIVO",
+  "version": "2.0.0",
+  "proyecto": "Encuesta Cantonal Cayambe 2026",
+  "canton": "CAYAMBE",
+  "provincia": "Pichincha",
+  "modalidad": "hibrido",
+  "meta": 400,
+  "bounds": [
+    [-78.33, -0.20],
+    [-77.83, 0.20]
+  ],
   "kobo": {
-    "formularios": [],
-    "asset_id": "",
-    "api_token": "",
-    "campo_encuestador": "",
-    "campo_supervisor": "",
-    "choices_parroquias": {},
-    "choices_tipologias": {}
+    "formularios": [
+      {
+        "canton": "CAYAMBE",
+        "asset_id": "a5sbLGFQPvoQaRZThLZTMJ",
+        "campo_encuestador": "cod_enc",
+        "campo_supervisor": "cod_sup",
+        "choices_parroquias": {
+          "1": "ASCAZUBI",
+          "2": "CANGAHUA",
+          "3": "CAYAMBE",
+          "4": "JUAN MONTALVO",
+          "5": "OLMEDO/PESILLO",
+          "6": "OTON",
+          "7": "SAN JOSE DE AYORA",
+          "8": "STA.ROSA DE CUSUBAMBA",
+          "1; ASCAZUBI": "ASCAZUBI",
+          "2; CANGAHUA": "CANGAHUA",
+          "3; CAYAMBE": "CAYAMBE",
+          "4; JUAN MONTALVO": "JUAN MONTALVO",
+          "5; OLMEDO/ PESILLO": "OLMEDO/PESILLO",
+          "5; OLMEDO/PESILLO": "OLMEDO/PESILLO",
+          "6; OTON": "OTON",
+          "7; SAN JOSE DE AYORA": "SAN JOSE DE AYORA",
+          "8; SANTA ROSA DE CUSUBAMBA": "STA.ROSA DE CUSUBAMBA",
+          "8; STA.ROSA DE CUSUBAMBA": "STA.ROSA DE CUSUBAMBA"
+        }
+      }
+    ],
+    "asset_id": "a5sbLGFQPvoQaRZThLZTMJ",
+    "api_token": "07cf361cc0dcfc56f489d599435c8e0ed6ce9387",
+    "campo_encuestador": "cod_enc",
+    "campo_supervisor": "cod_sup",
+    "choices_parroquias": {
+      "1": "ASCAZUBI",
+      "2": "CANGAHUA",
+      "3": "CAYAMBE",
+      "4": "JUAN MONTALVO",
+      "5": "OLMEDO/PESILLO",
+      "6": "OTON",
+      "7": "SAN JOSE DE AYORA",
+      "8": "STA.ROSA DE CUSUBAMBA",
+      "1; ASCAZUBI": "ASCAZUBI",
+      "2; CANGAHUA": "CANGAHUA",
+      "3; CAYAMBE": "CAYAMBE",
+      "4; JUAN MONTALVO": "JUAN MONTALVO",
+      "5; OLMEDO/ PESILLO": "OLMEDO/PESILLO",
+      "5; OLMEDO/PESILLO": "OLMEDO/PESILLO",
+      "6; OTON": "OTON",
+      "7; SAN JOSE DE AYORA": "SAN JOSE DE AYORA",
+      "8; SANTA ROSA DE CUSUBAMBA": "STA.ROSA DE CUSUBAMBA",
+      "8; STA.ROSA DE CUSUBAMBA": "STA.ROSA DE CUSUBAMBA"
+    },
+    "choices_tipologias": {
+      "1": "A",
+      "2": "B",
+      "3": "C",
+      "4": "D",
+      "5": "E",
+      "6": "F",
+      "7": "G",
+      "8": "H",
+      "a": "A",
+      "b": "B",
+      "c": "C",
+      "d": "D",
+      "e": "E",
+      "f": "F",
+      "g": "G",
+      "h": "H"
+    }
   },
   "equipo": {
-    "supervisores": {},
-    "encuestadores": {}
+    "supervisores": {
+      "1": "Supervisor 1",
+      "2": "Supervisor 2"
+    },
+    "encuestadores": {
+      "3": "Encuestador 3",
+      "4": "Encuestador 4",
+      "5": "Encuestador 5",
+      "6": "Encuestador 6",
+      "7": "Encuestador 7"
+    }
   }
 }

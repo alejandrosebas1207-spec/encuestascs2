@@ -277,7 +277,15 @@ function normalizarEncuesta(raw, params, cantonOverride = "", formItem = null) {
     const PARROQUIAS_POR_DEFECTO = {
         "URCUQUI": { "1": "CAHUASQUI", "2": "PABLO ARENAS", "3": "SAN BLAS", "4": "TUMBABIRO", "5": "URCUQUI" },
         "URCUQUÍ": { "1": "CAHUASQUI", "2": "PABLO ARENAS", "3": "SAN BLAS", "4": "TUMBABIRO", "5": "URCUQUI" },
-        "PIMAMPIRO": { "1": "PIMAMPIRO", "2": "CHUGA" }
+        "PIMAMPIRO": { "1": "PIMAMPIRO", "2": "CHUGA" },
+        "CAYAMBE": {
+            "1": "ASCAZUBI", "2": "CANGAHUA", "3": "CAYAMBE", "4": "JUAN MONTALVO",
+            "5": "OLMEDO/PESILLO", "6": "OTON", "7": "SAN JOSE DE AYORA", "8": "STA.ROSA DE CUSUBAMBA",
+            "1; ASCAZUBI": "ASCAZUBI", "2; CANGAHUA": "CANGAHUA", "3; CAYAMBE": "CAYAMBE",
+            "4; JUAN MONTALVO": "JUAN MONTALVO", "5; OLMEDO/ PESILLO": "OLMEDO/PESILLO",
+            "5; OLMEDO/PESILLO": "OLMEDO/PESILLO", "6; OTON": "OTON", "7; SAN JOSE DE AYORA": "SAN JOSE DE AYORA",
+            "8; SANTA ROSA DE CUSUBAMBA": "STA.ROSA DE CUSUBAMBA", "8; STA.ROSA DE CUSUBAMBA": "STA.ROSA DE CUSUBAMBA"
+        }
     };
     const cOverrideNorm = String(cantonOverride || "").normalize('NFD').replace(/[̀-ͯ]/g, '').toUpperCase().trim();
     const formChoicesParr = (formItem && formItem.choicesParroquias) || PARROQUIAS_POR_DEFECTO[cantonOverride] || PARROQUIAS_POR_DEFECTO[cOverrideNorm] || {};
@@ -290,7 +298,14 @@ function normalizarEncuesta(raw, params, cantonOverride = "", formItem = null) {
 
     const rawCirc = extraerValor(raw, ["circunscripcion", "circ", "CIRCUNSCRIPCION"]) || "";
     const CIRCUNSCRIPCIONES = { "1": "CIRCUNSCRIPCION URBANA 1", "2": "CIRCUNSCRIPCION URBANA 2", "3": "CIRCUNSCRIPCION RURAL" };
-    const circunscripcion = CIRCUNSCRIPCIONES[rawCirc] || String(rawCirc).trim();
+    let circunscripcion = CIRCUNSCRIPCIONES[rawCirc] || String(rawCirc).trim();
+    if (!circunscripcion) {
+        if (parroquia === "CAYAMBE") {
+            circunscripcion = "CIRCUNSCRIPCIÓN URBANA";
+        } else if (parroquia) {
+            circunscripcion = "CIRCUNSCRIPCIÓN RURAL";
+        }
+    }
 
     const rawGen = extraerValor(raw, [
         "p1", "p1_1", "genero", "p_genero", "sexo", "gender",
@@ -327,6 +342,10 @@ function normalizarEncuesta(raw, params, cantonOverride = "", formItem = null) {
         start,
         end,
         _geolocation: geo,
+        latitud: geo ? geo[0] : null,
+        longitud: geo ? geo[1] : null,
+        lat: geo ? geo[0] : null,
+        lng: geo ? geo[1] : null,
         [campoEnc]: encuestador,
         [campoSup]: supervisor,
         cod_enc: encuestador,

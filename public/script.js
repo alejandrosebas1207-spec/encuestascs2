@@ -708,18 +708,28 @@ document.addEventListener('DOMContentLoaded', () => {
             ''
         ).trim();
 
-        if (!raw) {
-            encuesta._sectorResuelto = null;
-            return null;
-        }
-
         const canEnc = encuesta.canton || cantonDeclarado(encuesta) || cantonPorParroquia(parroquiaDeclarada(encuesta));
         const canNorm = canEnc ? normTexto(canEnc).toUpperCase() : '';
-        const numMatch = raw.match(/\d+/);
+        const parEnc = parroquiaDeclarada(encuesta);
+        const parNorm = parEnc ? normTexto(parEnc).toUpperCase() : '';
+        const numMatch = raw ? raw.match(/\d+/) : null;
         const numId = numMatch ? String(parseInt(numMatch[0], 10)) : '';
 
+        // 0. Si es Cayambe urbano y el código numérico está entre 1 y 19, mapear al sector correspondiente (muestra 9 a 27)
+        if ((parNorm === 'CAYAMBE' || canNorm === 'CAYAMBE') && numId) {
+            const nVal = parseInt(numId, 10);
+            if (nVal >= 1 && nVal <= 19 && AppState.sectoresMap) {
+                const targetKey = `CAYAMBE_${nVal + 8}`;
+                const secRel = AppState.sectoresMap.get(targetKey) || AppState.sectoresMap.get(String(nVal + 8));
+                if (secRel) {
+                    encuesta._sectorResuelto = secRel;
+                    return secRel;
+                }
+            }
+        }
+
         // 1. Coincidencia scoped por Cantón (Imprescindible para multi-cantón Urcuquí + Pimampiro)
-        if (canNorm && AppState.sectoresMap) {
+        if (raw && canNorm && AppState.sectoresMap) {
             const secPorCan = AppState.sectoresMap.get(`${canNorm}_${raw}`)
                 || AppState.sectoresMap.get(`${canEnc}_${raw}`)
                 || (numId ? (AppState.sectoresMap.get(`${canNorm}_${numId}`) || AppState.sectoresMap.get(`${canEnc}_${numId}`)) : null);
@@ -730,7 +740,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // 2. Coincidencia directa por clave única global (ej. URCUQUÍ_1, PIMAMPIRO_1, sec_anm)
-        if (AppState.sectoresMap) {
+        if (raw && AppState.sectoresMap) {
             const secMeta = AppState.sectoresMap.get(raw) || AppState.sectoresMap.get(normTexto(raw).toUpperCase());
             if (secMeta) {
                 // Si la encuesta tiene cantón declarado, solo aceptar si coincide con el sector
@@ -742,7 +752,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // 3. Coincidencia en candidatos por número filtrando por cantón
-        if (numId && AppState.sectoresCandidatos) {
+        if (raw && numId && AppState.sectoresCandidatos) {
             const cands = AppState.sectoresCandidatos.get(numId) || [];
             if (cands.length === 1 && (!canNorm || normTexto(cands[0].canton).toUpperCase() === canNorm)) {
                 encuesta._sectorResuelto = cands[0];
@@ -758,26 +768,28 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // 4. Búsqueda por alias normalizado
-        const alias = normalizarAliasSector(raw);
-        if (alias && AppState.sectoresCandidatos) {
-            const candidatos = AppState.sectoresCandidatos.get(alias) || [];
-            if (candidatos.length > 0) {
-                if (canNorm) {
-                    const match = candidatos.find(s => normTexto(s.canton).toUpperCase() === canNorm);
-                    if (match) {
-                        encuesta._sectorResuelto = match;
-                        return match;
+        if (raw) {
+            const alias = normalizarAliasSector(raw);
+            if (alias && AppState.sectoresCandidatos) {
+                const candidatos = AppState.sectoresCandidatos.get(alias) || [];
+                if (candidatos.length > 0) {
+                    if (canNorm) {
+                        const match = candidatos.find(s => normTexto(s.canton).toUpperCase() === canNorm);
+                        if (match) {
+                            encuesta._sectorResuelto = match;
+                            return match;
+                        }
                     }
-                }
-                if (!canNorm && candidatos.length === 1) {
-                    encuesta._sectorResuelto = candidatos[0];
-                    return candidatos[0];
+                    if (!canNorm && candidatos.length === 1) {
+                        encuesta._sectorResuelto = candidatos[0];
+                        return candidatos[0];
+                    }
                 }
             }
         }
 
         // 5. Búsqueda de rescate en la colección GeoJSON por num_muestra o sc
-        if (AppState.sectoresGeojson && Array.isArray(AppState.sectoresGeojson.features)) {
+        if (raw && AppState.sectoresGeojson && Array.isArray(AppState.sectoresGeojson.features)) {
             const numVal = parseInt(numId || raw, 10);
             if (!isNaN(numVal)) {
                 const feat = AppState.sectoresGeojson.features.find(f => {
@@ -791,11 +803,73 @@ document.addEventListener('DOMContentLoaded', () => {
                         feature: feat,
                         bbox: feat.properties.bbox,
                         centroid: feat.properties.centroid,
-                        etiquetaSC: feat.properties.etiquetaSC,
+                        etiquetaSC: feat.properties.etiquetaSC || feat.properties.etiqueta,
                         parroquia: feat.properties.parroquia,
                         canton: feat.properties.canton,
                         sec_anm: feat.properties.sec_anm,
                         props: feat.properties
+                    };
+                    encuesta._sectorResuelto = res;
+                    return res;
+                }
+            }
+        }
+
+        // 6. Rescate espacial por GPS (Puntos rurales o sectores sin código sc explícito)
+        let lat = null, lng = null;
+        if (Array.isArray(encuesta._geolocation) && encuesta._geolocation.length >= 2) {
+            lat = Number(encuesta._geolocation[0]);
+            lng = Number(encuesta._geolocation[1]);
+        } else if (encuesta.latitud !== undefined && encuesta.longitud !== undefined && encuesta.latitud !== null) {
+            lat = Number(encuesta.latitud);
+            lng = Number(encuesta.longitud);
+        } else if (encuesta.lat !== undefined && encuesta.lng !== undefined && encuesta.lat !== null) {
+            lat = Number(encuesta.lat);
+            lng = Number(encuesta.lng);
+        }
+
+        if (lat !== null && lng !== null && !isNaN(lat) && !isNaN(lng) && AppState.sectoresGeojson && Array.isArray(AppState.sectoresGeojson.features)) {
+            let featuresCandidatas = AppState.sectoresGeojson.features;
+            if (parNorm) {
+                const porParr = featuresCandidatas.filter(f => normTexto(f.properties && (f.properties.parroquia || f.properties.PARROQUIA || '')).toUpperCase() === parNorm);
+                if (porParr.length > 0) featuresCandidatas = porParr;
+            } else if (canNorm) {
+                const porCan = featuresCandidatas.filter(f => normTexto(f.properties && (f.properties.canton || f.properties.CANTON || '')).toUpperCase() === canNorm);
+                if (porCan.length > 0) featuresCandidatas = porCan;
+            }
+
+            if (featuresCandidatas.length > 0) {
+                let mejorDist = Infinity;
+                let mejorFeat = null;
+                for (let i = 0; i < featuresCandidatas.length; i++) {
+                    const f = featuresCandidatas[i];
+                    const p = f.properties || {};
+                    let cLat = null, cLng = null;
+                    if (p.centroid && Array.isArray(p.centroid) && p.centroid.length >= 2) {
+                        cLng = p.centroid[0];
+                        cLat = p.centroid[1];
+                    } else if (f.geometry && f.geometry.type === 'Point' && Array.isArray(f.geometry.coordinates)) {
+                        cLng = f.geometry.coordinates[0];
+                        cLat = f.geometry.coordinates[1];
+                    }
+                    if (cLat !== null && cLng !== null) {
+                        const d = (lat - cLat) * (lat - cLat) + (lng - cLng) * (lng - cLng);
+                        if (d < mejorDist) {
+                            mejorDist = d;
+                            mejorFeat = f;
+                        }
+                    }
+                }
+                if (mejorFeat) {
+                    const res = {
+                        feature: mejorFeat,
+                        bbox: mejorFeat.properties.bbox,
+                        centroid: mejorFeat.properties.centroid,
+                        etiquetaSC: mejorFeat.properties.etiquetaSC || mejorFeat.properties.etiqueta,
+                        parroquia: mejorFeat.properties.parroquia,
+                        canton: mejorFeat.properties.canton,
+                        sec_anm: mejorFeat.properties.sec_anm,
+                        props: mejorFeat.properties
                     };
                     encuesta._sectorResuelto = res;
                     return res;
@@ -2620,6 +2694,21 @@ document.addEventListener('DOMContentLoaded', () => {
                     AppState.sectoresMap.set(`${parNorm}_${cod}`, meta);
                     AppState.sectoresMap.set(`${par}_${etiq}`, meta);
                     AppState.sectoresMap.set(`${parNorm}_${etiq}`, meta);
+                }
+                // Indexación de sectores urbanos con numeración relativa en Cayambe (1 a 19 -> muestra 9 a 27)
+                if (canNorm === 'CAYAMBE' && parNorm === 'CAYAMBE' && numSc >= 9 && numSc <= 27) {
+                    const relNum = numSc - 8;
+                    AppState.sectoresMap.set(`CAYAMBE_${relNum}`, meta);
+                    AppState.sectoresMap.set(`CAYAMBE_${relNum}|${tip}`, meta);
+                    AppState.sectoresMap.set(`CAYAMBE_${relNum} | ${tip}`, meta);
+                    const relKey = normalizarAliasSector(String(relNum));
+                    if (relKey) {
+                        const candidatos = AppState.sectoresCandidatos.get(relKey) || [];
+                        if (!candidatos.includes(meta)) {
+                            candidatos.push(meta);
+                            AppState.sectoresCandidatos.set(relKey, candidatos);
+                        }
+                    }
                 }
                 // Si hay un solo cantón en el proyecto, se permite indexación directa por código simple.
                 // En proyectos multi-cantón (ej. Urcuquí + Pimampiro), los códigos simples colisionan entre sí.
