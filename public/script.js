@@ -1539,6 +1539,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         ts: Date.now(),
                         proyecto: AppState.config.proyecto
                     }));
+                } else if (Array.isArray(data.resultados) && data.resultados.length === 0) {
+                    localStorage.removeItem(cacheStorageKey);
                 }
             } catch (e) {
                 console.warn('[Cache] Error al guardar caché en localStorage:', e);

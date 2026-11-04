@@ -1,6 +1,6 @@
 {
   "estado": "ACTIVO",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "proyecto": "Encuesta Cantonal Cayambe 2026",
   "canton": "CAYAMBE",
   "provincia": "Pichincha",
@@ -11,35 +11,8 @@
     [-77.83, 0.20]
   ],
   "kobo": {
-    "formularios": [
-      {
-        "canton": "CAYAMBE",
-        "asset_id": "a5sbLGFQPvoQaRZThLZTMJ",
-        "campo_encuestador": "cod_enc",
-        "campo_supervisor": "cod_sup",
-        "choices_parroquias": {
-          "1": "ASCAZUBI",
-          "2": "CANGAHUA",
-          "3": "CAYAMBE",
-          "4": "JUAN MONTALVO",
-          "5": "OLMEDO/PESILLO",
-          "6": "OTON",
-          "7": "SAN JOSE DE AYORA",
-          "8": "STA.ROSA DE CUSUBAMBA",
-          "1; ASCAZUBI": "ASCAZUBI",
-          "2; CANGAHUA": "CANGAHUA",
-          "3; CAYAMBE": "CAYAMBE",
-          "4; JUAN MONTALVO": "JUAN MONTALVO",
-          "5; OLMEDO/ PESILLO": "OLMEDO/PESILLO",
-          "5; OLMEDO/PESILLO": "OLMEDO/PESILLO",
-          "6; OTON": "OTON",
-          "7; SAN JOSE DE AYORA": "SAN JOSE DE AYORA",
-          "8; SANTA ROSA DE CUSUBAMBA": "STA.ROSA DE CUSUBAMBA",
-          "8; STA.ROSA DE CUSUBAMBA": "STA.ROSA DE CUSUBAMBA"
-        }
-      }
-    ],
-    "asset_id": "a5sbLGFQPvoQaRZThLZTMJ",
+    "formularios": [],
+    "asset_id": "",
     "api_token": "07cf361cc0dcfc56f489d599435c8e0ed6ce9387",
     "campo_encuestador": "cod_enc",
     "campo_supervisor": "cod_sup",

@@ -434,13 +434,13 @@ async function obtenerDatosKobo() {
 
     if (params.esStandby || listaFormularios.length === 0 || !params.apiToken) {
         return {
-            estado: params.esStandby ? "STANDBY" : "CONFIG_PENDIENTE",
+            estado: params.esStandby ? "STANDBY" : "ACTIVO",
             total: 0,
             resultados: [],
             obtenidoEn: Date.now(),
             mensaje: params.esStandby
                 ? "Terminal en reposo (Standby). Sin encuesta activa asignada."
-                : "Esperando configuración de credenciales Kobo."
+                : "En espera del formulario Kobo de octubre 2026 / inicio de campo."
         };
     }
 
