@@ -715,8 +715,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const numMatch = raw ? raw.match(/\d+/) : null;
         const numId = numMatch ? String(parseInt(numMatch[0], 10)) : '';
 
-        // 0. Si es Cayambe urbano y el código numérico está entre 1 y 19, mapear al sector correspondiente (muestra 9 a 27)
-        if ((parNorm === 'CAYAMBE' || canNorm === 'CAYAMBE') && numId) {
+        // 0. Si es Cayambe urbano (parroquia) y el código numérico está entre 1 y 19, mapear al sector correspondiente (muestra 9 a 27)
+        if (parNorm === 'CAYAMBE' && numId) {
             const nVal = parseInt(numId, 10);
             if (nVal >= 1 && nVal <= 19 && AppState.sectoresMap) {
                 const targetKey = `CAYAMBE_${nVal + 8}`;
@@ -2696,21 +2696,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     AppState.sectoresMap.set(`${parNorm}_${cod}`, meta);
                     AppState.sectoresMap.set(`${par}_${etiq}`, meta);
                     AppState.sectoresMap.set(`${parNorm}_${etiq}`, meta);
-                }
-                // Indexación de sectores urbanos con numeración relativa en Cayambe (1 a 19 -> muestra 9 a 27)
-                if (canNorm === 'CAYAMBE' && parNorm === 'CAYAMBE' && numSc >= 9 && numSc <= 27) {
-                    const relNum = numSc - 8;
-                    AppState.sectoresMap.set(`CAYAMBE_${relNum}`, meta);
-                    AppState.sectoresMap.set(`CAYAMBE_${relNum}|${tip}`, meta);
-                    AppState.sectoresMap.set(`CAYAMBE_${relNum} | ${tip}`, meta);
-                    const relKey = normalizarAliasSector(String(relNum));
-                    if (relKey) {
-                        const candidatos = AppState.sectoresCandidatos.get(relKey) || [];
-                        if (!candidatos.includes(meta)) {
-                            candidatos.push(meta);
-                            AppState.sectoresCandidatos.set(relKey, candidatos);
-                        }
-                    }
                 }
                 // Si hay un solo cantón en el proyecto, se permite indexación directa por código simple.
                 // En proyectos multi-cantón (ej. Urcuquí + Pimampiro), los códigos simples colisionan entre sí.
