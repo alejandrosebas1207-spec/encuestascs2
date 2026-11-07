@@ -1,6 +1,6 @@
 {
   "estado": "ACTIVO",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "proyecto": "Encuesta Cantonal Cayambe 2026",
   "canton": "CAYAMBE",
   "provincia": "Pichincha",
@@ -11,8 +11,15 @@
     [-77.83, 0.20]
   ],
   "kobo": {
-    "formularios": [],
-    "asset_id": "",
+    "formularios": [
+      {
+        "id": "a3rnFwmDJvCPScocS2tRoU",
+        "asset_id": "a3rnFwmDJvCPScocS2tRoU",
+        "nombre": "ENCUESTA CANTÓN CAYAMBE 2026",
+        "activo": true
+      }
+    ],
+    "asset_id": "a3rnFwmDJvCPScocS2tRoU",
     "api_token": "07cf361cc0dcfc56f489d599435c8e0ed6ce9387",
     "campo_encuestador": "cod_enc",
     "campo_supervisor": "cod_sup",
