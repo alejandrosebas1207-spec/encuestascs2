@@ -4777,13 +4777,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         datos.forEach(encuestador => {
             const supOficial = ENCUESTADOR_A_SUPERVISOR[encuestador.id];
-            if (hayNominaOficial) {
-                if (supOficial && gruposSupervisor.has(supOficial) && EQUIPO_CAMPO[encuestador.id]) {
-                    const gSup = gruposSupervisor.get(supOficial);
-                    gSup.encuestadores.push(encuestador);
-                    gSup.totalEncuestas += encuestador.encuestas.length;
-                    totalOficialesActivos++;
-                }
+            if (hayNominaOficial && supOficial && gruposSupervisor.has(supOficial) && EQUIPO_CAMPO[encuestador.id]) {
+                const gSup = gruposSupervisor.get(supOficial);
+                gSup.encuestadores.push(encuestador);
+                gSup.totalEncuestas += encuestador.encuestas.length;
+                totalOficialesActivos++;
             } else {
                 // Modo dinámico limpio: agrupar por el supervisor reportado en las encuestas
                 const supVal = String(encuestador.supervisor || '').trim() || 'Sin asignar';
@@ -4872,11 +4870,11 @@ document.addEventListener('DOMContentLoaded', () => {
         // ---------------------------------------------------------------------
         // SECCIÓN DE ERRORES DE CÓDIGO (Al final de los supervisores)
         // ---------------------------------------------------------------------
-        const encuestadoresNoOficiales = hayNominaOficial ? datos.filter(g => !EQUIPO_CAMPO[g.id]) : [];
+        const encuestadoresNoOficiales = (hayNominaOficial && AppState.config && AppState.config.nominaEstricta) ? datos.filter(g => !EQUIPO_CAMPO[g.id]) : [];
         ordenarEncuestadoresLista(encuestadoresNoOficiales);
 
         const encuestasBase = AppState.encuestas || [];
-        const encuestasSupMismatch = hayNominaOficial ? encuestasBase.filter(e => {
+        const encuestasSupMismatch = (hayNominaOficial && AppState.config && AppState.config.nominaEstricta) ? encuestasBase.filter(e => {
             const encCod = String(e.encuestador || e.C_digo_encuestador || campo(e, AppState.config.campoEncuestador) || '').trim();
             const supOrig = String(e._supervisorOriginal || '').trim();
             const supEsp = ENCUESTADOR_A_SUPERVISOR[encCod];
