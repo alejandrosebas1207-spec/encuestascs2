@@ -715,20 +715,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const numMatch = raw ? raw.match(/\d+/) : null;
         const numId = numMatch ? String(parseInt(numMatch[0], 10)) : '';
 
-        // 0. Si es Cayambe urbano (parroquia) y el código numérico está entre 1 y 19, mapear al sector correspondiente (muestra 9 a 27)
-        if (parNorm === 'CAYAMBE' && numId) {
-            const nVal = parseInt(numId, 10);
-            if (nVal >= 1 && nVal <= 19 && AppState.sectoresMap) {
-                const targetKey = `CAYAMBE_${nVal + 8}`;
-                const secRel = AppState.sectoresMap.get(targetKey) || AppState.sectoresMap.get(String(nVal + 8));
-                if (secRel) {
-                    encuesta._sectorResuelto = secRel;
-                    return secRel;
-                }
+        // 1. Coincidencia scoped por Parroquia (si está declarada y existe en el mapa)
+        if (raw && parNorm && AppState.sectoresMap) {
+            const secPorPar = AppState.sectoresMap.get(`${parNorm}_${raw}`)
+                || (numId ? AppState.sectoresMap.get(`${parNorm}_${numId}`) : null);
+            if (secPorPar) {
+                encuesta._sectorResuelto = secPorPar;
+                return secPorPar;
             }
         }
 
-        // 1. Coincidencia scoped por Cantón (Imprescindible para multi-cantón Urcuquí + Pimampiro)
+        // 2. Coincidencia scoped por Cantón (Imprescindible para multi-cantón Urcuquí + Pimampiro)
         if (raw && canNorm && AppState.sectoresMap) {
             const secPorCan = AppState.sectoresMap.get(`${canNorm}_${raw}`)
                 || AppState.sectoresMap.get(`${canEnc}_${raw}`)
