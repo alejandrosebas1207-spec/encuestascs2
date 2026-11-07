@@ -4760,12 +4760,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const fragment = document.createDocumentFragment();
 
         // ---------------------------------------------------------------------
-        // AGRUPAR POR SUPERVISOR (Panel limpio: estrictamente los 4 supervisores y sus 3 encuestadores)
+        // AGRUPAR POR SUPERVISOR (Panel limpio: estrictamente los supervisores oficiales y sus encuestadores)
         // ---------------------------------------------------------------------
         const gruposSupervisor = new Map();
-        const hayNominaOficial = Object.keys(SUPERVISORES_CAMPO).length > 0;
+        const haySupervisoresOficiales = Object.keys(SUPERVISORES_CAMPO).length > 0;
+        const hayNominaOficial = Object.keys(EQUIPO_CAMPO).length > 0;
 
-        if (hayNominaOficial) {
+        if (haySupervisoresOficiales) {
             Object.keys(SUPERVISORES_CAMPO).forEach(supId => {
                 gruposSupervisor.set(supId, {
                     id: supId,
@@ -4788,7 +4789,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             } else {
                 // Modo dinámico limpio: agrupar por el supervisor reportado en las encuestas
-                const supVal = encuestador.supervisor || 'Sin asignar';
+                const supVal = String(encuestador.supervisor || '').trim() || 'Sin asignar';
                 if (!gruposSupervisor.has(supVal)) {
                     gruposSupervisor.set(supVal, {
                         id: supVal,
