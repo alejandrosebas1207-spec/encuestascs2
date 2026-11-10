@@ -1,6 +1,6 @@
 {
-  "estado": "ACTIVO",
-  "version": "2.2.3",
+  "estado": "STANDBY",
+  "version": "2.2.4",
   "proyecto": "Encuesta Cantonal Cayambe 2026",
   "canton": "CAYAMBE",
   "provincia": "Pichincha",
