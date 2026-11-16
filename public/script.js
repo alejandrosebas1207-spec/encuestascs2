@@ -1451,7 +1451,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.title = 'Clima Social · ' + nom;
 
         const meta = AppState.config.meta || AppState.config.metaEncuestas || 1900;
-        const cantProv = AppState.config.provincia || AppState.config.canton || 'Imbabura';
+        const cantProv = AppState.config.canton === 'RIOBAMBA' ? 'Riobamba' : (AppState.config.provincia || AppState.config.canton || 'Riobamba');
         if (UI.kpiMeta) {
             UI.kpiMeta.textContent = `Meta: ${meta.toLocaleString()} (${cantProv})`;
         }
@@ -2221,11 +2221,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
 
-            const lblTodas = totalPuntosMuestra > 0 
-                ? `Todas las parroquias (${totalPuntosMuestra})` 
-                : 'Todas las parroquias';
-            UI.parroquiaFilter.innerHTML = `<option value="Todas">${lblTodas}</option>`;
-            
             let parList = [];
             const cantActivo = AppState.cantonSeleccionado;
             const permitidasCanton = (cantActivo !== 'Todos' && PARROQUIAS_POR_CANTON[cantActivo]) ? PARROQUIAS_POR_CANTON[cantActivo].map(normStr) : null;
@@ -2266,12 +2261,20 @@ document.addEventListener('DOMContentLoaded', () => {
             // Si aún no hay parroquias en parList (o en caso de geometrías de muestra independientes), añadir las que tengan puntos de muestra
             puntosPorParroquia.forEach((count, parNom) => {
                 if (permitidasCanton && !permitidasCanton.includes(normStr(parNom))) return;
+                if (AppState.circunscripcionSeleccionada !== 'Todas') {
+                    const cPar = normCircunscripcion(resolverCircunscripcionParroquia(parNom));
+                    if (cPar && cPar !== normCircunscripcion(AppState.circunscripcionSeleccionada)) return;
+                }
                 if (!parList.some(item => normStr(item) === parNom)) {
                     parList.push(parNom);
                 }
             });
 
             parList.sort((a, b) => a.localeCompare(b, 'es'));
+            const lblTodas = parList.length > 0 
+                ? `Todas las parroquias (${parList.length})` 
+                : 'Todas las parroquias';
+            UI.parroquiaFilter.innerHTML = `<option value="Todas">${lblTodas}</option>`;
             const frag = document.createDocumentFragment();
             parList.forEach(p => {
                 const opt = document.createElement('option');
@@ -2499,15 +2502,15 @@ document.addEventListener('DOMContentLoaded', () => {
             };
         }
 
-        // 4. Ámbito General (Imbabura)
-        const metaGeneral = AppState.config.meta || AppState.config.metaEncuestas || 1900;
-        const provLabel = AppState.config.provincia || 'Imbabura';
+        // 4. Ámbito General (Cantonal)
+        const metaGeneral = AppState.config.meta || AppState.config.metaEncuestas || 500;
+        const provLabel = AppState.config.canton === 'RIOBAMBA' ? 'Riobamba' : (AppState.config.provincia || 'Riobamba');
         return {
             meta: metaGeneral,
             etiquetaMeta: `Meta: ${metaGeneral.toLocaleString()} (${provLabel})`,
-            subPendientes: `Faltan para la meta provincial`,
+            subPendientes: `Faltan para la meta cantonal`,
             tituloAvance: `Avance General`,
-            subAvance: `Cumplimiento provincial (${metaGeneral.toLocaleString()})`
+            subAvance: `Cumplimiento cantonal (${metaGeneral.toLocaleString()})`
         };
     }
 
