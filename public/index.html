@@ -9,8 +9,8 @@
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="format-detection" content="telephone=no">
-  <meta name="description" content="Panel de Supervisión de Campo en tiempo real — Clima Social Cayambe 2026">
-  <title>Clima Social · Encuesta Cayambe 2026</title>
+  <meta name="description" content="Panel de Supervisión de Campo en tiempo real — Clima Social Riobamba 2026">
+  <title>Clima Social · Encuesta Cantonal Riobamba 2026</title>
   <link rel="icon" type="image/png" href="assets/icono.png">
   <link rel="manifest" href="manifest.webmanifest">
 
@@ -25,14 +25,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
 
   <!-- Preload Cartografía Clave (Caché optimizada para móviles) -->
-  <link rel="preload" href="assets/parroquias.geojson?v=2.2.4" as="fetch" crossorigin>
-  <link rel="preload" href="assets/sectores_censales.geojson?v=2.2.4" as="fetch" crossorigin>
+  <link rel="preload" href="assets/parroquias.geojson?v=2.3.0" as="fetch" crossorigin>
+  <link rel="preload" href="assets/sectores_censales.geojson?v=2.3.0" as="fetch" crossorigin>
 
   <!-- MapLibre GL CSS (Aceleración WebGL Nativa en GPU) -->
   <link rel="stylesheet" href="libs/maplibre-gl.css" />
 
   <!-- Estilos del Dashboard -->
-  <link rel="stylesheet" href="style.css?v=2.2.4">
+  <link rel="stylesheet" href="style.css?v=2.3.0">
 </head>
 <body>
 
@@ -95,7 +95,7 @@
         </a>
         <div class="cs-header__divider"></div>
         <div class="cs-header__title-group">
-          <h1 class="cs-header__title" id="tituloProyecto">Encuesta Urcuquí y Pimampiro 2026</h1>
+          <h1 class="cs-header__title" id="tituloProyecto">Encuesta Cantonal Riobamba 2026</h1>
           <span class="cs-header__live-badge" id="badgeConexion">
             <span class="cs-header__live-dot"></span>
             <span id="badgeTexto">En vivo</span>
@@ -142,7 +142,7 @@
         </div>
         <div class="cs-kpi-bottom">
           <span class="cs-kpi-badge">Total Recolectadas</span>
-          <span class="cs-kpi-sub" id="kpiMeta">Meta: 700 (Nueva Loja)</span>
+          <span class="cs-kpi-sub" id="kpiMeta">Meta: 500 (Riobamba)</span>
         </div>
         <div class="cs-progress-bar"><div class="cs-progress-bar__fill" id="barraAvance" style="width:0%"></div></div>
       </div>
@@ -173,7 +173,7 @@
         </div>
         <div class="cs-kpi-bottom">
           <span class="cs-kpi-badge">Pendientes</span>
-          <span class="cs-kpi-sub" id="kpiSubPendientes">Faltan para la meta</span>
+          <span class="cs-kpi-sub" id="kpiSubPendientes">Faltan para la meta cantonal</span>
         </div>
       </div>
 
@@ -321,9 +321,9 @@
             <div class="cs-map-top-row">
               <!-- Barra Flotante de Control de Capas (Prender y Apagar) -->
               <div class="cs-map-layer-toggles" id="mapLayerToggles" aria-label="Capas del Mapa">
-                <button type="button" class="cs-layer-pill active" id="toggleParroquias" data-layer-group="parroquias" title="Límites Parroquiales de Estudio (9)">
+                <button type="button" class="cs-layer-pill active" id="toggleParroquias" data-layer-group="parroquias" title="Límites Parroquiales de Estudio (13)">
                   <span class="cs-layer-pill__dot" style="background: #2563eb;"></span>
-                  <span id="lblToggleParroquias">Parroquias (9)</span>
+                  <span id="lblToggleParroquias">Parroquias (13)</span>
                 </button>
                 <button type="button" class="cs-layer-pill active" id="toggleSectores" data-layer-group="sectores" title="Sectores Censales Sorteados (50)">
                   <span class="cs-layer-pill__dot" style="background: #3b82f6;"></span>
@@ -507,10 +507,10 @@
 
   <!-- ===== SCRIPTS ===== -->
   <script src="libs/maplibre-gl.js"></script>
-  <script src="js/tipologias.js?v=2.2.4"></script>
-  <script src="js/kobo-parser.js?v=2.2.4"></script>
-  <script src="js/auditoria.js?v=2.2.4"></script>
-  <script src="script.js?v=2.2.4"></script>
+  <script src="js/tipologias.js?v=2.3.0"></script>
+  <script src="js/kobo-parser.js?v=2.3.0"></script>
+  <script src="js/auditoria.js?v=2.3.0"></script>
+  <script src="script.js?v=2.3.0"></script>
   <script>
     if ('serviceWorker' in navigator) {
       let refreshing = false;
@@ -526,13 +526,13 @@
         if ('caches' in window) {
           caches.keys().then(names => {
             names.forEach(name => {
-              if (name !== 'clima-social-cayambe-v2.2.4') {
+              if (name !== 'clima-social-riobamba-v2.3.0') {
                 caches.delete(name);
               }
             });
           });
         }
-        navigator.serviceWorker.register('/service-worker.js?v=2.2.4').then(reg => {
+        navigator.serviceWorker.register('/service-worker.js?v=2.3.0').then(reg => {
           if (!reg) return;
           if (reg.waiting) {
             reg.waiting.postMessage({ type: 'SKIP_WAITING' });

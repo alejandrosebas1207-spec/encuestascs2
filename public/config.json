@@ -1,47 +1,42 @@
 {
-  "estado": "STANDBY",
-  "version": "2.2.4",
-  "proyecto": "Encuesta Cantonal Cayambe 2026",
-  "canton": "CAYAMBE",
-  "provincia": "Pichincha",
-  "modalidad": "hibrido",
-  "meta": 400,
+  "estado": "ACTIVO",
+  "version": "2.3.0",
+  "proyecto": "Encuesta Cantonal Riobamba 2026",
+  "canton": "RIOBAMBA",
+  "provincia": "Chimborazo",
+  "modalidad": "sectores",
+  "meta": 500,
   "bounds": [
-    [-78.33, -0.20],
-    [-77.83, 0.20]
+    [-78.79, -1.85],
+    [-78.56, -1.57]
   ],
   "kobo": {
     "formularios": [
       {
-        "id": "a3rnFwmDJvCPScocS2tRoU",
-        "asset_id": "a3rnFwmDJvCPScocS2tRoU",
-        "nombre": "ENCUESTA CANTÓN CAYAMBE 2026",
+        "id": "awUYAJQdTkAR5ctBE98ztY",
+        "asset_id": "awUYAJQdTkAR5ctBE98ztY",
+        "nombre": "ENCUESTA RIOBAMBA – NOVIEMBRE 2026",
         "activo": true
       }
     ],
-    "asset_id": "a3rnFwmDJvCPScocS2tRoU",
+    "asset_id": "awUYAJQdTkAR5ctBE98ztY",
     "api_token": "07cf361cc0dcfc56f489d599435c8e0ed6ce9387",
-    "campo_encuestador": "cod_enc",
-    "campo_supervisor": "cod_sup",
+    "campo_encuestador": "cencu",
+    "campo_supervisor": "csup",
     "choices_parroquias": {
-      "1": "ASCAZUBI",
-      "2": "CANGAHUA",
-      "3": "CAYAMBE",
-      "4": "JUAN MONTALVO",
-      "5": "OLMEDO/PESILLO",
-      "6": "OTON",
-      "7": "SAN JOSE DE AYORA",
-      "8": "STA.ROSA DE CUSUBAMBA",
-      "1; ASCAZUBI": "ASCAZUBI",
-      "2; CANGAHUA": "CANGAHUA",
-      "3; CAYAMBE": "CAYAMBE",
-      "4; JUAN MONTALVO": "JUAN MONTALVO",
-      "5; OLMEDO/ PESILLO": "OLMEDO/PESILLO",
-      "5; OLMEDO/PESILLO": "OLMEDO/PESILLO",
-      "6; OTON": "OTON",
-      "7; SAN JOSE DE AYORA": "SAN JOSE DE AYORA",
-      "8; SANTA ROSA DE CUSUBAMBA": "STA.ROSA DE CUSUBAMBA",
-      "8; STA.ROSA DE CUSUBAMBA": "STA.ROSA DE CUSUBAMBA"
+      "11": "LIZARZABURU",
+      "12": "VELOZ",
+      "13": "YARUQUIES",
+      "21": "MALDONADO",
+      "22": "VELASCO",
+      "31": "CALPI",
+      "32": "CUBIJIES",
+      "33": "LICAN",
+      "34": "LICTO",
+      "35": "PUNGALA",
+      "36": "QUIMIAG",
+      "37": "SAN JUAN",
+      "38": "SAN LUIS"
     },
     "choices_tipologias": {
       "1": "A",
@@ -64,8 +59,8 @@
   },
   "equipo": {
     "supervisores": {
-      "1": "Supervisor 1",
-      "2": "Supervisor 2"
+      "1": { "nombre": "Supervisor 1", "primerNombre": "Supervisor 1" },
+      "2": { "nombre": "Supervisor 2", "primerNombre": "Supervisor 2" }
     },
     "encuestadores": {}
   }
