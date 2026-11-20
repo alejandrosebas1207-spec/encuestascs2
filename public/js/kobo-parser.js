@@ -86,6 +86,16 @@
         if (genStr.includes('fem') || genStr.includes('mujer') || genStr === '2' || genStr === 'm') {
             return 'Mujer';
         }
+        // Fallback a P1.1 (Sexo Biológico por observación) cuando P1 es LGBTIQ+ u Otro
+        const rawBio = encuesta.sexo_biologico !== undefined ? encuesta.sexo_biologico
+            : (encuesta.p1_1 !== undefined ? encuesta.p1_1 : extraerValor(encuesta, ['p1_1', 'sexo_biologico', 'sexo_bio']));
+        const bioStr = String(rawBio || '').toLowerCase().trim();
+        if (bioStr.includes('masc') || bioStr.includes('hombre') || bioStr === '1' || bioStr === 'h') {
+            return 'Hombre';
+        }
+        if (bioStr.includes('fem') || bioStr.includes('mujer') || bioStr === '2' || bioStr === 'm') {
+            return 'Mujer';
+        }
         return null;
     }
 
