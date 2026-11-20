@@ -1451,7 +1451,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.title = 'Clima Social · ' + nom;
 
         const meta = AppState.config.meta || AppState.config.metaEncuestas || 1900;
-        const cantProv = AppState.config.canton === 'RIOBAMBA' ? 'Riobamba' : (AppState.config.provincia || AppState.config.canton || 'Riobamba');
+        const cantProv = AppState.config.canton === 'MACHALA' ? 'Machala' : (AppState.config.canton === 'RIOBAMBA' ? 'Riobamba' : (AppState.config.provincia || AppState.config.canton || 'Machala'));
         if (UI.kpiMeta) {
             UI.kpiMeta.textContent = `Meta: ${meta.toLocaleString()} (${cantProv})`;
         }
@@ -2504,7 +2504,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // 4. Ámbito General (Cantonal)
         const metaGeneral = AppState.config.meta || AppState.config.metaEncuestas || 500;
-        const provLabel = AppState.config.canton === 'RIOBAMBA' ? 'Riobamba' : (AppState.config.provincia || 'Riobamba');
+        const provLabel = AppState.config.canton === 'MACHALA' ? 'Machala' : (AppState.config.canton === 'RIOBAMBA' ? 'Riobamba' : (AppState.config.provincia || 'Machala'));
         return {
             meta: metaGeneral,
             etiquetaMeta: `Meta: ${metaGeneral.toLocaleString()} (${provLabel})`,

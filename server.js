@@ -289,7 +289,7 @@ function normalizarEncuesta(raw, params, cantonOverride = "", formItem = null) {
     };
     const cOverrideNorm = String(cantonOverride || "").normalize('NFD').replace(/[̀-ͯ]/g, '').toUpperCase().trim();
     const formChoicesParr = (formItem && formItem.choicesParroquias) || PARROQUIAS_POR_DEFECTO[cantonOverride] || PARROQUIAS_POR_DEFECTO[cOverrideNorm] || {};
-    const rawParroquia = extraerValor(raw, ["parroquia", "PARROQUIA", "nom_parroquia", "parr"]) || "";
+    const rawParroquia = extraerValor(raw, ["parroquia_001", "parroquia", "PARROQUIA", "nom_parroquia", "parr"]) || "";
     const parroquia = formChoicesParr[rawParroquia] || params.choicesParroquias[rawParroquia] || String(rawParroquia).trim().toUpperCase();
 
     const rawCanton = extraerValor(raw, ["canton", "CANTON", "canton_nombre", "nom_can", "nom_canton"]) || "";
@@ -324,6 +324,14 @@ function normalizarEncuesta(raw, params, cantonOverride = "", formItem = null) {
         genero = "Otro";
     }
 
+    const rawSexoBio = extraerValor(raw, ["p1_1", "sexo_biologico", "sexo_bio"]) || "";
+    let sexo_biologico = "";
+    if (rawSexoBio === "1" || rawSexoBio.toLowerCase().includes("masc") || rawSexoBio.toLowerCase().includes("hombre")) {
+        sexo_biologico = "Hombre";
+    } else if (rawSexoBio === "2" || rawSexoBio.toLowerCase().includes("fem") || rawSexoBio.toLowerCase().includes("mujer")) {
+        sexo_biologico = "Mujer";
+    }
+
     const edadRaw = extraerValor(raw, [
         "p2", "edad", "p_edad", "age",
         "2. ¿CUÁL ES SU EDAD? (edad cumplida en años)",
@@ -353,6 +361,7 @@ function normalizarEncuesta(raw, params, cantonOverride = "", formItem = null) {
         cenc: encuestador,
         csup: supervisor,
         encuestador,
+        sexo_biologico,
         supervisor,
         sc,
         sc_key: scKey,

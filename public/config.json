@@ -1,42 +1,37 @@
 {
   "estado": "ACTIVO",
-  "version": "2.3.2",
-  "proyecto": "Encuesta Cantonal Riobamba 2026",
-  "canton": "RIOBAMBA",
-  "provincia": "Chimborazo",
+  "version": "2.4.0",
+  "proyecto": "Encuesta Cantonal Machala Nov 2026",
+  "canton": "MACHALA",
+  "provincia": "El Oro",
   "modalidad": "sectores",
   "meta": 500,
   "bounds": [
-    [-78.79, -1.85],
-    [-78.56, -1.57]
+    [-80.01, -3.41],
+    [-79.88, -3.22]
   ],
   "kobo": {
     "formularios": [
       {
-        "id": "awUYAJQdTkAR5ctBE98ztY",
-        "asset_id": "awUYAJQdTkAR5ctBE98ztY",
-        "nombre": "ENCUESTA RIOBAMBA – NOVIEMBRE 2026",
+        "id": "aFjhD9mid4UckpULZgs29o",
+        "asset_id": "aFjhD9mid4UckpULZgs29o",
+        "nombre": "ENCUESTA MACHALA",
         "activo": true
       }
     ],
-    "asset_id": "awUYAJQdTkAR5ctBE98ztY",
+    "asset_id": "aFjhD9mid4UckpULZgs29o",
     "api_token": "07cf361cc0dcfc56f489d599435c8e0ed6ce9387",
     "campo_encuestador": "cencu",
     "campo_supervisor": "csup",
     "choices_parroquias": {
-      "11": "LIZARZABURU",
-      "12": "VELOZ",
-      "13": "YARUQUIES",
-      "21": "MALDONADO",
-      "22": "VELASCO",
-      "31": "CALPI",
-      "32": "CUBIJIES",
-      "33": "LICAN",
-      "34": "LICTO",
-      "35": "PUNGALA",
-      "36": "QUIMIAG",
-      "37": "SAN JUAN",
-      "38": "SAN LUIS"
+      "1": "9 DE MAYO",
+      "2": "EL CAMBIO",
+      "3": "JAMBELI",
+      "4": "JUBONES",
+      "5": "LA PROVIDENCIA",
+      "6": "MACHALA",
+      "7": "PUERTO BOLIVAR",
+      "8": "EL RETIRO"
     },
     "choices_tipologias": {
       "1": "A",
