@@ -2542,6 +2542,13 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if (UI.kpiAvance) UI.kpiAvance.textContent = `${avancePorcentaje}%`;
         if (UI.barraAvance) UI.barraAvance.style.width = `${Math.min(100, parseFloat(avancePorcentaje))}%`;
+
+        const donutAvance = document.getElementById('donutAvance');
+        if (donutAvance) {
+            const circ = 87.96;
+            const pctClamped = Math.max(0, Math.min(100, parseFloat(avancePorcentaje) || 0));
+            donutAvance.style.strokeDashoffset = (circ * (1 - pctClamped / 100)).toFixed(2);
+        }
     }
 
     function animarNumero(elemento, valorFinal) {

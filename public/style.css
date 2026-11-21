@@ -26,21 +26,21 @@
   --cs-green-light: #ecfdf5;      /* Fondo Verde Suave */
   --cs-green-border: #a7f3d0;
 
-  --cs-amber: #d97706;            /* Ámbar / Pendientes / En Proceso */
+  --cs-amber: #b45309;            /* Ámbar Terracota / Pendientes */
   --cs-amber-light: #fffbeb;      /* Fondo Ámbar Suave */
   --cs-amber-border: #fde68a;
 
-  --cs-coral: #dc2626;            /* Rojo Coral Sutil para Alertas */
+  --cs-coral: #c23b49;            /* Carmesí Clima Social para Alertas */
   --cs-coral-light: #fef2f2;
   --cs-coral-border: #fecaca;
 
-  --cs-teal: #028090;             /* Azul Petróleo / Cartografía */
+  --cs-teal: #0f766e;             /* Petróleo Profundo / Cartografía */
   --cs-teal-light: #f0fdfa;
   --cs-teal-border: #99f6e4;
 
-  --cs-indigo: #4f46e5;           /* Indigo / Acento Secundario */
-  --cs-indigo-light: #eef2ff;
-  --cs-indigo-border: #c7d2fe;
+  --cs-indigo: #3e0f49;           /* Plum Clima Social / Acento Editorial */
+  --cs-indigo-light: #faf5ff;
+  --cs-indigo-border: #e9d5ff;
 
   --cs-gold: #f59e0b;             /* Ocre Dorado Vivo */
 
@@ -603,6 +603,44 @@ body.modo-oscuro .cs-btn-icon:hover {
 
 .cs-kpi-card--purple .cs-kpi-icon-wrap { background-color: var(--cs-indigo-light); color: var(--cs-indigo); }
 .cs-kpi-card--purple .cs-kpi-card__value { color: var(--cs-indigo); }
+
+.cs-kpi-card__value,
+.cs-clock {
+  font-variant-numeric: tabular-nums;
+}
+
+.cs-kpi-micro {
+  width: 30px;
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.cs-kpi-micro svg {
+  width: 26px;
+  height: 26px;
+  display: block;
+}
+.cs-kpi-micro--donut svg {
+  width: 30px;
+  height: 30px;
+}
+.cs-kpi-donut circle {
+  transition: stroke-dashoffset 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.cs-kpi-card--teal .cs-kpi-micro { color: var(--cs-teal); }
+.cs-kpi-card--green .cs-kpi-micro { color: var(--cs-green); }
+.cs-kpi-card--amber .cs-kpi-micro { color: var(--cs-amber); }
+.cs-kpi-card--purple .cs-kpi-micro { color: var(--cs-indigo); }
+
+/* Glassmorphism sutil para controles flotantes sobre el mapa */
+.cs-layer-pill {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+}
 
 /* Barra de Progreso Elegante */
 .cs-progress-bar {
