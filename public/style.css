@@ -3867,3 +3867,89 @@ body.modo-oscuro .maplibregl-ctrl-group button:hover {
   background-color: rgba(51, 65, 85, 1) !important;
 }
 
+
+/* ==========================================================================
+   UPGRADE ESTÉTICO · OPCIÓN A (EDITORIAL CLIMA SOCIAL · PETRÓLEO & PIZARRA)
+   ========================================================================== */
+body:not(.modo-oscuro) {
+  background: linear-gradient(180deg, #eef3f7 0%, #f8fafc 100%);
+}
+
+body:not(.modo-oscuro) .cs-header {
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid #dbe3ed;
+  box-shadow: 0 2px 12px rgba(15, 23, 42, 0.04);
+}
+
+.franja-textil {
+  height: 3px !important;
+}
+
+body:not(.modo-oscuro) .cs-kpi-card {
+  border-radius: 14px;
+  border: 1px solid #dbe3ed;
+  border-top: 3px solid var(--cs-teal);
+  padding: 0.85rem 1.05rem;
+  box-shadow: 0 4px 18px rgba(15, 23, 42, 0.05);
+}
+
+body:not(.modo-oscuro) .cs-kpi-card--green { border-top-color: var(--cs-green); }
+body:not(.modo-oscuro) .cs-kpi-card--amber { border-top-color: var(--cs-amber); }
+body:not(.modo-oscuro) .cs-kpi-card--purple { border-top-color: var(--cs-indigo); }
+
+body:not(.modo-oscuro) .cs-kpi-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+}
+
+.cs-kpi-card__value {
+  font-size: 1.9rem !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.03em;
+}
+
+body:not(.modo-oscuro) .cs-filter-ribbon-card {
+  border-radius: 14px;
+  border: 1px solid #dbe3ed;
+  box-shadow: 0 4px 18px rgba(15, 23, 42, 0.045);
+}
+
+body:not(.modo-oscuro) .cs-select {
+  background-color: #f8fafc;
+  border-color: #cbd5e1;
+  border-radius: 10px;
+}
+
+body:not(.modo-oscuro) .cs-select:focus,
+body:not(.modo-oscuro) .cs-select.is-active {
+  border-color: #0f766e;
+  box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.12);
+}
+
+body:not(.modo-oscuro) .cs-map-card,
+body:not(.modo-oscuro) .cs-team-card,
+body:not(.modo-oscuro) .cs-panel {
+  border-radius: 14px;
+  border: 1px solid #dbe3ed;
+  box-shadow: 0 6px 22px rgba(15, 23, 42, 0.055);
+  overflow: hidden;
+}
+
+.cs-panel-header--navy,
+.cs-panel-header--map {
+  background: linear-gradient(135deg, #0f172a 0%, #134e4a 100%) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+body:not(.modo-oscuro) .cs-layer-pill {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid #cbd5e1;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.09);
+}
+
+body:not(.modo-oscuro) .cs-layer-pill.active {
+  border-color: #0f766e;
+  color: #0f172a;
+}
