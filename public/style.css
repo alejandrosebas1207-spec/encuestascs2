@@ -26,21 +26,21 @@
   --cs-green-light: #ecfdf5;      /* Fondo Verde Suave */
   --cs-green-border: #a7f3d0;
 
-  --cs-amber: #b45309;            /* Ámbar Terracota / Pendientes */
+  --cs-amber: #d97706;            /* Ámbar / Pendientes / En Proceso */
   --cs-amber-light: #fffbeb;      /* Fondo Ámbar Suave */
   --cs-amber-border: #fde68a;
 
-  --cs-coral: #c23b49;            /* Carmesí Clima Social para Alertas */
+  --cs-coral: #dc2626;            /* Rojo Coral Sutil para Alertas */
   --cs-coral-light: #fef2f2;
   --cs-coral-border: #fecaca;
 
-  --cs-teal: #0f766e;             /* Petróleo Profundo / Cartografía */
+  --cs-teal: #028090;             /* Azul Petróleo / Cartografía */
   --cs-teal-light: #f0fdfa;
   --cs-teal-border: #99f6e4;
 
-  --cs-indigo: #3e0f49;           /* Plum Clima Social / Acento Editorial */
-  --cs-indigo-light: #faf5ff;
-  --cs-indigo-border: #e9d5ff;
+  --cs-indigo: #4f46e5;           /* Indigo / Acento Secundario */
+  --cs-indigo-light: #eef2ff;
+  --cs-indigo-border: #c7d2fe;
 
   --cs-gold: #f59e0b;             /* Ocre Dorado Vivo */
 
@@ -603,44 +603,6 @@ body.modo-oscuro .cs-btn-icon:hover {
 
 .cs-kpi-card--purple .cs-kpi-icon-wrap { background-color: var(--cs-indigo-light); color: var(--cs-indigo); }
 .cs-kpi-card--purple .cs-kpi-card__value { color: var(--cs-indigo); }
-
-.cs-kpi-card__value,
-.cs-clock {
-  font-variant-numeric: tabular-nums;
-}
-
-.cs-kpi-micro {
-  width: 30px;
-  height: 30px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-.cs-kpi-micro svg {
-  width: 26px;
-  height: 26px;
-  display: block;
-}
-.cs-kpi-micro--donut svg {
-  width: 30px;
-  height: 30px;
-}
-.cs-kpi-donut circle {
-  transition: stroke-dashoffset 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.cs-kpi-card--teal .cs-kpi-micro { color: var(--cs-teal); }
-.cs-kpi-card--green .cs-kpi-micro { color: var(--cs-green); }
-.cs-kpi-card--amber .cs-kpi-micro { color: var(--cs-amber); }
-.cs-kpi-card--purple .cs-kpi-micro { color: var(--cs-indigo); }
-
-/* Glassmorphism sutil para controles flotantes sobre el mapa */
-.cs-layer-pill {
-  background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
-}
 
 /* Barra de Progreso Elegante */
 .cs-progress-bar {
@@ -3867,89 +3829,3 @@ body.modo-oscuro .maplibregl-ctrl-group button:hover {
   background-color: rgba(51, 65, 85, 1) !important;
 }
 
-
-/* ==========================================================================
-   UPGRADE ESTÉTICO · OPCIÓN A (EDITORIAL CLIMA SOCIAL · PETRÓLEO & PIZARRA)
-   ========================================================================== */
-body:not(.modo-oscuro) {
-  background: linear-gradient(180deg, #eef3f7 0%, #f8fafc 100%);
-}
-
-body:not(.modo-oscuro) .cs-header {
-  background: rgba(255, 255, 255, 0.94);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid #dbe3ed;
-  box-shadow: 0 2px 12px rgba(15, 23, 42, 0.04);
-}
-
-.franja-textil {
-  height: 3px !important;
-}
-
-body:not(.modo-oscuro) .cs-kpi-card {
-  border-radius: 14px;
-  border: 1px solid #dbe3ed;
-  border-top: 3px solid var(--cs-teal);
-  padding: 0.85rem 1.05rem;
-  box-shadow: 0 4px 18px rgba(15, 23, 42, 0.05);
-}
-
-body:not(.modo-oscuro) .cs-kpi-card--green { border-top-color: var(--cs-green); }
-body:not(.modo-oscuro) .cs-kpi-card--amber { border-top-color: var(--cs-amber); }
-body:not(.modo-oscuro) .cs-kpi-card--purple { border-top-color: var(--cs-indigo); }
-
-body:not(.modo-oscuro) .cs-kpi-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
-}
-
-.cs-kpi-card__value {
-  font-size: 1.9rem !important;
-  font-weight: 800 !important;
-  letter-spacing: -0.03em;
-}
-
-body:not(.modo-oscuro) .cs-filter-ribbon-card {
-  border-radius: 14px;
-  border: 1px solid #dbe3ed;
-  box-shadow: 0 4px 18px rgba(15, 23, 42, 0.045);
-}
-
-body:not(.modo-oscuro) .cs-select {
-  background-color: #f8fafc;
-  border-color: #cbd5e1;
-  border-radius: 10px;
-}
-
-body:not(.modo-oscuro) .cs-select:focus,
-body:not(.modo-oscuro) .cs-select.is-active {
-  border-color: #0f766e;
-  box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.12);
-}
-
-body:not(.modo-oscuro) .cs-map-card,
-body:not(.modo-oscuro) .cs-team-card,
-body:not(.modo-oscuro) .cs-panel {
-  border-radius: 14px;
-  border: 1px solid #dbe3ed;
-  box-shadow: 0 6px 22px rgba(15, 23, 42, 0.055);
-  overflow: hidden;
-}
-
-.cs-panel-header--navy,
-.cs-panel-header--map {
-  background: linear-gradient(135deg, #0f172a 0%, #134e4a 100%) !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-body:not(.modo-oscuro) .cs-layer-pill {
-  background: rgba(255, 255, 255, 0.92);
-  border: 1px solid #cbd5e1;
-  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.09);
-}
-
-body:not(.modo-oscuro) .cs-layer-pill.active {
-  border-color: #0f766e;
-  color: #0f172a;
-}
